@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "1.0.0",
+  "profileId": "maarif_model",
+  "gradeId": "grade_6",
+  "validation": {
+    "authority": "MEB",
+    "sourceDocument": "Türkiye Yüzyılı Maarif Modeli Fen Bilimleri Dersi Öğretim Programı",
+    "sourceVersion": "2024",
+    "lastVerifiedAt": null,
+    "verifiedBy": null,
+    "status": "unverified",
+    "notes": "Türkiye Yüzyılı Maarif Modeli 6. sınıf müfredat verisi."
+  },
+  "units": [
+    {
+      "id": "solar_system_and_eclipses",
+      "label": "1. Ünite — Güneş Sistemi ve Tutulmalar",
+      "topics": [
+        {
+          "id": "solar_system",
+          "label": "Güneş Sistemi",
+          "metadata": {
+            "coreTopics": [
+              "Güneş Sistemi'ndeki gezegenler",
+              "Gezegenlerin Güneş'e olan uzaklıkları",
+              "Gezegenlerin büyüklük ve yapısal özellikleri",
+              "Asteroit ve meteorlar"
+            ],
+            "extraTopics": [
+              "İç ve dış gezegenler",
+              "Cüce gezegenler"
+            ],
+            "verified": true,
+            "lastVerifiedAt": null
+          },
+          "workModes": {
+            "presentation": {
+              "status": "planned",
+              "source": null
+            },
+            "activity": {
+              "status": "planned",
+              "source": null
+            },
+            "test": {
+              "status": "planned",
+              "source": null
+            }
+          },
+          "lessons": [
+            {
+              "id": "lesson_gunes_sistemi_1",
+              "label": "Güneş Sistemi",
+              "source": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

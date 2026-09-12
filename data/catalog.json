@@ -6,6 +6,12 @@
       "label": "8. Sınıf",
       "curriculumProfileId": "legacy_2018_lgs",
       "status": "ready_for_content"
+    },
+    {
+      "id": "grade_6",
+      "label": "6. Sınıf",
+      "curriculumProfileId": "maarif_model",
+      "status": "ready_for_content"
     }
   ],
   "curriculumProfiles": [
@@ -22,12 +28,26 @@
         "verifiedBy": null,
         "status": "unverified"
       }
+    },
+    {
+      "id": "maarif_model",
+      "label": "Türkiye Yüzyılı Maarif Modeli",
+      "gradeIds": ["grade_6"],
+      "source": "./data/curricula/maarif_model.json",
+      "validation": {
+        "authority": "MEB",
+        "sourceDocument": "Türkiye Yüzyılı Maarif Modeli Fen Bilimleri Dersi Öğretim Programı",
+        "sourceVersion": "2024",
+        "lastVerifiedAt": null,
+        "verifiedBy": null,
+        "status": "unverified"
+      }
     }
   ],
   "plannedProfiles": [
     {
-      "id": "maarif_model",
-      "gradeIds": ["grade_5", "grade_6", "grade_7"],
+      "id": "maarif_model_planned",
+      "gradeIds": ["grade_5", "grade_7"],
       "status": "v2_placeholder"
     }
   ]
