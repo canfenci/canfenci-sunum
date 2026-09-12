@@ -1,0 +1,37 @@
+{
+  "$comment": "Bu dosya veri sözleşmesi örneğidir; gerçek ders içeriği değildir.",
+  "schemaVersion": "1.0.0",
+  "id": "replace_with_lesson_id",
+  "title": "",
+  "gradeId": "grade_8",
+  "curriculumProfileId": "legacy_2018_lgs",
+  "unitId": "",
+  "topicId": "",
+  "modes": ["presentation"],
+  "curriculumValidation": {
+    "outcomeIds": [],
+    "authority": null,
+    "sourceDocument": null,
+    "sourceVersion": null,
+    "lastVerifiedAt": null,
+    "verifiedBy": null,
+    "status": "unverified"
+  },
+  "stages": [
+    {
+      "id": "replace_with_stage_id",
+      "label": "",
+      "order": 1,
+      "slides": [
+        {
+          "id": "replace_with_slide_id",
+          "type": "content",
+          "title": "",
+          "blocks": [],
+          "interactions": [],
+          "media": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "canfenci-sunum",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "CanFenci Akıllı Tahta Ders Sistemi teknik V1 iskeleti",
+  "scripts": {
+    "start": "python3 scripts/serve.py",
+    "test": "node scripts/validate.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

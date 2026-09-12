@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "1.0.0",
+  "grades": [
+    {
+      "id": "grade_8",
+      "label": "8. Sınıf",
+      "curriculumProfileId": "legacy_2018_lgs",
+      "status": "ready_for_content"
+    }
+  ],
+  "curriculumProfiles": [
+    {
+      "id": "legacy_2018_lgs",
+      "label": "2018 LGS Müfredatı",
+      "gradeIds": ["grade_8"],
+      "source": "./data/curricula/legacy_2018_lgs.json",
+      "validation": {
+        "authority": null,
+        "sourceDocument": null,
+        "sourceVersion": null,
+        "lastVerifiedAt": null,
+        "verifiedBy": null,
+        "status": "unverified"
+      }
+    }
+  ],
+  "plannedProfiles": [
+    {
+      "id": "maarif_model",
+      "gradeIds": ["grade_5", "grade_6", "grade_7"],
+      "status": "v2_placeholder"
+    }
+  ]
+}

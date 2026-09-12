@@ -1,0 +1,781 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "lesson_mevsimlerin_olusumu_1",
+  "title": "Mevsimlerin Oluşumu",
+  "gradeId": "grade_8",
+  "curriculumProfileId": "legacy_2018_lgs",
+  "unitId": "seasons_and_climate",
+  "topicId": "formation_of_seasons",
+  "modes": ["presentation"],
+  "curriculumValidation": {
+    "outcomeIds": ["F.8.1.1.1"],
+    "authority": "MEB",
+    "sourceDocument": "8. Sınıf Fen Bilimleri Dersi Öğretim Programı (2018 LGS)",
+    "sourceVersion": "2018",
+    "lastVerifiedAt": "2026-08-28",
+    "verifiedBy": "CanFenci",
+    "status": "verified"
+  },
+  "extraTopics": [
+    "geoit_sekli",
+    "eksen_egikligi_olmasaydi"
+  ],
+  "stages": [
+    {
+      "id": "stage_merak_et",
+      "label": "Merak Et",
+      "order": 1,
+      "slides": [
+        {
+          "id": "slide_2_merak_et",
+          "type": "content",
+          "layout": "canva_merak_et",
+          "tag": "MERAK ET",
+          "kicker": "MERAK ET",
+          "title": "Türkiye’de kışın kar yağarken, aynı anda Avustralya’da yaz mevsiminin yaşanmasının sebebi nedir?",
+          "media": [
+            {
+              "id": "media_turkiye_avustralya",
+              "src": "./assets/images/mevsimlerin-olusumu/02-turkiye-avustralya.png",
+              "alt": "Türkiye'de kış yaşanırken Avustralya'da yaz yaşanması"
+            }
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_2_temel_neden",
+              "type": "reveal_fill",
+              "template": "Dünya’nın {blank1} ve Güneş etrafında {blank2} mevsimlerin oluşumunun temel nedenidir.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "eksen eğikliği",
+                  "placeholder": "eksen eğikliği"
+                },
+                {
+                  "id": "blank2",
+                  "answer": "dolanması",
+                  "placeholder": "dolanması"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stage_temel_hareketler",
+      "label": "Dünya'nın Hareketleri",
+      "order": 2,
+      "slides": [
+        {
+          "id": "slide_3_iki_hareket",
+          "type": "content",
+          "layout": "canva_iki_hareket",
+          "tag": "İKİ TEMEL HAREKET",
+          "kicker": "DÜNYA'NIN HAREKETLERİ",
+          "title": "Dünya’nın İki Temel Hareketi",
+          "cardText": "Dünya’nın Günlük Hareket ve Yıllık Hareket şeklinde iki temel hareketi vardır.",
+          "media": [
+            {
+              "id": "rotasyon",
+              "src": "./assets/images/mevsimlerin-olusumu/03-gunluk-rotasyon.png",
+              "alt": "Dünya'nın dönme hareketi (Günlük hareket)"
+            },
+            {
+              "id": "dolanim",
+              "src": "./assets/images/mevsimlerin-olusumu/03-yillik-dolanim.png",
+              "alt": "Dünya'nın dolanma hareketi (Yıllık hareket)"
+            }
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_3_mevsimler",
+              "type": "reveal_fill",
+              "template": "Dünya, bu iki hareketi aynı anda yaptığı için Güneş ışınlarının geliş açısı yıl boyunca değişir ve {blank1} oluşur.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "mevsimler",
+                  "placeholder": "mevsimler"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "slide_4_geoit_mesafe",
+          "type": "content",
+          "layout": "canva_geoit_mesafe",
+          "tag": "KAVRAM YANILGISI",
+          "kicker": "KAVRAM YANILGISI",
+          "title": "Güneş'e Mesafe Yanılgısı ve Geoit",
+          "mainMessage": "Dünya’nın Güneş’e olan yakınlığı veya uzaklığı mevsimleri oluşturmaz.",
+          "media": [
+            {
+              "id": "uzay",
+              "src": "./assets/images/mevsimlerin-olusumu/04-uzay-mesafe.png",
+              "alt": "Dünya ve Güneş arasındaki mesafe"
+            },
+            {
+              "id": "geoit",
+              "src": "./assets/images/mevsimlerin-olusumu/04-geoit-kutuplar.png",
+              "alt": "Dünya'nın kutuplardan basık, ekvatordan şişkin geoit şekli"
+            }
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_4_geoit",
+              "type": "reveal_fill",
+              "template": "Dünya’nın kutuplardan basık, ekvatordan şişkin şekline {blank1} denir.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "geoit",
+                  "placeholder": "geoit"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "slide_5_gunluk_hareket",
+          "type": "content",
+          "layout": "canva_gunluk_hareket",
+          "tag": "GÜNLÜK HAREKET",
+          "kicker": "GÜNLÜK HAREKET",
+          "title": "1. Dünya’nın Günlük Hareketi",
+          "media": [
+            {
+              "id": "donme",
+              "src": "./assets/images/mevsimlerin-olusumu/05-gunluk-hareket-gece-gunduz.png",
+              "alt": "Dünya'nın dönme hareketi, gece ve gündüz oluşumu"
+            }
+          ],
+          "bulletPoints": [
+            { "type": "text", "text": "Dünya kendi ekseni etrafında batıdan doğuya doğru döner." },
+            { "type": "interaction", "interactionId": "interaction_slide_5_saat" },
+            { "type": "interaction", "interactionId": "interaction_slide_5_gece_gunduz" },
+            { "type": "text", "text": "Günlük sıcaklık farkları meydana gelir." },
+            { "type": "text", "text": "Güneş ışınlarının geliş açısı gün içinde değişir." }
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_5_saat",
+              "type": "reveal_fill",
+              "template": "Bu dönüşünü {blank1} saatte tamamlar. Bu süreye 1 gün denir.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "24",
+                  "placeholder": "24"
+                }
+              ]
+            },
+            {
+              "id": "interaction_slide_5_gece_gunduz",
+              "type": "reveal_fill",
+              "template": "{blank2} ve {blank3} oluşur.",
+              "blanks": [
+                {
+                  "id": "blank2",
+                  "answer": "gece",
+                  "placeholder": "gece"
+                },
+                {
+                  "id": "blank3",
+                  "answer": "gündüz",
+                  "placeholder": "gündüz"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "slide_6_golge_boyu",
+          "type": "content",
+          "layout": "canva_golge_boyu",
+          "tag": "GÖLGE BOYU",
+          "kicker": "GÖLGE BOYU",
+          "title": "Gölge Boyunun Gün İçindeki Değişimi",
+          "media": [
+            {
+              "id": "golge_karsilastirma",
+              "src": "./assets/images/mevsimlerin-olusumu/06-golge-boyu-karsilastirma.png",
+              "alt": "Sabah, öğle ve akşam gölge boyu karşılaştırması"
+            }
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_6_ogle",
+              "type": "reveal_fill",
+              "template": "Bir cismin gün içerisinde gölge boyunun en kısa olduğu zaman dilimi {blank1} vaktidir.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "öğle",
+                  "placeholder": "öğle"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "slide_7_yillik_hareket",
+          "type": "content",
+          "layout": "canva_yillik_hareket",
+          "tag": "YILLIK HAREKET",
+          "kicker": "DÜNYA'NIN HAREKETLERİ",
+          "title": "2. Dünya’nın Yıllık Hareketi",
+          "media": [
+            {
+              "id": "yillik_yorunge",
+              "src": "./assets/images/mevsimlerin-olusumu/07-yillik-hareket-yorunge.png",
+              "alt": "Dünya'nın Güneş etrafında dolanma yörüngesi"
+            }
+          ],
+          "bulletPoints": [
+            { "type": "text", "text": "Dünya'nın Güneş etrafında dolanmasıdır." },
+            { "type": "text", "text": "Saat yönünün tersine yani batıdan doğuya doğru dolanır." },
+            { "type": "interaction", "interactionId": "interaction_slide_7_yil" },
+            { "type": "text", "text": "Bu hareketin sonucunda mevsimler oluşur." }
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_7_yil",
+              "type": "reveal_fill",
+              "template": "365 gün 6 saat sürer ve bu süreye {blank1} denir.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "1 yıl",
+                  "placeholder": "1 yıl"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stage_eksen_egikligi",
+      "label": "Eksen Eğikliği",
+      "order": 3,
+      "slides": [
+        {
+          "id": "slide_8_eksen_egikligi",
+          "type": "content",
+          "layout": "canva_eksen_egikligi",
+          "tag": "EKSEN EĞİKLİĞİ",
+          "kicker": "EKSEN EĞİKLİĞİ",
+          "title": "Eksen Eğikliği",
+          "media": [
+            {
+              "id": "eksen_diyagram",
+              "src": "./assets/images/mevsimlerin-olusumu/08-eksen-egikligi-diyagram.png",
+              "alt": "Dünya'nın eksen eğikliği ve yörünge düzlemi diyagramı"
+            }
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_8_eksen",
+              "type": "reveal_fill",
+              "template": "Bu eğikliğe {blank1} denir.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "eksen eğikliği",
+                  "placeholder": "eksen eğikliği"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "slide_9_eksen_egikligi_sonuclari",
+          "type": "content",
+          "layout": "canva_eksen_sonuclari",
+          "tag": "EKSEN EĞİKLİĞİ SONUÇLARI",
+          "kicker": "EKSEN EĞİKLİĞİ",
+          "title": "Eksen Eğikliği Sonuçları",
+          "media": [
+            {
+              "id": "sonuc_mevsimler",
+              "src": "./assets/images/mevsimlerin-olusumu/09-sonuc-mevsimler.png",
+              "caption": "Mevsimler oluşur."
+            },
+            {
+              "id": "sonuc_farkli_mevsim",
+              "src": "./assets/images/mevsimlerin-olusumu/09-sonuc-farkli-mevsim.png",
+              "caption": "Aynı anda farklı yarım kürelerde farklı mevsimler yaşanır."
+            },
+            {
+              "id": "sonuc_sicaklik",
+              "src": "./assets/images/mevsimlerin-olusumu/09-sonuc-sicaklik.png",
+              "caption": "Yıllık sıcaklık farkları oluşur."
+            },
+            {
+              "id": "sonuc_golge_boyu",
+              "src": "./assets/images/mevsimlerin-olusumu/09-sonuc-golge-boyu.png",
+              "caption": "Bir noktadaki gölge boyu yıl boyunca sürekli değişir."
+            },
+            {
+              "id": "sonuc_gece_gunduz",
+              "src": "./assets/images/mevsimlerin-olusumu/09-sonuc-gece-gunduz.png",
+              "caption": "Gece ve gündüz süreleri yıl boyunca değişir."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stage_mevsim_tarihleri",
+      "label": "Mevsim Tarihleri ve Konumlar",
+      "order": 4,
+      "slides": [
+        {
+          "id": "slide_10_mevsim_tarihleri_tablosu",
+          "type": "content",
+          "layout": "canva_tarihler_tablosu",
+          "tag": "MEVSİM TARİHLERİ",
+          "kicker": "MEVSİM TARİHLERİ",
+          "title": "Mevsim Tarihleri Tablosu",
+          "interactions": [
+            {
+              "id": "interaction_tablo_aralik_kyk",
+              "type": "reveal_fill",
+              "template": "{blank_aralik_kyk} mevsimi başlar.",
+              "blanks": [
+                {
+                  "id": "blank_aralik_kyk",
+                  "answer": "kış",
+                  "placeholder": "kış"
+                }
+              ]
+            },
+            {
+              "id": "interaction_tablo_aralik_dik",
+              "type": "reveal_fill",
+              "template": "{blank_aralik_dik}ne dik açıyla gelir.",
+              "blanks": [
+                {
+                  "id": "blank_aralik_dik",
+                  "answer": "Oğlak Dönencesi",
+                  "placeholder": "Oğlak Dönencesi"
+                }
+              ]
+            },
+            {
+              "id": "interaction_tablo_mart_sure",
+              "type": "reveal_fill",
+              "template": "{blank_mart_sure} süresi eşittir.",
+              "blanks": [
+                {
+                  "id": "blank_mart_sure",
+                  "answer": "gece ve gündüz",
+                  "placeholder": "gece ve gündüz"
+                }
+              ]
+            },
+            {
+              "id": "interaction_tablo_mart_dik",
+              "type": "reveal_fill",
+              "template": "{blank_mart_dik} çizgisine dik açıyla gelir.",
+              "blanks": [
+                {
+                  "id": "blank_mart_dik",
+                  "answer": "Ekvator",
+                  "placeholder": "Ekvator"
+                }
+              ]
+            },
+            {
+              "id": "interaction_tablo_haziran_kyk",
+              "type": "reveal_fill",
+              "template": "{blank_haziran_kyk} mevsimi başlar.",
+              "blanks": [
+                {
+                  "id": "blank_haziran_kyk",
+                  "answer": "yaz",
+                  "placeholder": "yaz"
+                }
+              ]
+            },
+            {
+              "id": "interaction_tablo_haziran_dik",
+              "type": "reveal_fill",
+              "template": "{blank_haziran_dik}ne dik açıyla gelir.",
+              "blanks": [
+                {
+                  "id": "blank_haziran_dik",
+                  "answer": "Yengeç Dönencesi",
+                  "placeholder": "Yengeç Dönencesi"
+                }
+              ]
+            },
+            {
+              "id": "interaction_tablo_eylul_sure",
+              "type": "reveal_fill",
+              "template": "{blank_eylul_sure} süresi eşittir.",
+              "blanks": [
+                {
+                  "id": "blank_eylul_sure",
+                  "answer": "gece ve gündüz",
+                  "placeholder": "gece ve gündüz"
+                }
+              ]
+            },
+            {
+              "id": "interaction_tablo_eylul_dik",
+              "type": "reveal_fill",
+              "template": "{blank_eylul_dik} çizgisine dik açıyla gelir.",
+              "blanks": [
+                {
+                  "id": "blank_eylul_dik",
+                  "answer": "Ekvator",
+                  "placeholder": "Ekvator"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "slide_11_donenceler_ve_ekvator",
+          "type": "content",
+          "layout": "canva_donenceler_ekvator",
+          "tag": "DÖNENCELER VE EKVATOR",
+          "kicker": "DÖNENCELER VE EKVATOR",
+          "title": "Dönenceler ve Ekvator",
+          "media": [
+            {
+              "id": "donenceler_diyagram",
+              "src": "./assets/images/mevsimlerin-olusumu/11-donenceler-ve-ekvator-diyagram.png",
+              "alt": "Yengeç Dönencesi, Ekvator ve Oğlak Dönencesi konumları"
+            }
+          ]
+        },
+        {
+          "id": "slide_12_dort_kritik_tarih",
+          "type": "content",
+          "layout": "canva_dort_kritik_tarih",
+          "tag": "DÖRT KRİTİK TARİH",
+          "kicker": "MEVSİM TARİHLERİ",
+          "title": "Dört Kritik Tarih",
+          "media": [
+            {
+              "id": "dort_kritik_yorunge",
+              "src": "./assets/images/mevsimlerin-olusumu/12-dort-kritik-tarih-yorunge.png",
+              "alt": "21 Mart, 21 Haziran, 23 Eylül, 21 Aralık kritik yörünge konumları"
+            }
+          ]
+        },
+        {
+          "id": "slide_13_ekinoks_konumu",
+          "type": "content",
+          "layout": "canva_ekinoks_konumu",
+          "tag": "EKİNOKS KONUMU",
+          "kicker": "MEVSİM TARİHLERİ",
+          "title": "Ekinoks Konumu (21 Mart - 23 Eylül)",
+          "media": [
+            {
+              "id": "ekinoks_diyagram",
+              "src": "./assets/images/mevsimlerin-olusumu/13-ekinoks-diyagram.png",
+              "alt": "Dünya'nın 21 Mart ve 23 Eylül tarihlerindeki ekinoks konumu"
+            }
+          ]
+        },
+        {
+          "id": "slide_14_tarihi_tahmin_et_1",
+          "type": "content",
+          "layout": "canva_tarih_tahmin_1",
+          "tag": "TARİHİ TAHMİN ET",
+          "kicker": "MEVSİM TARİHLERİ",
+          "title": "Tarihi Tahmin Edelim",
+          "media": [
+            {
+              "id": "tahmin_haziran",
+              "src": "./assets/images/mevsimlerin-olusumu/14-tahmin-haziran-diyagram.png",
+              "alt": "Güneş ışınlarının Yengeç Dönencesine dik geldiği konum"
+            }
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_14_tarih",
+              "type": "reveal_fill",
+              "template": "{blank1}",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "21 Haziran",
+                  "placeholder": "Tarihi Tahmin Et"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "slide_15_tarihi_tahmin_et_2",
+          "type": "content",
+          "layout": "canva_tarih_tahmin_2",
+          "tag": "TARİHİ TAHMİN ET",
+          "kicker": "MEVSİM TARİHLERİ",
+          "title": "Tarihi Tahmin Edelim",
+          "media": [
+            {
+              "id": "tahmin_aralik",
+              "src": "./assets/images/mevsimlerin-olusumu/15-tahmin-aralik-diyagram.png",
+              "alt": "Güneş ışınlarının Oğlak Dönencesine dik geldiği konum"
+            }
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_15_tarih",
+              "type": "reveal_fill",
+              "template": "{blank1}",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "21 Aralık",
+                  "placeholder": "Tarihi Tahmin Et"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stage_isinlarin_acisi",
+      "label": "Işınların Geliş Açısı",
+      "order": 5,
+      "slides": [
+        {
+          "id": "slide_16_dik_isinlar",
+          "type": "content",
+          "layout": "canva_dik_isinlar",
+          "tag": "DİK IŞINLAR",
+          "kicker": "IŞINLARIN GELİŞ AÇISI",
+          "title": "Güneş'ten gelen eşit miktardaki ısı enerjisi bir yarım kürede dik ve dike yakın açı ile gelirse;",
+          "media": [
+            {
+              "id": "dik_isinlar_diyagram",
+              "src": "./assets/images/mevsimlerin-olusumu/16-dik-isinlar-diyagram.png",
+              "alt": "Dik ve dike yakın açıyla gelen güneş ışınlarının dar alanı aydınlatması"
+            }
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_16_alan",
+              "type": "reveal_fill",
+              "template": "{blank1} bir alanı aydınlatır ve ısıtır.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "dar",
+                  "placeholder": "dar"
+                }
+              ]
+            },
+            {
+              "id": "interaction_slide_16_golge",
+              "type": "reveal_fill",
+              "template": "Cisimlerin gölge boyları {blank2} olur.",
+              "blanks": [
+                {
+                  "id": "blank2",
+                  "answer": "kısa",
+                  "placeholder": "kısa"
+                }
+              ]
+            },
+            {
+              "id": "interaction_slide_16_mevsim",
+              "type": "reveal_fill",
+              "template": "{blank3} mevsimi yaşanır.",
+              "blanks": [
+                {
+                  "id": "blank3",
+                  "answer": "yaz",
+                  "placeholder": "yaz"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "slide_17_egik_isinlar",
+          "type": "content",
+          "layout": "canva_egik_isinlar",
+          "tag": "EĞİK IŞINLAR",
+          "kicker": "IŞINLARIN GELİŞ AÇISI",
+          "title": "Güneş'ten gelen eşit miktardaki ısı enerjisi bir yarım kürede eğik açı ile gelirse;",
+          "media": [
+            {
+              "id": "egik_isinlar_diyagram",
+              "src": "./assets/images/mevsimlerin-olusumu/17-egik-isinlar-diyagram.png",
+              "alt": "Eğik açıyla gelen güneş ışınlarının geniş alanı aydınlatması"
+            }
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_17_alan",
+              "type": "reveal_fill",
+              "template": "{blank1} bir alanı aydınlatır ve ısıtır.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "geniş",
+                  "placeholder": "geniş"
+                }
+              ]
+            },
+            {
+              "id": "interaction_slide_17_golge",
+              "type": "reveal_fill",
+              "template": "Cisimlerin gölge boyları {blank2} olur.",
+              "blanks": [
+                {
+                  "id": "blank2",
+                  "answer": "uzun",
+                  "placeholder": "uzun"
+                }
+              ]
+            },
+            {
+              "id": "interaction_slide_17_mevsim",
+              "type": "reveal_fill",
+              "template": "{blank3} mevsimi yaşanır.",
+              "blanks": [
+                {
+                  "id": "blank3",
+                  "answer": "kış",
+                  "placeholder": "kış"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stage_gunduz_sureleri_yanilgilar",
+      "label": "Gündüz Süreleri ve Yanılgılar",
+      "order": 6,
+      "slides": [
+        {
+          "id": "slide_18_guney_yarim_kure_gunduz",
+          "type": "content",
+          "layout": "canva_guney_gunduz",
+          "tag": "GÜNEY YARIM KÜRE",
+          "kicker": "GÜNDÜZ SÜRELERİ",
+          "title": "Güney Yarım Kürede Gündüz Süresi Değişimi"
+        },
+        {
+          "id": "slide_19_kuzey_yarim_kure_gunduz",
+          "type": "content",
+          "layout": "canva_kuzey_gunduz",
+          "tag": "KUZEY YARIM KÜRE",
+          "kicker": "GÜNDÜZ SÜRELERİ",
+          "title": "Kuzey Yarım Kürede Gündüz Süresi Değişimi"
+        },
+        {
+          "id": "slide_20_ekvator_gunduz",
+          "type": "content",
+          "layout": "canva_ekvator_gunduz",
+          "tag": "EKVATOR",
+          "kicker": "GÜNDÜZ SÜRELERİ",
+          "title": "Ekvator Üzerinde Gündüz Süresi Değişimi"
+        },
+        {
+          "id": "slide_21_kavram_yanilgilari",
+          "type": "content",
+          "layout": "canva_kavram_yanilgilari",
+          "tag": "KAVRAM YANILGILARI",
+          "kicker": "KAVRAM YANILGILARI",
+          "title": "Kavram Yanılgıları",
+          "misconceptions": [
+            {
+              "id": "m1",
+              "wrong": "Ekvator’a Güneş ışınları daima dik açıyla gelir.",
+              "correct": "Ekvator’a Güneş ışınları yılda iki defa dik açıyla gelir."
+            },
+            {
+              "id": "m2",
+              "wrong": "21 Mart'tan sonra KYK’ de gündüzler uzamaya başlar.",
+              "correct": "21 Aralık’tan itibaren KYK’de gündüzler uzar, geceler kısalır."
+            },
+            {
+              "id": "m3",
+              "wrong": "Dünya Güneş'e yaklaştığı için yaz mevsimi yaşanır.",
+              "correct": "Mevsimlerin temel nedeni Dünya'nın eksen eğikliği ve Güneş etrafında dolanmasıdır."
+            },
+            {
+              "id": "m4",
+              "wrong": "Ekinoks tarihlerinde eksen eğikliği 0° olur.",
+              "correct": "Eksen eğikliği hiç bir zaman değişmez. Ekinoks tarihlerinde etkisi ortadan kalkar."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stage_deftere_yaz",
+      "label": "Deftere Yaz",
+      "order": 7,
+      "slides": [
+        {
+          "id": "slide_22_mevsimlerin_sebebi",
+          "type": "content",
+          "layout": "canva_mevsimlerin_sebebi",
+          "tag": "DEFTERE YAZ",
+          "kicker": "DEFTERE YAZ",
+          "title": "Mevsimlerin Sebebi"
+        },
+        {
+          "id": "slide_23_eksen_egikligi_sonuclari",
+          "type": "content",
+          "layout": "canva_eksen_sonuclari_yazi",
+          "tag": "DEFTERE YAZ",
+          "kicker": "DEFTERE YAZ",
+          "title": "Eksen Eğikliğinin Sonuçları"
+        },
+        {
+          "id": "slide_24_mevsim_tarihleri_ozet",
+          "type": "content",
+          "layout": "canva_mevsim_tarihleri_ozet",
+          "tag": "DEFTERE YAZ",
+          "kicker": "DEFTERE YAZ",
+          "title": "Mevsim Tarihleri"
+        },
+        {
+          "id": "slide_25_birim_enerji",
+          "type": "content",
+          "layout": "canva_birim_enerji",
+          "tag": "DEFTERE YAZ",
+          "kicker": "DEFTERE YAZ",
+          "title": "Birim Enerji ve Işınların Geliş Açısı",
+          "media": [
+            {
+              "id": "dik_isin_alan",
+              "src": "./assets/images/mevsimlerin-olusumu/25-dik-isin-alan.png",
+              "alt": "Dik gelen ışınlar ve dar aydınlanma alanı"
+            },
+            {
+              "id": "egik_isin_alan",
+              "src": "./assets/images/mevsimlerin-olusumu/25-egik-isin-alan.png",
+              "alt": "Eğik gelen ışınlar ve geniş aydınlanma alanı"
+            }
+          ]
+        },
+        {
+          "id": "slide_26_gece_gunduz_sureleri",
+          "type": "content",
+          "layout": "canva_gece_gunduz_sureleri",
+          "tag": "DEFTERE YAZ",
+          "kicker": "DEFTERE YAZ",
+          "title": "Gece ve Gündüz Süreleri"
+        }
+      ]
+    }
+  ]
+}
+

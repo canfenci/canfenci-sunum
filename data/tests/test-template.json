@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "1.0.0",
+  "topicId": "topic-template",
+  "gradeId": "grade_8",
+  "unitId": "unit-template",
+  "title": "Örnek Test Paketi",
+  "sections": [
+    {
+      "id": "section_topic_test",
+      "type": "topic_test",
+      "title": "Konu Testi",
+      "questions": [
+        {
+          "id": "question_topic_1",
+          "question": "Örnek sorunun doğru seçeneği hangisidir?",
+          "options": [
+            { "id": "A", "text": "Birinci seçenek" },
+            { "id": "B", "text": "İkinci seçenek" },
+            { "id": "C", "text": "Üçüncü seçenek" },
+            { "id": "D", "text": "Dördüncü seçenek" }
+          ],
+          "correctOption": "A",
+          "explanation": "Bu alan, soru çözüldükten sonra gösterilecek açıklamayı taşır.",
+          "subtopic": "örnek-alt-konu",
+          "difficulty": "easy"
+        }
+      ]
+    },
+    {
+      "id": "section_new_generation",
+      "type": "new_generation",
+      "title": "Yeni Nesil Sorular",
+      "questions": [
+        {
+          "id": "question_new_generation_1",
+          "stimulus": "Grafik, tablo, görsel veya kısa senaryo metni bu alanda tutulabilir.",
+          "question": "Örnek uyarıcıya göre doğru seçenek hangisidir?",
+          "options": [
+            { "id": "A", "text": "Birinci seçenek" },
+            { "id": "B", "text": "İkinci seçenek" },
+            { "id": "C", "text": "Üçüncü seçenek" },
+            { "id": "D", "text": "Dördüncü seçenek" }
+          ],
+          "correctOption": "B",
+          "explanation": "Yeni nesil sorular da ortak çoktan seçmeli soru sözleşmesini kullanır.",
+          "subtopic": "örnek-alt-konu",
+          "difficulty": "medium"
+        }
+      ]
+    },
+    {
+      "id": "section_past_exam",
+      "type": "past_exam",
+      "title": "Çıkmış Sorular",
+      "questions": []
+    }
+  ]
+}

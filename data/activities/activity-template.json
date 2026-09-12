@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "1.0.0",
+  "topicId": "topic-template",
+  "gradeId": "grade-template",
+  "unitId": "unit-template",
+  "title": "Örnek Etkinlik Paketi",
+  "activities": [
+    {
+      "id": "activity_true_false_1",
+      "type": "true_false",
+      "title": "Doğru mu, yanlış mı?",
+      "instruction": "İfadeyi değerlendir ve doğru ya da yanlış seçeneğini işaretle.",
+      "order": 1,
+      "items": [
+        {
+          "id": "tf_item_1",
+          "statement": "Bu, veri sözleşmesini gösteren örnek bir ifadedir.",
+          "answer": true,
+          "explanation": "Bu açıklama, seçim sonrasında gösterilebilecek geri bildirim alanını örnekler."
+        }
+      ]
+    },
+    {
+      "id": "activity_matching_1",
+      "type": "matching",
+      "title": "Eşini bul",
+      "instruction": "Soldaki öğeyi sağdaki karşılığıyla eşleştir.",
+      "order": 2,
+      "pairs": [
+        {
+          "id": "pair_1",
+          "left": "Örnek terim",
+          "right": "Örnek tanım"
+        }
+      ]
+    },
+    {
+      "id": "activity_fill_blank_1",
+      "type": "fill_blank",
+      "title": "Boşluğu doldur",
+      "instruction": "Cümledeki boşluğu uygun ifadeyle tamamla.",
+      "order": 3,
+      "items": [
+        {
+          "id": "fill_item_1",
+          "text": "Bu cümledeki {{blank1}} örnek cevapla tamamlanır.",
+          "blanks": [
+            {
+              "id": "blank1",
+              "answer": "boşluk"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
