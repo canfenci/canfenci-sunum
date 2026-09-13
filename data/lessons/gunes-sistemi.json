@@ -1,0 +1,1387 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "lesson_gunes_sistemi_1",
+  "title": "Güneş Sistemi ve Gezegenler",
+  "gradeId": "grade_6",
+  "curriculumProfileId": "maarif_model",
+  "unitId": "solar_system_and_eclipses",
+  "topicId": "solar_system",
+  "modes": [
+    "presentation"
+  ],
+  "curriculumValidation": {
+    "outcomeIds": [
+      "FB.6.1.1.1",
+      "FB.6.1.1.2"
+    ],
+    "authority": "MEB",
+    "sourceDocument": "Türkiye Yüzyılı Maarif Modeli Fen Bilimleri Dersi Öğretim Programı",
+    "sourceVersion": "2024",
+    "lastVerifiedAt": "2026-09-13",
+    "verifiedBy": "CanFenci",
+    "status": "verified"
+  },
+  "extraTopics": [
+    "karasal_ve_gazsal_gezegenler",
+    "asteroit_ve_meteorit"
+  ],
+  "stages": [
+    {
+      "id": "stage_derse_giris",
+      "label": "Derse Giriş",
+      "order": 1,
+      "slides": [
+        {
+          "id": "slide_1_kapak",
+          "type": "content",
+          "layout": "solar_kapak",
+          "tag": "KAPAK",
+          "kicker": "6. SINIF FEN BİLİMLERİ",
+          "title": "Güneş Sistemi ve Gezegenler",
+          "subtitle": "1. Ünite: Güneş Sistemi ve Tutulmalar",
+          "media": [
+            {
+              "id": "media_01_kapak",
+              "src": "./assets/images/gunes-sistemi/01-kapak-gunes-sistemi.png",
+              "alt": "Güneş Sistemi ve Gezegenler Kapak İllüstrasyonu"
+            }
+          ],
+          "interactions": []
+        },
+        {
+          "id": "slide_2_merak_ettiklerimiz",
+          "type": "content",
+          "layout": "solar_merak_et",
+          "tag": "MERAK ET",
+          "kicker": "MERAK ETTİKLERİMİZİ YAZALIM",
+          "title": "Bu Ünitede Neleri Merak Ediyoruz?",
+          "lead": "Bu ünitede öğrenmek istediğiniz 2 konuyu defterimize veya akıllı tahtaya not alalım.",
+          "media": [
+            {
+              "id": "media_02_merak",
+              "src": "./assets/images/gunes-sistemi/02-merak-ettiklerimiz.png",
+              "alt": "Merak ettiklerimiz görseli"
+            }
+          ],
+          "notePrompts": [
+            {
+              "id": "note_1",
+              "label": "1. Merak Ettiğim Konu",
+              "placeholder": "Güneş Sistemi hakkında en çok merak ettiğin soru..."
+            },
+            {
+              "id": "note_2",
+              "label": "2. Merak Ettiğim Konu",
+              "placeholder": "Gezegenler veya göktaşları hakkında öğrenmek istediğin konu..."
+            }
+          ],
+          "interactions": []
+        },
+        {
+          "id": "slide_3_on_bilgiler",
+          "type": "content",
+          "layout": "solar_on_bilgiler",
+          "tag": "ÖN BİLGİLER",
+          "kicker": "HAZIR BULUNUŞLUK",
+          "title": "Ön Bilgileri Değerlendirelim",
+          "lead": "Güneş Sistemi hakkında bildiklerimizi hatırlayalım ve soruları cevaplayalım:",
+          "media": [
+            {
+              "id": "media_03_on_bilgiler",
+              "src": "./assets/images/gunes-sistemi/03-on-bilgiler.png",
+              "alt": "Ön Bilgileri Değerlendirelim İllüstrasyonu"
+            }
+          ],
+          "questions": [
+            {
+              "id": "q1",
+              "text": "Güneş Sisteminde kaç gezegen vardır?",
+              "interactionId": "interaction_slide_3_q1"
+            },
+            {
+              "id": "q2",
+              "text": "Güneş’e en yakın gezegen hangisidir?",
+              "interactionId": "interaction_slide_3_q2"
+            },
+            {
+              "id": "q3",
+              "text": "Güneş Sisteminin en büyük gezegeni hangisidir?",
+              "interactionId": "interaction_slide_3_q3"
+            },
+            {
+              "id": "q4",
+              "text": "Meteor ile meteorit arasındaki fark nedir?",
+              "interactionId": "interaction_slide_3_q4"
+            }
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_3_q1",
+              "type": "reveal_fill",
+              "template": "Güneş Sisteminde toplam {blank1} gezegen vardır.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "8",
+                  "placeholder": "8"
+                }
+              ]
+            },
+            {
+              "id": "interaction_slide_3_q2",
+              "type": "reveal_fill",
+              "template": "Güneş’e en yakın gezegen {blank1}’dür.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "Merkür",
+                  "placeholder": "Merkür"
+                }
+              ]
+            },
+            {
+              "id": "interaction_slide_3_q3",
+              "type": "reveal_fill",
+              "template": "Güneş Sisteminin en büyük gezegeni {blank1}’dir.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "Jüpiter",
+                  "placeholder": "Jüpiter"
+                }
+              ]
+            },
+            {
+              "id": "interaction_slide_3_q4",
+              "type": "reveal_fill",
+              "template": "Atmosferde parlayan parçaya {blank1}, yeryüzüne ulaşana {blank2} denir.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "meteor",
+                  "placeholder": "meteor"
+                },
+                {
+                  "id": "blank2",
+                  "answer": "meteorit",
+                  "placeholder": "meteorit"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stage_gunes_sistemi_ve_gezegen_kavrami",
+      "label": "Güneş Sistemi ve Gezegen Kavramı",
+      "order": 2,
+      "slides": [
+        {
+          "id": "slide_4_gunes_sistemi_tanim",
+          "type": "content",
+          "layout": "solar_gunes_sistemi_tanim",
+          "tag": "GÜNEŞ SİSTEMİ",
+          "kicker": "1. GÜNEŞ SİSTEMİ",
+          "title": "1. Güneş Sistemi",
+          "lead": "Güneş ve onun yerçekimi kuvvetinin etkisiyle yörüngelerinde dolanan gök cisimlerinin oluşturduğu sisteme Güneş Sistemi denir.",
+          "media": [
+            {
+              "id": "media_04_genel",
+              "src": "./assets/images/gunes-sistemi/04-gunes-sistemi-genel.png",
+              "alt": "Güneş Sistemi Genel Görünümü"
+            }
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_4_tanim",
+              "type": "reveal_fill",
+              "template": "Güneş Sistemi, 8 tane gezegen, asteroit kuşağı ve {blank1}’ten oluşur.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "Güneş",
+                  "placeholder": "Güneş"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "slide_5_yakinlik_siralamasi",
+          "type": "content",
+          "layout": "solar_yakinlik_siralamasi",
+          "tag": "GEZEGENLERİN DİZİLİMİ",
+          "kicker": "GÜNEŞ'E YAKINLIK",
+          "title": "Gezegenlerin Güneş’e Yakınlık Sıralaması",
+          "lead": "Güneş Sistemi’nin merkezinde Güneş bulunur. Gezegenler Güneş’e olan uzaklıklarına göre sıralanır:",
+          "media": [
+            {
+              "id": "media_05_siralama",
+              "src": "./assets/images/gunes-sistemi/05-gunese-yakinlik-sirasi.png",
+              "alt": "Gezegenlerin Güneş'e Yakınlık Sıralaması Görseli"
+            }
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_5_siralama",
+              "type": "reveal_fill",
+              "template": "1- Merkür  •  2- {blank1}  •  3- Dünya  •  4- Mars  •  5- {blank2}  •  6- Satürn  •  7- Uranüs  •  8- {blank3}",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "Venüs",
+                  "placeholder": "Venüs"
+                },
+                {
+                  "id": "blank2",
+                  "answer": "Jüpiter",
+                  "placeholder": "Jüpiter"
+                },
+                {
+                  "id": "blank3",
+                  "answer": "Neptün",
+                  "placeholder": "Neptün"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "slide_6_gezegen_nedir",
+          "type": "content",
+          "layout": "solar_gezegen_nedir",
+          "tag": "GEZEGEN NEDİR?",
+          "kicker": "TEMEL KAVRAMLAR",
+          "title": "Gezegen Nedir?",
+          "lead": "Bir yıldızın etrafında belirli yörüngelerde dolanan gök cisimlerini öğrenelim.",
+          "points": [
+            "Bir yıldız etrafında belirli yörüngelerde dolanan, küresel yapılı, büyük gök cisimlerine gezegen denir.",
+            "Gezegenler ısı ve ışık kaynağı değildirler; Güneş’ten aldıkları ışığı yansıtırlar."
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_6_sicaklik",
+              "type": "reveal_fill",
+              "template": "Yıldızlar gibi yüzeyleri sıcak değil {blank1}.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "soğuktur",
+                  "placeholder": "soğuktur"
+                }
+              ]
+            },
+            {
+              "id": "interaction_slide_6_gruplar",
+              "type": "reveal_fill",
+              "template": "Gezegenler yapılarına göre {blank1} gezegenler (iç gezegenler) ve {blank2} gezegenler (dış gezegenler) olmak üzere 2 gruba ayrılır.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "karasal",
+                  "placeholder": "karasal"
+                },
+                {
+                  "id": "blank2",
+                  "answer": "gazsal",
+                  "placeholder": "gazsal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "slide_7_karasal_ve_gazsal",
+          "type": "content",
+          "layout": "solar_karasal_ve_gazsal",
+          "tag": "YAPISAL FARKLAR",
+          "kicker": "İÇ VE DIŞ GEZEGENLER",
+          "title": "Karasal ve Gazsal Gezegenler",
+          "lead": "Güneş Sistemi’ndeki 8 gezegen yapılarına ve bulundukları konumlara göre iki ana gruba ayrılır:",
+          "media": [
+            {
+              "id": "media_07_karsilastirma",
+              "src": "./assets/images/gunes-sistemi/07-karasal-gazsal-karsilastirma.png",
+              "alt": "Karasal ve Gazsal Gezegenler Karşılaştırması"
+            }
+          ],
+          "cards": [
+            {
+              "type": "karasal",
+              "title": "1. Karasal (İç) Gezegenler",
+              "desc": "Kayalık ve katı yüzeylere sahiptirler. Yoğunlukları gazsal gezegenlere göre daha fazladır.",
+              "planets": [
+                "Merkür",
+                "Venüs",
+                "Dünya",
+                "Mars"
+              ]
+            },
+            {
+              "type": "gazsal",
+              "title": "2. Gazsal (Dış) Gezegenler",
+              "desc": "Gazlardan oluşan yüzeylere sahiptirler. Hacimce çok büyük devasa gezegenlerdir.",
+              "planets": [
+                "Jüpiter",
+                "Satürn",
+                "Uranüs",
+                "Neptün"
+              ]
+            }
+          ],
+          "interactions": []
+        }
+      ]
+    },
+    {
+      "id": "stage_gezegenleri_taniyalim",
+      "label": "Gezegenleri Tanıyalım",
+      "order": 3,
+      "slides": [
+        {
+          "id": "slide_8_merkur",
+          "type": "content",
+          "layout": "solar_planet_card",
+          "tag": "1. GEZEGEN",
+          "kicker": "İÇ GEZEGENLER",
+          "title": "1. Merkür",
+          "planet": "Merkür",
+          "planetNumber": 1,
+          "category": "Karasal (İç) Gezegen",
+          "media": [
+            {
+              "id": "media_08_merkur",
+              "src": "./assets/images/gunes-sistemi/08-merkur.png",
+              "alt": "Merkür Gezegeni Görseli"
+            }
+          ],
+          "facts": [
+            "Güneş Sistemi’nin en küçük gezegenidir.",
+            "Uydusu ve halkası yoktur.",
+            "Atmosferi yok denecek kadar incedir; bu yüzden gece ile gündüz arasındaki sıcaklık farkı son derece yüksektir."
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_8_merkur",
+              "type": "reveal_fill",
+              "template": "Güneş’e en {blank1} gezegendir. Yapı olarak {blank2} yapıdadır.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "yakın",
+                  "placeholder": "yakın"
+                },
+                {
+                  "id": "blank2",
+                  "answer": "karasal",
+                  "placeholder": "karasal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "slide_9_venus",
+          "type": "content",
+          "layout": "solar_planet_card",
+          "tag": "2. GEZEGEN",
+          "kicker": "İÇ GEZEGENLER",
+          "title": "2. Venüs",
+          "planet": "Venüs",
+          "planetNumber": 2,
+          "category": "Karasal (İç) Gezegen",
+          "media": [
+            {
+              "id": "media_09_venus",
+              "src": "./assets/images/gunes-sistemi/09-venus.png",
+              "alt": "Venüs Gezegeni Görseli"
+            }
+          ],
+          "facts": [
+            "Güneş Sistemi’nin en sıcak gezegenidir (yaklaşık 460 °C).",
+            "Uydusu ve halkası yoktur. Karasal yapıdadır.",
+            "Boyut ve kütle olarak Dünya’ya çok yakın olduğu için Dünya’nın ikizi olarak bilinir.",
+            "Diğer gezegenlerin çoğunun aksine doğudan batıya (saat yönünde) döner."
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_9_venus",
+              "type": "reveal_fill",
+              "template": "Güneş’e en yakın {blank1} gezegendir. Halk arasında “{blank2}” olarak bilinir.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "ikinci",
+                  "placeholder": "ikinci"
+                },
+                {
+                  "id": "blank2",
+                  "answer": "Çoban Yıldızı",
+                  "placeholder": "Çoban Yıldızı"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "slide_10_dunya",
+          "type": "content",
+          "layout": "solar_planet_card",
+          "tag": "3. GEZEGEN",
+          "kicker": "İÇ GEZEGENLER",
+          "title": "3. Dünya",
+          "planet": "Dünya",
+          "planetNumber": 3,
+          "category": "Karasal (İç) Gezegen",
+          "media": [
+            {
+              "id": "media_10_dunya",
+              "src": "./assets/images/gunes-sistemi/10-dunya.png",
+              "alt": "Dünya Gezegeni Görseli"
+            }
+          ],
+          "facts": [
+            "Üzerinde canlı yaşamının olduğu bilinen tek gezegendir.",
+            "Karasal yapıdadır ve karasal gezegenlerin en büyüğüdür.",
+            "Halkası yoktur.",
+            "Yüzeyinin yaklaşık %70'i sularla kaplı olduğu için Mavi Gezegen olarak da adlandırılır."
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_10_dunya",
+              "type": "reveal_fill",
+              "template": "Güneş’e yakınlık bakımından {blank1} gezegendir. Tek doğal uydusu {blank2}’dır.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "üçüncü",
+                  "placeholder": "üçüncü"
+                },
+                {
+                  "id": "blank2",
+                  "answer": "Ay",
+                  "placeholder": "Ay"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "slide_11_mars",
+          "type": "content",
+          "layout": "solar_planet_card",
+          "tag": "4. GEZEGEN",
+          "kicker": "İÇ GEZEGENLER",
+          "title": "4. Mars",
+          "planet": "Mars",
+          "planetNumber": 4,
+          "category": "Karasal (İç) Gezegen",
+          "media": [
+            {
+              "id": "media_11_mars",
+              "src": "./assets/images/gunes-sistemi/11-mars.png",
+              "alt": "Mars Gezegeni Görseli"
+            }
+          ],
+          "facts": [
+            "Karasal yapıdadır.",
+            "Bilinen iki doğal uydusu vardır (Phobos ve Deimos).",
+            "Halkası yoktur.",
+            "Yüzeyindeki zengin demiroksit (pas) tozları nedeniyle kızıl renkte görünür."
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_11_mars",
+              "type": "reveal_fill",
+              "template": "Güneş’e yakınlık bakımından {blank1} gezegendir. Görünümünden dolayı “{blank2}” olarak da bilinir.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "dördüncü",
+                  "placeholder": "dördüncü"
+                },
+                {
+                  "id": "blank2",
+                  "answer": "Kızıl Gezegen",
+                  "placeholder": "Kızıl Gezegen"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "slide_12_jupiter",
+          "type": "content",
+          "layout": "solar_planet_card",
+          "tag": "5. GEZEGEN",
+          "kicker": "DIŞ GEZEGENLER",
+          "title": "5. Jüpiter",
+          "planet": "Jüpiter",
+          "planetNumber": 5,
+          "category": "Gazsal (Dış) Gezegen",
+          "media": [
+            {
+              "id": "media_12_jupiter",
+              "src": "./assets/images/gunes-sistemi/12-jupiter.png",
+              "alt": "Jüpiter Gezegeni Görseli"
+            }
+          ],
+          "facts": [
+            "Gazsal yapıdadır (Gaz devi).",
+            "Hem uydusu hem de halkası vardır (95 uydusu bilinmektedir).",
+            "Güneş Sistemi’nin en büyük uydusu olan Ganymede, Jüpiter’in uydusudur.",
+            "Yüzeyinde dev fırtınalardan oluşan Büyük Kırmızı Leke yer alır."
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_12_jupiter",
+              "type": "reveal_fill",
+              "template": "Güneş’e yakınlık bakımından {blank1} gezegendir. Güneş sisteminin en {blank2} gezegenidir.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "beşinci",
+                  "placeholder": "beşinci"
+                },
+                {
+                  "id": "blank2",
+                  "answer": "büyük",
+                  "placeholder": "büyük"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "slide_13_saturn",
+          "type": "content",
+          "layout": "solar_planet_card",
+          "tag": "6. GEZEGEN",
+          "kicker": "DIŞ GEZEGENLER",
+          "title": "6. Satürn",
+          "planet": "Satürn",
+          "planetNumber": 6,
+          "category": "Gazsal (Dış) Gezegen",
+          "media": [
+            {
+              "id": "media_13_saturn",
+              "src": "./assets/images/gunes-sistemi/13-saturn.png",
+              "alt": "Satürn Gezegeni Görseli"
+            }
+          ],
+          "facts": [
+            "Buz ve kaya parçalarından oluşan son derece belirgin halkaları vardır.",
+            "Gazsal yapıdadır.",
+            "Çok sayıda uydusu vardır (146 uydu ile en çok uyduya sahip gezegendir; en büyüğü Titan'dır).",
+            "Özkütlesi suyun özkütlesinden bile daha düşüktür."
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_13_saturn",
+              "type": "reveal_fill",
+              "template": "Güneş’e yakınlık bakımından {blank1} gezegendir. Güneş Sistemi’nin en büyük {blank2} gezegenidir.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "altıncı",
+                  "placeholder": "altıncı"
+                },
+                {
+                  "id": "blank2",
+                  "answer": "ikinci",
+                  "placeholder": "ikinci"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "slide_14_uranus",
+          "type": "content",
+          "layout": "solar_planet_card",
+          "tag": "7. GEZEGEN",
+          "kicker": "DIŞ GEZEGENLER",
+          "title": "7. Uranüs",
+          "planet": "Uranüs",
+          "planetNumber": 7,
+          "category": "Gazsal (Buz Devi) Gezegen",
+          "media": [
+            {
+              "id": "media_14_uranus",
+              "src": "./assets/images/gunes-sistemi/14-uranus.png",
+              "alt": "Uranüs Gezegeni Görseli"
+            }
+          ],
+          "facts": [
+            "Gazsal (buz devi) yapıdadır.",
+            "Uydusu ve ince halkaları vardır (28 uydusu bilinmektedir).",
+            "Güneş Sistemi’nin en soğuk gezegenidir (yaklaşık -224 °C).",
+            "Dönüş ekseni yaklaşık 98 derece eğiktir; yörüngesinde yuvarlanan bir varil gibi döner."
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_14_uranus",
+              "type": "reveal_fill",
+              "template": "Güneş’e yakınlık bakımından {blank1} gezegendir. Güneş Sistemi’nin en büyük {blank2} gezegenidir.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "yedinci",
+                  "placeholder": "yedinci"
+                },
+                {
+                  "id": "blank2",
+                  "answer": "üçüncü",
+                  "placeholder": "üçüncü"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "slide_15_neptun",
+          "type": "content",
+          "layout": "solar_planet_card",
+          "tag": "8. GEZEGEN",
+          "kicker": "DIŞ GEZEGENLER",
+          "title": "8. Neptün",
+          "planet": "Neptün",
+          "planetNumber": 8,
+          "category": "Gazsal (Buz Devi) Gezegen",
+          "media": [
+            {
+              "id": "media_15_neptun",
+              "src": "./assets/images/gunes-sistemi/15-neptun.png",
+              "alt": "Neptün Gezegeni Görseli"
+            }
+          ],
+          "facts": [
+            "Gazsal (buz devi) yapıdadır.",
+            "Uydusu ve halkası vardır (16 uydusu bilinmektedir; en büyüğü Triton'dur).",
+            "Atmosferindeki metan gazı nedeniyle belirgin mavi renktedir.",
+            "Yapısında zehirli gazlar bulunur ve Güneş Sistemi’nin en şiddetli rüzgarlarına sahiptir."
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_15_neptun",
+              "type": "reveal_fill",
+              "template": "Güneş’e en {blank1} gezegendir. Güneş Sistemi’nin en büyük {blank2} gezegenidir.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "uzak",
+                  "placeholder": "uzak"
+                },
+                {
+                  "id": "blank2",
+                  "answer": "dördüncü",
+                  "placeholder": "dördüncü"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stage_gezegenleri_karsilastiralim",
+      "label": "Gezegenleri Karşılaştıralım",
+      "order": 4,
+      "slides": [
+        {
+          "id": "slide_16_yapilarina_gore",
+          "type": "content",
+          "layout": "solar_karsilastirma_genel",
+          "tag": "KARŞILAŞTIRMA 1",
+          "kicker": "YAPISAL SINIFLANDIRMA",
+          "title": "Yapılarına Göre Gezegenler",
+          "lead": "Gezegenlerin yüzey yapılarına göre sınıflandırılması:",
+          "media": [
+            {
+              "id": "media_16_yapilarina",
+              "src": "./assets/images/gunes-sistemi/16-yapilarina-gore.png",
+              "alt": "Yapılarına Göre Gezegenler Karşılaştırma Şeması"
+            }
+          ],
+          "comparison": {
+            "leftTitle": "Karasal (İç) Gezegenler",
+            "leftSubtitle": "Katı ve Kayalık Yapı",
+            "leftItems": [
+              "Merkür",
+              "Venüs",
+              "Dünya",
+              "Mars"
+            ],
+            "rightTitle": "Gazsal (Dış) Gezegenler",
+            "rightSubtitle": "Gaz ve Buz Devleri",
+            "rightItems": [
+              "Jüpiter",
+              "Satürn",
+              "Uranüs",
+              "Neptün"
+            ]
+          },
+          "interactions": [
+            {
+              "id": "interaction_slide_16_yapi",
+              "type": "reveal_fill",
+              "template": "Karasal gezegenlerin sonuncusu {blank1}, gazsal gezegenlerin ilki {blank2}’dir.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "Mars",
+                  "placeholder": "Mars"
+                },
+                {
+                  "id": "blank2",
+                  "answer": "Jüpiter",
+                  "placeholder": "Jüpiter"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "slide_17_halkalarina_gore",
+          "type": "content",
+          "layout": "solar_karsilastirma_genel",
+          "tag": "KARŞILAŞTIRMA 2",
+          "kicker": "HALKA DURUMU",
+          "title": "Halkalarına Göre Gezegenler",
+          "lead": "Gezegenlerin halka bulundurma durumlarına göre karşılaştırılması:",
+          "media": [
+            {
+              "id": "media_17_halkalarina",
+              "src": "./assets/images/gunes-sistemi/17-halkalarina-gore.png",
+              "alt": "Halkalarına Göre Gezegenler Karşılaştırma Şeması"
+            }
+          ],
+          "comparison": {
+            "leftTitle": "Halkası Olmayanlar",
+            "leftSubtitle": "Karasal Gezegenlerin Tümü",
+            "leftItems": [
+              "Merkür",
+              "Venüs",
+              "Dünya",
+              "Mars"
+            ],
+            "rightTitle": "Halkası Olanlar",
+            "rightSubtitle": "Gazsal Gezegenlerin Tümü",
+            "rightItems": [
+              "Jüpiter",
+              "Satürn (En belirgin)",
+              "Uranüs",
+              "Neptün"
+            ]
+          },
+          "interactions": [
+            {
+              "id": "interaction_slide_17_halka",
+              "type": "reveal_fill",
+              "template": "Karasal gezegenlerin hiçbirinde halka {blank1}; gazsal gezegenlerin tümünde halka {blank2}.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "yoktur",
+                  "placeholder": "yoktur"
+                },
+                {
+                  "id": "blank2",
+                  "answer": "vardır",
+                  "placeholder": "vardır"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "slide_18_uydularina_gore",
+          "type": "content",
+          "layout": "solar_karsilastirma_genel",
+          "tag": "KARŞILAŞTIRMA 3",
+          "kicker": "UYDU DURUMU",
+          "title": "Uydularına Göre Gezegenler",
+          "lead": "Gezegenlerin doğal uydu sayılarına göre dağılımı:",
+          "media": [
+            {
+              "id": "media_18_uydularina",
+              "src": "./assets/images/gunes-sistemi/18-uydularina-gore.png",
+              "alt": "Uydularına Göre Gezegenler Karşılaştırma Şeması"
+            }
+          ],
+          "comparison": {
+            "leftTitle": "Uydusu Olmayanlar",
+            "leftSubtitle": "0 Doğal Uydu",
+            "leftItems": [
+              "Merkür (Uydu yok)",
+              "Venüs (Uydu yok)"
+            ],
+            "rightTitle": "Uydusu Olanlar",
+            "rightSubtitle": "1 veya Daha Fazla Uydu",
+            "rightItems": [
+              "Dünya (1 - Ay)",
+              "Mars (2)",
+              "Jüpiter (95)",
+              "Satürn (146 - Rekortmen)",
+              "Uranüs (28)",
+              "Neptün (16)"
+            ]
+          },
+          "interactions": [
+            {
+              "id": "interaction_slide_18_uydu",
+              "type": "reveal_fill",
+              "template": "Güneş Sistemi’nde uydusu bulunmayan iki gezegen {blank1} ve {blank2}’tür.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "Merkür",
+                  "placeholder": "Merkür"
+                },
+                {
+                  "id": "blank2",
+                  "answer": "Venüs",
+                  "placeholder": "Venüs"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "slide_19_buyukluklerine_gore",
+          "type": "content",
+          "layout": "solar_karsilastirma_siralama",
+          "tag": "KARŞILAŞTIRMA 4",
+          "kicker": "HACİMSEL BOYUT",
+          "title": "Büyüklüklerine Göre Gezegenler",
+          "lead": "Gezegenlerin hacimsel büyüklüklerine göre büyükten küçüğe sıralanışı:",
+          "media": [
+            {
+              "id": "media_19_buyukluk",
+              "src": "./assets/images/gunes-sistemi/19-buyukluklerine-gore.png",
+              "alt": "Büyüklüklerine Göre Gezegenler Şeması"
+            }
+          ],
+          "ranking": [
+            {
+              "order": 1,
+              "name": "Jüpiter",
+              "type": "Gazsal"
+            },
+            {
+              "order": 2,
+              "name": "Satürn",
+              "type": "Gazsal"
+            },
+            {
+              "order": 3,
+              "name": "Uranüs",
+              "type": "Gazsal"
+            },
+            {
+              "order": 4,
+              "name": "Neptün",
+              "type": "Gazsal"
+            },
+            {
+              "order": 5,
+              "name": "Dünya",
+              "type": "Karasal"
+            },
+            {
+              "order": 6,
+              "name": "Venüs",
+              "type": "Karasal"
+            },
+            {
+              "order": 7,
+              "name": "Mars",
+              "type": "Karasal"
+            },
+            {
+              "order": 8,
+              "name": "Merkür",
+              "type": "Karasal"
+            }
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_19_buyukluk",
+              "type": "reveal_fill",
+              "template": "En büyük gezegen {blank1}, en küçük gezegen {blank2}’dür. Dünya büyüklükte {blank3}. sıradadır.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "Jüpiter",
+                  "placeholder": "Jüpiter"
+                },
+                {
+                  "id": "blank2",
+                  "answer": "Merkür",
+                  "placeholder": "Merkür"
+                },
+                {
+                  "id": "blank3",
+                  "answer": "5",
+                  "placeholder": "5"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "slide_20_gunese_yakinliklarina_gore",
+          "type": "content",
+          "layout": "solar_karsilastirma_siralama",
+          "tag": "KARŞILAŞTIRMA 5",
+          "kicker": "UZAKLIK SIRALAMASI",
+          "title": "Güneş’e Yakınlıklarına Göre Gezegenler",
+          "lead": "Gezegenlerin Güneş’e en yakından en uzağa doğru tam sıralaması ve akılda tutma yöntemi:",
+          "media": [
+            {
+              "id": "media_20_yakinlik",
+              "src": "./assets/images/gunes-sistemi/20-gunese-yakinliklarina-gore.png",
+              "alt": "Güneş'e Yakınlıklarına Göre Gezegenler Şeması"
+            }
+          ],
+          "mnemonic": "Meraklı Vedat Dünkü Maçta Jaleye Sordu: Unuttun mu Neyi?",
+          "ranking": [
+            {
+              "order": 1,
+              "name": "Merkür"
+            },
+            {
+              "order": 2,
+              "name": "Venüs"
+            },
+            {
+              "order": 3,
+              "name": "Dünya"
+            },
+            {
+              "order": 4,
+              "name": "Mars"
+            },
+            {
+              "order": 5,
+              "name": "Jüpiter"
+            },
+            {
+              "order": 6,
+              "name": "Satürn"
+            },
+            {
+              "order": 7,
+              "name": "Uranüs"
+            },
+            {
+              "order": 8,
+              "name": "Neptün"
+            }
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_20_yakinlik",
+              "type": "reveal_fill",
+              "template": "Güneş’e en yakın gezegen {blank1}, Güneş’e en uzak gezegen {blank2}’dür.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "Merkür",
+                  "placeholder": "Merkür"
+                },
+                {
+                  "id": "blank2",
+                  "answer": "Neptün",
+                  "placeholder": "Neptün"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "slide_21_aklimizda_bulunsun",
+          "type": "content",
+          "layout": "solar_aklimizda_bulunsun",
+          "tag": "ÖZEL NOTLAR",
+          "kicker": "DİKKAT EDELİM",
+          "title": "Aklımızda Bulunsun!",
+          "lead": "Sınavlarda ve soru çözümlerinde karşımıza en sık çıkan kritik bilgiler:",
+          "notes": [
+            {
+              "icon": "eye",
+              "text": "Merkür, Venüs, Mars, Jüpiter ve Satürn Dünya’dan çıplak gözle görülebilir."
+            },
+            {
+              "icon": "telescope",
+              "text": "Uranüs ve Neptün Dünya’dan çıplak gözle görülemez (teleskop gerekir)."
+            },
+            {
+              "icon": "star",
+              "text": "Venüs gezegeni halk arasında “Çoban Yıldızı ya da Seher Yıldızı” olarak bilinir."
+            },
+            {
+              "icon": "thermometer",
+              "text": "Venüs Gezegeni’nin atmosferi kalındır ve güçlü sera etkisi oluşturarak onu en sıcak gezegen yapar."
+            },
+            {
+              "icon": "globe",
+              "text": "Jüpiter gezegeni “Gaz Devi” olarak bilinir; en büyük uydusu Ganymede, Güneş Sistemi’nin de en büyük uydusudur."
+            },
+            {
+              "icon": "rotate-cw",
+              "text": "Venüs ve Uranüs gezegenleri, diğer tüm gezegenlerin aksine ters yönde (saat yönünde) dönerler."
+            }
+          ],
+          "interactions": []
+        },
+        {
+          "id": "slide_22_gezegen_karsilastirma_tablosu",
+          "type": "content",
+          "layout": "solar_karsilastirma_tablosu",
+          "tag": "GENEL TABLO",
+          "kicker": "ÖZET KARŞILAŞTIRMA",
+          "title": "Gezegen Karşılaştırma Tablosu",
+          "lead": "Tüm gezegenlerin temel özelliklerini tek bir tabloda karşılaştıralım:",
+          "tableData": [
+            {
+              "planet": "Merkür",
+              "satellite": "Yok",
+              "ring": "Yok",
+              "terrestrial": "✓",
+              "gas": "—",
+              "nearRank": 1,
+              "sizeRank": 8
+            },
+            {
+              "planet": "Venüs",
+              "satellite": "Yok",
+              "ring": "Yok",
+              "terrestrial": "✓",
+              "gas": "—",
+              "nearRank": 2,
+              "sizeRank": 6
+            },
+            {
+              "planet": "Dünya",
+              "satellite": "Var (1)",
+              "ring": "Yok",
+              "terrestrial": "✓",
+              "gas": "—",
+              "nearRank": 3,
+              "sizeRank": 5
+            },
+            {
+              "planet": "Mars",
+              "satellite": "Var (2)",
+              "ring": "Yok",
+              "terrestrial": "✓",
+              "gas": "—",
+              "nearRank": 4,
+              "sizeRank": 7
+            },
+            {
+              "planet": "Jüpiter",
+              "satellite": "Var (95)",
+              "ring": "Var",
+              "terrestrial": "—",
+              "gas": "✓",
+              "nearRank": 5,
+              "sizeRank": 1
+            },
+            {
+              "planet": "Satürn",
+              "satellite": "Var (146)",
+              "ring": "Var",
+              "terrestrial": "—",
+              "gas": "✓",
+              "nearRank": 6,
+              "sizeRank": 2
+            },
+            {
+              "planet": "Uranüs",
+              "satellite": "Var (28)",
+              "ring": "Var",
+              "terrestrial": "—",
+              "gas": "✓",
+              "nearRank": 7,
+              "sizeRank": 3
+            },
+            {
+              "planet": "Neptün",
+              "satellite": "Var (16)",
+              "ring": "Var",
+              "terrestrial": "—",
+              "gas": "✓",
+              "nearRank": 8,
+              "sizeRank": 4
+            }
+          ],
+          "interactions": []
+        }
+      ]
+    },
+    {
+      "id": "stage_asteroit_ve_goktaslari",
+      "label": "Asteroit ve Göktaşları",
+      "order": 5,
+      "slides": [
+        {
+          "id": "slide_23_asteroit_ve_kusagi",
+          "type": "content",
+          "layout": "solar_asteroit_kusak",
+          "tag": "ASTEROİT",
+          "kicker": "ASTEROİT, GÖKTAŞI, METEOR VE METEORİT",
+          "title": "1. Asteroit ve Asteroit Kuşağı",
+          "lead": "Güneş çevresinde dolanan kaya ve metal parçalarını ve Asteroit Kuşağı’nın konumunu öğrenelim.",
+          "media": [
+            {
+              "id": "media_23_asteroit",
+              "src": "./assets/images/gunes-sistemi/23-asteroit-kusagi.png",
+              "alt": "Asteroit Kuşağı Görseli"
+            }
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_23_asteroit",
+              "type": "reveal_fill",
+              "template": "Güneş’in çevresinde dolanan irili ufaklı kaya ve metal parçalarına {blank1} denir.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "asteroit",
+                  "placeholder": "asteroit"
+                }
+              ]
+            },
+            {
+              "id": "interaction_slide_23_kusak",
+              "type": "reveal_fill",
+              "template": "Asteroitlerin büyük çoğunluğu {blank1} ile {blank2} gezegenleri arasında bulunur. Bu bölgeye {blank3} denir.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "Mars",
+                  "placeholder": "Mars"
+                },
+                {
+                  "id": "blank2",
+                  "answer": "Jüpiter",
+                  "placeholder": "Jüpiter"
+                },
+                {
+                  "id": "blank3",
+                  "answer": "Asteroit Kuşağı",
+                  "placeholder": "Asteroit Kuşağı"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "slide_24_goktasi_meteor_meteorit_cukur",
+          "type": "content",
+          "layout": "solar_goktasi_tanimlar",
+          "tag": "TANIMLAR",
+          "kicker": "GÖK CİSİMLERİ SÜRECİ",
+          "title": "2. Göktaşı - Meteor - Meteorit - Meteor Çukuru",
+          "lead": "Gök cisimlerinin uzaydan yeryüzüne kadar aldıkları farklı isimleri öğrenelim:",
+          "definitions": [
+            {
+              "id": "def_goktasi",
+              "title": "Göktaşı",
+              "interactionId": "interaction_slide_24_goktasi"
+            },
+            {
+              "id": "def_meteor",
+              "title": "Meteor",
+              "interactionId": "interaction_slide_24_meteor"
+            },
+            {
+              "id": "def_meteorit",
+              "title": "Meteorit",
+              "interactionId": "interaction_slide_24_meteorit"
+            },
+            {
+              "id": "def_cukur",
+              "title": "Meteor Çukuru",
+              "interactionId": "interaction_slide_24_cukur"
+            }
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_24_goktasi",
+              "type": "reveal_fill",
+              "template": "Asteroit ya da kuyruklu yıldızlardan kopmuş küçük kaya parçalarına {blank1} denir.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "göktaşı",
+                  "placeholder": "göktaşı"
+                }
+              ]
+            },
+            {
+              "id": "interaction_slide_24_meteor",
+              "type": "reveal_fill",
+              "template": "Dünya atmosferine giren göktaşlarına {blank1} denir.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "meteor",
+                  "placeholder": "meteor"
+                }
+              ]
+            },
+            {
+              "id": "interaction_slide_24_meteorit",
+              "type": "reveal_fill",
+              "template": "Atmosfere giren meteorların yeryüzüne ulaşan kısımlarına {blank1} denir.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "meteorit",
+                  "placeholder": "meteorit"
+                }
+              ]
+            },
+            {
+              "id": "interaction_slide_24_cukur",
+              "type": "reveal_fill",
+              "template": "Meteoritlerin Dünya yüzeyinde oluşturdukları çukurlara {blank1} denir.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "meteor çukuru",
+                  "placeholder": "meteor çukuru"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "slide_25_goktasi_meteor_meteorit_sema",
+          "type": "content",
+          "layout": "solar_atmosfer_semasi",
+          "tag": "GEÇİŞ ŞEMASI",
+          "kicker": "DÜNYA ATMOSFERİ",
+          "title": "Göktaşı → Meteor → Meteorit",
+          "lead": "Bir gök taşının Dünya atmosferine girişinden yeryüzüne inişine kadar geçirdiği aşamalar:",
+          "media": [
+            {
+              "id": "media_25_sema",
+              "src": "./assets/images/gunes-sistemi/25-goktasi-meteor-meteorit.png",
+              "alt": "Göktaşı Meteor Meteorit Geçiş Şeması"
+            }
+          ],
+          "stagesInfo": [
+            {
+              "title": "1. Göktaşı",
+              "desc": "Uzay boşluğunda serbestçe dolanan kaya parçasıdır."
+            },
+            {
+              "title": "2. Meteor",
+              "desc": "Dünya atmosferine girerken sürtünmeyle akkor hale gelir (yıldız kayması)."
+            },
+            {
+              "title": "3. Meteorit",
+              "desc": "Tamamen yanmadan yeryüzüne düşen kaya parçasıdır."
+            }
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_25_sema",
+              "type": "reveal_fill",
+              "template": "Uzayda: {blank1}  ➜  Atmosferde (parlayan): {blank2}  ➜  Yeryüzüne düşen: {blank3}",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "Göktaşı",
+                  "placeholder": "Göktaşı"
+                },
+                {
+                  "id": "blank2",
+                  "answer": "Meteor",
+                  "placeholder": "Meteor"
+                },
+                {
+                  "id": "blank3",
+                  "answer": "Meteorit",
+                  "placeholder": "Meteorit"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "slide_26_olusum_sureci",
+          "type": "content",
+          "layout": "solar_olusum_sureci",
+          "tag": "ÖZET AKIŞ",
+          "kicker": "SÜREÇ BASAMAKLARI",
+          "title": "Oluşum Süreci",
+          "lead": "Gök cisimlerinin başlangıçtan yeryüzünde krater oluşturmasına kadar 5 aşamalı zinciri:",
+          "media": [
+            {
+              "id": "media_26_surec",
+              "src": "./assets/images/gunes-sistemi/26-olusum-sureci.png",
+              "alt": "Gök cisimleri oluşum ve ilerleme süreci diyagramı"
+            }
+          ],
+          "steps": [
+            {
+              "num": 1,
+              "title": "Gök Taşı",
+              "desc": "Asteroit kuşağından veya kuyruklu yıldızdan kopan kaya parçası."
+            },
+            {
+              "num": 2,
+              "title": "Atmosfere Giriş",
+              "desc": "Hava molekülleriyle sürtünerek aşırı ısınır ve parlar."
+            },
+            {
+              "num": 3,
+              "title": "Meteor",
+              "desc": "Gökyüzünde ışık çizgisi oluşturur (halk arasında yıldız kayması)."
+            },
+            {
+              "num": 4,
+              "title": "Meteorit",
+              "desc": "Atmosferde tamamen eriyip tükenmeyerek yeryüzüne ulaşır."
+            },
+            {
+              "num": 5,
+              "title": "Meteor Çukuru",
+              "desc": "Çarpma bölgesinde dev krater / çukur oluşturur."
+            }
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_26_ozet",
+              "type": "reveal_fill",
+              "template": "Gök taşı  ➜  Atmosfere girer  ➜  {blank1}  ➜  Yeryüzüne düşer  ➜  {blank2}  ➜  {blank3}",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "Meteor",
+                  "placeholder": "Meteor"
+                },
+                {
+                  "id": "blank2",
+                  "answer": "Meteorit",
+                  "placeholder": "Meteorit"
+                },
+                {
+                  "id": "blank3",
+                  "answer": "Meteor Çukuru",
+                  "placeholder": "Meteor Çukuru"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

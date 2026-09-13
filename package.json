@@ -6,7 +6,7 @@
   "description": "CanFenci Akıllı Tahta Ders Sistemi teknik V1 iskeleti",
   "scripts": {
     "start": "python3 scripts/serve.py",
-    "test": "node scripts/validate.mjs"
+    "test": "node scripts/validate.mjs && node --test tests/*.test.mjs"
   },
   "engines": {
     "node": ">=18"

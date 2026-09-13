@@ -9,6 +9,7 @@ import { MediaLayer } from "./layers/media-layer.js";
 import { StorageLayer } from "./layers/storage.js";
 import { TeacherTools } from "./tools/teacher-tools.js";
 import { renderShell } from "./ui/app-shell.js";
+import { renderSolarSlide } from "./ui/solar-system-slides.js";
 import { renderControlPanel } from "./ui/control-panel.js";
 import { renderPresentation, renderPlanItemsForState } from "./ui/presentation-view.js";
 import { renderWorkModePlaceholder as renderWorkModePlaceholderView } from "./ui/work-mode-placeholder.js";
@@ -659,6 +660,12 @@ class CanFenciApp {
   }
 
   #renderCanvaSlide(slide, view) {
+    if (slide.layout?.startsWith("solar_")) {
+      return renderSolarSlide(slide, view, {
+        interactions: this.interactions,
+        activeInteractions: this.activeInteractions
+      });
+    }
     switch (slide.layout) {
       case "canva_merak_et":
       case "question_interaction": {

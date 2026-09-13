@@ -150,6 +150,21 @@ if (!datesSlide?.interactions?.some((interaction) => interaction.type === "revea
   throw new Error("Mevsim Tarihleri tablosunun reveal_fill etkileşimi korunmalıdır");
 }
 
+const solarLesson = await readJson("data/lessons/gunes-sistemi.json");
+if (solarLesson.stages.length !== 5) throw new Error("Güneş Sistemi sunumundaki 5 aşama korunmalıdır");
+const solarSlides = solarLesson.stages.flatMap((stage) => stage.slides ?? []);
+if (solarSlides.length !== 26) throw new Error("Güneş Sistemi sunumundaki 26 slayt korunmalıdır");
+const solarInteractionIds = new Set();
+for (const slide of solarSlides) {
+  for (const m of slide.media ?? []) {
+    await access(m.src.replace(/^\.\//, ""));
+  }
+  for (const interaction of slide.interactions ?? []) {
+    if (solarInteractionIds.has(interaction.id)) throw new Error(`Yinelenen etkileşim ID: ${interaction.id}`);
+    solarInteractionIds.add(interaction.id);
+  }
+}
+
 const expectValid = (label, validator, fixture) => {
   try {
     validator(fixture);
@@ -235,9 +250,11 @@ expectInvalid("desteklenmeyen test bölümü", validateTestPackage, invalidSecti
 await Promise.all([
   "index.html",
   "src/app.js",
+  "src/ui/solar-system-slides.js",
   "src/core/work-modes.js",
   "src/engines/annotation-engine.js",
   "src/layers/storage.js",
+  "data/lessons/gunes-sistemi.json",
   "data/lessons/lesson-template.json",
   "data/activities/activity-template.json",
   "data/tests/test-template.json"

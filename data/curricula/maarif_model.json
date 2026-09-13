@@ -35,8 +35,8 @@
           },
           "workModes": {
             "presentation": {
-              "status": "planned",
-              "source": null
+              "status": "available",
+              "source": "./data/lessons/gunes-sistemi.json"
             },
             "activity": {
               "status": "planned",
@@ -50,8 +50,8 @@
           "lessons": [
             {
               "id": "lesson_gunes_sistemi_1",
-              "label": "Güneş Sistemi",
-              "source": null
+              "label": "Güneş Sistemi ve Gezegenler",
+              "source": "./data/lessons/gunes-sistemi.json"
             }
           ]
         }
