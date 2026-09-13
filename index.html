@@ -6,12 +6,19 @@
     <meta name="theme-color" content="#103c3a" />
     <meta name="description" content="CanFenci Akıllı Tahta Ders Sistemi teknik V1 iskeleti" />
     <title>CanFenci Sunum</title>
-    <link rel="stylesheet" href="./src/styles/app.css" />
+    <link rel="stylesheet" href="./src/styles/app.css?v=1.0.1" />
   </head>
   <body>
     <a class="skip-link" href="#app-main">Ana içeriğe geç</a>
     <div id="app" aria-live="polite"></div>
     <noscript>Bu uygulama JavaScript gerektirir.</noscript>
-    <script type="module" src="./src/app.js"></script>
+    <script type="module" src="./src/app.js?v=1.0.1"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("./sw.js?v=1.0.1").catch(() => {});
+        });
+      }
+    </script>
   </body>
 </html>

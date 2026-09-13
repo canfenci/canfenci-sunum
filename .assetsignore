@@ -1,0 +1,12 @@
+sinavpilotu/
+sinavpilotu/**
+.git/
+.git/**
+.github/
+.github/**
+tests/
+tests/**
+scripts/
+scripts/**
+.DS_Store
+**/.DS_Store
