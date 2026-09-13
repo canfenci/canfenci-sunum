@@ -95,32 +95,37 @@ try {
   const title = await evaluate("document.title");
   console.log("   Title:", title);
 
-  console.log("2. Kontrol panelinde 6. Sınıf Güneş Sistemi seçilmesi...");
-  const selectGrade6 = await evaluate(`(async () => {
-    const gradeSelect = document.querySelector('select[name="gradeId"]');
-    if (!gradeSelect) return "grade select not found";
-    gradeSelect.value = "grade_6";
-    gradeSelect.dispatchEvent(new Event("change", { bubbles: true }));
-    return "ok";
-  })()`);
-  console.log("   Grade selection:", selectGrade6);
-  await new Promise((r) => setTimeout(r, 800));
-
-  console.log("3. Sunum modunun başlatılması (#/presentation)...");
-  await evaluate("location.hash = '#/presentation'");
+  console.log("2. Doğrudan Rota Testi: Maarif Model 6. Sınıf Güneş Sistemi Sunumu...");
+  await evaluate("location.hash = '#/presentation?curriculumProfileId=maarif_model&gradeId=grade_6&unitId=solar_system_and_eclipses&topicId=solar_system'");
   await new Promise((r) => setTimeout(r, 1000));
 
-  const topicLabel = await evaluate("document.getElementById('stage-topic-label')?.textContent");
-  console.log("   Active topic in presentation:", topicLabel);
+  const isPlaceholder1 = await evaluate("Boolean(document.querySelector('.work-mode-placeholder'))");
+  const topicLabel1 = await evaluate("document.getElementById('stage-topic-label')?.textContent");
+  const slideStatus1 = await evaluate("document.getElementById('stage-slide-status')?.textContent");
+  console.log("   Doğrudan rota sonucu - Placeholder var mı:", isPlaceholder1, "Konu:", topicLabel1, "Durum:", slideStatus1);
+  if (isPlaceholder1) throw new Error("Beklenen 6. sınıf Güneş Sistemi sunumu yerine placeholder ekranı açıldı!");
+  if (!slideStatus1?.includes("/ 26")) throw new Error("Slayt sayısı 26 olarak görünmüyor: " + slideStatus1);
 
-  const slideStatus = await evaluate("document.getElementById('stage-slide-status')?.textContent");
-  console.log("   Slide status:", slideStatus);
+  console.log("3. Yol Bazlı Rota Testi (#/maarif_model/grade_6/solar_system_and_eclipses/solar_system/presentation)...");
+  await evaluate("location.hash = '#/maarif_model/grade_6/solar_system_and_eclipses/solar_system/presentation'");
+  await new Promise((r) => setTimeout(r, 800));
+  const slideStatusPath = await evaluate("document.getElementById('stage-slide-status')?.textContent");
+  console.log("   Yol bazlı rota slayt durumu:", slideStatusPath);
+  if (!slideStatusPath?.includes("/ 26")) throw new Error("Yol bazlı rotada 26 slayt yüklenemedi!");
 
-  if (!slideStatus?.includes("/ 26")) {
-    throw new Error("Slayt sayısı 26 olarak görünmüyor: " + slideStatus);
-  }
+  console.log("4. Hazırlık Modu Placeholder Testi (#/activity)...");
+  await evaluate("location.hash = '#/activity'");
+  await new Promise((r) => setTimeout(r, 800));
+  const isPlaceholderActivity = await evaluate("Boolean(document.querySelector('.work-mode-placeholder'))");
+  const placeholderText = await evaluate("document.querySelector('.work-mode-placeholder-card h1')?.textContent");
+  console.log("   Etkinlik modunda placeholder var mı:", isPlaceholderActivity, "Metin:", placeholderText);
+  if (!isPlaceholderActivity) throw new Error("Etkinlik modunda placeholder ekranı görüntülenmedi!");
 
-  console.log("4. 26 slayt boyunca ileri geri geçiş testi...");
+  console.log("5. Sunum moduna dönüş...");
+  await evaluate("location.hash = '#/presentation'");
+  await new Promise((r) => setTimeout(r, 800));
+
+  console.log("6. 26 slayt boyunca ileri geri geçiş testi...");
   const slideTitles = [];
   for (let s = 1; s <= 26; s++) {
     const titleText = await evaluate("document.querySelector('.solar-slide-title, .solar-hero-title, .board-slide-title')?.textContent?.trim()");

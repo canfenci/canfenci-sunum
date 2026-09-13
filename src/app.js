@@ -17,7 +17,18 @@ import { icon } from "./ui/icons.js";
 import { getWorkMode, isWorkMode } from "./core/work-modes.js";
 
 const ANNOTATION_TOOLS = new Set(["pen", "highlighter", "eraser", "laser"]);
-const getPresentationSource = (topic) => topic?.workModes?.presentation?.source ?? topic?.lessons?.[0]?.source ?? null;
+const getPresentationSource = (topic) => {
+  const presentationMode = topic?.workModes?.presentation;
+  if (presentationMode) {
+    if (presentationMode.status === "available" && presentationMode.source) {
+      return presentationMode.source;
+    }
+    if (presentationMode.status === "planned" || presentationMode.status === "disabled") {
+      return null;
+    }
+  }
+  return topic?.lessons?.[0]?.source ?? null;
+};
 
 const escapeHtml = (value = "") => String(value).replace(/[&<>'"]/g, (char) => ({
   "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", "\"": "&quot;"
@@ -50,45 +61,168 @@ class CanFenciApp {
     this.#updateConnection();
     window.addEventListener("online", () => this.#updateConnection());
     window.addEventListener("offline", () => this.#updateConnection());
-    window.addEventListener("hashchange", () => this.#route());
+    window.addEventListener("hashchange", () => {
+      this.#route().catch((err) => console.error("Yönlendirme hatası:", err));
+    });
     window.addEventListener("keydown", (event) => this.#handleKeyboard(event));
 
     try {
       this.catalog = await this.curriculum.loadCatalog();
-      const defaultGrade = this.curriculum.getGrades()[0];
-      this.curriculumData = defaultGrade?.curriculumProfileId
-        ? await this.curriculum.loadCurriculum(defaultGrade.curriculumProfileId)
-        : { units: [] };
-      const defaultUnit = this.curriculumData.units[0];
-      const defaultTopic = defaultUnit?.topics?.[0];
-      const defaultLesson = defaultTopic?.lessons?.[0];
-      const defaultLessonSource = getPresentationSource(defaultTopic);
-      if (defaultLessonSource) {
-        try {
-          await this.lessons.load(defaultLessonSource);
-        } catch (err) {
-          console.warn("Varsayılan ders yüklenemedi:", err);
-        }
-      }
-      this.state.update((draft) => {
-        draft.selection.gradeId = defaultGrade?.id ?? null;
-        draft.selection.curriculumProfileId = defaultGrade?.curriculumProfileId ?? null;
-        draft.selection.unitId = defaultUnit?.id ?? null;
-        draft.selection.topicId = defaultTopic?.id ?? null;
-        draft.selection.lessonId = defaultLesson?.id ?? null;
-      });
       await this.#route();
     } catch (error) {
       this.#renderStartupError(error);
     }
   }
 
-  #route() {
-    const routeName = location.hash.startsWith("#/") ? location.hash.slice(2) : "";
-    const workMode = isWorkMode(routeName) ? routeName : null;
-    document.body.dataset.mode = workMode ?? "control-panel";
-    if (!workMode) {
+  #parseRoute() {
+    const searchParams = new URLSearchParams(window.location.search);
+    let rawHash = window.location.hash || "";
+    if (rawHash.startsWith("#/")) rawHash = rawHash.slice(2);
+    else if (rawHash.startsWith("#")) rawHash = rawHash.slice(1);
+
+    let hashPath = rawHash;
+    let hashQuery = "";
+    const questionIdx = rawHash.indexOf("?");
+    if (questionIdx !== -1) {
+      hashPath = rawHash.slice(0, questionIdx);
+      hashQuery = rawHash.slice(questionIdx + 1);
+    }
+    const hashParams = new URLSearchParams(hashQuery);
+
+    const getParam = (key) => hashParams.get(key) || searchParams.get(key) || null;
+
+    let curriculumProfileId = getParam("curriculumProfileId");
+    let gradeId = getParam("gradeId");
+    let unitId = getParam("unitId");
+    let topicId = getParam("topicId");
+    let lessonId = getParam("lessonId");
+    let workMode = getParam("workMode");
+
+    const segments = hashPath.split("/").filter(Boolean);
+    if (segments.length === 1) {
+      if (isWorkMode(segments[0])) {
+        workMode = workMode || segments[0];
+      }
+    } else if (segments.length === 5) {
+      curriculumProfileId = curriculumProfileId || segments[0];
+      gradeId = gradeId || segments[1];
+      unitId = unitId || segments[2];
+      topicId = topicId || segments[3];
+      if (isWorkMode(segments[4])) workMode = workMode || segments[4];
+    } else if (segments.length === 4) {
+      if (isWorkMode(segments[3])) {
+        gradeId = gradeId || segments[0];
+        unitId = unitId || segments[1];
+        topicId = topicId || segments[2];
+        workMode = workMode || segments[3];
+      }
+    } else if (segments.length === 3) {
+      if (isWorkMode(segments[2])) {
+        unitId = unitId || segments[0];
+        topicId = topicId || segments[1];
+        workMode = workMode || segments[2];
+      }
+    }
+
+    const isExplicitControlPanel = hashPath === "control-panel" || segments[0] === "control-panel";
+
+    return {
+      curriculumProfileId,
+      gradeId,
+      unitId,
+      topicId,
+      lessonId,
+      workMode: workMode && isWorkMode(workMode) ? workMode : null,
+      isExplicitControlPanel
+    };
+  }
+
+  async #resolveRouteContext() {
+    const routeParams = this.#parseRoute();
+    const currentSelection = this.state.get().selection;
+
+    let gradeId = routeParams.gradeId || currentSelection.gradeId;
+    let curriculumProfileId = routeParams.curriculumProfileId || currentSelection.curriculumProfileId;
+
+    if (gradeId) {
+      const grade = this.curriculum.getGrade(gradeId);
+      if (grade?.curriculumProfileId) {
+        curriculumProfileId = grade.curriculumProfileId;
+      }
+    } else if (curriculumProfileId) {
+      const profile = this.curriculum.getProfile(curriculumProfileId);
+      gradeId = profile?.gradeIds?.[0] ?? null;
+    }
+
+    if (!gradeId) {
+      const defaultGrade = this.curriculum.getGrades()[0];
+      gradeId = defaultGrade?.id ?? null;
+      curriculumProfileId = defaultGrade?.curriculumProfileId ?? null;
+    }
+
+    if (curriculumProfileId && this.curriculumData?.profileId !== curriculumProfileId) {
+      try {
+        this.curriculumData = await this.curriculum.loadCurriculum(curriculumProfileId);
+      } catch (err) {
+        console.error("Müfredat profili yüklenemedi:", err);
+      }
+    }
+
+    const grade = this.curriculum.getGrade(gradeId);
+    const units = this.curriculumData?.units ?? [];
+    const targetUnitId = routeParams.unitId || currentSelection.unitId;
+    const unit = units.find((item) => item.id === targetUnitId) ?? units[0] ?? null;
+
+    const topics = unit?.topics ?? [];
+    const targetTopicId = routeParams.topicId || currentSelection.topicId;
+    const topic = topics.find((item) => item.id === targetTopicId) ?? topics[0] ?? null;
+
+    const lessons = topic?.lessons ?? [];
+    const targetLessonId = routeParams.lessonId || currentSelection.lessonId;
+    const lesson = lessons.find((item) => item.id === targetLessonId) ?? lessons[0] ?? null;
+
+    const workMode = routeParams.workMode || currentSelection.workMode || "presentation";
+
+    this.state.update((draft) => {
+      draft.selection.gradeId = grade?.id ?? gradeId ?? null;
+      draft.selection.curriculumProfileId = curriculumProfileId ?? null;
+      draft.selection.unitId = unit?.id ?? null;
+      draft.selection.topicId = topic?.id ?? null;
+      draft.selection.lessonId = lesson?.id ?? null;
+      if (routeParams.workMode) draft.selection.workMode = routeParams.workMode;
+    });
+
+    if (this.shell?.sourceInfo) {
+      const gradeSpan = this.shell.sourceInfo.querySelector("span:first-child");
+      if (gradeSpan && grade) {
+        gradeSpan.innerHTML = `<strong>Sınıf:</strong> ${escapeHtml(grade.label)}`;
+      }
+    }
+
+    return { grade, unit, topic, lesson, workMode, routeParams };
+  }
+
+  async #route() {
+    const { topic, lesson, workMode, routeParams } = await this.#resolveRouteContext();
+
+    const isControlPanel = routeParams.isExplicitControlPanel || (
+      !routeParams.workMode && (
+        !location.hash || location.hash === "#/" || location.hash === "#"
+      )
+    );
+
+    document.body.dataset.mode = isControlPanel ? "control-panel" : workMode;
+
+    if (isControlPanel) {
       this.modeManager.enter("control-panel");
+      const presentationSource = getPresentationSource(topic);
+      if (presentationSource && (!this.lessons.lesson || this.lessons.lesson.id !== lesson?.id)) {
+        try {
+          await this.lessons.load(presentationSource);
+        } catch (err) {
+          console.warn("Önizleme için ders yüklenemedi:", err);
+        }
+      }
       this.#renderControlPanel();
       return;
     }
@@ -96,10 +230,24 @@ class CanFenciApp {
     this.state.update((draft) => { draft.selection.workMode = workMode; });
     this.modeManager.enter(workMode);
     const mode = getWorkMode(workMode);
-    const { topic } = this.#getSelectedContext();
-    const presentationAvailable = Boolean(getPresentationSource(topic));
-    if (mode.surface === "presentation" && presentationAvailable) this.#renderPresentation();
-    else this.#renderWorkModePlaceholder(workMode);
+
+    const presentationSource = getPresentationSource(topic);
+    const presentationAvailable = Boolean(presentationSource);
+
+    if (mode.surface === "presentation" && presentationAvailable) {
+      if (!this.lessons.lesson || this.lessons.lesson.id !== lesson?.id) {
+        try {
+          await this.lessons.load(presentationSource);
+        } catch (err) {
+          console.error("Ders sunumu yüklenemedi:", err);
+          this.#renderWorkModePlaceholder(workMode);
+          return;
+        }
+      }
+      this.#renderPresentation();
+    } else {
+      this.#renderWorkModePlaceholder(workMode);
+    }
   }
 
   #getSelectedContext() {
@@ -208,7 +356,13 @@ class CanFenciApp {
     });
     view.form.addEventListener("submit", (event) => {
       event.preventDefault();
-      location.hash = `#/${this.state.get().selection.workMode}`;
+      const targetMode = this.state.get().selection.workMode || "presentation";
+      const targetHash = `#/${targetMode}`;
+      if (location.hash === targetHash) {
+        this.#route().catch((err) => console.error("Yönlendirme hatası:", err));
+      } else {
+        location.hash = targetHash;
+      }
     });
     view.validationToggle.addEventListener("click", () => {
       const collapsed = view.validationPanel.classList.toggle("is-collapsed");
