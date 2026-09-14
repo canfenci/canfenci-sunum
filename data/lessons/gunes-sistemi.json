@@ -261,6 +261,18 @@
           ],
           "interactions": [
             {
+              "id": "interaction_slide_6_tanim",
+              "type": "reveal_fill",
+              "template": "Bir yıldız etrafında belirli yörüngelerde dolanan, küresel yapılı, büyük gök cisimlerine {blank1} denir.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "gezegen",
+                  "placeholder": "gezegen"
+                }
+              ]
+            },
+            {
               "id": "interaction_slide_6_sicaklik",
               "type": "reveal_fill",
               "template": "Yıldızlar gibi yüzeyleri sıcak değil {blank1}.",

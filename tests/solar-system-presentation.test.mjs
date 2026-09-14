@@ -62,6 +62,27 @@ test("6. Sınıf Güneş Sistemi ve Gezegenler Ders Paketi Sözleşmesi", async 
   }
 });
 
+test("6. Sınıf Slayt 6 (Gezegen Nedir?) Etkileşim ve Yapı Doğrulaması", async () => {
+  const lessonData = JSON.parse(await readFile("data/lessons/gunes-sistemi.json", "utf8"));
+  const slide6 = lessonData.stages.flatMap((s) => s.slides || []).find((s) => s.id === "slide_6_gezegen_nedir");
+  assert.ok(slide6, "slide_6_gezegen_nedir slaytı bulunamadı");
+  assert.equal(slide6.layout, "solar_gezegen_nedir");
+  assert.equal(slide6.interactions?.length, 3, "Slayt 6'da 3 adet reveal_fill etkileşimi bulunmalıdır");
+
+  const tanim = slide6.interactions.find((i) => i.id === "interaction_slide_6_tanim");
+  assert.ok(tanim, "interaction_slide_6_tanim bulunamadı");
+  assert.equal(tanim.blanks[0].answer, "gezegen");
+
+  const sicaklik = slide6.interactions.find((i) => i.id === "interaction_slide_6_sicaklik");
+  assert.ok(sicaklik, "interaction_slide_6_sicaklik bulunamadı");
+  assert.equal(sicaklik.blanks[0].answer, "soğuktur");
+
+  const gruplar = slide6.interactions.find((i) => i.id === "interaction_slide_6_gruplar");
+  assert.ok(gruplar, "interaction_slide_6_gruplar bulunamadı");
+  assert.equal(gruplar.blanks[0].answer, "karasal");
+  assert.equal(gruplar.blanks[1].answer, "gazsal");
+});
+
 test("Maarif Model Müfredat Bağlantısı Doğrulaması", async () => {
   const maarif = JSON.parse(await readFile("data/curricula/maarif_model.json", "utf8"));
   const solarTopic = maarif.units[0].topics.find((t) => t.id === "solar_system");

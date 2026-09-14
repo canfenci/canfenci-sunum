@@ -170,18 +170,19 @@ export function renderSolarSlide(slide, view, { interactions, activeInteractions
         </header>
         <div class="solar-gezegen-nedir-stage">
           <div class="solar-concept-cards">
-            <div class="solar-definition-card">
+            <div class="solar-definition-card solar-definition-card-tanim">
               <span class="solar-card-icon">🪐</span>
               <div class="solar-card-content">
                 <h3>Gezegen Tanımı</h3>
-                <p>Bir yıldız etrafında belirli yörüngelerde dolanan, küresel yapılı, büyük gök cisimlerine <strong>gezegen</strong> denir.</p>
+                <div class="solar-tanim-slot"></div>
               </div>
             </div>
-            <div class="solar-definition-card">
+            <div class="solar-definition-card solar-definition-card-durum">
               <span class="solar-card-icon">☀️</span>
               <div class="solar-card-content">
                 <h3>Isı ve Işık Durumu</h3>
-                <p>Gezegenler ısı ve ışık kaynağı <strong>değildirler</strong>. Güneş’ten aldıkları ışığı yansıtırlar.</p>
+                <p class="solar-durum-main">Gezegenler ısı ve ışık kaynağı <strong>değildirler</strong>.</p>
+                <p class="solar-durum-sub">Güneş’ten aldıkları ışığı yansıtırlar.</p>
               </div>
             </div>
           </div>
@@ -191,10 +192,29 @@ export function renderSolarSlide(slide, view, { interactions, activeInteractions
           </div>
         </div>
       `;
+      const tanimSlot = slideArticle.querySelector(".solar-tanim-slot");
       const slot1 = slideArticle.querySelector(".slot-1");
       const slot2 = slideArticle.querySelector(".slot-2");
-      if (slide.interactions?.[0]) mountInteraction(slide.interactions[0], slot1, interactions, activeInteractions);
-      if (slide.interactions?.[1]) mountInteraction(slide.interactions[1], slot2, interactions, activeInteractions);
+
+      const tanimInteraction = slide.interactions?.find(i => i.id === "interaction_slide_6_tanim")
+        ?? slide.interactions?.find(i => i.template?.includes("denir"));
+      const sicaklikInteraction = slide.interactions?.find(i => i.id === "interaction_slide_6_sicaklik")
+        ?? slide.interactions?.find(i => i.template?.includes("sıcak değil"));
+      const gruplarInteraction = slide.interactions?.find(i => i.id === "interaction_slide_6_gruplar")
+        ?? slide.interactions?.find(i => i.template?.includes("gruba ayrılır"));
+
+      if (tanimInteraction && tanimSlot) {
+        mountInteraction(tanimInteraction, tanimSlot, interactions, activeInteractions);
+      } else if (tanimSlot) {
+        tanimSlot.innerHTML = `<p class="solar-tanim-fallback">Bir yıldız etrafında belirli yörüngelerde dolanan, küresel yapılı, büyük gök cisimlerine <strong>gezegen</strong> denir.</p>`;
+      }
+
+      if (sicaklikInteraction && slot1) {
+        mountInteraction(sicaklikInteraction, slot1, interactions, activeInteractions);
+      }
+      if (gruplarInteraction && slot2) {
+        mountInteraction(gruplarInteraction, slot2, interactions, activeInteractions);
+      }
       view.slideContent.replaceChildren(slideArticle);
       return true;
     }
