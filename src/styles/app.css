@@ -2691,25 +2691,26 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   min-height: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 0.8rem;
+  justify-content: flex-start;
+  gap: clamp(0.7rem, 1.4vh, 1.4rem);
 }
 
 .solar-dual-cards-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(1rem, 2cqi, 2rem);
+  flex: 0 0 auto;
 }
 
 .solar-class-card {
   background: white;
-  border-radius: 18px;
-  padding: clamp(0.9rem, 1.4cqi, 1.35rem);
+  border-radius: 20px;
+  padding: clamp(0.85rem, 1.3cqi, 1.4rem) clamp(1.1rem, 1.8cqi, 1.8rem);
   border: 2px solid #e2e8f0;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: clamp(0.3rem, 0.6vh, 0.5rem);
 }
 
 .solar-class-card.karasal {
@@ -2721,8 +2722,8 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 }
 
 .solar-class-badge {
-  font-size: 13px;
-  font-weight: 800;
+  font-size: clamp(13px, 0.95cqi, 16px);
+  font-weight: 850;
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
@@ -2737,45 +2738,52 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 
 .solar-class-card h2 {
   margin: 0;
-  font-size: clamp(20px, 1.4cqi, 25px);
+  font-size: clamp(22px, 1.65cqi, 30px);
+  font-weight: 850;
   color: #0f172a;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 
 .solar-class-desc {
   margin: 0;
-  font-size: clamp(15px, 1.1cqi, 18px);
-  color: #475569;
-  line-height: 1.35;
+  font-size: clamp(17.5px, 1.3cqi, 23px);
+  color: #334155;
+  font-weight: 550;
+  line-height: 1.42;
 }
 
 .solar-class-planets {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 0.35rem;
+  gap: clamp(0.45rem, 0.7cqi, 0.8rem);
+  margin-top: clamp(0.25rem, 0.5vh, 0.45rem);
 }
 
 .planet-tag {
-  padding: 0.3rem 0.7rem;
-  border-radius: 8px;
-  font-size: clamp(14px, 1cqi, 16px);
-  font-weight: 700;
+  padding: clamp(0.35rem, 0.6vh, 0.55rem) clamp(0.8rem, 1.15cqi, 1.25rem);
+  border-radius: 10px;
+  font-size: clamp(15px, 1.15cqi, 19px);
+  font-weight: 800;
+  transition: transform 0.15s ease;
 }
 
 .solar-class-card.karasal .planet-tag {
   background: #fff7ed;
   color: #9a3412;
-  border: 1px solid #ffedd5;
+  border: 1.5px solid #ffedd5;
 }
 
 .solar-class-card.gazsal .planet-tag {
   background: #f0f9ff;
   color: #0369a1;
-  border: 1px solid #e0f2fe;
+  border: 1.5px solid #e0f2fe;
 }
 
 .solar-karasal-visual-bar {
-  max-height: 170px;
+  flex: 1;
+  min-height: 0;
+  max-height: clamp(205px, 32vh, 360px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2784,8 +2792,11 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 .solar-karasal-img {
   max-height: 100%;
   max-width: 100%;
+  width: auto;
+  height: auto;
   object-fit: contain;
-  border-radius: 12px;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(11, 78, 162, 0.07);
 }
 
 /* Slayt 8-15: Gezegen Detay Kartları */
