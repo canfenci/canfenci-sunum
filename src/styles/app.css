@@ -2914,6 +2914,13 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   z-index: 1;
 }
 
+.planet-saturn .solar-planet-img {
+  max-width: 98%;
+  max-height: 90%;
+  object-fit: contain;
+  transform: scale(1.02);
+}
+
 /* Slayt 16-18: Karşılaştırma Genel */
 .solar-comp-stage {
   flex: 1;
