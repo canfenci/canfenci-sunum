@@ -99,3 +99,43 @@ test("8. Sınıf Mevsimlerin Oluşumu Regresyon Doğrulaması", async () => {
   const slides = grade8.stages.flatMap((st) => st.slides || []);
   assert.equal(slides.length, 25, "8. sınıf dersi 25 slayt olarak korunmalıdır");
 });
+
+test("6. Sınıf Slayt 8-15 Gezegen Kartları Yapısı ve Satürn Regresyon Doğrulaması", async () => {
+  const lessonData = JSON.parse(await readFile("data/lessons/gunes-sistemi.json", "utf8"));
+  const slides = lessonData.stages.flatMap((s) => s.slides || []);
+  const planetSlides = slides.filter((s) => s.layout === "solar_planet_card");
+
+  assert.equal(planetSlides.length, 8, "Tam olarak 8 gezegen kartı bulunmalıdır (Slayt 8-15)");
+
+  const expectedPlanets = [
+    { id: "slide_8_merkur", name: "Merkür", num: 1 },
+    { id: "slide_9_venus", name: "Venüs", num: 2 },
+    { id: "slide_10_dunya", name: "Dünya", num: 3 },
+    { id: "slide_11_mars", name: "Mars", num: 4 },
+    { id: "slide_12_jupiter", name: "Jüpiter", num: 5 },
+    { id: "slide_13_saturn", name: "Satürn", num: 6 },
+    { id: "slide_14_uranus", name: "Uranüs", num: 7 },
+    { id: "slide_15_neptun", name: "Neptün", num: 8 }
+  ];
+
+  for (let i = 0; i < expectedPlanets.length; i++) {
+    const exp = expectedPlanets[i];
+    const slide = planetSlides[i];
+    assert.equal(slide.id, exp.id);
+    assert.equal(slide.planet, exp.name);
+    assert.equal(slide.planetNumber, exp.num);
+    assert.ok(Array.isArray(slide.facts) && slide.facts.length >= 3, `${exp.name} en az 3 bilgi maddesi içermelidir`);
+    assert.ok(slide.interactions?.length > 0, `${exp.name} etkileşimi eksik olamaz`);
+    assert.ok(slide.media?.[0]?.src, `${exp.name} medya görseli tanımlı olmalıdır`);
+  }
+
+  // Satürn özel kontrolü (regresyon önleme)
+  const saturn = planetSlides.find((s) => s.id === "slide_13_saturn");
+  assert.equal(saturn.media[0].src, "./assets/images/gunes-sistemi/photorealistic_saturn_cutout.png");
+
+  // CSS okunabilirlik kontrolü
+  const css = await readFile("src/styles/app.css", "utf8");
+  assert.ok(css.includes(".solar-fact-text"), ".solar-fact-text CSS kuralı mevcut olmalıdır");
+  assert.ok(css.includes("clamp(21px, 1.55cqi, 30px)"), "Akıllı tahta okunabilirlik font-size tanımlı olmalıdır");
+});
+

@@ -2855,29 +2855,29 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 .solar-fact-item {
   display: flex;
   align-items: flex-start;
-  gap: 0.75rem;
+  gap: clamp(0.65rem, 1cqi, 0.95rem);
   background: white;
   border: 1.5px solid #e2e8f0;
   border-radius: 14px;
-  padding: clamp(0.65rem, 1.1cqi, 0.95rem) clamp(0.9rem, 1.4cqi, 1.2rem);
+  padding: clamp(0.5rem, 0.9cqi, 0.85rem) clamp(0.85rem, 1.3cqi, 1.25rem);
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
 }
 
 .solar-fact-dot {
-  width: 10px;
-  height: 10px;
+  width: clamp(9px, 0.7cqi, 12px);
+  height: clamp(9px, 0.7cqi, 12px);
   border-radius: 50%;
   background: var(--blue, #0284c7);
-  margin-top: 6px;
+  margin-top: clamp(6px, 0.5cqi, 9px);
   flex: 0 0 auto;
   box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2);
 }
 
 .solar-fact-text {
-  font-size: clamp(16px, 1.15cqi, 19px);
-  font-weight: 600;
+  font-size: clamp(21px, 1.55cqi, 30px);
+  font-weight: 650;
   color: #1e293b;
-  line-height: 1.35;
+  line-height: 1.38;
 }
 
 .solar-planet-interaction-card {
