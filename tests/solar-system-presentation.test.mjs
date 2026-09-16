@@ -139,3 +139,43 @@ test("6. Sınıf Slayt 8-15 Gezegen Kartları Yapısı ve Satürn Regresyon Doğ
   assert.ok(css.includes("clamp(21px, 1.55cqi, 30px)"), "Akıllı tahta okunabilirlik font-size tanımlı olmalıdır");
 });
 
+test("6. Sınıf Slayt 16-18 Karşılaştırma Slaytları Yapısı ve Okunabilirlik Doğrulaması", async () => {
+  const lessonData = JSON.parse(await readFile("data/lessons/gunes-sistemi.json", "utf8"));
+  const slides = lessonData.stages.flatMap((s) => s.slides || []);
+
+  const slide16 = slides.find((s) => s.id === "slide_16_yapilarina_gore");
+  assert.ok(slide16, "Slayt 16 bulunamadı");
+  assert.equal(slide16.layout, "solar_karsilastirma_genel");
+  assert.equal(slide16.comparison.leftTitle, "Karasal (İç) Gezegenler");
+  assert.equal(slide16.comparison.rightTitle, "Gazsal (Dış) Gezegenler");
+  assert.equal(slide16.comparison.leftItems.length, 4);
+  assert.equal(slide16.comparison.rightItems.length, 4);
+  assert.ok(slide16.interactions?.length > 0);
+
+  const slide17 = slides.find((s) => s.id === "slide_17_halkalarina_gore");
+  assert.ok(slide17, "Slayt 17 bulunamadı");
+  assert.equal(slide17.layout, "solar_karsilastirma_genel");
+  assert.equal(slide17.comparison.leftTitle, "Halkası Olmayanlar");
+  assert.equal(slide17.comparison.rightTitle, "Halkası Olanlar");
+  assert.equal(slide17.comparison.leftItems.length, 4);
+  assert.equal(slide17.comparison.rightItems.length, 4);
+  assert.ok(slide17.interactions?.length > 0);
+
+  const slide18 = slides.find((s) => s.id === "slide_18_uydularina_gore");
+  assert.ok(slide18, "Slayt 18 bulunamadı");
+  assert.equal(slide18.layout, "solar_karsilastirma_genel");
+  assert.equal(slide18.comparison.leftTitle, "Uydusu Olmayanlar");
+  assert.equal(slide18.comparison.rightTitle, "Uydusu Olanlar");
+  assert.equal(slide18.comparison.leftItems.length, 2);
+  assert.equal(slide18.comparison.rightItems.length, 6);
+  assert.ok(slide18.interactions?.length > 0);
+
+  // CSS okunabilirlik kontrolü
+  const css = await readFile("src/styles/app.css", "utf8");
+  assert.ok(css.includes(".solar-comp-head h3"), ".solar-comp-head h3 CSS kuralı mevcut olmalıdır");
+  assert.ok(css.includes("clamp(23px, 1.65cqi, 31px)"), "Grup başlıkları okunabilirlik font-size tanımlı olmalıdır");
+  assert.ok(css.includes(".solar-comp-card ul"), ".solar-comp-card ul CSS kuralı mevcut olmalıdır");
+  assert.ok(css.includes("clamp(21px, 1.5cqi, 28px)"), "Statik liste metinleri okunabilirlik font-size tanımlı olmalıdır");
+});
+
+

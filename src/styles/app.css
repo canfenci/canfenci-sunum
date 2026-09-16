@@ -2971,22 +2971,32 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 
 .solar-comp-head h3 {
   margin: 0;
-  font-size: clamp(18px, 1.3cqi, 22px);
+  font-size: clamp(23px, 1.65cqi, 31px);
+  font-weight: 850;
   color: #0f172a;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 
 .solar-comp-head small {
-  font-size: 13px;
+  display: block;
+  margin-top: 0.2rem;
+  font-size: clamp(14.5px, 1.05cqi, 18px);
   font-weight: 700;
   color: #64748b;
 }
 
 .solar-comp-card ul {
-  margin: 0.5rem 0 0;
-  padding-left: 1.2rem;
-  font-size: clamp(15px, 1.1cqi, 18px);
-  color: #334155;
-  line-height: 1.4;
+  margin: clamp(0.5rem, 0.8vh, 0.75rem) 0 0;
+  padding-left: clamp(1.1rem, 1.5cqi, 1.5rem);
+  font-size: clamp(21px, 1.5cqi, 28px);
+  font-weight: 650;
+  color: #1e293b;
+  line-height: 1.38;
+}
+
+.solar-comp-card li {
+  margin-bottom: clamp(0.2rem, 0.4vh, 0.35rem);
 }
 
 /* Slayt 19-20: Karşılaştırma Sıralama */
