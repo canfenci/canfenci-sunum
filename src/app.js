@@ -1199,7 +1199,9 @@ class CanFenciApp {
 
       case "canva_eksen_sonuclari": {
         const slideArticle = document.createElement("article");
-        slideArticle.className = "board-slide slide-canva-eksen-sonuclari";
+        const slideIdClass = slide.id ? `slide-${slide.id.replace(/_/g, "-")}` : "";
+        slideArticle.className = `board-slide slide-canva-eksen-sonuclari ${slideIdClass}`.trim();
+        if (slide.id) slideArticle.dataset.slideId = slide.id;
 
         const h1 = document.createElement("h1");
         h1.className = "canva-red-heading";
@@ -1249,7 +1251,9 @@ class CanFenciApp {
 
       case "canva_tarihler_tablosu": {
         const slideArticle = document.createElement("article");
-        slideArticle.className = "board-slide slide-canva-tarihler-tablosu";
+        const slideIdClass = slide.id ? `slide-${slide.id.replace(/_/g, "-")}` : "";
+        slideArticle.className = `board-slide slide-canva-tarihler-tablosu ${slideIdClass}`.trim();
+        if (slide.id) slideArticle.dataset.slideId = slide.id;
 
         const h1 = document.createElement("h1");
         h1.className = "canva-red-heading";
@@ -1657,7 +1661,9 @@ class CanFenciApp {
 
       case "canva_kavram_yanilgilari": {
         const slideArticle = document.createElement("article");
-        slideArticle.className = "board-slide slide-canva-kavram-yanilgilari";
+        const slideIdClass = slide.id ? `slide-${slide.id.replace(/_/g, "-")}` : "";
+        slideArticle.className = `board-slide slide-canva-kavram-yanilgilari ${slideIdClass}`.trim();
+        if (slide.id) slideArticle.dataset.slideId = slide.id;
 
         const h1 = document.createElement("h1");
         h1.className = "canva-red-heading";
@@ -1809,7 +1815,9 @@ class CanFenciApp {
 
       case "canva_mevsim_tarihleri_ozet": {
         const slideArticle = document.createElement("article");
-        slideArticle.className = "board-slide slide-canva-mevsim-tarihleri-ozet";
+        const slideIdClass = slide.id ? `slide-${slide.id.replace(/_/g, "-")}` : "";
+        slideArticle.className = `board-slide slide-canva-mevsim-tarihleri-ozet ${slideIdClass}`.trim();
+        if (slide.id) slideArticle.dataset.slideId = slide.id;
 
         const h1 = document.createElement("h1");
         h1.className = "canva-red-heading canva-center-heading";

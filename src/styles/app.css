@@ -1207,13 +1207,13 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   font-weight: 850;
 }
 
-/* Slayt 9: Eksen Eğikliği Sonuçları */
+/* Slayt 8: Eksen Eğikliği Sonuçları */
 .slide-canva-eksen-sonuclari {
   display: flex;
   flex-direction: column;
   height: 100%;
   min-height: 0;
-  gap: clamp(0.6rem, 1.2vh, 1.2rem);
+  gap: clamp(0.4rem, 0.8vh, 0.8rem);
 }
 
 .canva-center-heading {
@@ -1224,12 +1224,12 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 .canva-sonuclar-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: clamp(1rem, 1.8vw, 2.2rem);
+  gap: clamp(0.6rem, 1.2vh, 1.4rem) clamp(0.8rem, 1.5vw, 1.8rem);
   flex: 1 1 auto;
   min-height: 0;
   align-items: center;
   justify-items: center;
-  max-width: 1560px;
+  max-width: 1720px;
   margin: 0 auto;
   width: 100%;
 }
@@ -1239,7 +1239,7 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: clamp(0.5rem, 1vh, 0.9rem);
+  gap: clamp(0.35rem, 0.6vh, 0.6rem);
   text-align: center;
   width: 100%;
   min-height: 0;
@@ -1255,12 +1255,13 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   display: flex;
   align-items: center;
   justify-content: center;
-  max-height: clamp(120px, 20vh, 200px);
+  max-height: clamp(165px, 27vh, 285px);
   min-height: 0;
 }
 
 .canva-sonuc-img-box img {
-  max-height: clamp(110px, 18vh, 190px);
+  max-height: clamp(165px, 27vh, 285px);
+  max-width: 100%;
   width: auto;
   object-fit: contain;
 }
@@ -1270,21 +1271,21 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   color: #0f172a;
   border: none;
   border-radius: 14px;
-  padding: clamp(0.5rem, 0.9vh, 0.8rem) clamp(1rem, 1.5vw, 1.6rem);
-  font-size: clamp(18px, 1.28cqi, 25px);
+  padding: clamp(0.35rem, 0.7vh, 0.65rem) clamp(0.8rem, 1.2vw, 1.4rem);
+  font-size: clamp(23px, 1.85cqi, 36px);
   font-weight: 800;
-  line-height: 1.3;
+  line-height: 1.25;
   text-align: center;
   box-shadow: none;
 }
 
-/* Slayt 10: Mevsim Tarihleri Tablosu */
+/* Slayt 9: Mevsim Tarihleri Tablosu */
 .slide-canva-tarihler-tablosu {
   display: flex;
   flex-direction: column;
   height: 100%;
   min-height: 0;
-  gap: clamp(0.6rem, 1.2vh, 1.2rem);
+  gap: clamp(0.35rem, 0.7vh, 0.75rem);
 }
 
 .canva-table-wrapper {
@@ -1298,7 +1299,7 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 
 .canva-interactive-table {
   width: 100%;
-  max-width: 1540px;
+  max-width: 1720px;
   table-layout: fixed;
   border-collapse: separate;
   border-spacing: 0;
@@ -1312,20 +1313,21 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 .canva-interactive-table th {
   background: #f8fafc;
   color: #1e293b;
-  font-size: clamp(22px, 1.55cqi, 28px);
+  font-size: clamp(22px, 1.8cqi, 36px);
   font-weight: 850;
-  padding: clamp(0.75rem, 1.3vh, 1.2rem) clamp(0.8rem, 1.2vw, 1.5rem);
+  padding: clamp(0.55rem, 1vh, 0.95rem) clamp(0.6rem, 1vw, 1.2rem);
   border-bottom: 2px solid #cbd5e1;
   border-right: 1px solid #e2e8f0;
   text-align: center;
+  line-height: 1.2;
 }
 
 .canva-interactive-table td {
-  font-size: clamp(20px, 1.4cqi, 26px);
+  font-size: clamp(22px, 1.75cqi, 35px);
   font-weight: 650;
-  line-height: 1.38;
+  line-height: 1.32;
   color: #334155;
-  padding: clamp(0.7rem, 1.25vh, 1.15rem) clamp(0.8rem, 1.2vw, 1.4rem);
+  padding: clamp(0.5rem, 0.95vh, 0.95rem) clamp(0.5rem, 0.9vw, 1.1rem);
   border-bottom: 1px solid #e2e8f0;
   border-right: 1px solid #e2e8f0;
   text-align: center;
@@ -1335,8 +1337,14 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 .canva-interactive-table td.cell-date {
   font-weight: 900;
   color: #0f172a;
-  font-size: clamp(23px, 1.65cqi, 30px);
+  font-size: clamp(24px, 1.85cqi, 36px);
   white-space: nowrap;
+}
+
+.canva-interactive-table .table-subtext {
+  font-size: clamp(19px, 1.5cqi, 28px);
+  color: #64748b;
+  font-weight: 600;
 }
 
 .canva-interactive-table .table-slot {
@@ -1360,7 +1368,7 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 }
 
 .canva-interactive-table .reveal-fill-blank {
-  height: clamp(38px, 2.6cqi, 48px);
+  height: clamp(40px, 2.9cqi, 52px);
   margin: 0 4px;
   vertical-align: baseline;
   border-radius: 9px;
@@ -1726,14 +1734,23 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   gap: clamp(0.6rem, 1.2vh, 1.2rem);
 }
 
+/* Slayt 20: Kavram Yanılgıları */
+.slide-canva-kavram-yanilgilari {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  gap: clamp(0.4rem, 0.8vh, 0.8rem);
+}
+
 .canva-yanilgi-list {
   flex: 1 1 auto;
   min-height: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  gap: clamp(0.7rem, 1.4vh, 1.3rem);
-  max-width: 1580px;
+  justify-content: space-between;
+  gap: clamp(0.45rem, 0.85vh, 0.9rem);
+  max-width: 1720px;
   margin: 0 auto;
   width: 100%;
 }
@@ -1742,11 +1759,11 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   display: grid;
   grid-template-columns: 1fr 1fr auto;
   align-items: center;
-  gap: clamp(1.2rem, 2.2vw, 2.8rem);
+  gap: clamp(1rem, 1.8vw, 2.4rem);
   background: white;
   border: 2.5px solid #e2e8f0;
-  border-radius: 20px;
-  padding: clamp(0.7rem, 1.2vh, 1.15rem) clamp(1.2rem, 2vw, 2rem);
+  border-radius: 18px;
+  padding: clamp(0.45rem, 0.85vh, 0.85rem) clamp(1rem, 1.6vw, 1.6rem);
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
   transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.16s ease, background 0.2s ease;
   cursor: pointer;
@@ -1774,8 +1791,8 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   display: flex;
   align-items: center;
   justify-content: center;
-  width: clamp(40px, 3cqi, 54px);
-  height: clamp(40px, 3cqi, 54px);
+  width: clamp(42px, 3cqi, 54px);
+  height: clamp(42px, 3cqi, 54px);
   border-radius: 50%;
   flex-shrink: 0;
 }
@@ -1794,8 +1811,8 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 
 .yanilgi-text {
   margin: 0;
-  font-size: clamp(18px, 1.3cqi, 25px);
-  font-weight: 750;
+  font-size: clamp(22px, 1.8cqi, 36px);
+  font-weight: 650;
   line-height: 1.32;
   overflow-wrap: break-word;
   word-break: break-word;
@@ -1823,12 +1840,12 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 }
 
 .yanilgi-toggle-btn {
-  padding: clamp(0.55rem, 1vh, 0.8rem) clamp(1.1rem, 1.6vw, 1.8rem);
+  padding: clamp(0.45rem, 0.8vh, 0.75rem) clamp(1rem, 1.4vw, 1.6rem);
   border: 2px solid #cbd5e1;
   border-radius: 14px;
   background: #f8fafc;
   color: #334155;
-  font-size: clamp(15px, 1.1cqi, 19px);
+  font-size: clamp(17px, 1.25cqi, 23px);
   font-weight: 800;
   cursor: pointer;
   transition: all 0.18s ease;
@@ -1935,18 +1952,18 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   margin-bottom: clamp(0.9rem, 1.8vh, 1.6rem);
 }
 
-/* Slayt 24: Mevsim Tarihleri Özeti */
+/* Slayt 23: Mevsim Tarihleri Özeti */
 .slide-canva-mevsim-tarihleri-ozet {
   display: flex;
   flex-direction: column;
   height: 100%;
   min-height: 0;
-  gap: clamp(0.8rem, 1.6vh, 1.4rem);
+  gap: clamp(0.4rem, 0.8vh, 0.9rem);
 }
 
 .canva-summary-table {
   width: 100%;
-  max-width: 1540px;
+  max-width: 1720px;
   table-layout: fixed;
   border-collapse: separate;
   border-spacing: 0;
@@ -1960,20 +1977,21 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 .canva-summary-table th {
   background: #f8fafc;
   color: #0f172a;
-  font-size: clamp(23px, 1.65cqi, 30px);
+  font-size: clamp(22px, 1.8cqi, 36px);
   font-weight: 900;
-  padding: clamp(0.85rem, 1.5vh, 1.35rem) clamp(0.8rem, 1.2vw, 1.5rem);
+  padding: clamp(0.55rem, 1.1vh, 1.05rem) clamp(0.6rem, 1vw, 1.2rem);
   border-bottom: 2px solid #cbd5e1;
   border-right: 1px solid #e2e8f0;
   text-align: center;
+  line-height: 1.2;
 }
 
 .canva-summary-table td {
-  font-size: clamp(22px, 1.55cqi, 28px);
+  font-size: clamp(22px, 1.75cqi, 35px);
   font-weight: 650;
-  line-height: 1.4;
+  line-height: 1.34;
   color: #1e293b;
-  padding: clamp(0.85rem, 1.5vh, 1.35rem) clamp(0.8rem, 1.2vw, 1.5rem);
+  padding: clamp(0.55rem, 1.1vh, 1.05rem) clamp(0.6rem, 1vw, 1.2rem);
   border-bottom: 1px solid #e2e8f0;
   border-right: 1px solid #e2e8f0;
   text-align: center;
@@ -1983,13 +2001,14 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 .canva-summary-table td.cell-date {
   font-weight: 900;
   color: #0f172a;
-  font-size: clamp(24px, 1.75cqi, 32px);
+  font-size: clamp(24px, 1.85cqi, 36px);
   white-space: nowrap;
 }
 
 .canva-summary-table td.cell-highlight {
   font-weight: 850;
   color: #0f172a;
+  font-size: clamp(22px, 1.75cqi, 35px);
 }
 
 .canva-summary-table tr:last-child td {
