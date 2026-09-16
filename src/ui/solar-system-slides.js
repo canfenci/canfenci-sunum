@@ -307,7 +307,11 @@ export function renderSolarSlide(slide, view, { interactions, activeInteractions
 
     case "solar_karsilastirma_genel": {
       const slideArticle = document.createElement("article");
-      slideArticle.className = "board-slide board-slide-interactive slide-solar-karsilastirma-genel";
+      const slideIdClass = slide.id ? `slide-${slide.id.replace(/_/g, "-")}` : "";
+      slideArticle.className = `board-slide board-slide-interactive slide-solar-karsilastirma-genel ${slideIdClass}`.trim();
+      if (slide.id) {
+        slideArticle.dataset.slideId = slide.id;
+      }
       const comp = slide.comparison ?? {};
       const leftList = (comp.leftItems ?? []).map(item => `<li>${escapeHtml(item)}</li>`).join("");
       const rightList = (comp.rightItems ?? []).map(item => `<li>${escapeHtml(item)}</li>`).join("");

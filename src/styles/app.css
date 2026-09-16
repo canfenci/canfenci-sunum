@@ -2999,6 +2999,22 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   margin-bottom: clamp(0.2rem, 0.4vh, 0.35rem);
 }
 
+/* Yalnızca Slayt 17: Üst kartlar ile alt mavi interaction kutusu arasındaki dikey boşluk */
+.slide-solar-karsilastirma-genel[data-slide-id="slide_17_halkalarina_gore"] .solar-comp-diagram,
+.slide-slide-17-halkalarina-gore .solar-comp-diagram {
+  max-height: clamp(85px, 9.5cqi, 120px);
+}
+
+.slide-solar-karsilastirma-genel[data-slide-id="slide_17_halkalarina_gore"] .solar-comp-stage,
+.slide-slide-17-halkalarina-gore .solar-comp-stage {
+  gap: clamp(12px, 1.2cqi, 18px);
+}
+
+.slide-solar-karsilastirma-genel[data-slide-id="slide_17_halkalarina_gore"] .solar-bottom-interaction-bar,
+.slide-slide-17-halkalarina-gore .solar-bottom-interaction-bar {
+  margin-top: clamp(14px, 1.5cqi, 26px);
+}
+
 /* Slayt 19-20: Karşılaştırma Sıralama */
 .solar-siralama-stage {
   flex: 1;
