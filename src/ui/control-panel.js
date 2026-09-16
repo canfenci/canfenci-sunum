@@ -20,26 +20,26 @@ const countLessonItems = (lesson) => {
 const stepClass = (value, previousValue) => value ? "complete" : previousValue ? "active" : "pending";
 
 export function renderControlPanel(container, { catalog, curriculum, state, lesson = null }) {
+  const isLocalOffline = typeof window !== "undefined" && (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1");
+  const versionBadge = isLocalOffline ? "CanFenci Offline • v1.0.0" : `TEKNİK ${APP_VERSION}`;
   const grades = catalog.grades ?? [];
   const selectedGrade = state.selection.gradeId ?? grades[0]?.id ?? "";
   const grade = grades.find((item) => item.id === selectedGrade);
   const units = curriculum?.units ?? [];
-  const selectedUnit = units.find((item) => item.id === state.selection.unitId) ?? units[0] ?? null;
+  const selectedUnit = units.find((item) => item.id === state.selection.unitId) ?? units[0];
   const topics = selectedUnit?.topics ?? [];
-  const selectedTopic = topics.find((item) => item.id === state.selection.topicId) ?? topics[0] ?? null;
-  const metadata = selectedTopic?.metadata ?? { coreTopics: [], extraTopics: [], verified: false, lastVerifiedAt: null };
-  const coreTopics = metadata.coreTopics ?? [];
-  const extraTopics = metadata.extraTopics ?? [];
-  const counts = countLessonItems(lesson);
+  const selectedTopic = topics.find((item) => item.id === state.selection.topicId) ?? topics[0];
   const selectedWorkMode = state.selection.workMode ?? DEFAULT_WORK_MODE;
   const workMode = getWorkMode(selectedWorkMode);
+  const metadata = selectedTopic?.metadata ?? {};
+  const coreTopics = metadata.coreTopics ?? [];
+  const extraTopics = metadata.extraTopics ?? [];
+  const lastVerified = metadata.lastVerified ? new Date(metadata.lastVerified).toLocaleDateString("tr-TR") : "—";
+  const counts = countLessonItems(lesson);
   const hasGrade = Boolean(grade);
   const hasUnit = Boolean(selectedUnit);
   const hasTopic = Boolean(selectedTopic);
-  const hasWorkMode = Boolean(selectedWorkMode);
-  const lastVerified = metadata.lastVerifiedAt
-    ? new Intl.DateTimeFormat("tr-TR", { day: "numeric", month: "long", year: "numeric" }).format(new Date(metadata.lastVerifiedAt))
-    : "—";
+  const hasWorkMode = Boolean(workMode);
 
   container.innerHTML = `
     <section class="dashboard-layout">
@@ -53,11 +53,11 @@ export function renderControlPanel(container, { catalog, curriculum, state, less
           <label><span><i>4</i> Çalışma Modu</span><select name="workMode">${Object.values(WORK_MODES).map((mode) => `<option value="${mode.id}" ${mode.id === selectedWorkMode ? "selected" : ""}>${mode.label}</option>`).join("")}</select></label>
           <button class="start-lesson" type="submit"><span aria-hidden="true">${icon("play", 20)}</span><span><strong>${workMode.startLabel}</strong><small>${workMode.label} modunu aç</small></span></button>
         </form>
-        <div class="offline-ready"><span aria-hidden="true">${icon("check", 17)}</span><div><strong>Sistem hazır</strong><small>Çevrimdışı kullanım etkin</small></div></div>
+        <div class="offline-ready"><span aria-hidden="true">${icon("check", 17)}</span><div><strong>${isLocalOffline ? "Offline Hazır" : "Sistem hazır"}</strong><small>${isLocalOffline ? "CanFenci Offline • v1.0.0" : "Çevrimdışı kullanım etkin"}</small></div></div>
       </aside>
 
       <div class="dashboard-content">
-        <div class="content-heading"><div><span class="page-kicker">${escapeHtml((grade?.label ?? "Sınıf").toLocaleUpperCase("tr-TR"))} · FEN BİLİMLERİ</span><h2>Ders çalışma alanı</h2></div><span class="v1-badge">TEKNİK ${APP_VERSION}</span></div>
+        <div class="content-heading"><div><span class="page-kicker">${escapeHtml((grade?.label ?? "Sınıf").toLocaleUpperCase("tr-TR"))} · FEN BİLİMLERİ</span><h2>Ders çalışma alanı</h2></div><span class="v1-badge">${versionBadge}</span></div>
         <section class="dashboard-card curriculum-map-card">
           <div class="card-heading"><div class="card-icon blue" aria-hidden="true">${icon("list")}</div><div><h3>Müfredat Haritası</h3><p>Ders paketlerinin aşama ve slayt yapısı</p></div><span class="status-pill waiting">İçerik bekleniyor</span></div>
           <div class="curriculum-map">
