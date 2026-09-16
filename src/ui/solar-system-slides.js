@@ -437,15 +437,19 @@ export function renderSolarSlide(slide, view, { interactions, activeInteractions
 
     case "solar_karsilastirma_tablosu": {
       const slideArticle = document.createElement("article");
-      slideArticle.className = "board-slide slide-solar-karsilastirma-tablosu";
+      const slideIdClass = slide.id ? `slide-${slide.id.replace(/_/g, "-")}` : "";
+      slideArticle.className = `board-slide slide-solar-karsilastirma-tablosu ${slideIdClass}`.trim();
+      if (slide.id) {
+        slideArticle.dataset.slideId = slide.id;
+      }
 
       const rowsHtml = (slide.tableData ?? []).map(row => `
         <tr class="solar-table-row">
           <td class="solar-table-planet font-bold">${escapeHtml(row.planet)}</td>
           <td class="solar-table-cell ${row.satellite === "Yok" ? "val-none" : "val-yes"}">${escapeHtml(row.satellite)}</td>
           <td class="solar-table-cell ${row.ring === "Yok" ? "val-none" : "val-yes"}">${escapeHtml(row.ring)}</td>
-          <td class="solar-table-cell ${row.terrestrial === "✓" ? "val-yes" : "val-none"}">${escapeHtml(row.terrestrial)}</td>
-          <td class="solar-table-cell ${row.gas === "✓" ? "val-yes" : "val-none"}">${escapeHtml(row.gas)}</td>
+          <td class="solar-table-cell val-symbol ${row.terrestrial === "✓" ? "val-yes" : "val-none"}">${escapeHtml(row.terrestrial)}</td>
+          <td class="solar-table-cell val-symbol ${row.gas === "✓" ? "val-yes" : "val-none"}">${escapeHtml(row.gas)}</td>
           <td class="solar-table-cell font-bold text-blue">${row.nearRank}</td>
           <td class="solar-table-cell font-bold text-orange">${row.sizeRank}</td>
         </tr>
@@ -453,7 +457,7 @@ export function renderSolarSlide(slide, view, { interactions, activeInteractions
 
       slideArticle.innerHTML = `
         <header class="solar-slide-header">
-          <span class="solar-slide-kicker">${escapeHtml(slide.kicker ?? "GENEL ÖZET")}</span>
+          ${slide.kicker ? `<span class="solar-slide-kicker">${escapeHtml(slide.kicker)}</span>` : ""}
           <h1 class="solar-slide-title">${escapeHtml(slide.title)}</h1>
           ${slide.lead ? `<p class="solar-slide-lead">${escapeHtml(slide.lead)}</p>` : ""}
         </header>

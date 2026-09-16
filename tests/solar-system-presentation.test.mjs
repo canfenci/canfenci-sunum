@@ -206,4 +206,35 @@ test("6. Sınıf Slayt 21 Aklımızda Bulunsun Okunabilirlik ve Slayt 20/22 Regr
   assert.ok(css.includes("clamp(20px, 1.45cqi, 28px)"), "Kural açıklamaları font-size tanımlı olmalıdır");
 });
 
+test("6. Sınıf Slayt 22 Gezegen Karşılaştırma Tablosu Okunabilirlik ve Slayt 21/23 Regresyon Doğrulaması", async () => {
+  const lessonData = JSON.parse(await readFile("data/lessons/gunes-sistemi.json", "utf8"));
+  const slides = lessonData.stages.flatMap((s) => s.slides || []);
+
+  // Slayt 21 regresyon kontrolü
+  const slide21 = slides.find((s) => s.id === "slide_21_aklimizda_bulunsun");
+  assert.ok(slide21, "Slayt 21 mevcut olmalıdır");
+  assert.equal(slide21.notes.length, 6);
+
+  // Slayt 22 yapısı kontrolü
+  const slide22 = slides.find((s) => s.id === "slide_22_gezegen_karsilastirma_tablosu");
+  assert.ok(slide22, "Slayt 22 mevcut olmalıdır");
+  assert.equal(slide22.layout, "solar_karsilastirma_tablosu");
+  assert.equal(slide22.title, "Gezegen Karşılaştırma Tablosu");
+  assert.equal(slide22.kicker, undefined, "ÖZET KARŞILAŞTIRMA kicker metni kaldırılmış olmalıdır");
+  assert.equal(slide22.lead, undefined, "Açıklama cümlesi kaldırılmış olmalıdır");
+  assert.equal(slide22.tableData?.length, 8, "Tablo 8 gezegeni içermelidir");
+
+  // Slayt 23 regresyon kontrolü
+  const slide23 = slides.find((s) => s.id === "slide_23_asteroit_ve_kusagi");
+  assert.ok(slide23, "Slayt 23 mevcut olmalıdır");
+  assert.equal(slide23.layout, "solar_asteroit_kusak");
+
+  // CSS okunabilirlik kontrolleri
+  const css = await readFile("src/styles/app.css", "utf8");
+  assert.ok(css.includes(".slide-solar-karsilastirma-tablosu"), "Slayt 22'ye özel CSS kuralları mevcut olmalıdır");
+  assert.ok(css.includes("clamp(17px, 1.45cqi, 28px)"), "Sütun başlıkları font-size tanımlı olmalıdır");
+  assert.ok(css.includes("clamp(19px, 1.5cqi, 28px)"), "Tablo hücreleri font-size tanımlı olmalıdır");
+  assert.ok(css.includes("clamp(22px, 1.68cqi, 31px)"), "İşaretler (symbol) font-size tanımlı olmalıdır");
+});
+
 

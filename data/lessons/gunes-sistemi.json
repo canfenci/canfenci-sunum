@@ -1053,9 +1053,7 @@
           "type": "content",
           "layout": "solar_karsilastirma_tablosu",
           "tag": "GENEL TABLO",
-          "kicker": "ÖZET KARŞILAŞTIRMA",
           "title": "Gezegen Karşılaştırma Tablosu",
-          "lead": "Tüm gezegenlerin temel özelliklerini tek bir tabloda karşılaştıralım:",
           "tableData": [
             {
               "planet": "Merkür",

@@ -3176,35 +3176,72 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 }
 
 /* Slayt 22: Karşılaştırma Tablosu */
+.slide-solar-karsilastirma-tablosu .solar-slide-header {
+  margin-bottom: clamp(0.2rem, 0.45vh, 0.4rem);
+  gap: 0;
+}
+
+.slide-solar-karsilastirma-tablosu .solar-table-wrapper,
 .solar-table-wrapper {
   flex: 1;
   min-height: 0;
-  overflow-x: auto;
+  display: flex;
+  overflow: hidden;
   background: white;
   border: 2px solid #cbd5e1;
   border-radius: 16px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
 }
 
+.slide-solar-karsilastirma-tablosu .solar-full-table,
 .solar-full-table {
   width: 100%;
   height: 100%;
   border-collapse: collapse;
-  font-size: clamp(14px, 1.05cqi, 17px);
+  table-layout: fixed;
+  font-size: clamp(19px, 1.5cqi, 28px);
   text-align: center;
 }
 
+.slide-solar-karsilastirma-tablosu .solar-full-table th:nth-child(1) { width: 13%; }
+.slide-solar-karsilastirma-tablosu .solar-full-table th:nth-child(2) { width: 16%; }
+.slide-solar-karsilastirma-tablosu .solar-full-table th:nth-child(3) { width: 15%; }
+.slide-solar-karsilastirma-tablosu .solar-full-table th:nth-child(4) { width: 15%; }
+.slide-solar-karsilastirma-tablosu .solar-full-table th:nth-child(5) { width: 14%; }
+.slide-solar-karsilastirma-tablosu .solar-full-table th:nth-child(6) { width: 13.5%; }
+.slide-solar-karsilastirma-tablosu .solar-full-table th:nth-child(7) { width: 13.5%; }
+
+.slide-solar-karsilastirma-tablosu .solar-full-table th,
 .solar-full-table th {
   background: #0f172a;
   color: white;
   font-weight: 800;
-  padding: clamp(0.5rem, 1vh, 0.8rem) 0.6rem;
-  font-size: clamp(13px, 1cqi, 15px);
+  padding: clamp(0.35rem, 0.8vh, 0.75rem) clamp(0.2rem, 0.4cqi, 0.5rem);
+  font-size: clamp(17px, 1.45cqi, 28px);
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  vertical-align: middle;
 }
 
+.slide-solar-karsilastirma-tablosu .solar-full-table td,
 .solar-full-table td {
   border-bottom: 1px solid #e2e8f0;
-  padding: clamp(0.35rem, 0.8vh, 0.65rem) 0.6rem;
+  padding: clamp(0.25rem, 0.55vh, 0.55rem) clamp(0.2rem, 0.4cqi, 0.5rem);
+  font-size: clamp(19px, 1.5cqi, 28px);
+  line-height: 1.25;
+  vertical-align: middle;
+}
+
+.slide-solar-karsilastirma-tablosu .solar-table-planet {
+  font-size: clamp(20px, 1.55cqi, 29px);
+  font-weight: 850;
+  color: #0f172a;
+}
+
+.slide-solar-karsilastirma-tablosu .solar-table-cell.val-symbol {
+  font-size: clamp(22px, 1.68cqi, 31px);
+  font-weight: 800;
+  line-height: 1;
 }
 
 .solar-table-row:nth-child(even) {
@@ -3222,14 +3259,17 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 
 .solar-table-cell.val-none {
   color: #94a3b8;
+  font-weight: 700;
 }
 
 .solar-full-table .text-blue {
   color: #0284c7;
+  font-weight: 850;
 }
 
 .solar-full-table .text-orange {
   color: #ea580c;
+  font-weight: 850;
 }
 
 /* Slayt 23: Asteroit Kuşağı */
