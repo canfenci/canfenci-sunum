@@ -3387,12 +3387,12 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: clamp(0.5rem, 0.9vh, 0.85rem);
+  gap: clamp(0.35rem, 0.7vh, 0.65rem);
 }
 
 .slide-solar-olusum-sureci .solar-flow-diagram,
 .solar-flow-diagram {
-  max-height: clamp(80px, 9.5vh, 125px);
+  max-height: clamp(120px, 17vh, 195px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3402,7 +3402,8 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 .slide-solar-olusum-sureci .solar-flow-img,
 .solar-flow-img {
   max-height: 100%;
-  max-width: 100%;
+  max-width: clamp(520px, 52cqi, 860px);
+  width: auto;
   object-fit: contain;
   border-radius: 12px;
 }
@@ -3414,8 +3415,7 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   justify-content: space-between;
   gap: clamp(0.3rem, 0.45cqi, 0.6rem);
   flex-wrap: nowrap;
-  flex: 1;
-  min-height: 0;
+  flex: 0 0 auto;
 }
 
 .slide-solar-olusum-sureci .solar-flow-step,
@@ -3425,11 +3425,11 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   background: white;
   border: 2px solid #cbd5e1;
   border-radius: 16px;
-  padding: clamp(0.5rem, 0.75cqi, 0.9rem) clamp(0.45rem, 0.65cqi, 0.85rem);
+  padding: clamp(0.32rem, 0.5vh, 0.6rem) clamp(0.45rem, 0.65cqi, 0.85rem);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: clamp(0.35rem, 0.5vh, 0.6rem);
+  gap: clamp(0.2rem, 0.35vh, 0.4rem);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
   box-sizing: border-box;
 }
@@ -3452,7 +3452,7 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 .solar-step-content {
   display: flex;
   flex-direction: column;
-  gap: clamp(0.25rem, 0.4vh, 0.5rem);
+  gap: clamp(0.12rem, 0.2vh, 0.25rem);
   width: 100%;
   min-width: 0;
   flex: 1;
