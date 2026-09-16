@@ -567,7 +567,11 @@ export function renderSolarSlide(slide, view, { interactions, activeInteractions
 
     case "solar_olusum_sureci": {
       const slideArticle = document.createElement("article");
-      slideArticle.className = "board-slide board-slide-interactive slide-solar-olusum-sureci";
+      const slideIdClass = slide.id ? `slide-${slide.id.replace(/_/g, "-")}` : "";
+      slideArticle.className = `board-slide board-slide-interactive slide-solar-olusum-sureci ${slideIdClass}`.trim();
+      if (slide.id) {
+        slideArticle.dataset.slideId = slide.id;
+      }
 
       const stepsHtml = (slide.steps ?? []).map(st => `
         <div class="solar-flow-step">
@@ -581,7 +585,7 @@ export function renderSolarSlide(slide, view, { interactions, activeInteractions
 
       slideArticle.innerHTML = `
         <header class="solar-slide-header">
-          <span class="solar-slide-kicker">${escapeHtml(slide.kicker ?? "AKIŞ SÜRECİ")}</span>
+          ${slide.kicker ? `<span class="solar-slide-kicker">${escapeHtml(slide.kicker)}</span>` : ""}
           <h1 class="solar-slide-title">${escapeHtml(slide.title)}</h1>
           ${slide.lead ? `<p class="solar-slide-lead">${escapeHtml(slide.lead)}</p>` : ""}
         </header>

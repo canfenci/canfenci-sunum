@@ -237,4 +237,30 @@ test("6. Sınıf Slayt 22 Gezegen Karşılaştırma Tablosu Okunabilirlik ve Sla
   assert.ok(css.includes("clamp(22px, 1.68cqi, 31px)"), "İşaretler (symbol) font-size tanımlı olmalıdır");
 });
 
+test("6. Sınıf Slayt 26 Oluşum Süreci Okunabilirlik ve Regresyon Doğrulaması", async () => {
+  const lessonData = JSON.parse(await readFile("data/lessons/gunes-sistemi.json", "utf8"));
+  const slides = lessonData.stages.flatMap((s) => s.slides || []);
+
+  const slide26 = slides.find((s) => s.id === "slide_26_olusum_sureci");
+  assert.ok(slide26, "Slayt 26 mevcut olmalıdır");
+  assert.equal(slide26.layout, "solar_olusum_sureci");
+  assert.equal(slide26.title, "Oluşum Süreci");
+  assert.equal(slide26.kicker, undefined, "SÜREÇ BASAMAKLARI kicker metni kaldırılmış olmalıdır");
+  assert.equal(slide26.lead, undefined, "Açıklama cümlesi kaldırılmış olmalıdır");
+  assert.ok(slide26.media?.[0]?.src, "Üstteki süreç görseli korunmalıdır");
+  assert.equal(slide26.steps?.length, 5, "5 süreç kartı bulunmalıdır");
+
+  // Alt etkileşim (reveal_fill) doğrulaması
+  assert.ok(slide26.interactions?.length > 0, "Alt etkileşim alanı mevcut olmalıdır");
+  assert.equal(slide26.interactions[0].type, "reveal_fill");
+  assert.equal(slide26.interactions[0].blanks?.length, 3);
+
+  // CSS okunabilirlik kontrolleri
+  const css = await readFile("src/styles/app.css", "utf8");
+  assert.ok(css.includes(".slide-solar-olusum-sureci"), "Slayt 26'ya özel CSS kuralları mevcut olmalıdır");
+  assert.ok(css.includes("clamp(24px, 1.8cqi, 36px)"), "Kutu başlıkları font-size tanımlı olmalıdır");
+  assert.ok(css.includes("clamp(22px, 1.6cqi, 34px)"), "Açıklama metinleri font-size tanımlı olmalıdır");
+  assert.ok(css.includes("clamp(22px, 1.5cqi, 32px)"), "Numara rozetleri font-size tanımlı olmalıdır");
+});
+
 
