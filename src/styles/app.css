@@ -3112,26 +3112,31 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 }
 
 /* Slayt 21: Aklımızda Bulunsun! */
+.slide-solar-aklimizda-bulunsun .solar-notes-grid,
 .solar-notes-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(3, 1fr);
-  gap: clamp(0.6rem, 1cqi, 0.9rem);
+  gap: clamp(0.5rem, 0.75cqi, 0.85rem);
   flex: 1;
   min-height: 0;
 }
 
+.slide-solar-aklimizda-bulunsun .solar-note-box,
 .solar-note-box {
   display: flex;
-  gap: 0.8rem;
+  align-items: center;
+  gap: clamp(0.65rem, 0.95cqi, 1rem);
   background: white;
   border: 1.5px solid #e2e8f0;
   border-radius: 14px;
-  padding: clamp(0.6rem, 1.1cqi, 0.9rem);
+  padding: clamp(0.45rem, 0.75cqi, 0.85rem) clamp(0.7rem, 1.1cqi, 1.15rem);
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.03);
-  align-items: center;
+  min-height: 0;
+  box-sizing: border-box;
 }
 
+.slide-solar-aklimizda-bulunsun .solar-note-icon,
 .solar-note-icon {
   width: 44px;
   height: 44px;
@@ -3143,20 +3148,31 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   flex: 0 0 auto;
 }
 
+.slide-solar-aklimizda-bulunsun .solar-note-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.slide-solar-aklimizda-bulunsun .solar-note-tag,
 .solar-note-tag {
-  font-size: 11px;
+  font-size: clamp(16px, 1.1cqi, 22px);
   font-weight: 800;
   text-transform: uppercase;
   color: #0284c7;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
 }
 
+.slide-solar-aklimizda-bulunsun .solar-note-text,
 .solar-note-text {
-  font-size: clamp(14px, 1.05cqi, 17px);
+  font-size: clamp(20px, 1.45cqi, 28px);
   font-weight: 650;
   color: #1e293b;
-  margin: 0.15rem 0 0;
-  line-height: 1.35;
+  margin: clamp(0.15rem, 0.25vh, 0.3rem) 0 0;
+  line-height: 1.34;
 }
 
 /* Slayt 22: Karşılaştırma Tablosu */

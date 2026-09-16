@@ -178,4 +178,32 @@ test("6. Sınıf Slayt 16-18 Karşılaştırma Slaytları Yapısı ve Okunabilir
   assert.ok(css.includes("clamp(21px, 1.5cqi, 28px)"), "Statik liste metinleri okunabilirlik font-size tanımlı olmalıdır");
 });
 
+test("6. Sınıf Slayt 21 Aklımızda Bulunsun Okunabilirlik ve Slayt 20/22 Regresyon Doğrulaması", async () => {
+  const lessonData = JSON.parse(await readFile("data/lessons/gunes-sistemi.json", "utf8"));
+  const slides = lessonData.stages.flatMap((s) => s.slides || []);
+
+  // Slayt 20 regresyon kontrolü
+  const slide20 = slides.find((s) => s.id === "slide_20_gunese_yakinliklarina_gore");
+  assert.ok(slide20, "Slayt 20 mevcut olmalıdır");
+  assert.equal(slide20.layout, "solar_karsilastirma_siralama");
+
+  // Slayt 21 yapısı kontrolü
+  const slide21 = slides.find((s) => s.id === "slide_21_aklimizda_bulunsun");
+  assert.ok(slide21, "Slayt 21 mevcut olmalıdır");
+  assert.equal(slide21.layout, "solar_aklimizda_bulunsun");
+  assert.equal(slide21.notes.length, 6, "Tam olarak 6 kural notu bulunmalıdır");
+
+  // Slayt 22 regresyon kontrolü
+  const slide22 = slides.find((s) => s.id === "slide_22_gezegen_karsilastirma_tablosu");
+  assert.ok(slide22, "Slayt 22 mevcut olmalıdır");
+  assert.equal(slide22.layout, "solar_karsilastirma_tablosu");
+
+  // CSS okunabilirlik kontrolü
+  const css = await readFile("src/styles/app.css", "utf8");
+  assert.ok(css.includes(".solar-note-tag"), ".solar-note-tag CSS kuralı mevcut olmalıdır");
+  assert.ok(css.includes("clamp(16px, 1.1cqi, 22px)"), "Kural etiketleri font-size tanımlı olmalıdır");
+  assert.ok(css.includes(".solar-note-text"), ".solar-note-text CSS kuralı mevcut olmalıdır");
+  assert.ok(css.includes("clamp(20px, 1.45cqi, 28px)"), "Kural açıklamaları font-size tanımlı olmalıdır");
+});
+
 
