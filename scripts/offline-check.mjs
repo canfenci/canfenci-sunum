@@ -15,6 +15,7 @@ function fail(msg) {
 const requiredFiles = [
   "index.html",
   "Başlat.sh",
+  "CanFenci.command",
   "VERSION.json",
   "OFFLINE.md",
   "sw.js",
