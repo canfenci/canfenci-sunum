@@ -5131,7 +5131,7 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 .gozlemevi-page-layout {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 0;
   flex: 1 1 auto;
   min-height: 0;
 }
@@ -5145,6 +5145,7 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   border: 2px solid #e2e8f0;
   border-radius: 18px;
   padding: 12px 28px;
+  margin-bottom: 16px;
   box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03);
 }
 
@@ -5172,8 +5173,9 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   display: grid;
   grid-template-columns: 780px 1012px;
   gap: 28px;
-  height: 350px;
+  height: 340px;
   align-items: stretch;
+  margin-bottom: 44px;
 }
 
 .gozlemevi-hero-visual {
@@ -5223,7 +5225,7 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   background: #ffffff;
   border: 2px solid #e2e8f0;
   border-radius: 20px;
-  padding: 22px 28px;
+  padding: 14px 20px;
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
 }
 
@@ -5233,7 +5235,7 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 }
 
 .criteria-section-title {
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 800;
   color: #0369a1;
   letter-spacing: -0.01em;
@@ -5242,40 +5244,40 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 .gozlemevi-criteria-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 14px 18px;
+  gap: 8px 14px;
 }
 
 .gozlemevi-criteria-pill {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   background: #f8fafc;
   border: 1.5px solid #e2e8f0;
-  border-radius: 14px;
-  padding: 10px 18px;
+  border-radius: 12px;
+  padding: 6px 14px;
 }
 
 .criteria-bullet {
   color: #0284c7;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .criteria-text {
   font-size: 30px;
   font-weight: 700;
   color: #1e293b;
-  line-height: 1.25;
+  line-height: 1.2;
 }
 
 /* Alt Bölüm: A / B Karşılaştırma Etkileşimi */
 .gozlemevi-interactive-section {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
   background: #ffffff;
   border: 2px solid #e2e8f0;
   border-radius: 20px;
-  padding: 16px 24px;
+  padding: 8px 24px 16px 24px;
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
 }
 
