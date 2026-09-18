@@ -163,6 +163,38 @@
               "image": "./assets/images/uzay-arastirmalari/03-uzay-mekigi.jpg"
             }
           ]
+        },
+        {
+          "id": "slide_4_uzay_araclari",
+          "type": "content",
+          "layout": "space_uzay_araclari",
+          "title": "Uzay Araştırmalarında Kullanılan Araçlar",
+          "media": [
+            {
+              "id": "media_04_yapay_uydu",
+              "src": "./assets/images/uzay-arastirmalari/04-yapay-uydu.jpg",
+              "alt": "Dünya yörüngesinde dolanan Yapay Uydu"
+            },
+            {
+              "id": "media_04_uzay_istasyonu",
+              "src": "./assets/images/uzay-arastirmalari/04-uzay-istasyonu.jpg",
+              "alt": "Uzayda bilimsel araştırmalar yapılan Uzay İstasyonu"
+            }
+          ],
+          "tools": [
+            {
+              "id": "yapay_uydu",
+              "name": "Yapay Uydu",
+              "desc": "Dünya veya başka bir gök cisminin çevresinde belirli bir yörüngede dolanan insan yapımı uzay aracıdır.",
+              "image": "./assets/images/uzay-arastirmalari/04-yapay-uydu.jpg"
+            },
+            {
+              "id": "uzay_istasyonu",
+              "name": "Uzay İstasyonu",
+              "desc": "Astronotların uzun süre uzayda yaşayarak bilimsel araştırmalar yaptığı büyük uzay yapısıdır.",
+              "image": "./assets/images/uzay-arastirmalari/04-uzay-istasyonu.jpg"
+            }
+          ]
         }
       ]
     }

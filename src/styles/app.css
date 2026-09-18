@@ -4007,6 +4007,12 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   align-items: stretch;
 }
 
+/* 2 Sütunlu Düzen (Slayt 4) */
+.slide-space-uzay-araclari.is-2col .space-tools-grid {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 36px;
+}
+
 .space-tool-card {
   background: #ffffff;
   border: 2px solid #e2e8f0;

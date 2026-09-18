@@ -123,8 +123,9 @@ export function renderSpaceSlide(slide, view, { interactions, activeInteractions
     }
 
     case "space_uzay_araclari": {
+      const is2Col = slide.tools?.length === 2;
       const slideArticle = document.createElement("article");
-      slideArticle.className = "board-slide slide-space-uzay-araclari";
+      slideArticle.className = `board-slide slide-space-uzay-araclari ${is2Col ? "is-2col" : "is-3col"}`;
 
       const tools = slide.tools ?? [];
       const toolsHtml = tools.map((tool, idx) => {

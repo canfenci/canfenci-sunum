@@ -16,7 +16,7 @@ test("7. Sınıf Uzay Araştırmaları Ders Paketi ve Slayt 1 Sözleşmesi", asy
   assert.equal(lessonData.stages.length, 3, "3 ders aşaması bulunmalıdır");
 
   const slides = lessonData.stages.flatMap((stage) => stage.slides || []);
-  assert.equal(slides.length, 3, "Slayt sayısı tam olarak 3 olmalıdır");
+  assert.equal(slides.length, 4, "Slayt sayısı tam olarak 4 olmalıdır");
 
   const slide1 = slides[0];
   assert.equal(slide1.id, "slide_1_uzay_nedir");
@@ -95,6 +95,24 @@ test("7. Sınıf Uzay Araştırmaları Ders Paketi ve Slayt 1 Sözleşmesi", asy
     assert.ok(st.size > 0, "Görsel dosyası boş olamaz");
   }
 
+  // Slayt 4 Doğrulaması
+  const slide4 = slides[3];
+  assert.equal(slide4.id, "slide_4_uzay_araclari");
+  assert.equal(slide4.layout, "space_uzay_araclari");
+  assert.equal(slide4.title, "Uzay Araştırmalarında Kullanılan Araçlar");
+  assert.equal(slide4.tools?.length, 2, "2 araç bulunmalıdır");
+  assert.equal(slide4.tools[0].name, "Yapay Uydu");
+  assert.equal(slide4.tools[0].desc, "Dünya veya başka bir gök cisminin çevresinde belirli bir yörüngede dolanan insan yapımı uzay aracıdır.");
+  assert.equal(slide4.tools[1].name, "Uzay İstasyonu");
+  assert.equal(slide4.tools[1].desc, "Astronotların uzun süre uzayda yaşayarak bilimsel araştırmalar yaptığı büyük uzay yapısıdır.");
+  assert.equal(slide4.media?.length, 2, "2 adet görsel bulunmalıdır");
+  for (const m of slide4.media) {
+    const p = m.src.replace(/^\.\//, "");
+    await access(p);
+    const st = await stat(p);
+    assert.ok(st.size > 0, "Görsel dosyası boş olamaz");
+  }
+
   // LessonEngine testi
   const originalFetch = globalThis.fetch;
   globalThis.fetch = async (url) => {
@@ -111,7 +129,7 @@ test("7. Sınıf Uzay Araştırmaları Ders Paketi ve Slayt 1 Sözleşmesi", asy
     const engine = new LessonEngine();
     const loaded = await engine.load("data/lessons/uzay-arastirmalari.json");
     assert.equal(loaded.id, "lesson_uzay_arastirmalari_1");
-    assert.equal(engine.slideCount, 3);
+    assert.equal(engine.slideCount, 4);
   } finally {
     globalThis.fetch = originalFetch;
   }
@@ -192,4 +210,10 @@ test("Slayt 3 (Uzay Araştırmalarında Kullanılan Araçlar) Tipografi ve 3 Sü
   assert.ok(css.includes(".space-tool-name {\n  margin: 0;\n  font-size: 36px;\n  font-weight: 700;"), "Araç adı 36px bold olmalıdır");
   assert.ok(css.includes(".space-tool-desc {\n  margin: 0;\n  font-size: 36px;\n  font-weight: 400;"), "Açıklama 36px normal olmalıdır");
   assert.ok(css.includes(".space-tool-visual {\n  width: 100%;\n  height: 480px;"), "Görsel alanı 480px yükseklikte olmalıdır");
+});
+
+test("Slayt 4 (Uzay Araştırmalarında Kullanılan Araçlar - 2 Araç) 2 Sütun CSS Doğrulaması", async () => {
+  const css = await readFile("src/styles/app.css", "utf8");
+
+  assert.ok(css.includes(".slide-space-uzay-araclari.is-2col .space-tools-grid {\n  grid-template-columns: repeat(2, 1fr);"), "2 sütunlu grid yapısı tanımlı olmalıdır");
 });
