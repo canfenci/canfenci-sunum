@@ -16,7 +16,7 @@ test("7. Sınıf Uzay Araştırmaları Ders Paketi ve Slayt 1 Sözleşmesi", asy
   assert.equal(lessonData.stages.length, 3, "3 ders aşaması bulunmalıdır");
 
   const slides = lessonData.stages.flatMap((stage) => stage.slides || []);
-  assert.equal(slides.length, 4, "Slayt sayısı tam olarak 4 olmalıdır");
+  assert.equal(slides.length, 5, "Slayt sayısı tam olarak 5 olmalıdır");
 
   const slide1 = slides[0];
   assert.equal(slide1.id, "slide_1_uzay_nedir");
@@ -113,6 +113,23 @@ test("7. Sınıf Uzay Araştırmaları Ders Paketi ve Slayt 1 Sözleşmesi", asy
     assert.ok(st.size > 0, "Görsel dosyası boş olamaz");
   }
 
+  // Slayt 5 Doğrulaması (Karşılaştırma Tablosu)
+  const slide5 = slides[4];
+  assert.equal(slide5.id, "slide_5_uzay_araclari_karsilastirma");
+  assert.equal(slide5.layout, "space_araclar_karsilastirma");
+  assert.equal(slide5.title, "Uzay Araçlarını Karşılaştıralım");
+  assert.equal(slide5.columns?.length, 6, "6 sütun bulunmalıdır (Özellikler + 5 Araç)");
+  assert.equal(slide5.rows?.length, 5, "5 satır bulunmalıdır");
+  assert.equal(slide5.interactions?.length, 5, "Her satırda 1 adet olmak üzere toplam 5 etkileşim bulunmalıdır");
+
+  // Etkileşim cevap kontrolleri
+  const interMap = new Map(slide5.interactions.map((i) => [i.id, i.blanks[0]?.answer]));
+  assert.equal(interMap.get(slide5.rows[0].sonda.interactionId), "Keşif ve gözlem");
+  assert.equal(interMap.get(slide5.rows[1].mekik.interactionId), "Evet");
+  assert.equal(interMap.get(slide5.rows[2].uydu.interactionId), "Evet");
+  assert.equal(interMap.get(slide5.rows[3].mekik.interactionId), "Evet");
+  assert.equal(interMap.get(slide5.rows[4].istasyon.interactionId), "Evet");
+
   // LessonEngine testi
   const originalFetch = globalThis.fetch;
   globalThis.fetch = async (url) => {
@@ -129,7 +146,7 @@ test("7. Sınıf Uzay Araştırmaları Ders Paketi ve Slayt 1 Sözleşmesi", asy
     const engine = new LessonEngine();
     const loaded = await engine.load("data/lessons/uzay-arastirmalari.json");
     assert.equal(loaded.id, "lesson_uzay_arastirmalari_1");
-    assert.equal(engine.slideCount, 4);
+    assert.equal(engine.slideCount, 5);
   } finally {
     globalThis.fetch = originalFetch;
   }
@@ -216,4 +233,15 @@ test("Slayt 4 (Uzay Araştırmalarında Kullanılan Araçlar - 2 Araç) 2 Sütun
   const css = await readFile("src/styles/app.css", "utf8");
 
   assert.ok(css.includes(".slide-space-uzay-araclari.is-2col .space-tools-grid {\n  grid-template-columns: repeat(2, 1fr);"), "2 sütunlu grid yapısı tanımlı olmalıdır");
+});
+
+test("Slayt 5 (Uzay Araçlarını Karşılaştıralım) Tablo Yapısı ve Tipografi CSS Doğrulaması", async () => {
+  const css = await readFile("src/styles/app.css", "utf8");
+
+  assert.ok(css.includes(".slide-space-araclar-karsilastirma"), "Slayt 5 ana sınıfı tanımlı olmalıdır");
+  assert.ok(css.includes(".space-comparison-table"), "Karşılaştırma tablosu sınıfı tanımlı olmalıdır");
+  assert.ok(css.includes(".space-table-th {\n  background: #eef6fc;\n  color: #0369a1;\n  font-size: 36px;\n  font-weight: 700;"), "Sütun başlıkları 36px bold olmalıdır");
+  assert.ok(css.includes(".space-table-feature {\n  font-size: 36px;\n  font-weight: 700;"), "Satır başlıkları 36px bold olmalıdır");
+  assert.ok(css.includes(".space-table-cell {\n  font-size: 36px;\n  font-weight: 400;"), "Normal tablo hücreleri 36px normal olmalıdır");
+  assert.ok(css.includes(".space-table-interactive-cell .blank-slot-answer {\n  font-size: 36px;\n  font-weight: 700;"), "Etkileşimli cevaplar 36px bold olmalıdır");
 });

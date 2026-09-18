@@ -195,6 +195,124 @@
               "image": "./assets/images/uzay-arastirmalari/04-uzay-istasyonu.jpg"
             }
           ]
+        },
+        {
+          "id": "slide_5_uzay_araclari_karsilastirma",
+          "type": "content",
+          "layout": "space_araclar_karsilastirma",
+          "title": "Uzay Araçlarını Karşılaştıralım",
+          "columns": [
+            { "id": "feature", "label": "Özellikler" },
+            { "id": "roket", "label": "Uzay Roketi" },
+            { "id": "sonda", "label": "Uzay Sondası" },
+            { "id": "mekik", "label": "Uzay Mekiği" },
+            { "id": "uydu", "label": "Yapay Uydu" },
+            { "id": "istasyon", "label": "Uzay İstasyonu" }
+          ],
+          "rows": [
+            {
+              "id": "row_gorev",
+              "feature": "Temel görevi",
+              "roket": "Taşıma",
+              "sonda": { "interactionId": "inter_s5_gorev_sonda" },
+              "mekik": "Taşıma ve görev",
+              "uydu": "Yörüngede görev",
+              "istasyon": "Yaşam ve araştırma"
+            },
+            {
+              "id": "row_insan",
+              "feature": "İnsan taşır mı?",
+              "roket": "Taşıyabilir",
+              "sonda": "Hayır",
+              "mekik": { "interactionId": "inter_s5_insan_mekik" },
+              "uydu": "Hayır",
+              "istasyon": "Evet"
+            },
+            {
+              "id": "row_kontrol",
+              "feature": "Dünya’dan kontrol edilir mi?",
+              "roket": "Evet",
+              "sonda": "Evet",
+              "mekik": "Evet",
+              "uydu": { "interactionId": "inter_s5_kontrol_uydu" },
+              "istasyon": "Evet"
+            },
+            {
+              "id": "row_tekrar",
+              "feature": "Yeniden kullanılabilir mi?",
+              "roket": "Hayır",
+              "sonda": "Hayır",
+              "mekik": { "interactionId": "inter_s5_tekrar_mekik" },
+              "uydu": "Hayır",
+              "istasyon": "Evet"
+            },
+            {
+              "id": "row_gunes",
+              "feature": "Güneş paneli kullanır mı?",
+              "roket": "Hayır",
+              "sonda": "Evet",
+              "mekik": "Hayır",
+              "uydu": "Evet",
+              "istasyon": { "interactionId": "inter_s5_gunes_istasyon" }
+            }
+          ],
+          "interactions": [
+            {
+              "id": "inter_s5_gorev_sonda",
+              "type": "reveal_fill",
+              "template": "{ans}",
+              "blanks": [
+                {
+                  "id": "ans",
+                  "answer": "Keşif ve gözlem"
+                }
+              ]
+            },
+            {
+              "id": "inter_s5_insan_mekik",
+              "type": "reveal_fill",
+              "template": "{ans}",
+              "blanks": [
+                {
+                  "id": "ans",
+                  "answer": "Evet"
+                }
+              ]
+            },
+            {
+              "id": "inter_s5_kontrol_uydu",
+              "type": "reveal_fill",
+              "template": "{ans}",
+              "blanks": [
+                {
+                  "id": "ans",
+                  "answer": "Evet"
+                }
+              ]
+            },
+            {
+              "id": "inter_s5_tekrar_mekik",
+              "type": "reveal_fill",
+              "template": "{ans}",
+              "blanks": [
+                {
+                  "id": "ans",
+                  "answer": "Evet"
+                }
+              ]
+            },
+            {
+              "id": "inter_s5_gunes_istasyon",
+              "type": "reveal_fill",
+              "template": "{ans}",
+              "blanks": [
+                {
+                  "id": "ans",
+                  "answer": "Evet"
+                }
+              ]
+            }
+          ]
         }
       ]
     }

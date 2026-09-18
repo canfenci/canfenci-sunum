@@ -158,6 +158,70 @@ export function renderSpaceSlide(slide, view, { interactions, activeInteractions
       return true;
     }
 
+    case "space_araclar_karsilastirma": {
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-space-araclar-karsilastirma";
+
+      const columns = slide.columns ?? [];
+      const theadHtml = `
+        <thead>
+          <tr>
+            ${columns.map((col, idx) => `
+              <th class="space-table-th space-col-${idx}">${escapeHtml(col.label)}</th>
+            `).join("")}
+          </tr>
+        </thead>
+      `;
+
+      const rows = slide.rows ?? [];
+      const tbodyHtml = `
+        <tbody>
+          ${rows.map((row, rIdx) => {
+            const cellsHtml = columns.map((col, cIdx) => {
+              if (cIdx === 0) {
+                return `<td class="space-table-td space-table-feature">${escapeHtml(row.feature ?? "")}</td>`;
+              }
+              const cellData = row[col.id];
+              if (cellData && typeof cellData === "object" && cellData.interactionId) {
+                return `
+                  <td class="space-table-td space-table-interactive-cell">
+                    <div class="space-table-slot" data-interaction-id="${escapeHtml(cellData.interactionId)}"></div>
+                  </td>
+                `;
+              }
+              return `<td class="space-table-td space-table-cell">${escapeHtml(cellData ?? "—")}</td>`;
+            }).join("");
+
+            return `<tr class="space-table-row space-row-${rIdx + 1}">${cellsHtml}</tr>`;
+          }).join("")}
+        </tbody>
+      `;
+
+      slideArticle.innerHTML = `
+        <header class="space-slide-header">
+          <h1 class="space-slide-title">${escapeHtml(slide.title ?? "Uzay Araçlarını Karşılaştıralım")}</h1>
+        </header>
+
+        <div class="space-table-wrapper">
+          <table class="space-comparison-table">
+            ${theadHtml}
+            ${tbodyHtml}
+          </table>
+        </div>
+      `;
+
+      // Etkileşimleri bağla
+      for (const interaction of slide.interactions ?? []) {
+        const slot = slideArticle.querySelector(`.space-table-slot[data-interaction-id="${interaction.id}"]`);
+        if (slot) {
+          mountInteraction(interaction, slot, interactions, activeInteractions);
+        }
+      }
+
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
     default:
       return false;
   }

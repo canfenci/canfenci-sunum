@@ -4078,4 +4078,222 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   line-height: 1.35;
 }
 
+/* ==========================================================================
+   SLAYT 5: UZAY ARAÇLARINI KARŞILAŞTIRALIM (1920x1080 MANTIKSAL TUVAL)
+   ========================================================================== */
+
+.slide-workspace:has(.slide-space-araclar-karsilastirma) .slide-content {
+  padding: 0;
+}
+
+.slide-space-araclar-karsilastirma {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  padding: 32px 48px;
+  gap: 20px;
+  box-sizing: border-box;
+  background: linear-gradient(145deg, #f8fafc 0%, #f0f7ff 50%, #e8f2fc 100%);
+  color: #0f172a;
+  overflow: hidden;
+}
+
+.space-table-wrapper {
+  flex: 1 1 auto;
+  display: flex;
+  min-height: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.space-comparison-table {
+  width: 100%;
+  height: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+  background: #ffffff;
+  border: 2px solid #cbd5e1;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+  overflow: hidden;
+}
+
+/* Sütun genişlikleri */
+.space-col-0 {
+  width: 384px;
+}
+
+.space-col-1,
+.space-col-2,
+.space-col-3,
+.space-col-4,
+.space-col-5 {
+  width: 288px;
+}
+
+/* Sütun Başlıkları */
+.space-table-th {
+  background: #eef6fc;
+  color: #0369a1;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.2;
+  padding: 16px 14px;
+  text-align: center;
+  border-bottom: 2.5px solid #cbd5e1;
+  border-right: 1.5px solid #cbd5e1;
+  box-sizing: border-box;
+}
+
+.space-table-th.space-col-0 {
+  text-align: left;
+  padding-left: 28px;
+  color: #0f172a;
+}
+
+.space-table-th:last-child {
+  border-right: none;
+}
+
+/* Satır stilleri */
+.space-table-row {
+  transition: background-color 0.15s ease;
+}
+
+.space-table-row:nth-child(even) {
+  background-color: #f8fafc;
+}
+
+.space-table-row:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+.space-table-row:hover {
+  background-color: #f0f7ff;
+}
+
+.space-table-td {
+  padding: 12px 14px;
+  vertical-align: middle;
+  border-bottom: 1.5px solid #e2e8f0;
+  border-right: 1.5px solid #e2e8f0;
+  box-sizing: border-box;
+}
+
+.space-table-td:last-child {
+  border-right: none;
+}
+
+.space-table-row:last-child .space-table-td {
+  border-bottom: none;
+}
+
+/* Satır Başlıkları (Özellikler) */
+.space-table-feature {
+  font-size: 36px;
+  font-weight: 700;
+  color: #0f172a;
+  text-align: left;
+  padding-left: 28px;
+  line-height: 1.25;
+}
+
+/* Standart hücreler */
+.space-table-cell {
+  font-size: 36px;
+  font-weight: 400;
+  color: #1e293b;
+  text-align: center;
+  line-height: 1.25;
+}
+
+/* Etkileşimli hücreler */
+.space-table-interactive-cell {
+  text-align: center;
+  padding: 8px 10px;
+}
+
+.space-table-interactive-cell .space-table-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.space-table-interactive-cell .interaction-slot,
+.space-table-interactive-cell .reveal-fill-sentence {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.space-table-interactive-cell .reveal-fill-blank {
+  width: auto;
+  min-width: 130px;
+  max-width: 268px;
+  height: 64px;
+  padding: 0 18px;
+  border-radius: 14px;
+  background: #f0f9ff;
+  border: 2.5px dashed #0284c7;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.1);
+  transition: all 0.18s ease;
+}
+
+.space-table-interactive-cell .reveal-fill-blank::after {
+  display: none !important;
+}
+
+.space-table-interactive-cell .reveal-fill-blank:not(.is-revealed)::before {
+  content: "Tıkla";
+  font-size: 28px;
+  font-weight: 700;
+  color: #0284c7;
+  letter-spacing: -0.01em;
+}
+
+.space-table-interactive-cell .reveal-fill-blank:hover:not(.is-revealed) {
+  background: #e0f2fe;
+  border-color: #0369a1;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.2);
+}
+
+.space-table-interactive-cell .reveal-fill-blank.is-revealed {
+  background: #e0f2fe;
+  border: 2.5px solid #0284c7;
+  cursor: default;
+  transform: none;
+  box-shadow: none;
+}
+
+.space-table-interactive-cell .reveal-fill-blank:not(.is-revealed) .blank-slot-answer {
+  display: none;
+}
+
+.space-table-interactive-cell .blank-slot-answer {
+  font-size: 36px;
+  font-weight: 700;
+  color: #0284c7;
+  line-height: 1.2;
+}
+
+.space-table-interactive-cell .reveal-fill-blank.is-revealed .blank-slot-answer {
+  display: inline-block;
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+}
+
 
