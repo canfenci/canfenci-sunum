@@ -313,6 +313,87 @@
               ]
             }
           ]
+        },
+        {
+          "id": "slide_6_turkiyenin_haberlesme_uydulari",
+          "type": "content",
+          "layout": "space_haberlesme_uydulari",
+          "title": "Türkiye’nin Haberleşme Uyduları",
+          "media": [
+            {
+              "id": "media_06_haberlesme_uydusu",
+              "src": "./assets/images/uzay-arastirmalari/06-haberlesme-uydusu.jpg",
+              "alt": "Türkiye’nin yörüngedeki haberleşme uydusu"
+            }
+          ],
+          "activeSectionTitle": "Aktif Haberleşme Uyduları",
+          "activeSatellites": [
+            { "id": "turksat_3a", "name": "TÜRKSAT 3A" },
+            { "id": "turksat_4a", "name": "TÜRKSAT 4A" },
+            { "id": "turksat_4b", "name": "TÜRKSAT 4B" },
+            { "id": "turksat_5a", "name": "TÜRKSAT 5A" },
+            { "id": "turksat_5b", "name": "TÜRKSAT 5B" },
+            {
+              "id": "turksat_6a",
+              "name": "TÜRKSAT 6A",
+              "highlight": "Türkiye’nin ilk yerli ve millî haberleşme uydusu"
+            }
+          ],
+          "inactiveSectionTitle": "Görevini Tamamlamış Haberleşme Uyduları",
+          "inactiveSatellites": [
+            { "id": "turksat_1b", "name": "Türksat 1B" },
+            { "id": "turksat_1c", "name": "Türksat 1C" },
+            { "id": "turksat_2a", "name": "Türksat 2A" }
+          ]
+        },
+        {
+          "id": "slide_7_turkiyenin_gozlem_uydulari",
+          "type": "content",
+          "layout": "space_gozlem_uydulari",
+          "title": "Türkiye’nin Gözlem Uyduları",
+          "media": [
+            {
+              "id": "media_07_gozlem_uydusu",
+              "src": "./assets/images/uzay-arastirmalari/07-gozlem-uydusu.jpg",
+              "alt": "Türkiye’nin Dünya yörüngesindeki yer gözlem uydusu"
+            }
+          ],
+          "activeSectionTitle": "Aktif Gözlem Uyduları",
+          "activeSatellites": [
+            {
+              "id": "gokturk_1",
+              "name": "GÖKTÜRK 1",
+              "task": "Yüksek çözünürlüklü görüntüleme"
+            },
+            {
+              "id": "gokturk_2",
+              "name": "GÖKTÜRK 2",
+              "task": "Keşif ve gözlem"
+            },
+            {
+              "id": "imece",
+              "name": "İMECE",
+              "task": "Yer gözlem ve görüntüleme"
+            }
+          ],
+          "inactiveSectionTitle": "Görevini Tamamlamış Gözlem Uyduları",
+          "inactiveSatellites": [
+            { "id": "bilsat", "name": "BİLSAT" },
+            { "id": "rasat", "name": "RASAT" }
+          ],
+          "interactions": [
+            {
+              "id": "inter_s7_uzay_kirliligi",
+              "type": "reveal_fill",
+              "template": "Görevini tamamlayan uydular yörüngede kalırsa {uzay_kirliligine} neden olur.",
+              "blanks": [
+                {
+                  "id": "uzay_kirliligine",
+                  "answer": "uzay kirliliğine"
+                }
+              ]
+            }
+          ]
         }
       ]
     }

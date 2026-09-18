@@ -222,6 +222,158 @@ export function renderSpaceSlide(slide, view, { interactions, activeInteractions
       return true;
     }
 
+    case "space_haberlesme_uydulari": {
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-space-haberlesme-uydulari";
+
+      const activeSats = slide.activeSatellites ?? [];
+      const activeListHtml = activeSats.map((sat) => {
+        const hasHighlight = Boolean(sat.highlight);
+        return `
+          <div class="satellite-pill active-pill ${hasHighlight ? "is-highlight" : ""}">
+            <div class="sat-main-info">
+              <span class="sat-badge-dot"></span>
+              <span class="sat-name">${escapeHtml(sat.name)}</span>
+            </div>
+            ${hasHighlight ? `<span class="sat-highlight-label">${escapeHtml(sat.highlight)}</span>` : ""}
+          </div>
+        `;
+      }).join("");
+
+      const inactiveSats = slide.inactiveSatellites ?? [];
+      const inactiveListHtml = inactiveSats.map((sat) => `
+        <div class="satellite-pill inactive-pill">
+          <span class="sat-inactive-dot"></span>
+          <span class="sat-name">${escapeHtml(sat.name)}</span>
+        </div>
+      `).join("");
+
+      const media = slide.media?.[0];
+      const imgSrc = media?.src ?? "./assets/images/uzay-arastirmalari/06-haberlesme-uydusu.jpg";
+      const imgAlt = media?.alt ?? "Türkiye’nin Haberleşme Uydusu";
+
+      slideArticle.innerHTML = `
+        <header class="space-slide-header">
+          <h1 class="space-slide-title">${escapeHtml(slide.title ?? "Türkiye’nin Haberleşme Uyduları")}</h1>
+        </header>
+
+        <div class="satellites-layout">
+          <!-- Sol Sütun: Aktif ve Pasif Uydular -->
+          <div class="satellites-col-left">
+            <!-- 1. Aktif Uydular Kartı -->
+            <section class="sat-section-card sat-card-active">
+              <h2 class="sat-section-title">${escapeHtml(slide.activeSectionTitle ?? "Aktif Haberleşme Uyduları")}</h2>
+              <div class="satellites-grid grid-active-haberlesme">
+                ${activeListHtml}
+              </div>
+            </section>
+
+            <!-- 2. Görevini Tamamlamış Uydular Kartı -->
+            <section class="sat-section-card sat-card-inactive">
+              <h2 class="sat-section-title">${escapeHtml(slide.inactiveSectionTitle ?? "Görevini Tamamlamış Haberleşme Uyduları")}</h2>
+              <div class="satellites-grid grid-inactive-haberlesme">
+                ${inactiveListHtml}
+              </div>
+            </section>
+          </div>
+
+          <!-- Sağ Sütun: Görsel -->
+          <div class="satellites-col-right">
+            <div class="sat-visual-frame">
+              <img src="${imgSrc}" alt="${escapeHtml(imgAlt)}" class="sat-visual-img" />
+              <div class="sat-visual-badge">
+                <span class="space-dot"></span>
+                <span>TÜRKSAT Haberleşme Uydusu</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
+    case "space_gozlem_uydulari": {
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-space-gozlem-uydulari";
+
+      const activeSats = slide.activeSatellites ?? [];
+      const activeListHtml = activeSats.map((sat) => `
+        <div class="satellite-pill active-pill sat-gozlem-pill">
+          <div class="sat-main-info">
+            <span class="sat-badge-dot"></span>
+            <span class="sat-name">${escapeHtml(sat.name)}</span>
+          </div>
+          ${sat.task ? `<span class="sat-task-badge">${escapeHtml(sat.task)}</span>` : ""}
+        </div>
+      `).join("");
+
+      const inactiveSats = slide.inactiveSatellites ?? [];
+      const inactiveListHtml = inactiveSats.map((sat) => `
+        <div class="satellite-pill inactive-pill sat-gozlem-pill">
+          <span class="sat-inactive-dot"></span>
+          <span class="sat-name">${escapeHtml(sat.name)}</span>
+        </div>
+      `).join("");
+
+      const media = slide.media?.[0];
+      const imgSrc = media?.src ?? "./assets/images/uzay-arastirmalari/07-gozlem-uydusu.jpg";
+      const imgAlt = media?.alt ?? "Türkiye’nin Gözlem Uydusu";
+
+      slideArticle.innerHTML = `
+        <header class="space-slide-header">
+          <h1 class="space-slide-title">${escapeHtml(slide.title ?? "Türkiye’nin Gözlem Uyduları")}</h1>
+        </header>
+
+        <div class="satellites-layout">
+          <!-- Sol Sütun: Aktif ve Pasif Gözlem Uyduları -->
+          <div class="satellites-col-left">
+            <!-- 1. Aktif Gözlem Uyduları Kartı -->
+            <section class="sat-section-card sat-card-active">
+              <h2 class="sat-section-title">${escapeHtml(slide.activeSectionTitle ?? "Aktif Gözlem Uyduları")}</h2>
+              <div class="satellites-grid grid-active-gozlem">
+                ${activeListHtml}
+              </div>
+            </section>
+
+            <!-- 2. Görevini Tamamlamış Gözlem Uyduları Kartı -->
+            <section class="sat-section-card sat-card-inactive">
+              <h2 class="sat-section-title">${escapeHtml(slide.inactiveSectionTitle ?? "Görevini Tamamlamış Gözlem Uyduları")}</h2>
+              <div class="satellites-grid grid-inactive-gozlem">
+                ${inactiveListHtml}
+              </div>
+            </section>
+          </div>
+
+          <!-- Sağ Sütun: Görsel -->
+          <div class="satellites-col-right">
+            <div class="sat-visual-frame">
+              <img src="${imgSrc}" alt="${escapeHtml(imgAlt)}" class="sat-visual-img" />
+              <div class="sat-visual-badge">
+                <span class="space-dot"></span>
+                <span>Yer Gözlem ve Keşif Uydusu</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Alt Kısım: reveal_fill Etkileşimi -->
+        <div class="space-bottom-interaction-card sat-kirlilik-card">
+          <div class="space-bottom-slot"></div>
+        </div>
+      `;
+
+      // Reveal_fill etkileşimini bağla
+      const bottomSlot = slideArticle.querySelector(".space-bottom-slot");
+      if (slide.interactions?.[0] && bottomSlot) {
+        mountInteraction(slide.interactions[0], bottomSlot, interactions, activeInteractions);
+      }
+
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
     default:
       return false;
   }

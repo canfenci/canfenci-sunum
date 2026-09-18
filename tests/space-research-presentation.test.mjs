@@ -16,7 +16,7 @@ test("7. Sınıf Uzay Araştırmaları Ders Paketi ve Slayt 1 Sözleşmesi", asy
   assert.equal(lessonData.stages.length, 3, "3 ders aşaması bulunmalıdır");
 
   const slides = lessonData.stages.flatMap((stage) => stage.slides || []);
-  assert.equal(slides.length, 5, "Slayt sayısı tam olarak 5 olmalıdır");
+  assert.equal(slides.length, 7, "Slayt sayısı tam olarak 7 olmalıdır");
 
   const slide1 = slides[0];
   assert.equal(slide1.id, "slide_1_uzay_nedir");
@@ -130,6 +130,42 @@ test("7. Sınıf Uzay Araştırmaları Ders Paketi ve Slayt 1 Sözleşmesi", asy
   assert.equal(interMap.get(slide5.rows[3].mekik.interactionId), "Evet");
   assert.equal(interMap.get(slide5.rows[4].istasyon.interactionId), "Evet");
 
+  // Slayt 6 Doğrulaması (Türkiye’nin Haberleşme Uyduları)
+  const slide6 = slides[5];
+  assert.equal(slide6.id, "slide_6_turkiyenin_haberlesme_uydulari");
+  assert.equal(slide6.layout, "space_haberlesme_uydulari");
+  assert.equal(slide6.title, "Türkiye’nin Haberleşme Uyduları");
+  assert.equal(slide6.activeSatellites?.length, 6, "6 aktif haberleşme uydusu bulunmalıdır");
+  assert.equal(slide6.inactiveSatellites?.length, 3, "3 görevini tamamlamış haberleşme uydusu bulunmalıdır");
+  const sat6a = slide6.activeSatellites.find((s) => s.id === "turksat_6a");
+  assert.ok(sat6a, "TÜRKSAT 6A aktif uydular içinde bulunmalıdır");
+  assert.equal(sat6a.highlight, "Türkiye’nin ilk yerli ve millî haberleşme uydusu");
+  assert.ok(slide6.media?.[0]?.src, "Görsel tanımlı olmalıdır");
+  const media6Path = slide6.media[0].src.replace(/^\.\//, "");
+  await access(media6Path);
+  const st6 = await stat(media6Path);
+  assert.ok(st6.size > 0, "Slayt 6 görsel dosyası boş olamaz");
+
+  // Slayt 7 Doğrulaması (Türkiye’nin Gözlem Uyduları)
+  const slide7 = slides[6];
+  assert.equal(slide7.id, "slide_7_turkiyenin_gozlem_uydulari");
+  assert.equal(slide7.layout, "space_gozlem_uydulari");
+  assert.equal(slide7.title, "Türkiye’nin Gözlem Uyduları");
+  assert.equal(slide7.activeSatellites?.length, 3, "3 aktif gözlem uydusu (GÖKTÜRK 1, GÖKTÜRK 2, İMECE) bulunmalıdır");
+  assert.equal(slide7.inactiveSatellites?.length, 2, "2 görevini tamamlamış gözlem uydusu (BİLSAT, RASAT) bulunmalıdır");
+  assert.ok(slide7.media?.[0]?.src, "Görsel tanımlı olmalıdır");
+  const media7Path = slide7.media[0].src.replace(/^\.\//, "");
+  await access(media7Path);
+  const st7 = await stat(media7Path);
+  assert.ok(st7.size > 0, "Slayt 7 görsel dosyası boş olamaz");
+
+  // Slayt 7 Etkileşimi
+  assert.equal(slide7.interactions?.length, 1, "Slayt 7 tek reveal_fill etkileşimi içermelidir");
+  const inter7 = slide7.interactions[0];
+  assert.equal(inter7.type, "reveal_fill");
+  assert.ok(inter7.template.includes("{uzay_kirliligine}"));
+  assert.equal(inter7.blanks[0].answer, "uzay kirliliğine");
+
   // LessonEngine testi
   const originalFetch = globalThis.fetch;
   globalThis.fetch = async (url) => {
@@ -146,7 +182,7 @@ test("7. Sınıf Uzay Araştırmaları Ders Paketi ve Slayt 1 Sözleşmesi", asy
     const engine = new LessonEngine();
     const loaded = await engine.load("data/lessons/uzay-arastirmalari.json");
     assert.equal(loaded.id, "lesson_uzay_arastirmalari_1");
-    assert.equal(engine.slideCount, 5);
+    assert.equal(engine.slideCount, 7);
   } finally {
     globalThis.fetch = originalFetch;
   }
@@ -244,4 +280,16 @@ test("Slayt 5 (Uzay Araçlarını Karşılaştıralım) Tablo Yapısı ve Tipogr
   assert.ok(css.includes(".space-table-feature {\n  font-size: 36px;\n  font-weight: 700;"), "Satır başlıkları 36px bold olmalıdır");
   assert.ok(css.includes(".space-table-cell {\n  font-size: 36px;\n  font-weight: 400;"), "Normal tablo hücreleri 36px normal olmalıdır");
   assert.ok(css.includes(".space-table-interactive-cell .blank-slot-answer {\n  font-size: 36px;\n  font-weight: 700;"), "Etkileşimli cevaplar 36px bold olmalıdır");
+});
+
+test("Slayt 6 ve 7 (Türkiye’nin Uyduları) Tipografi ve Düzen CSS Doğrulaması", async () => {
+  const css = await readFile("src/styles/app.css", "utf8");
+
+  assert.ok(css.includes(".slide-space-haberlesme-uydulari"), "Slayt 6 ana sınıfı tanımlı olmalıdır");
+  assert.ok(css.includes(".slide-space-gozlem-uydulari"), "Slayt 7 ana sınıfı tanımlı olmalıdır");
+  assert.ok(css.includes(".sat-section-title {\n  margin: 0 0 16px 0;\n  font-size: 36px;\n  font-weight: 700;"), "Bölüm başlıkları 36px bold olmalıdır");
+  assert.ok(css.includes(".satellite-pill .sat-name {\n  font-size: 36px;"), "Uydu adları 36px olmalıdır");
+  assert.ok(css.includes(".sat-highlight-label {\n  font-size: 30px;"), "Türksat 6A vurgusu 30px olmalıdır");
+  assert.ok(css.includes(".sat-task-badge {\n  font-size: 30px;"), "Gözlem uyduları görev etiketi 30px olmalıdır");
+  assert.ok(css.includes(".sat-kirlilik-card"), "Slayt 7 kirlilik kartı sınıfı tanımlı olmalıdır");
 });
