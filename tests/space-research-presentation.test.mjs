@@ -119,7 +119,7 @@ test("Slayt 1 Tipografi Standartları (36px Tanım, 32px Kavramlar) ve Sade Aç�
   // Zorunlu alanların tipografi değerleri
   assert.ok(css.includes(".space-slide-title {\n  margin: 0;\n  font-size: clamp(46px"), "Başlık 46-48px olmalıdır");
   assert.ok(css.includes(".space-card-subhead span {\n  font-size: clamp(38px"), "Kart başlığı 38-42px olmalıdır");
-  assert.ok(css.includes(".space-tanim-slot .reveal-fill-sentence {\n  font-size: clamp(34px, 1.9cqi, 36px);"), "Tanım cümlesi 36px olmalıdır");
+  assert.ok(css.includes(".space-tanim-slot .reveal-fill-sentence {\n  font-size: clamp(36px, 2cqi, 40px);"), "Tanım cümlesi en az 36px olmalıdır");
   assert.ok(css.includes(".space-concept-label {\n  font-size: clamp(30px, 1.7cqi, 32px);"), "Kavram etiketi 32px olmalıdır");
 
   // Açık renk / sade eğitim teması kontrolü
