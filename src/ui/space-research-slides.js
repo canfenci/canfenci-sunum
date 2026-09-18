@@ -720,39 +720,42 @@ export function renderSpaceSlide(slide, view, { interactions, activeInteractions
       slideArticle.className = "board-slide slide-space-uzay-teknolojileri-gunluk-hayat";
 
       const areas = slide.areas ?? [];
-      const cardsHtml = areas.map((area) => `
-        <div class="tech-area-card card-theme-${escapeHtml(area.theme ?? "blue")}">
-          <div class="tech-card-header">
-            <span class="tech-order-badge">${escapeHtml(String(area.order ?? ""))}</span>
-            <h2 class="tech-card-title">${escapeHtml(area.title ?? "")}</h2>
-          </div>
-          <div class="tech-card-body">
-            <div class="tech-thumb-frame">
-              <img src="${escapeHtml(area.image ?? "")}" alt="${escapeHtml(area.title ?? "")}" class="tech-thumb-img" />
+      const cardsHtml = areas.map((area) => {
+        const chipsHtml = (area.technologies ?? []).map((t) => `
+          <span class="tech-chip">${escapeHtml(t)}</span>
+        `).join("");
+
+        return `
+          <div class="tech-area-card card-theme-${escapeHtml(area.theme ?? "blue")}">
+            <div class="tech-card-header">
+              <span class="tech-order-badge">${escapeHtml(String(area.order ?? ""))}</span>
+              <h2 class="tech-card-title">${escapeHtml(area.title ?? "")}</h2>
             </div>
-            <p class="tech-card-desc">${escapeHtml(area.desc ?? "")}</p>
+            <div class="tech-card-body">
+              <div class="tech-thumb-frame">
+                <img src="${escapeHtml(area.image ?? "")}" alt="${escapeHtml(area.title ?? "")}" class="tech-thumb-img" />
+              </div>
+              <div class="tech-chips-wrap">
+                ${chipsHtml}
+              </div>
+            </div>
           </div>
-        </div>
-      `).join("");
+        `;
+      }).join("");
 
       slideArticle.innerHTML = `
         <header class="space-slide-header">
           <h1 class="space-slide-title">${escapeHtml(slide.title ?? "Uzay Teknolojilerinin Günlük Hayattaki Kullanımı")}</h1>
         </header>
 
+        <div class="tech-intro-bar">
+          <p class="tech-intro-text">${escapeHtml(slide.intro ?? "Uzay araştırmaları için geliştirilen bazı teknolojiler zamanla günlük yaşamda da kullanılmaya başlanmıştır.")}</p>
+        </div>
+
         <div class="tech-areas-grid">
           ${cardsHtml}
         </div>
-
-        <div class="space-bottom-interaction-card tech-bottom-interaction">
-          <div class="space-bottom-slot"></div>
-        </div>
       `;
-
-      const bottomSlot = slideArticle.querySelector(".space-bottom-slot");
-      if (slide.interactions?.[0] && bottomSlot) {
-        mountInteraction(slide.interactions[0], bottomSlot, interactions, activeInteractions);
-      }
 
       view.slideContent.replaceChildren(slideArticle);
       return true;

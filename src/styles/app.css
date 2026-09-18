@@ -5467,8 +5467,26 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 14px;
+  gap: 16px;
   box-sizing: border-box;
+}
+
+/* Üst Kısa Giriş Çubuğu (36 px) */
+.tech-intro-bar {
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-left: 6px solid #0284c7;
+  border-radius: 16px;
+  padding: 12px 24px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03);
+}
+
+.tech-intro-text {
+  font-size: 36px;
+  font-weight: 600;
+  color: #1e293b;
+  line-height: 1.35;
+  margin: 0;
 }
 
 .tech-areas-grid {
@@ -5484,7 +5502,7 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   background: #ffffff;
   border: 2px solid #e2e8f0;
   border-radius: 20px;
-  padding: 14px 20px;
+  padding: 14px 18px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -5525,14 +5543,15 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 
 .tech-card-body {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 16px;
   flex: 1 1 auto;
+  min-height: 0;
 }
 
 .tech-thumb-frame {
   width: 120px;
-  height: 110px;
+  height: 120px;
   border-radius: 14px;
   overflow: hidden;
   background: #0f172a;
@@ -5547,12 +5566,24 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   display: block;
 }
 
-.tech-card-desc {
-  font-size: 36px;
-  font-weight: 600;
-  color: #1e293b;
+.tech-chips-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 8px 10px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.tech-chip {
+  background: #f8fafc;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 6px 12px;
+  font-size: 30px;
+  font-weight: 700;
+  color: #0f172a;
   line-height: 1.25;
-  margin: 0;
 }
 
 /* Kart Renk Temaları */
@@ -5566,6 +5597,11 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 .card-theme-rose .tech-card-title {
   color: #be123c;
 }
+.card-theme-rose .tech-chip {
+  background: #fff1f2;
+  border-color: #fecdd3;
+  color: #9f1239;
+}
 
 .card-theme-blue {
   border-color: #bae6fd;
@@ -5575,6 +5611,11 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   color: #0284c7;
 }
 .card-theme-blue .tech-card-title {
+  color: #0369a1;
+}
+.card-theme-blue .tech-chip {
+  background: #f0f9ff;
+  border-color: #bae6fd;
   color: #0369a1;
 }
 
@@ -5588,6 +5629,11 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 .card-theme-amber .tech-card-title {
   color: #b45309;
 }
+.card-theme-amber .tech-chip {
+  background: #fffbeb;
+  border-color: #fde68a;
+  color: #b45309;
+}
 
 .card-theme-indigo {
   border-color: #c7d2fe;
@@ -5597,6 +5643,11 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   color: #4f46e5;
 }
 .card-theme-indigo .tech-card-title {
+  color: #4338ca;
+}
+.card-theme-indigo .tech-chip {
+  background: #eef2ff;
+  border-color: #c7d2fe;
   color: #4338ca;
 }
 
@@ -5610,6 +5661,11 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 .card-theme-emerald .tech-card-title {
   color: #047857;
 }
+.card-theme-emerald .tech-chip {
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+  color: #047857;
+}
 
 .card-theme-teal {
   border-color: #99f6e4;
@@ -5621,10 +5677,10 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 .card-theme-teal .tech-card-title {
   color: #0f766e;
 }
-
-.tech-bottom-interaction {
-  flex: 0 0 auto;
-  margin-top: 4px;
+.card-theme-teal .tech-chip {
+  background: #f0fdfa;
+  border-color: #99f6e4;
+  color: #0f766e;
 }
 
 /* ==========================================================================

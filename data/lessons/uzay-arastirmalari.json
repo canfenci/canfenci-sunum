@@ -576,66 +576,77 @@
           "type": "content",
           "layout": "space_uzay_teknolojileri_gunluk_hayat",
           "title": "Uzay Teknolojilerinin Günlük Hayattaki Kullanımı",
+          "intro": "Uzay araştırmaları için geliştirilen bazı teknolojiler zamanla günlük yaşamda da kullanılmaya başlanmıştır.",
           "areas": [
             {
               "id": "saglik",
               "order": 1,
               "title": "SAĞLIK",
-              "desc": "Uzay teknolojileri sayesinde gelişen cihazlar sağlık alanında tanı ve tedavide kullanılır.",
               "image": "./assets/images/uzay-arastirmalari/12-saglik.jpg",
-              "theme": "rose"
+              "theme": "rose",
+              "technologies": [
+                "MR cihazı",
+                "Bilgisayarlı tomografi",
+                "Dijital termometre",
+                "Yapay kalp pompası",
+                "Hafızalı yatak"
+              ]
             },
             {
               "id": "iletisim",
               "order": 2,
               "title": "İLETİŞİM",
-              "desc": "Uydu sistemleri televizyon, telefon ve internet iletişimini destekler.",
               "image": "./assets/images/uzay-arastirmalari/12-iletisim.jpg",
-              "theme": "blue"
+              "theme": "blue",
+              "technologies": [
+                "Nesnelerin internet üzerinden veri alışverişi"
+              ]
             },
             {
               "id": "gida",
               "order": 3,
               "title": "GIDA",
-              "desc": "Uzay çalışmalarıyla geliştirilen bazı yöntemler gıdaların korunması ve paketlenmesinde kullanılır.",
               "image": "./assets/images/uzay-arastirmalari/12-gida.jpg",
-              "theme": "amber"
+              "theme": "amber",
+              "technologies": [
+                "Bebek maması",
+                "Toz gıdalar",
+                "Uzun ömürlü pratik yiyecekler",
+                "Su filtreleri"
+              ]
             },
             {
               "id": "endustri",
               "order": 4,
               "title": "ENDÜSTRİ",
-              "desc": "Uzay teknolojileri üretimde kullanılan dayanıklı ve gelişmiş malzemelerin geliştirilmesini sağlar.",
               "image": "./assets/images/uzay-arastirmalari/12-endustri.jpg",
-              "theme": "indigo"
+              "theme": "indigo",
+              "technologies": [
+                "Termal battaniye",
+                "Alüminyum folyo",
+                "Isıya dayanıklı kıyafet",
+                "Duman dedektörü"
+              ]
             },
             {
               "id": "ulasim",
               "order": 5,
               "title": "ULAŞIM",
-              "desc": "Konum belirleme ve navigasyon sistemleri ulaşımı daha güvenli ve kolay hâle getirir.",
               "image": "./assets/images/uzay-arastirmalari/12-ulasim.jpg",
-              "theme": "emerald"
+              "theme": "emerald",
+              "technologies": [
+                "GPS",
+                "Navigasyon sistemleri"
+              ]
             },
             {
               "id": "enerji",
               "order": 6,
               "title": "ENERJİ",
-              "desc": "Güneş panelleri gibi teknolojiler enerji üretiminde yaygın olarak kullanılmaktadır.",
               "image": "./assets/images/uzay-arastirmalari/12-enerji.jpg",
-              "theme": "teal"
-            }
-          ],
-          "interactions": [
-            {
-              "id": "inter_s12_gunluk_hayat",
-              "type": "reveal_fill",
-              "template": "Uzay teknolojileri yalnızca uzayda değil, günlük yaşamda da birçok {alanda} kullanılır.",
-              "blanks": [
-                {
-                  "id": "alanda",
-                  "answer": "alanda"
-                }
+              "theme": "teal",
+              "technologies": [
+                "Güneş panelleri"
               ]
             }
           ]

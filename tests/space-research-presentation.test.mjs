@@ -468,7 +468,7 @@ test("Slayt 11 (Gözlemevi Nerelere Kurulur?) Sözleşme, MEB Kriterleri ve Etki
   assert.ok(css.includes(".gozlemevi-feedback-text {\n  font-size: 32px;\n  font-weight: 700;"), "Geri bildirim 32px (30-32px) olmalıdır");
 });
 
-test("Slayt 12 (Uzay Teknolojilerinin Günlük Hayattaki Kullanımı) Sözleşme ve Tipografi CSS Doğrulaması", async () => {
+test("Slayt 12 (Uzay Teknolojilerinin Günlük Hayattaki Kullanımı) Sözleşme, Teknoloji Örnekleri ve Tipografi CSS Doğrulaması", async () => {
   const lessonData = await readJson("data/lessons/uzay-arastirmalari.json");
   const slides = lessonData.stages.flatMap((stage) => stage.slides || []);
   const slide12 = slides[11];
@@ -476,32 +476,38 @@ test("Slayt 12 (Uzay Teknolojilerinin Günlük Hayattaki Kullanımı) Sözleşme
   assert.equal(slide12.id, "slide_12_uzay_teknolojileri_gunluk_hayat");
   assert.equal(slide12.layout, "space_uzay_teknolojileri_gunluk_hayat");
   assert.equal(slide12.title, "Uzay Teknolojilerinin Günlük Hayattaki Kullanımı");
+  assert.equal(slide12.intro, "Uzay araştırmaları için geliştirilen bazı teknolojiler zamanla günlük yaşamda da kullanılmaya başlanmıştır.");
+  assert.equal(slide12.interactions, undefined, "Slayt 12 etkileşimsiz, doğrudan alan->teknoloji örneği sunumu olmalıdır");
 
-  // 6 Alan sırası ve başlıkları
+  // 6 Alan sırası, başlıkları ve MEB teknolojileri
   assert.equal(slide12.areas?.length, 6, "6 adet teknoloji alanı bulunmalıdır");
   const expectedTitles = ["SAĞLIK", "İLETİŞİM", "GIDA", "ENDÜSTRİ", "ULAŞIM", "ENERJİ"];
+  const expectedTechnologies = {
+    SAĞLIK: ["MR cihazı", "Bilgisayarlı tomografi", "Dijital termometre", "Yapay kalp pompası", "Hafızalı yatak"],
+    İLETİŞİM: ["Nesnelerin internet üzerinden veri alışverişi"],
+    GIDA: ["Bebek maması", "Toz gıdalar", "Uzun ömürlü pratik yiyecekler", "Su filtreleri"],
+    ENDÜSTRİ: ["Termal battaniye", "Alüminyum folyo", "Isıya dayanıklı kıyafet", "Duman dedektörü"],
+    ULAŞIM: ["GPS", "Navigasyon sistemleri"],
+    ENERJİ: ["Güneş panelleri"]
+  };
+
   for (let i = 0; i < expectedTitles.length; i++) {
+    const title = expectedTitles[i];
     assert.equal(slide12.areas[i].order, i + 1);
-    assert.equal(slide12.areas[i].title, expectedTitles[i]);
-    assert.ok(slide12.areas[i].desc?.length > 0);
+    assert.equal(slide12.areas[i].title, title);
+    assert.deepEqual(slide12.areas[i].technologies, expectedTechnologies[title]);
     // Görseller mevcut olmalı
     await access(slide12.areas[i].image.replace(/^\.\//, ""));
     const st = await stat(slide12.areas[i].image.replace(/^\.\//, ""));
     assert.ok(st.size > 0, `${slide12.areas[i].title} görseli boş olamaz`);
   }
 
-  // reveal_fill etkileşimi
-  assert.equal(slide12.interactions?.length, 1);
-  const inter = slide12.interactions[0];
-  assert.equal(inter.type, "reveal_fill");
-  assert.ok(inter.template.includes("{alanda}"));
-  assert.equal(inter.blanks[0].answer, "alanda");
-
   // CSS Kuralları
   const css = await readFile("src/styles/app.css", "utf8");
   assert.ok(css.includes(".slide-space-uzay-teknolojileri-gunluk-hayat"), "Slayt 12 ana sınıfı tanımlı olmalıdır");
+  assert.ok(css.includes(".tech-intro-text {\n  font-size: 36px;"), "Giriş metni 36px olmalıdır");
   assert.ok(css.includes(".tech-card-title {\n  font-size: 36px;\n  font-weight: 800;"), "Kart başlıkları 36px bold olmalıdır");
-  assert.ok(css.includes(".tech-card-desc {\n  font-size: 36px;"), "Kart açıklamaları 36px olmalıdır");
+  assert.ok(css.includes(".tech-chip {\n  background: #f8fafc;\n  border: 1.5px solid #cbd5e1;\n  border-radius: 10px;\n  padding: 6px 12px;\n  font-size: 30px;\n  font-weight: 700;"), "Teknoloji chip etiketleri 30px bold olmalıdır");
 });
 
 test("Slayt 13 (Işık Kirliliği) Sözleşme, Karşılaştırma ve Tipografi CSS Doğrulaması", async () => {
