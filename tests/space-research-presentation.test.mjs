@@ -52,7 +52,8 @@ test("7. Sınıf Uzay Araştırmaları Ders Paketi ve Slayt 1 Sözleşmesi", asy
   const st = await stat(mediaPath);
   assert.ok(st.size > 0, "Görsel dosyası boş olamaz");
 
-  // 4. Kaldırılan öğeler (Evet/Hayır ve Uyarı kartı olmamalı)
+  // 4. Kaldırılan öğeler (Kicker, Evet/Hayır ve Uyarı kartı olmamalı)
+  assert.equal(slide1.kicker, undefined, "kicker alanı kaldırılmış olmalıdır");
   assert.equal(slide1.bottomQuestion, undefined, "bottomQuestion alanı kaldırılmış olmalıdır");
   assert.equal(slide1.conceptWarning, undefined, "conceptWarning alanı kaldırılmış olmalıdır");
 
@@ -112,14 +113,14 @@ test("Yeni Tipografi Standardı CSS Kural Doğrulaması", async () => {
   assert.ok(css.includes(".space-visual-frame"), "space-visual-frame stili tanımlı olmalıdır");
 });
 
-test("Slayt 1 Tipografi Standartları Minimum 36px ve Sade Açık Tema Kontrolü", async () => {
+test("Slayt 1 Tipografi Standartları (36px Tanım, 32px Kavramlar) ve Sade Açık Tema Kontrolü", async () => {
   const css = await readFile("src/styles/app.css", "utf8");
 
-  // Zorunlu alanların minimum 36px clamp değerleri
+  // Zorunlu alanların tipografi değerleri
   assert.ok(css.includes(".space-slide-title {\n  margin: 0;\n  font-size: clamp(46px"), "Başlık 46-48px olmalıdır");
-  assert.ok(css.includes(".space-card-subhead span {\n  font-size: clamp(42px"), "Kart başlığı 42-44px olmalıdır");
-  assert.ok(css.includes(".space-tanim-slot .reveal-fill-sentence {\n  font-size: clamp(36px"), "Reveal fill cümlesi en az 36px olmalıdır");
-  assert.ok(css.includes(".space-concept-label {\n  font-size: clamp(36px"), "Kavram etiketi en az 36px olmalıdır");
+  assert.ok(css.includes(".space-card-subhead span {\n  font-size: clamp(38px"), "Kart başlığı 38-42px olmalıdır");
+  assert.ok(css.includes(".space-tanim-slot .reveal-fill-sentence {\n  font-size: clamp(34px, 1.9cqi, 36px);"), "Tanım cümlesi 36px olmalıdır");
+  assert.ok(css.includes(".space-concept-label {\n  font-size: clamp(30px, 1.7cqi, 32px);"), "Kavram etiketi 32px olmalıdır");
 
   // Açık renk / sade eğitim teması kontrolü
   assert.ok(css.includes(".slide-space-uzay-nedir {\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  width: 100%;\n  padding: clamp(14px, 1.8vh, 24px) clamp(20px, 2cqi, 36px);\n  gap: clamp(12px, 1.6vh, 20px);\n  box-sizing: border-box;\n  background: linear-gradient(145deg, #f8fafc 0%, #f0f7ff 50%, #e8f2fc 100%);\n  color: #0f172a;"), "Açık sade eğitim arka planı ve koyu metin kullanılmalıdır");

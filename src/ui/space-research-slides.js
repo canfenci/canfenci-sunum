@@ -33,10 +33,7 @@ export function renderSpaceSlide(slide, view, { interactions, activeInteractions
 
       slideArticle.innerHTML = `
         <header class="space-slide-header">
-          <div class="space-header-meta">
-            ${slide.kicker ? `<span class="space-slide-kicker">${escapeHtml(slide.kicker)}</span>` : ""}
-            <h1 class="space-slide-title">${escapeHtml(slide.title ?? "Uzay Nedir?")}</h1>
-          </div>
+          <h1 class="space-slide-title">${escapeHtml(slide.title ?? "Uzay Nedir?")}</h1>
         </header>
 
         <div class="space-slide-stage">
@@ -53,8 +50,7 @@ export function renderSpaceSlide(slide, view, { interactions, activeInteractions
             <!-- 2. Alttaki 6 Ana Kavram Kartı -->
             <div class="space-concepts-card">
               <div class="space-card-subhead">
-                <span>Ana Kavramlar</span>
-                <small>Uzayda Neler Yer Alır?</small>
+                <span>Uzayda Neler Yer Alır?</span>
               </div>
               <div class="space-concepts-grid">
                 ${conceptsHtml}
