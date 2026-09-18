@@ -88,13 +88,9 @@ export function renderSpaceSlide(slide, view, { interactions, activeInteractions
       const purposes = slide.purposes ?? [];
       const purposesHtml = purposes.map((p, idx) => `
         <div class="space-purpose-card space-purpose-item-${idx + 1}">
-          <div class="space-purpose-icon-box">
-            <span class="space-purpose-icon" aria-hidden="true">${escapeHtml(p.icon ?? "✦")}</span>
-          </div>
-          <div class="space-purpose-text">
-            <h3 class="space-purpose-title">${escapeHtml(p.title)}</h3>
-            <p class="space-purpose-desc">${escapeHtml(p.desc)}</p>
-          </div>
+          <span class="space-purpose-num" aria-hidden="true">${idx + 1}</span>
+          <span class="space-purpose-icon" aria-hidden="true">${escapeHtml(p.icon ?? "✦")}</span>
+          <h3 class="space-purpose-title">${escapeHtml(p.title)}</h3>
         </div>
       `).join("");
 
@@ -103,15 +99,7 @@ export function renderSpaceSlide(slide, view, { interactions, activeInteractions
           <h1 class="space-slide-title">${escapeHtml(slide.title ?? "Uzay Araştırmaları Neden Yapılır?")}</h1>
         </header>
 
-        <!-- Ana Bilgi Notu -->
-        <div class="space-main-note-card">
-          <div class="space-main-note-badge">
-            <span>DEFTERE NOT</span>
-          </div>
-          <p class="space-main-note-text">${escapeHtml(slide.mainNote ?? "İnsanlar uzayı yalnızca merak ettikleri için değil, bilimsel bilgi edinmek ve yaşamı geliştirmek için de araştırırlar.")}</p>
-        </div>
-
-        <!-- 5 Amaç Grid (2 + 3 Düzen) -->
+        <!-- 5 Amaç Grid (2 + 3 Sade Düzen) -->
         <div class="space-purposes-section">
           <div class="space-purposes-grid">
             ${purposesHtml}

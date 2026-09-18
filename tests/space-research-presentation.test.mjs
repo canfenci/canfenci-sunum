@@ -62,7 +62,6 @@ test("7. Sınıf Uzay Araştırmaları Ders Paketi ve Slayt 1 Sözleşmesi", asy
   assert.equal(slide2.id, "slide_2_uzay_neden_yapilir");
   assert.equal(slide2.layout, "space_uzay_neden_yapilir");
   assert.equal(slide2.title, "Uzay Araştırmaları Neden Yapılır?");
-  assert.equal(slide2.mainNote, "İnsanlar uzayı yalnızca merak ettikleri için değil, bilimsel bilgi edinmek ve yaşamı geliştirmek için de araştırırlar.");
   assert.equal(slide2.purposes?.length, 5, "5 adet amaç bulunmalıdır");
   assert.equal(slide2.purposes[0].title, "Gök Cisimlerini Tanımak");
   assert.equal(slide2.purposes[1].title, "Evreni Anlamak");
@@ -158,9 +157,8 @@ test("Slayt 2 (Uzay Araştırmaları Neden Yapılır?) Tipografi ve 2+3 Düzen C
   const css = await readFile("src/styles/app.css", "utf8");
 
   assert.ok(css.includes(".slide-space-uzay-neden-yapilir"), "Slayt 2 ana sınıfı tanımlı olmalıdır");
-  assert.ok(css.includes(".space-main-note-text {\n  margin: 0;\n  font-size: 36px;"), "Deftere not ana bilgi metni 36px olmalıdır");
-  assert.ok(css.includes(".space-purpose-title {\n  margin: 0;\n  font-size: 32px;"), "Amaç kart başlığı 32px olmalıdır");
-  assert.ok(css.includes(".space-purpose-desc {\n  margin: 0;\n  font-size: 28px;"), "Amaç kart açıklaması 28px olmalıdır");
+  assert.ok(css.includes(".space-purpose-num"), "Slayt 2 madde numarası sınıfı tanımlı olmalıdır");
+  assert.ok(css.includes(".space-purpose-title {\n  margin: 0;\n  font-size: 34px;"), "Amaç kart başlığı 34px (32-36px standardı) olmalıdır");
   assert.ok(css.includes(".space-bottom-slot .reveal-fill-sentence {\n  font-size: 36px;"), "Slayt 2 reveal_fill cümlesi 36px olmalıdır");
   assert.ok(css.includes(".space-bottom-slot .blank-slot-answer {\n  font-size: 36px;"), "Slayt 2 boşluk cevabı 36px olmalıdır");
   assert.ok(css.includes(".space-purposes-grid {\n  display: grid;\n  grid-template-columns: repeat(6, 1fr);"), "2+3 dengeli grid yapısı repeat(6, 1fr) olmalıdır");
