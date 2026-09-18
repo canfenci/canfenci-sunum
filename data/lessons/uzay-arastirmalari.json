@@ -61,21 +61,7 @@
                 }
               ]
             }
-          ],
-          "bottomQuestion": {
-            "prompt": "Uzay tamamen boş mudur?",
-            "options": [
-              { "id": "opt_evet", "text": "Evet", "isCorrect": false },
-              { "id": "opt_hayir", "text": "Hayır", "isCorrect": true }
-            ],
-            "correctFeedback": "Uzay yalnızca boşluk değildir; gaz, toz ve farklı türlerde enerji de içerir.",
-            "incorrectFeedback": "Tekrar düşünelim! Uzayda gök cisimlerinin yanı sıra gaz, toz ve enerji de bulunur."
-          },
-          "conceptWarning": {
-            "buttonText": "Tıkla → Göster",
-            "title": "Uzay ve evren aynı kavram değildir.",
-            "explanation": "Dünya dışındaki evren parçasına <strong>uzay</strong> denirken; Dünya da dâhil olmak üzere tüm gök cisimlerini ve uzayı kapsayan bütüne <strong>evren</strong> denir."
-          }
+          ]
         }
       ]
     }

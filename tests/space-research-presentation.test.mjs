@@ -52,18 +52,9 @@ test("7. Sınıf Uzay Araştırmaları Ders Paketi ve Slayt 1 Sözleşmesi", asy
   const st = await stat(mediaPath);
   assert.ok(st.size > 0, "Görsel dosyası boş olamaz");
 
-  // 4. Alt etkileşim (Evet / Hayır)
-  assert.equal(slide1.bottomQuestion?.prompt, "Uzay tamamen boş mudur?");
-  assert.equal(slide1.bottomQuestion?.options?.length, 2);
-  const optEvet = slide1.bottomQuestion.options.find((o) => o.text === "Evet");
-  const optHayir = slide1.bottomQuestion.options.find((o) => o.text === "Hayır");
-  assert.equal(optEvet.isCorrect, false);
-  assert.equal(optHayir.isCorrect, true);
-  assert.ok(slide1.bottomQuestion.correctFeedback?.includes("gaz, toz"));
-
-  // 5. Mini kavram uyarısı
-  assert.equal(slide1.conceptWarning?.title, "Uzay ve evren aynı kavram değildir.");
-  assert.ok(slide1.conceptWarning.explanation);
+  // 4. Kaldırılan öğeler (Evet/Hayır ve Uyarı kartı olmamalı)
+  assert.equal(slide1.bottomQuestion, undefined, "bottomQuestion alanı kaldırılmış olmalıdır");
+  assert.equal(slide1.conceptWarning, undefined, "conceptWarning alanı kaldırılmış olmalıdır");
 
   // LessonEngine testi
   const originalFetch = globalThis.fetch;
@@ -87,18 +78,26 @@ test("7. Sınıf Uzay Araştırmaları Ders Paketi ve Slayt 1 Sözleşmesi", asy
   }
 });
 
-test("7. Sınıf Müfredat ve Rota Doğrulaması", async () => {
+test("7. Sınıf Müfredat ve Rota Doğrulaması (Çift Ünite Olmaması Kontrolü)", async () => {
   const catalog = await readJson("data/catalog.json");
   const grade7 = catalog.grades.find((g) => g.id === "grade_7");
   assert.ok(grade7, "7. Sınıf katalogda bulunmalıdır");
   assert.equal(grade7.curriculumProfileId, "maarif_model");
 
   const maarif = await readJson("data/curricula/maarif_model.json");
-  const spaceUnit = maarif.units.find((u) => u.id === "space_age");
-  assert.ok(spaceUnit, "space_age ünitesi maarif_model içinde bulunmalıdır");
-  assert.equal(spaceUnit.label, "1. Ünite — Uzay Çağı");
+  
+  // 7. Sınıf seçildiğinde sadece 1 adet ünite filtrelenmeli
+  const grade7Units = maarif.units.filter((u) => !u.gradeId || u.gradeId === "grade_7");
+  assert.equal(grade7Units.length, 1, "7. Sınıf için tek 1. Ünite listelenmelidir (çift ünite olmamalı)");
+  assert.equal(grade7Units[0].id, "space_age");
+  assert.equal(grade7Units[0].label, "1. Ünite — Uzay Çağı");
 
-  const spaceTopic = spaceUnit.topics.find((t) => t.id === "space_research");
+  // 6. Sınıf seçildiğinde sadece solar_system_and_eclipses filtrelenmeli
+  const grade6Units = maarif.units.filter((u) => !u.gradeId || u.gradeId === "grade_6");
+  assert.equal(grade6Units.length, 1, "6. Sınıf için sadece kendi ünitesi listelenmelidir");
+  assert.equal(grade6Units[0].id, "solar_system_and_eclipses");
+
+  const spaceTopic = grade7Units[0].topics.find((t) => t.id === "space_research");
   assert.ok(spaceTopic, "space_research konusu bulunmalıdır");
   assert.equal(spaceTopic.workModes.presentation.status, "available");
   assert.equal(spaceTopic.workModes.presentation.source, "./data/lessons/uzay-arastirmalari.json");
@@ -110,11 +109,10 @@ test("Yeni Tipografi Standardı CSS Kural Doğrulaması", async () => {
   assert.ok(css.includes(".space-slide-title"), "space-slide-title kuralı tanımlı olmalıdır");
   assert.ok(css.includes(".space-tanim-slot .reveal-fill-sentence"), "space-tanim-slot sentence stili tanımlı olmalıdır");
   assert.ok(css.includes(".space-concept-pill"), "space-concept-pill stili tanımlı olmalıdır");
-  assert.ok(css.includes(".space-choice-btn"), "space-choice-btn stili tanımlı olmalıdır");
-  assert.ok(css.includes(".space-warning-toggle"), "space-warning-toggle stili tanımlı olmalıdır");
+  assert.ok(css.includes(".space-visual-frame"), "space-visual-frame stili tanımlı olmalıdır");
 });
 
-test("Slayt 1 Tipografi Standartları Minimum 36px Kontrolü", async () => {
+test("Slayt 1 Tipografi Standartları Minimum 36px ve Sade Açık Tema Kontrolü", async () => {
   const css = await readFile("src/styles/app.css", "utf8");
 
   // Zorunlu alanların minimum 36px clamp değerleri
@@ -122,9 +120,7 @@ test("Slayt 1 Tipografi Standartları Minimum 36px Kontrolü", async () => {
   assert.ok(css.includes(".space-card-subhead span {\n  font-size: clamp(42px"), "Kart başlığı 42-44px olmalıdır");
   assert.ok(css.includes(".space-tanim-slot .reveal-fill-sentence {\n  font-size: clamp(36px"), "Reveal fill cümlesi en az 36px olmalıdır");
   assert.ok(css.includes(".space-concept-label {\n  font-size: clamp(36px"), "Kavram etiketi en az 36px olmalıdır");
-  assert.ok(css.includes(".space-quiz-prompt {\n  font-size: clamp(36px"), "Evet/Hayır soru metni en az 36px olmalıdır");
-  assert.ok(css.includes(".space-choice-btn {\n  flex: 1;\n  min-height: clamp(48px, 3.2cqi, 58px);\n  padding: 0 20px;\n  font-size: clamp(36px"), "Evet/Hayır buton yazıları en az 36px olmalıdır");
-  assert.ok(css.includes(".space-quiz-feedback {\n  border-radius: 12px;\n  padding: 8px 14px;\n  font-size: clamp(36px"), "Geri bildirim metni en az 36px olmalıdır");
-  assert.ok(css.includes(".space-warning-title {\n  flex: 1;\n  font-size: clamp(36px"), "Uyarı kartı başlığı en az 36px olmalıdır");
-  assert.ok(css.includes(".space-warning-content p {\n  margin: 0;\n  font-size: clamp(36px"), "Açıklama metni en az 36px olmalıdır");
+
+  // Açık renk / sade eğitim teması kontrolü
+  assert.ok(css.includes(".slide-space-uzay-nedir {\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  width: 100%;\n  padding: clamp(14px, 1.8vh, 24px) clamp(20px, 2cqi, 36px);\n  gap: clamp(12px, 1.6vh, 20px);\n  box-sizing: border-box;\n  background: linear-gradient(145deg, #f8fafc 0%, #f0f7ff 50%, #e8f2fc 100%);\n  color: #0f172a;"), "Açık sade eğitim arka planı ve koyu metin kullanılmalıdır");
 });
