@@ -433,6 +433,72 @@ export function renderSpaceSlide(slide, view, { interactions, activeInteractions
       return true;
     }
 
+    case "space_teleskop_nedir": {
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-space-teleskop-nedir";
+
+      const parts = slide.parts ?? [];
+      const partsHtml = parts.map((part) => `
+        <div class="teleskop-part-badge" style="left: ${part.x}%; top: ${part.y}%;">
+          <span class="part-badge-dot" aria-hidden="true"></span>
+          <span class="part-badge-name">${escapeHtml(part.name)}</span>
+        </div>
+      `).join("");
+
+      const types = slide.types ?? [];
+      const typesHtml = types.map((t) => `
+        <div class="teleskop-type-card">
+          <div class="type-card-visual">
+            <img src="${escapeHtml(t.image)}" alt="${escapeHtml(t.name)}" class="type-card-img" />
+          </div>
+          <div class="type-card-footer">
+            <span class="type-card-name">${escapeHtml(t.name)}</span>
+          </div>
+        </div>
+      `).join("");
+
+      const media = slide.media?.[0];
+      const mainImgSrc = media?.src ?? "./assets/images/uzay-arastirmalari/09-teleskop-ana.jpg";
+      const mainImgAlt = media?.alt ?? "Teleskobun yapısı ve kısımları";
+
+      slideArticle.innerHTML = `
+        <header class="space-slide-header">
+          <h1 class="space-slide-title">${escapeHtml(slide.title ?? "Teleskop Nedir?")}</h1>
+        </header>
+
+        <div class="teleskop-layout">
+          <!-- Üst / Ana Bölüm: Sol Bilgi Metinleri + Sağ Etiketli Görsel -->
+          <div class="teleskop-main-section">
+            <div class="teleskop-info-box">
+              <div class="teleskop-info-lead">
+                <p class="teleskop-def-p">${escapeHtml(slide.definition ?? "")}</p>
+              </div>
+              <div class="teleskop-info-detail">
+                <p class="teleskop-usage-p">${escapeHtml(slide.usage ?? "")}</p>
+              </div>
+            </div>
+
+            <div class="teleskop-diagram-box">
+              <div class="teleskop-diagram-canvas">
+                <img src="${escapeHtml(mainImgSrc)}" alt="${escapeHtml(mainImgAlt)}" class="teleskop-main-img" />
+                <div class="teleskop-parts-overlay">
+                  ${partsHtml}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Alt Bölüm: 3 Tür Kartı -->
+          <div class="teleskop-types-section">
+            ${typesHtml}
+          </div>
+        </div>
+      `;
+
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
     default:
       return false;
   }

@@ -437,6 +437,45 @@
               ]
             }
           ]
+        },
+        {
+          "id": "slide_9_teleskop_nedir",
+          "type": "content",
+          "layout": "space_teleskop_nedir",
+          "title": "Teleskop Nedir?",
+          "media": [
+            {
+              "id": "media_09_teleskop_ana",
+              "src": "./assets/images/uzay-arastirmalari/09-teleskop-ana.jpg",
+              "alt": "Teleskobun yapısı ve kısımları"
+            }
+          ],
+          "definition": "Teleskop, uzaktaki gök cisimlerini daha ayrıntılı gözlemlememizi sağlayan bir gözlem aracıdır.",
+          "usage": "Gezegenleri, yıldızları, galaksileri ve diğer gök cisimlerini incelemek için kullanılır. Bilim insanları teleskoplar sayesinde uzay hakkında daha ayrıntılı bilgiler elde eder.",
+          "parts": [
+            { "id": "part_objektif", "name": "Objektif / Ayna-Mercek", "x": 20, "y": 14 },
+            { "id": "part_tup", "name": "Tüp", "x": 48, "y": 9 },
+            { "id": "part_okuler", "name": "Göz merceği (oküler)", "x": 74, "y": 18 },
+            { "id": "part_kurgu", "name": "Kurgu / taşıyıcı bölüm", "x": 22, "y": 50 },
+            { "id": "part_ucayak", "name": "Üçayak (tripod)", "x": 74, "y": 74 }
+          ],
+          "types": [
+            {
+              "id": "type_optik",
+              "name": "Optik teleskop",
+              "image": "./assets/images/uzay-arastirmalari/09-optik-teleskop.jpg"
+            },
+            {
+              "id": "type_radyo",
+              "name": "Radyo teleskop",
+              "image": "./assets/images/uzay-arastirmalari/09-radyo-teleskop.jpg"
+            },
+            {
+              "id": "type_uzay",
+              "name": "Uzay teleskobu",
+              "image": "./assets/images/uzay-arastirmalari/09-uzay-teleskobu.jpg"
+            }
+          ]
         }
       ]
     }

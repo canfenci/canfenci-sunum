@@ -16,7 +16,7 @@ test("7. Sınıf Uzay Araştırmaları Ders Paketi ve Slayt 1 Sözleşmesi", asy
   assert.equal(lessonData.stages.length, 3, "3 ders aşaması bulunmalıdır");
 
   const slides = lessonData.stages.flatMap((stage) => stage.slides || []);
-  assert.equal(slides.length, 8, "Slayt sayısı tam olarak 8 olmalıdır");
+  assert.equal(slides.length, 9, "Slayt sayısı tam olarak 9 olmalıdır");
 
   const slide1 = slides[0];
   assert.equal(slide1.id, "slide_1_uzay_nedir");
@@ -198,6 +198,41 @@ test("7. Sınıf Uzay Araştırmaları Ders Paketi ve Slayt 1 Sözleşmesi", asy
   assert.equal(blankHaber?.answer, "haberleşme");
   assert.equal(blankGozlem?.answer, "gözlem");
 
+  // Slayt 9 Doğrulaması (Teleskop Nedir?)
+  const slide9 = slides[8];
+  assert.equal(slide9.id, "slide_9_teleskop_nedir");
+  assert.equal(slide9.layout, "space_teleskop_nedir");
+  assert.equal(slide9.title, "Teleskop Nedir?");
+  assert.ok(slide9.definition.includes("uzaktaki gök cisimlerini"));
+  assert.ok(slide9.usage.includes("Gezegenleri, yıldızları"));
+  assert.equal(slide9.parts?.length, 5, "Teleskobun 5 temel kısmı tanımlı olmalıdır");
+  assert.equal(slide9.parts[0].name, "Objektif / Ayna-Mercek");
+  assert.equal(slide9.parts[1].name, "Tüp");
+  assert.equal(slide9.parts[2].name, "Göz merceği (oküler)");
+  assert.equal(slide9.parts[3].name, "Kurgu / taşıyıcı bölüm");
+  assert.equal(slide9.parts[4].name, "Üçayak (tripod)");
+
+  assert.equal(slide9.types?.length, 3, "3 teleskop türü kartı tanımlı olmalıdır");
+  assert.equal(slide9.types[0].name, "Optik teleskop");
+  assert.equal(slide9.types[1].name, "Radyo teleskop");
+  assert.equal(slide9.types[2].name, "Uzay teleskobu");
+
+  assert.equal(slide9.interactions?.length ?? 0, 0, "Slayt 9'da etkileşim bulunmamalıdır");
+
+  // Slayt 9 görsellerinin varlığı
+  assert.ok(slide9.media?.[0]?.src, "Ana teleskop görseli tanımlı olmalıdır");
+  const mainImgPath = slide9.media[0].src.replace(/^\.\//, "");
+  await access(mainImgPath);
+  const mainSt = await stat(mainImgPath);
+  assert.ok(mainSt.size > 0, "Ana teleskop görseli boş olamaz");
+
+  for (const t of slide9.types) {
+    const p = t.image.replace(/^\.\//, "");
+    await access(p);
+    const st = await stat(p);
+    assert.ok(st.size > 0, `${t.name} görsel dosyası boş olamaz`);
+  }
+
   // LessonEngine testi
   const originalFetch = globalThis.fetch;
   globalThis.fetch = async (url) => {
@@ -214,7 +249,7 @@ test("7. Sınıf Uzay Araştırmaları Ders Paketi ve Slayt 1 Sözleşmesi", asy
     const engine = new LessonEngine();
     const loaded = await engine.load("data/lessons/uzay-arastirmalari.json");
     assert.equal(loaded.id, "lesson_uzay_arastirmalari_1");
-    assert.equal(engine.slideCount, 8);
+    assert.equal(engine.slideCount, 9);
   } finally {
     globalThis.fetch = originalFetch;
   }
@@ -337,3 +372,17 @@ test("Slayt 8 (Uydular Ne İşe Yarar?) Tipografi ve Düzen CSS Doğrulaması", 
   assert.ok(css.includes(".functions-bottom-interaction .space-bottom-slot .reveal-fill-sentence {\n  font-size: 36px;"), "Etkileşim cümlesi 36px olmalıdır");
   assert.ok(css.includes(".functions-bottom-interaction .space-bottom-slot .blank-slot-answer {\n  font-size: 36px;\n  font-weight: 700;"), "Etkileşim cevabı 36px bold olmalıdır");
 });
+
+test("Slayt 9 (Teleskop Nedir?) Tipografi ve Düzen CSS Doğrulaması", async () => {
+  const css = await readFile("src/styles/app.css", "utf8");
+
+  assert.ok(css.includes(".slide-space-teleskop-nedir"), "Slayt 9 ana sınıfı tanımlı olmalıdır");
+  assert.ok(css.includes(".teleskop-main-section"), "Üst ana bölüm grid düzeni tanımlı olmalıdır");
+  assert.ok(css.includes(".teleskop-def-p {\n  font-size: 36px;"), "Tanım cümlesi 36px olmalıdır");
+  assert.ok(css.includes(".teleskop-usage-p {\n  font-size: 36px;"), "Kullanım amaçları cümlesi 36px olmalıdır");
+  assert.ok(css.includes(".teleskop-diagram-box"), "Diyagram kutusu tanımlı olmalıdır");
+  assert.ok(css.includes(".part-badge-name {\n  font-size: 30px;"), "Kısım etiketleri 30px (30-32px) olmalıdır");
+  assert.ok(css.includes(".teleskop-types-section"), "Alt 3'lü tür bölümü tanımlı olmalıdır");
+  assert.ok(css.includes(".type-card-name {\n  font-size: 32px;"), "Teleskop tür adları 32px (30-32px) olmalıdır");
+});
+
