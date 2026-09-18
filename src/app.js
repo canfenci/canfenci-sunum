@@ -66,6 +66,14 @@ class CanFenciApp {
       this.#route().catch((err) => console.error("Yönlendirme hatası:", err));
     });
     window.addEventListener("keydown", (event) => this.#handleKeyboard(event));
+    window.addEventListener("resize", () => {
+      this.#updateSlideScale();
+      this.annotationEngine?.resize();
+    });
+    document.addEventListener("fullscreenchange", () => {
+      this.#updateSlideScale();
+      this.annotationEngine?.resize();
+    });
 
     try {
       this.catalog = await this.curriculum.loadCatalog();
@@ -390,16 +398,25 @@ class CanFenciApp {
     this.#syncViewMode(initialViewMode);
     this.#syncPresentationView();
     this.annotationEngine = new AnnotationEngine(view.canvas);
-    requestAnimationFrame(() => this.annotationEngine.resize());
-    this.presentationResizeObserver?.disconnect();
-    this.presentationResizeObserver = new ResizeObserver(([entry]) => {
-      if (entry) {
-        const { width } = entry.contentRect;
-        if (width) view.workspace.style.setProperty("--slide-scale", String(width / 1920));
-      }
+    this.#updateSlideScale(view);
+    requestAnimationFrame(() => {
+      this.#updateSlideScale(view);
       this.annotationEngine?.resize();
     });
-    this.presentationResizeObserver.observe(view.workspace);
+    this.presentationResizeObserver?.disconnect();
+    if (typeof ResizeObserver !== "undefined") {
+      this.presentationResizeObserver = new ResizeObserver(([entry]) => {
+        if (entry && entry.contentRect.width > 0 && entry.contentRect.height > 0) {
+          const scale = Math.min(entry.contentRect.width / 1920, entry.contentRect.height / 1080);
+          view.workspace.style.setProperty("--slide-scale", String(scale));
+          view.canvasArea.style.setProperty("--slide-scale", String(scale));
+        } else {
+          this.#updateSlideScale(view);
+        }
+        this.annotationEngine?.resize();
+      });
+      this.presentationResizeObserver.observe(view.canvasArea);
+    }
     view.back.addEventListener("click", () => { location.hash = "#/"; });
     view.tools.addEventListener("click", () => this.toggleTools(true));
     view.previous.addEventListener("click", () => this.#navigateSlides(-1));
@@ -2156,10 +2173,36 @@ class CanFenciApp {
 
     this.#setupRecordingAutohide(mode === "recording");
     this.#toggleViewModeSheet(false);
-
+    this.#updateSlideScale(view);
     requestAnimationFrame(() => {
+      this.#updateSlideScale(view);
       this.annotationEngine?.resize();
     });
+  }
+
+  #updateSlideScale(view = this.presentationView) {
+    if (!view?.canvasArea || !view?.workspace) return 1;
+    const rect = view.canvasArea.getBoundingClientRect();
+    const style = typeof window !== "undefined" && window.getComputedStyle ? window.getComputedStyle(view.canvasArea) : null;
+    const padX = style ? ((parseFloat(style.paddingLeft) || 0) + (parseFloat(style.paddingRight) || 0)) : 0;
+    const padY = style ? ((parseFloat(style.paddingTop) || 0) + (parseFloat(style.paddingBottom) || 0)) : 0;
+    let availableWidth = rect.width - padX;
+    let availableHeight = rect.height - padY;
+
+    if (availableWidth <= 0 || availableHeight <= 0) {
+      if (typeof window !== "undefined") {
+        availableWidth = window.innerWidth || 1920;
+        availableHeight = window.innerHeight || 1080;
+      } else {
+        availableWidth = 1920;
+        availableHeight = 1080;
+      }
+    }
+
+    const scale = Math.min(availableWidth / 1920, availableHeight / 1080);
+    view.workspace.style.setProperty("--slide-scale", String(scale));
+    view.canvasArea.style.setProperty("--slide-scale", String(scale));
+    return scale;
   }
 
   #toggleViewModeSheet(open) {

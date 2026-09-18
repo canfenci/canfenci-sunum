@@ -113,17 +113,24 @@ test("Yeni Tipografi Standardı CSS Kural Doğrulaması", async () => {
   assert.ok(css.includes(".space-visual-frame"), "space-visual-frame stili tanımlı olmalıdır");
 });
 
+test("1920x1080 Sabit Tuval Mimarisi ve Ölçekleme CSS Kural Doğrulaması", async () => {
+  const css = await readFile("src/styles/app.css", "utf8");
+  assert.ok(css.includes(".slide-workspace {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  width: 1920px;\n  height: 1080px;"), "slide-workspace 1920x1080 px sabit boyutta tanımlı olmalıdır");
+  assert.ok(css.includes("transform: translate(-50%, -50%) scale(var(--slide-scale, 1));"), "slide-workspace ortalanmış ve scale ile ölçekleniyor olmalıdır");
+  assert.ok(css.includes("transform-origin: center center;"), "transform-origin center center olmalıdır");
+});
+
 test("Slayt 1 Tipografi Hiyerarşisi (46px Başlık, 36px Tanım, 30px Konu, 28px Kavramlar) ve Sade Açık Tema Kontrolü", async () => {
   const css = await readFile("src/styles/app.css", "utf8");
 
-  // Zorunlu alanların tipografi değerleri
-  assert.ok(css.includes(".space-slide-title {\n  margin: 0;\n  font-size: clamp(42px, 2.4cqi, 46px);"), "Başlık 46px olmalıdır");
-  assert.ok(css.includes(".space-card-subhead span {\n  font-size: clamp(28px, 1.6cqi, 30px);"), "Uzayda Neler Yer Alır başlığı 30px olmalıdır");
-  assert.ok(css.includes(".space-tanim-slot .reveal-fill-sentence {\n  font-size: clamp(34px, 1.9cqi, 36px);"), "Tanım cümlesi 36px olmalıdır");
-  assert.ok(css.includes(".space-tanim-slot .blank-slot-answer {\n  font-size: clamp(34px, 1.9cqi, 36px);"), "Boşluk cevabı 36px olmalıdır");
-  assert.ok(css.includes(".space-concept-label {\n  font-size: clamp(26px, 1.5cqi, 28px);"), "Kavram etiketi 28px olmalıdır");
-  assert.ok(css.includes(".space-def-badge {\n  font-size: clamp(28px, 1.5cqi, 30px);"), "Yardımcı rozet bilgisi 28-30px olmalıdır");
+  // Zorunlu alanların doğrudan 1920x1080 koordinatlarındaki piksel tipografi değerleri
+  assert.ok(css.includes(".space-slide-title {\n  margin: 0;\n  font-size: 46px;"), "Başlık 46px olmalıdır");
+  assert.ok(css.includes(".space-card-subhead span {\n  font-size: 30px;"), "Uzayda Neler Yer Alır başlığı 30px olmalıdır");
+  assert.ok(css.includes(".space-tanim-slot .reveal-fill-sentence {\n  font-size: 36px;"), "Tanım cümlesi 36px olmalıdır");
+  assert.ok(css.includes(".space-tanim-slot .blank-slot-answer {\n  font-size: 36px;"), "Boşluk cevabı 36px olmalıdır");
+  assert.ok(css.includes(".space-concept-label {\n  font-size: 28px;"), "Kavram etiketi 28px olmalıdır");
+  assert.ok(css.includes(".space-def-badge {\n  font-size: 28px;"), "Yardımcı rozet bilgisi 28px olmalıdır");
 
   // Açık renk / sade eğitim teması kontrolü
-  assert.ok(css.includes(".slide-space-uzay-nedir {\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  width: 100%;\n  padding: clamp(14px, 1.8vh, 24px) clamp(20px, 2cqi, 36px);\n  gap: clamp(12px, 1.6vh, 20px);\n  box-sizing: border-box;\n  background: linear-gradient(145deg, #f8fafc 0%, #f0f7ff 50%, #e8f2fc 100%);\n  color: #0f172a;"), "Açık sade eğitim arka planı ve koyu metin kullanılmalıdır");
+  assert.ok(css.includes(".slide-space-uzay-nedir {\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  width: 100%;\n  padding: 32px 48px;\n  gap: 24px;\n  box-sizing: border-box;\n  background: linear-gradient(145deg, #f8fafc 0%, #f0f7ff 50%, #e8f2fc 100%);\n  color: #0f172a;"), "Açık sade eğitim arka planı ve koyu metin kullanılmalıdır");
 });

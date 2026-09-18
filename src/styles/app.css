@@ -195,10 +195,49 @@ html:fullscreen body[data-mode="presentation"] .presentation-view { width: 100%;
 .stage-topic { display: grid; gap: 2px; justify-self: end; text-align: right; }
 .stage-topic strong { font-size: .95rem; font-weight: 800; color: var(--blue-dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-/* 16:9 SABİT TUVAL KAPSAYICISI (1920x1080 TASARIM ORANI) */
-.stage-canvas-area { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; container-type: size; padding: clamp(0.5rem, 1.2vh, 1.25rem); box-sizing: border-box; }
-.slide-workspace { position: relative; aspect-ratio: 16 / 9; width: min(100cqw, calc(100cqh * 16 / 9)); height: min(100cqh, calc(100cqw * 9 / 16)); max-width: 100%; max-height: 100%; overflow: hidden; border: 1px solid rgba(11,78,162,.1); border-radius: 20px; background: white; box-shadow: 0 16px 44px rgba(6,54,111,.12); container-type: size; box-sizing: border-box; }
-.slide-content { width: 100%; height: 100%; padding: clamp(1rem, 2vw, 2.2rem); display: flex; flex-direction: column; overflow: hidden; box-sizing: border-box; }
+/* 16:9 SABİT MANTIKSAL TASARIM TUVALİ (1920x1080) */
+.stage-canvas-area {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+  padding: clamp(0.5rem, 1.2vh, 1.25rem);
+}
+.slide-workspace {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1920px;
+  height: 1080px;
+  flex: 0 0 1920px;
+  transform: translate(-50%, -50%) scale(var(--slide-scale, 1));
+  transform-origin: center center;
+  overflow: hidden;
+  border: 1px solid rgba(11, 78, 162, 0.1);
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0 16px 44px rgba(6, 54, 111, 0.12);
+  container-type: size;
+  box-sizing: border-box;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+.slide-content {
+  width: 100%;
+  height: 100%;
+  padding: clamp(1rem, 2vw, 2.2rem);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-sizing: border-box;
+}
 
 /* ==========================================================================
    VIEW MODE MİMARİSİ (smartboard, online, recording, clean)
@@ -3537,8 +3576,8 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   flex-direction: column;
   height: 100%;
   width: 100%;
-  padding: clamp(14px, 1.8vh, 24px) clamp(20px, 2cqi, 36px);
-  gap: clamp(12px, 1.6vh, 20px);
+  padding: 32px 48px;
+  gap: 24px;
   box-sizing: border-box;
   background: linear-gradient(145deg, #f8fafc 0%, #f0f7ff 50%, #e8f2fc 100%);
   color: #0f172a;
@@ -3555,7 +3594,7 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 
 .space-slide-title {
   margin: 0;
-  font-size: clamp(42px, 2.4cqi, 46px);
+  font-size: 46px;
   font-weight: 900;
   letter-spacing: -0.025em;
   line-height: 1.1;
@@ -3566,7 +3605,7 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 .space-slide-stage {
   display: grid;
   grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.95fr);
-  gap: clamp(16px, 1.8cqi, 28px);
+  gap: 32px;
   flex: 1 1 auto;
   min-height: 0;
   align-items: stretch;
@@ -3575,7 +3614,7 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 .space-left-col {
   display: flex;
   flex-direction: column;
-  gap: clamp(14px, 1.8vh, 22px);
+  gap: 24px;
   min-height: 0;
   justify-content: center;
 }
@@ -3585,11 +3624,11 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   background: #ffffff;
   border: 2px solid #bfdbfe;
   border-radius: 20px;
-  padding: clamp(16px, 2vh, 24px) clamp(20px, 1.8cqi, 28px);
+  padding: 28px 36px;
   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
   display: flex;
   flex-direction: column;
-  gap: clamp(10px, 1.2vh, 16px);
+  gap: 18px;
   flex: 0 0 auto;
 }
 
@@ -3599,14 +3638,14 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 }
 
 .space-def-badge {
-  font-size: clamp(28px, 1.5cqi, 30px);
+  font-size: 28px;
   font-weight: 850;
   letter-spacing: 0.06em;
   color: #0284c7;
   background: #e0f2fe;
   border: 1.5px solid #bae6fd;
   border-radius: 10px;
-  padding: 3px 14px;
+  padding: 4px 16px;
 }
 
 .space-tanim-slot {
@@ -3614,9 +3653,9 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 }
 
 .space-tanim-slot .reveal-fill-sentence {
-  font-size: clamp(34px, 1.9cqi, 36px);
+  font-size: 36px;
   font-weight: 700;
-  line-height: 1.4;
+  line-height: 1.45;
   color: #0f172a;
   display: inline;
 }
@@ -3629,9 +3668,9 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   display: inline-grid;
   place-items: center;
   vertical-align: middle;
-  height: clamp(50px, 3.2cqi, 60px);
-  min-width: clamp(150px, 10cqi, 190px);
-  padding: 0 clamp(16px, 1.2cqi, 22px);
+  height: 56px;
+  min-width: 180px;
+  padding: 0 20px;
   margin: 0 6px;
   background: #f0f9ff;
   border: 2.5px dashed #0284c7;
@@ -3647,7 +3686,7 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 }
 
 .space-tanim-slot .blank-slot-answer {
-  font-size: clamp(34px, 1.9cqi, 36px);
+  font-size: 36px;
   font-weight: 900;
   color: #0284c7;
 }
@@ -3662,11 +3701,11 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   background: #ffffff;
   border: 2px solid #e2e8f0;
   border-radius: 20px;
-  padding: clamp(16px, 2vh, 24px) clamp(20px, 1.8cqi, 28px);
+  padding: 28px 36px;
   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
   display: flex;
   flex-direction: column;
-  gap: clamp(12px, 1.4vh, 18px);
+  gap: 20px;
   flex: 0 0 auto;
 }
 
@@ -3677,7 +3716,7 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 }
 
 .space-card-subhead span {
-  font-size: clamp(28px, 1.6cqi, 30px);
+  font-size: 30px;
   font-weight: 850;
   letter-spacing: -0.01em;
   color: #0f172a;
@@ -3686,17 +3725,17 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 .space-concepts-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: clamp(10px, 1cqi, 16px);
+  gap: 16px;
 }
 
 .space-concept-pill {
   display: flex;
   align-items: center;
-  gap: clamp(8px, 0.8cqi, 12px);
+  gap: 12px;
   background: #f8fafc;
   border: 2px solid #e2e8f0;
   border-radius: 16px;
-  padding: clamp(8px, 1vh, 12px) clamp(10px, 0.9cqi, 14px);
+  padding: 14px 18px;
   box-shadow: 0 3px 10px rgba(15, 23, 42, 0.04);
   transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
 }
@@ -3708,13 +3747,13 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 }
 
 .space-concept-icon {
-  font-size: clamp(26px, 1.5cqi, 28px);
+  font-size: 28px;
   line-height: 1;
   flex: 0 0 auto;
 }
 
 .space-concept-label {
-  font-size: clamp(26px, 1.5cqi, 28px);
+  font-size: 28px;
   font-weight: 800;
   color: #0f172a;
   line-height: 1.2;
@@ -3751,25 +3790,25 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 
 .space-visual-badge {
   position: absolute;
-  bottom: 16px;
-  left: 16px;
+  bottom: 24px;
+  left: 24px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(8px);
   border: 1.5px solid #cbd5e1;
   border-radius: 12px;
-  padding: 6px 16px;
+  padding: 8px 20px;
   color: #0f172a;
-  font-size: clamp(28px, 1.5cqi, 30px);
+  font-size: 28px;
   font-weight: 750;
   box-shadow: 0 6px 16px rgba(15, 23, 42, 0.15);
 }
 
 .space-dot {
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   background: #0284c7;
   box-shadow: 0 0 8px rgba(2, 132, 199, 0.6);
