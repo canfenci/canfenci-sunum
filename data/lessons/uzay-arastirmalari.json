@@ -62,6 +62,65 @@
           ]
         }
       ]
+    },
+    {
+      "id": "stage_uzay_neden_yapilir",
+      "label": "Uzay Araştırmaları Neden Yapılır?",
+      "order": 2,
+      "slides": [
+        {
+          "id": "slide_2_uzay_neden_yapilir",
+          "type": "content",
+          "layout": "space_uzay_neden_yapilir",
+          "title": "Uzay Araştırmaları Neden Yapılır?",
+          "mainNote": "İnsanlar uzayı yalnızca merak ettikleri için değil, bilimsel bilgi edinmek ve yaşamı geliştirmek için de araştırırlar.",
+          "purposes": [
+            {
+              "id": "gok_cisimleri",
+              "title": "Gök Cisimlerini Tanımak",
+              "desc": "Gezegen, yıldız ve diğer gök cisimlerini yakından incelemek",
+              "icon": "🪐"
+            },
+            {
+              "id": "evren",
+              "title": "Evreni Anlamak",
+              "desc": "Evrenin yapısını, kökenini ve gizemlerini keşfetmek",
+              "icon": "🌌"
+            },
+            {
+              "id": "dunya",
+              "title": "Dünya’yı Gözlemlemek",
+              "desc": "Hava durumu, iklim ve doğal olayları uzaydan takip etmek",
+              "icon": "🌍"
+            },
+            {
+              "id": "teknoloji",
+              "title": "Yeni Teknolojiler Geliştirmek",
+              "desc": "İletişim, sağlık ve günlük hayatı kolaylaştıran araçlar üretmek",
+              "icon": "🚀"
+            },
+            {
+              "id": "yasam",
+              "title": "Uzayda Yaşam Olanaklarını Araştırmak",
+              "desc": "Diğer gök cisimlerinde yaşam koşullarını ve kaynakları incelemek",
+              "icon": "🔭"
+            }
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_2_teknoloji",
+              "type": "reveal_fill",
+              "template": "Uzay araştırmaları sayesinde yeni {teknolojiler} geliştirilir.",
+              "blanks": [
+                {
+                  "id": "teknolojiler",
+                  "answer": "teknolojiler"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -13,10 +13,10 @@ test("7. Sınıf Uzay Araştırmaları Ders Paketi ve Slayt 1 Sözleşmesi", asy
   assert.equal(lessonData.curriculumProfileId, "maarif_model");
   assert.equal(lessonData.unitId, "space_age");
   assert.equal(lessonData.topicId, "space_research");
-  assert.equal(lessonData.stages.length, 1, "Şimdilik 1 ders aşaması bulunmalıdır");
+  assert.equal(lessonData.stages.length, 2, "2 ders aşaması bulunmalıdır");
 
   const slides = lessonData.stages.flatMap((stage) => stage.slides || []);
-  assert.equal(slides.length, 1, "Slayt sayısı tam olarak 1 olmalıdır");
+  assert.equal(slides.length, 2, "Slayt sayısı tam olarak 2 olmalıdır");
 
   const slide1 = slides[0];
   assert.equal(slide1.id, "slide_1_uzay_nedir");
@@ -57,6 +57,25 @@ test("7. Sınıf Uzay Araştırmaları Ders Paketi ve Slayt 1 Sözleşmesi", asy
   assert.equal(slide1.bottomQuestion, undefined, "bottomQuestion alanı kaldırılmış olmalıdır");
   assert.equal(slide1.conceptWarning, undefined, "conceptWarning alanı kaldırılmış olmalıdır");
 
+  // Slayt 2 Doğrulaması
+  const slide2 = slides[1];
+  assert.equal(slide2.id, "slide_2_uzay_neden_yapilir");
+  assert.equal(slide2.layout, "space_uzay_neden_yapilir");
+  assert.equal(slide2.title, "Uzay Araştırmaları Neden Yapılır?");
+  assert.equal(slide2.mainNote, "İnsanlar uzayı yalnızca merak ettikleri için değil, bilimsel bilgi edinmek ve yaşamı geliştirmek için de araştırırlar.");
+  assert.equal(slide2.purposes?.length, 5, "5 adet amaç bulunmalıdır");
+  assert.equal(slide2.purposes[0].title, "Gök Cisimlerini Tanımak");
+  assert.equal(slide2.purposes[1].title, "Evreni Anlamak");
+  assert.equal(slide2.purposes[2].title, "Dünya’yı Gözlemlemek");
+  assert.equal(slide2.purposes[3].title, "Yeni Teknolojiler Geliştirmek");
+  assert.equal(slide2.purposes[4].title, "Uzayda Yaşam Olanaklarını Araştırmak");
+
+  assert.equal(slide2.interactions?.length, 1);
+  const inter2 = slide2.interactions[0];
+  assert.equal(inter2.type, "reveal_fill");
+  assert.ok(inter2.template.includes("{teknolojiler}"));
+  assert.equal(inter2.blanks[0].answer, "teknolojiler");
+
   // LessonEngine testi
   const originalFetch = globalThis.fetch;
   globalThis.fetch = async (url) => {
@@ -73,7 +92,7 @@ test("7. Sınıf Uzay Araştırmaları Ders Paketi ve Slayt 1 Sözleşmesi", asy
     const engine = new LessonEngine();
     const loaded = await engine.load("data/lessons/uzay-arastirmalari.json");
     assert.equal(loaded.id, "lesson_uzay_arastirmalari_1");
-    assert.equal(engine.slideCount, 1);
+    assert.equal(engine.slideCount, 2);
   } finally {
     globalThis.fetch = originalFetch;
   }
@@ -133,4 +152,16 @@ test("Slayt 1 Tipografi Hiyerarşisi (46px Başlık, 36px Tanım, 30px Konu, 28p
 
   // Açık renk / sade eğitim teması kontrolü
   assert.ok(css.includes(".slide-space-uzay-nedir {\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  width: 100%;\n  padding: 32px 48px;\n  gap: 24px;\n  box-sizing: border-box;\n  background: linear-gradient(145deg, #f8fafc 0%, #f0f7ff 50%, #e8f2fc 100%);\n  color: #0f172a;"), "Açık sade eğitim arka planı ve koyu metin kullanılmalıdır");
+});
+
+test("Slayt 2 (Uzay Araştırmaları Neden Yapılır?) Tipografi ve 2+3 Düzen CSS Doğrulaması", async () => {
+  const css = await readFile("src/styles/app.css", "utf8");
+
+  assert.ok(css.includes(".slide-space-uzay-neden-yapilir"), "Slayt 2 ana sınıfı tanımlı olmalıdır");
+  assert.ok(css.includes(".space-main-note-text {\n  margin: 0;\n  font-size: 36px;"), "Deftere not ana bilgi metni 36px olmalıdır");
+  assert.ok(css.includes(".space-purpose-title {\n  margin: 0;\n  font-size: 32px;"), "Amaç kart başlığı 32px olmalıdır");
+  assert.ok(css.includes(".space-purpose-desc {\n  margin: 0;\n  font-size: 28px;"), "Amaç kart açıklaması 28px olmalıdır");
+  assert.ok(css.includes(".space-bottom-slot .reveal-fill-sentence {\n  font-size: 36px;"), "Slayt 2 reveal_fill cümlesi 36px olmalıdır");
+  assert.ok(css.includes(".space-bottom-slot .blank-slot-answer {\n  font-size: 36px;"), "Slayt 2 boşluk cevabı 36px olmalıdır");
+  assert.ok(css.includes(".space-purposes-grid {\n  display: grid;\n  grid-template-columns: repeat(6, 1fr);"), "2+3 dengeli grid yapısı repeat(6, 1fr) olmalıdır");
 });

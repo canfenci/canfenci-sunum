@@ -81,6 +81,59 @@ export function renderSpaceSlide(slide, view, { interactions, activeInteractions
       return true;
     }
 
+    case "space_uzay_neden_yapilir": {
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-space-uzay-neden-yapilir";
+
+      const purposes = slide.purposes ?? [];
+      const purposesHtml = purposes.map((p, idx) => `
+        <div class="space-purpose-card space-purpose-item-${idx + 1}">
+          <div class="space-purpose-icon-box">
+            <span class="space-purpose-icon" aria-hidden="true">${escapeHtml(p.icon ?? "✦")}</span>
+          </div>
+          <div class="space-purpose-text">
+            <h3 class="space-purpose-title">${escapeHtml(p.title)}</h3>
+            <p class="space-purpose-desc">${escapeHtml(p.desc)}</p>
+          </div>
+        </div>
+      `).join("");
+
+      slideArticle.innerHTML = `
+        <header class="space-slide-header">
+          <h1 class="space-slide-title">${escapeHtml(slide.title ?? "Uzay Araştırmaları Neden Yapılır?")}</h1>
+        </header>
+
+        <!-- Ana Bilgi Notu -->
+        <div class="space-main-note-card">
+          <div class="space-main-note-badge">
+            <span>DEFTERE NOT</span>
+          </div>
+          <p class="space-main-note-text">${escapeHtml(slide.mainNote ?? "İnsanlar uzayı yalnızca merak ettikleri için değil, bilimsel bilgi edinmek ve yaşamı geliştirmek için de araştırırlar.")}</p>
+        </div>
+
+        <!-- 5 Amaç Grid (2 + 3 Düzen) -->
+        <div class="space-purposes-section">
+          <div class="space-purposes-grid">
+            ${purposesHtml}
+          </div>
+        </div>
+
+        <!-- Alt Etkileşim: reveal_fill -->
+        <div class="space-bottom-interaction-card">
+          <div class="space-bottom-slot"></div>
+        </div>
+      `;
+
+      // Reveal fill etkileşimini bağla
+      const bottomSlot = slideArticle.querySelector(".space-bottom-slot");
+      if (slide.interactions?.[0] && bottomSlot) {
+        mountInteraction(slide.interactions[0], bottomSlot, interactions, activeInteractions);
+      }
+
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
     default:
       return false;
   }
