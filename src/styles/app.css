@@ -6256,3 +6256,387 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   line-height: 1.35;
   margin: 0;
 }
+
+/* ==========================================================================
+   SLAYT 16: UZAY KİRLİLİĞİ (1920x1080 MANTIKSAL TUVAL)
+   ========================================================================== */
+
+.slide-workspace:has(.slide-space-uzay-kirliligi) .slide-content {
+  padding: 0;
+}
+
+.slide-space-uzay-kirliligi {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 40px 64px 36px;
+  box-sizing: border-box;
+  background: #f8fafc;
+  overflow: hidden;
+  justify-content: space-between;
+}
+
+.uzay-kirliligi-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* Üst Kısa Tanım Kartı */
+.kirlilik-def-card {
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 22px 32px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+  flex: 0 0 auto;
+}
+
+.kirlilik-def-text {
+  font-size: 36px;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.35;
+  margin: 0;
+}
+
+/* Orta Ana Sahne */
+.kirlilik-main-stage {
+  display: grid;
+  grid-template-columns: 580px 1fr;
+  gap: 28px;
+  flex: 1 1 auto;
+  min-height: 0;
+  align-items: stretch;
+}
+
+/* Sol Görsel Kutusu */
+.kirlilik-visual-box {
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.kirlilik-image-frame {
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #020617;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kirlilik-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Sağ Çöp Nedenleri Kutusu */
+.kirlilik-causes-box {
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 24px 32px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.causes-box-header {
+  display: flex;
+  align-items: center;
+}
+
+.causes-header-tag {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1.5px solid #bfdbfe;
+  border-radius: 12px;
+  padding: 8px 20px;
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.causes-chips-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  flex: 1 1 auto;
+}
+
+.uzay-cop-chip {
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+}
+
+.cop-chip-bullet {
+  font-size: 36px;
+  color: #ea580c;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.cop-chip-text {
+  font-size: 32px;
+  font-weight: 750;
+  color: #1e293b;
+  line-height: 1.25;
+}
+
+.causes-bottom-highlight {
+  background: #fff7ed;
+  border: 2px solid #fed7aa;
+  border-radius: 14px;
+  padding: 16px 24px;
+  flex: 0 0 auto;
+}
+
+.causes-highlight-text {
+  font-size: 34px;
+  font-weight: 850;
+  color: #c2410c;
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* Alt Kısım: reveal_fill Etkileşimi */
+.kirlilik-interaction-card {
+  background: #ffffff;
+  border: 2.5px solid #bfdbfe;
+  border-radius: 20px;
+  padding: 20px 32px;
+  box-shadow: 0 6px 20px rgba(2, 132, 199, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.kirlilik-interaction-slot {
+  width: 100%;
+  text-align: center;
+}
+
+.kirlilik-interaction-slot .reveal-fill-sentence {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.45;
+  color: #0f172a;
+  display: inline;
+}
+
+.kirlilik-interaction-slot .reveal-fill-text {
+  color: #1e293b;
+}
+
+.kirlilik-interaction-slot .reveal-fill-blank {
+  display: inline-grid;
+  place-items: center;
+  vertical-align: middle;
+  height: 56px;
+  min-width: 240px;
+  padding: 0 22px;
+  margin: 0 8px;
+  background: #f0f9ff;
+  border: 2.5px dashed #0284c7;
+  border-radius: 14px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.12);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.kirlilik-interaction-slot .reveal-fill-blank::after {
+  background: #0284c7;
+  height: 4px;
+}
+
+.kirlilik-interaction-slot .blank-slot-answer {
+  font-size: 36px;
+  font-weight: 900;
+  color: #0284c7;
+}
+
+.kirlilik-interaction-slot .reveal-fill-blank.is-revealed {
+  background: #e0f2fe;
+  border: 2.5px solid #0284c7;
+}
+
+/* ==========================================================================
+   SLAYT 17: UZAY KİRLİLİĞİNİN SONUÇLARI VE ÇÖZÜM YOLLARI (1920x1080 MANTIKSAL TUVAL)
+   ========================================================================== */
+
+.slide-workspace:has(.slide-space-uzay-kirliligi-sonuclari-ve-cozumleri) .slide-content {
+  padding: 0;
+}
+
+.slide-space-uzay-kirliligi-sonuclari-ve-cozumleri {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 40px 64px 36px;
+  box-sizing: border-box;
+  background: #f8fafc;
+  overflow: hidden;
+  justify-content: space-between;
+}
+
+.kirlilik-sonuclari-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.kirlilik-columns-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.kirlilik-col-card {
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 22px;
+  padding: 24px 28px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.col-header-bar {
+  border-radius: 14px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.col-header-bar.header-rose {
+  background: #ffe4e6;
+  border: 2px solid #fecdd3;
+}
+
+.col-header-bar.header-rose .col-title-text {
+  color: #be123c;
+}
+
+.col-header-bar.header-emerald {
+  background: #dcfce7;
+  border: 2px solid #bbf7d0;
+}
+
+.col-header-bar.header-emerald .col-title-text {
+  color: #15803d;
+}
+
+.col-title-text {
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.col-image-frame {
+  width: 100%;
+  height: 220px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #090d16;
+  flex-shrink: 0;
+  border: 1.5px solid #cbd5e1;
+}
+
+.col-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.col-items-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1 1 auto;
+  justify-content: space-around;
+}
+
+.kirlilik-list-item {
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 12px 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.item-bullet {
+  font-size: 36px;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.bullet-rose {
+  color: #e11d48;
+}
+
+.bullet-emerald {
+  color: #16a34a;
+}
+
+.item-text {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1e293b;
+  line-height: 1.25;
+}
+
+/* Alt Geniş Vurgu Kartı */
+.kirlilik-wide-highlight-card {
+  background: #f0fdf4;
+  border: 2.5px solid #86efac;
+  border-radius: 18px;
+  padding: 18px 32px;
+  box-shadow: 0 6px 18px rgba(22, 163, 74, 0.08);
+  flex: 0 0 auto;
+  text-align: center;
+}
+
+.kirlilik-wide-highlight-text {
+  font-size: 34px;
+  font-weight: 850;
+  color: #15803d;
+  margin: 0;
+  line-height: 1.3;
+}

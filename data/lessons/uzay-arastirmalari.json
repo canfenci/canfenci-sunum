@@ -764,6 +764,63 @@
               }
             ]
           }
+        },
+        {
+          "id": "slide_16_uzay_kirliligi",
+          "type": "content",
+          "layout": "space_uzay_kirliligi",
+          "title": "Uzay Kirliliği",
+          "definition": "Görevini tamamlamış veya işlevini yitirmiş insan yapımı cisimlerin Dünya’nın çevresinde kontrolsüz biçimde dolaşması uzay kirliliğine neden olur.",
+          "image": "./assets/images/uzay-arastirmalari/16-uzay-kirliligi-dunya.png",
+          "causes": [
+            "Görevini tamamlamış yapay uydular",
+            "İşlevini yitirmiş roket parçaları",
+            "Yakıt tankları",
+            "Uzay araçlarından kalan parçalar"
+          ],
+          "highlight": "Bu parçaların tümüne genel olarak uzay çöpü denir.",
+          "interactions": [
+            {
+              "id": "slide_16_uzay_kirliligi_reveal",
+              "type": "reveal_fill",
+              "template": "Görevini tamamlayan uydular yörüngede kalırsa {uzay_kirliligine} neden olabilir.",
+              "blanks": [
+                {
+                  "id": "uzay_kirliligine",
+                  "answer": "uzay kirliliğine"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "slide_17_uzay_kirliligi_sonuclari_ve_cozumleri",
+          "type": "content",
+          "layout": "space_uzay_kirliligi_sonuclari_ve_cozumleri",
+          "title": "Uzay Kirliliğinin Sonuçları ve Çözüm Yolları",
+          "columns": {
+            "consequences": {
+              "title": "SONUÇLARI",
+              "image": "./assets/images/uzay-arastirmalari/17-uzay-carpizma-riski.jpg",
+              "items": [
+                "Uzay araçlarına zarar verebilir.",
+                "Aktif uydularla çarpışma riski oluşturur.",
+                "Uzay araştırmalarını aksatabilir.",
+                "Haberleşme ve ulaşım sistemlerini olumsuz etkileyebilir."
+              ]
+            },
+            "solutions": {
+              "title": "ÇÖZÜM YOLLARI",
+              "image": "./assets/images/uzay-arastirmalari/17-uzay-atik-temizleme.jpg",
+              "items": [
+                "Görevini tamamlayan uydular kontrollü şekilde yörüngeden çıkarılmalıdır.",
+                "Uzay çöpleri takip edilmelidir.",
+                "Uzay atıklarını toplamak için yeni teknolojiler geliştirilmelidir.",
+                "Daha çevreci ve sürdürülebilir uzay teknolojileri kullanılmalıdır."
+              ]
+            }
+          },
+          "highlight": "Uzayı temiz tutmak, gelecekteki uzay çalışmalarının güvenliği için önemlidir."
         }
       ]
     }

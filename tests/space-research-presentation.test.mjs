@@ -16,7 +16,7 @@ test("7. Sınıf Uzay Araştırmaları Ders Paketi ve Slayt 1 Sözleşmesi", asy
   assert.equal(lessonData.stages.length, 3, "3 ders aşaması bulunmalıdır");
 
   const slides = lessonData.stages.flatMap((stage) => stage.slides || []);
-  assert.equal(slides.length, 15, "Slayt sayısı tam olarak 15 olmalıdır");
+  assert.equal(slides.length, 17, "Slayt sayısı tam olarak 17 olmalıdır");
 
   const slide1 = slides[0];
   assert.equal(slide1.id, "slide_1_uzay_nedir");
@@ -249,7 +249,7 @@ test("7. Sınıf Uzay Araştırmaları Ders Paketi ve Slayt 1 Sözleşmesi", asy
     const engine = new LessonEngine();
     const loaded = await engine.load("data/lessons/uzay-arastirmalari.json");
     assert.equal(loaded.id, "lesson_uzay_arastirmalari_1");
-    assert.equal(engine.slideCount, 15);
+    assert.equal(engine.slideCount, 17);
   } finally {
     globalThis.fetch = originalFetch;
   }
@@ -623,4 +623,98 @@ test("Slayt 15 (Uzay Terimleri ve Önemli İsimler) Sözleşme, Terimler ve İsi
   assert.ok(css.includes(".person-name {\n  font-size: 36px;\n  font-weight: 800;"), "Kişi adları 36px bold olmalıdır");
   assert.ok(css.includes(".person-role-tag {\n  background: #ede9fe;\n  color: #6d28d9;\n  border: 1.5px solid #ddd6fe;\n  border-radius: 10px;\n  padding: 4px 12px;\n  font-size: 28px;\n  font-weight: 700;"), "Kişi unvanları 28px bold olmalıdır");
   assert.ok(css.includes(".person-bio-p {\n  font-size: 28px;"), "Kişi açıklamaları 28px olmalıdır");
+});
+
+test("Slayt 16 (Uzay Kirliliği) Sözleşme, Nedenler, Görsel ve Etkileşim Doğrulaması", async () => {
+  const lessonData = await readJson("data/lessons/uzay-arastirmalari.json");
+  const slides = lessonData.stages.flatMap((stage) => stage.slides || []);
+  const slide16 = slides[15];
+
+  assert.equal(slide16.id, "slide_16_uzay_kirliligi");
+  assert.equal(slide16.layout, "space_uzay_kirliligi");
+  assert.equal(slide16.title, "Uzay Kirliliği");
+  assert.equal(slide16.definition, "Görevini tamamlamış veya işlevini yitirmiş insan yapımı cisimlerin Dünya’nın çevresinde kontrolsüz biçimde dolaşması uzay kirliliğine neden olur.");
+
+  // Görsel
+  assert.ok(slide16.image);
+  await access(slide16.image.replace(/^\.\//, ""));
+  const imgStat = await stat(slide16.image.replace(/^\.\//, ""));
+  assert.ok(imgStat.size > 0, "Slide 16 görseli var ve dolu olmalıdır");
+
+  // Nedenler
+  assert.equal(slide16.causes?.length, 4, "4 uzay çöpü nedeni olmalıdır");
+  const expectedCauses = [
+    "Görevini tamamlamış yapay uydular",
+    "İşlevini yitirmiş roket parçaları",
+    "Yakıt tankları",
+    "Uzay araçlarından kalan parçalar"
+  ];
+  for (let i = 0; i < 4; i++) {
+    assert.equal(slide16.causes[i], expectedCauses[i]);
+  }
+
+  // Alt vurgu
+  assert.equal(slide16.highlight, "Bu parçaların tümüne genel olarak uzay çöpü denir.");
+
+  // Etkileşim: reveal_fill
+  assert.equal(slide16.interactions?.length, 1, "Tam olarak 1 etkileşim bulunmalıdır");
+  const interaction = slide16.interactions[0];
+  assert.equal(interaction.type, "reveal_fill");
+  assert.equal(interaction.template, "Görevini tamamlayan uydular yörüngede kalırsa {uzay_kirliligine} neden olabilir.");
+  assert.equal(interaction.blanks?.length, 1);
+  assert.equal(interaction.blanks[0].id, "uzay_kirliligine");
+  assert.equal(interaction.blanks[0].answer, "uzay kirliliğine");
+
+  // CSS tipografi
+  const css = await readFile("src/styles/app.css", "utf8");
+  assert.ok(css.includes(".slide-space-uzay-kirliligi"), "Slayt 16 ana sınıfı tanımlı olmalıdır");
+  assert.ok(css.includes(".kirlilik-def-text {\n  font-size: 36px;"), "Tanım metni 36px olmalıdır");
+  assert.ok(css.includes(".cop-chip-text {\n  font-size: 32px;"), "Neden çipleri 32px olmalıdır");
+  assert.ok(css.includes(".causes-highlight-text {\n  font-size: 34px;\n  font-weight: 850;"), "Alt vurgu 34px olmalıdır");
+  assert.ok(css.includes(".kirlilik-interaction-slot .reveal-fill-sentence {\n  font-size: 36px;"), "Etkileşim cümlesi 36px olmalıdır");
+  assert.ok(css.includes(".kirlilik-interaction-slot .blank-slot-answer {\n  font-size: 36px;\n  font-weight: 900;"), "Etkileşim cevabı 36px bold olmalıdır");
+});
+
+test("Slayt 17 (Uzay Kirliliğinin Sonuçları ve Çözüm Yolları) Sözleşme, Kolonlar ve Tipografi Doğrulaması", async () => {
+  const lessonData = await readJson("data/lessons/uzay-arastirmalari.json");
+  const slides = lessonData.stages.flatMap((stage) => stage.slides || []);
+  const slide17 = slides[16];
+
+  assert.equal(slide17.id, "slide_17_uzay_kirliligi_sonuclari_ve_cozumleri");
+  assert.equal(slide17.layout, "space_uzay_kirliligi_sonuclari_ve_cozumleri");
+  assert.equal(slide17.title, "Uzay Kirliliğinin Sonuçları ve Çözüm Yolları");
+  assert.equal(slide17.interactions, undefined, "Slayt 17 etkileşimsiz anlatım slaytı olmalıdır");
+
+  // Kolonlar
+  const consequences = slide17.columns?.consequences;
+  assert.ok(consequences);
+  assert.equal(consequences.title, "SONUÇLARI");
+  assert.ok(consequences.image);
+  await access(consequences.image.replace(/^\.\//, ""));
+  assert.equal(consequences.items?.length, 4);
+  assert.equal(consequences.items[0], "Uzay araçlarına zarar verebilir.");
+  assert.equal(consequences.items[1], "Aktif uydularla çarpışma riski oluşturur.");
+  assert.equal(consequences.items[2], "Uzay araştırmalarını aksatabilir.");
+  assert.equal(consequences.items[3], "Haberleşme ve ulaşım sistemlerini olumsuz etkileyebilir.");
+
+  const solutions = slide17.columns?.solutions;
+  assert.ok(solutions);
+  assert.equal(solutions.title, "ÇÖZÜM YOLLARI");
+  assert.ok(solutions.image);
+  await access(solutions.image.replace(/^\.\//, ""));
+  assert.equal(solutions.items?.length, 4);
+  assert.equal(solutions.items[0], "Görevini tamamlayan uydular kontrollü şekilde yörüngeden çıkarılmalıdır.");
+  assert.equal(solutions.items[1], "Uzay çöpleri takip edilmelidir.");
+  assert.equal(solutions.items[2], "Uzay atıklarını toplamak için yeni teknolojiler geliştirilmelidir.");
+  assert.equal(solutions.items[3], "Daha çevreci ve sürdürülebilir uzay teknolojileri kullanılmalıdır.");
+
+  // Alt Geniş Vurgu
+  assert.equal(slide17.highlight, "Uzayı temiz tutmak, gelecekteki uzay çalışmalarının güvenliği için önemlidir.");
+
+  // CSS tipografi
+  const css = await readFile("src/styles/app.css", "utf8");
+  assert.ok(css.includes(".slide-space-uzay-kirliligi-sonuclari-ve-cozumleri"), "Slayt 17 ana sınıfı tanımlı olmalıdır");
+  assert.ok(css.includes(".col-title-text {\n  font-size: 36px;\n  font-weight: 800;"), "Kolon başlıkları 36px bold olmalıdır");
+  assert.ok(css.includes(".item-text {\n  font-size: 32px;\n  font-weight: 700;"), "Maddeler 32px olmalıdır");
+  assert.ok(css.includes(".kirlilik-wide-highlight-text {\n  font-size: 34px;\n  font-weight: 850;"), "Geniş vurgu kartı 34px olmalıdır");
 });

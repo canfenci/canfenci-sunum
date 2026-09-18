@@ -961,6 +961,140 @@ export function renderSpaceSlide(slide, view, { interactions, activeInteractions
       return true;
     }
 
+    case "space_uzay_kirliligi": {
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-space-uzay-kirliligi";
+
+      const causes = slide.causes ?? [];
+      const causesHtml = causes.map((cause) => `
+        <div class="uzay-cop-chip">
+          <span class="cop-chip-bullet" aria-hidden="true">•</span>
+          <span class="cop-chip-text">${escapeHtml(cause)}</span>
+        </div>
+      `).join("");
+
+      const imgSrc = slide.image ?? "./assets/images/uzay-arastirmalari/16-uzay-kirliligi-dunya.png";
+
+      slideArticle.innerHTML = `
+        <header class="space-slide-header">
+          <h1 class="space-slide-title">${escapeHtml(slide.title ?? "Uzay Kirliliği")}</h1>
+        </header>
+
+        <div class="uzay-kirliligi-layout">
+          <!-- Üst Kısa Tanım Kartı (36px) -->
+          <div class="kirlilik-def-card">
+            <p class="kirlilik-def-text">${escapeHtml(slide.definition ?? "")}</p>
+          </div>
+
+          <!-- Orta Ana Sahne: Görsel + 4 Neden Kartı -->
+          <div class="kirlilik-main-stage">
+            <!-- Sol: Dünya Etrafındaki Uzay Kirliliği Görseli -->
+            <div class="kirlilik-visual-box">
+              <div class="kirlilik-image-frame">
+                <img src="${escapeHtml(imgSrc)}" alt="Dünya çevresindeki uzay çöpleri ve uzay kirliliği" class="kirlilik-img" />
+              </div>
+            </div>
+
+            <!-- Sağ: Uzay Çöpünü Oluşturan Parçalar -->
+            <div class="kirlilik-causes-box">
+              <div class="causes-box-header">
+                <span class="causes-header-tag">Uzay Çöpünü Oluşturan Parçalar</span>
+              </div>
+              <div class="causes-chips-grid">
+                ${causesHtml}
+              </div>
+              <!-- Alt Vurgu Bandı -->
+              <div class="causes-bottom-highlight">
+                <p class="causes-highlight-text">${escapeHtml(slide.highlight ?? "Bu parçaların tümüne genel olarak uzay çöpü denir.")}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Alt Kısım: reveal_fill Etkileşimi (36px) -->
+          <div class="kirlilik-interaction-card">
+            <div class="kirlilik-interaction-slot"></div>
+          </div>
+        </div>
+      `;
+
+      // Etkileşimi bağla
+      const interactionSlot = slideArticle.querySelector(".kirlilik-interaction-slot");
+      if (slide.interactions?.[0] && interactionSlot) {
+        mountInteraction(slide.interactions[0], interactionSlot, interactions, activeInteractions);
+      }
+
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
+    case "space_uzay_kirliligi_sonuclari_ve_cozumleri": {
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-space-uzay-kirliligi-sonuclari-ve-cozumleri";
+
+      const cols = slide.columns ?? {};
+      const consequences = cols.consequences ?? {};
+      const solutions = cols.solutions ?? {};
+
+      const conItemsHtml = (consequences.items ?? []).map((item) => `
+        <li class="kirlilik-list-item item-consequence">
+          <span class="item-bullet bullet-rose" aria-hidden="true">•</span>
+          <span class="item-text">${escapeHtml(item)}</span>
+        </li>
+      `).join("");
+
+      const solItemsHtml = (solutions.items ?? []).map((item) => `
+        <li class="kirlilik-list-item item-solution">
+          <span class="item-bullet bullet-emerald" aria-hidden="true">•</span>
+          <span class="item-text">${escapeHtml(item)}</span>
+        </li>
+      `).join("");
+
+      slideArticle.innerHTML = `
+        <header class="space-slide-header">
+          <h1 class="space-slide-title">${escapeHtml(slide.title ?? "Uzay Kirliliğinin Sonuçları ve Çözüm Yolları")}</h1>
+        </header>
+
+        <div class="kirlilik-sonuclari-layout">
+          <!-- İki Eşit Kolon: Sonuçlar (Sol) ve Çözüm Yolları (Sağ) -->
+          <div class="kirlilik-columns-grid">
+            <!-- Sol Kolon: SONUÇLARI -->
+            <div class="kirlilik-col-card col-consequences">
+              <div class="col-header-bar header-rose">
+                <span class="col-title-text">${escapeHtml(consequences.title ?? "SONUÇLARI")}</span>
+              </div>
+              <div class="col-image-frame">
+                <img src="${escapeHtml(consequences.image ?? "./assets/images/uzay-arastirmalari/17-uzay-carpizma-riski.jpg")}" alt="Uzay kirliliği çarpışma riski" class="col-img" />
+              </div>
+              <ul class="col-items-list">
+                ${conItemsHtml}
+              </ul>
+            </div>
+
+            <!-- Sağ Kolon: ÇÖZÜM YOLLARI -->
+            <div class="kirlilik-col-card col-solutions">
+              <div class="col-header-bar header-emerald">
+                <span class="col-title-text">${escapeHtml(solutions.title ?? "ÇÖZÜM YOLLARI")}</span>
+              </div>
+              <div class="col-image-frame">
+                <img src="${escapeHtml(solutions.image ?? "./assets/images/uzay-arastirmalari/17-uzay-atik-temizleme.jpg")}" alt="Uzay kirliliği temizleme ve takip" class="col-img" />
+              </div>
+              <ul class="col-items-list">
+                ${solItemsHtml}
+              </ul>
+            </div>
+          </div>
+
+          <!-- Alt Geniş Vurgu Kartı -->
+          <div class="kirlilik-wide-highlight-card">
+            <p class="kirlilik-wide-highlight-text">${escapeHtml(slide.highlight ?? "Uzayı temiz tutmak, gelecekteki uzay çalışmalarının güvenliği için önemlidir.")}</p>
+          </div>
+        </div>
+      `;
+
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
     default:
       return false;
   }
