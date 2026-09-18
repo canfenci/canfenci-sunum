@@ -8,6 +8,12 @@
       "status": "ready_for_content"
     },
     {
+      "id": "grade_7",
+      "label": "7. Sınıf",
+      "curriculumProfileId": "maarif_model",
+      "status": "ready_for_content"
+    },
+    {
       "id": "grade_6",
       "label": "6. Sınıf",
       "curriculumProfileId": "maarif_model",
@@ -32,7 +38,7 @@
     {
       "id": "maarif_model",
       "label": "Türkiye Yüzyılı Maarif Modeli",
-      "gradeIds": ["grade_6"],
+      "gradeIds": ["grade_6", "grade_7"],
       "source": "./data/curricula/maarif_model.json",
       "validation": {
         "authority": "MEB",

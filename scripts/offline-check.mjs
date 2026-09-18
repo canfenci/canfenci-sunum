@@ -24,11 +24,13 @@ const requiredFiles = [
   "src/styles/app.css",
   "src/ui/control-panel.js",
   "src/ui/solar-system-slides.js",
+  "src/ui/space-research-slides.js",
   "data/catalog.json",
   "data/curricula/legacy_2018_lgs.json",
   "data/curricula/maarif_model.json",
   "data/lessons/gunes-sistemi.json",
-  "data/lessons/mevsimlerin-olusumu.json"
+  "data/lessons/mevsimlerin-olusumu.json",
+  "data/lessons/uzay-arastirmalari.json"
 ];
 
 console.log("=== CanFenci Offline Kendini Doğrulama Kontrolü ===");
@@ -116,6 +118,34 @@ try {
   }
 } catch (err) {
   fail(`mevsimlerin-olusumu.json doğrulanamadı: ${err.message}`);
+}
+
+try {
+  const uzay = JSON.parse(await readFile("data/lessons/uzay-arastirmalari.json", "utf8"));
+  const uzaySlides = uzay.stages.flatMap((s) => s.slides ?? []);
+  if (uzaySlides.length === 1) {
+    pass(`7. Sınıf Uzay Araştırmaları slayt sayısı korundu: ${uzaySlides.length} slayt`);
+  } else {
+    fail(`7. Sınıf Uzay Araştırmaları slayt sayısı 1 olmalıydı, bulunan: ${uzaySlides.length}`);
+  }
+
+  let missingMedia = 0;
+  for (const slide of uzaySlides) {
+    for (const m of slide.media ?? []) {
+      const p = m.src.replace(/^\.\//, "");
+      try {
+        await access(p);
+      } catch {
+        missingMedia++;
+        fail(`Görsel dosyası eksik: ${p} (${slide.id})`);
+      }
+    }
+  }
+  if (missingMedia === 0) {
+    pass("7. Sınıf Uzay Araştırmaları slaytlarındaki tüm yerel görseller eksiksiz mevcut");
+  }
+} catch (err) {
+  fail(`uzay-arastirmalari.json doğrulanamadı: ${err.message}`);
 }
 
 // 4. VERSION.json kontrolü

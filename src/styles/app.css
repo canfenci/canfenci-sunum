@@ -3511,3 +3511,475 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   flex: 0 0 auto;
   align-self: center;
 }
+
+/* ==========================================================================
+   7. Sınıf Uzay Araştırmaları — Slayt 1: Uzay Nedir? (Yeni Tipografi Standardı)
+   - Ana slayt başlığı: 46–48 px
+   - Kart / bölüm başlıkları: 42 px
+   - Ana metin: 36 px
+   - Küçük yardımcı etiketler: 30–32 px altına düşmesin
+   - 6–7 metre akıllı tahta okunabilirliği
+   ========================================================================== */
+
+.slide-space-uzay-nedir {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  padding: clamp(14px, 1.4vh, 22px) clamp(20px, 1.8cqi, 32px) clamp(14px, 1.4vh, 20px);
+  gap: clamp(10px, 1.2vh, 18px);
+  box-sizing: border-box;
+  background: radial-gradient(circle at 85% 15%, #0d2238 0%, #061324 45%, #030a14 100%);
+  color: #ffffff;
+  overflow: hidden;
+}
+
+/* Header */
+.space-slide-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex: 0 0 auto;
+}
+
+.space-header-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.space-slide-kicker {
+  font-size: clamp(16px, 1.15cqi, 20px);
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  color: #38bdf8;
+  text-transform: uppercase;
+}
+
+.space-slide-title {
+  margin: 0;
+  font-size: clamp(38px, 2.7cqi, 48px);
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  color: #ffffff;
+  text-shadow: 0 2px 14px rgba(56, 189, 248, 0.35);
+}
+
+.space-hero-question-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(14, 165, 233, 0.14);
+  border: 1.5px solid rgba(56, 189, 248, 0.35);
+  border-radius: 16px;
+  padding: clamp(8px, 0.8vh, 12px) clamp(16px, 1.2cqi, 24px);
+  box-shadow: 0 4px 20px rgba(2, 132, 199, 0.18);
+}
+
+.space-question-icon {
+  font-size: clamp(26px, 1.8cqi, 34px);
+  line-height: 1;
+}
+
+.space-hero-question-text {
+  margin: 0;
+  font-size: clamp(24px, 1.85cqi, 34px);
+  font-weight: 750;
+  color: #f0f9ff;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+/* Stage: Sol (Tanım + Kavramlar) ve Sağ (Görsel) */
+.space-slide-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.95fr);
+  gap: clamp(14px, 1.6cqi, 26px);
+  flex: 1 1 auto;
+  min-height: 0;
+  align-items: stretch;
+}
+
+.space-left-col {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 1.2vh, 16px);
+  min-height: 0;
+}
+
+/* 1. Tanım Kartı */
+.space-definition-card {
+  background: rgba(15, 23, 42, 0.82);
+  border: 2px solid rgba(56, 189, 248, 0.3);
+  border-radius: 20px;
+  padding: clamp(12px, 1.4vh, 20px) clamp(16px, 1.6cqi, 26px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1vh, 14px);
+  flex: 0 0 auto;
+}
+
+.space-def-badge {
+  align-self: flex-start;
+  font-size: clamp(16px, 1.15cqi, 20px);
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  border-radius: 8px;
+  padding: 4px 12px;
+}
+
+.space-tanim-slot {
+  width: 100%;
+}
+
+.space-tanim-slot .reveal-fill-sentence {
+  font-size: clamp(26px, 2.1cqi, 36px);
+  font-weight: 650;
+  line-height: 1.4;
+  color: #f8fafc;
+  display: inline;
+}
+
+.space-tanim-slot .reveal-fill-text {
+  color: #f8fafc;
+}
+
+.space-tanim-slot .reveal-fill-blank {
+  display: inline-grid;
+  place-items: center;
+  vertical-align: middle;
+  height: clamp(48px, 3.2cqi, 64px);
+  min-width: clamp(140px, 10cqi, 190px);
+  padding: 0 clamp(16px, 1.2cqi, 24px);
+  margin: 0 6px;
+  background: rgba(56, 189, 248, 0.18);
+  border: 1.5px dashed rgba(56, 189, 248, 0.6);
+  border-radius: 12px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.25);
+  transition: all 0.2s ease;
+}
+
+.space-tanim-slot .reveal-fill-blank::after {
+  background: #38bdf8;
+}
+
+.space-tanim-slot .blank-slot-answer {
+  font-size: clamp(28px, 2.2cqi, 38px);
+  font-weight: 900;
+  color: #38bdf8;
+  text-shadow: 0 0 16px rgba(56, 189, 248, 0.6);
+}
+
+.space-tanim-slot .reveal-fill-blank.is-revealed {
+  background: rgba(14, 165, 233, 0.28);
+  border: 1.5px solid #38bdf8;
+}
+
+/* 2. Ana Kavramlar Kartı */
+.space-concepts-card {
+  background: rgba(15, 23, 42, 0.82);
+  border: 2px solid rgba(148, 163, 184, 0.22);
+  border-radius: 20px;
+  padding: clamp(12px, 1.4vh, 18px) clamp(16px, 1.6cqi, 24px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1vh, 12px);
+  flex: 1 1 auto;
+  min-height: 0;
+  justify-content: center;
+}
+
+.space-card-subhead {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.space-card-subhead span {
+  font-size: clamp(26px, 2.1cqi, 42px);
+  font-weight: 850;
+  letter-spacing: -0.01em;
+  color: #fbbf24;
+}
+
+.space-card-subhead small {
+  font-size: clamp(16px, 1.2cqi, 22px);
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+.space-concepts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(8px, 1cqi, 14px);
+}
+
+.space-concept-pill {
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 0.8cqi, 12px);
+  background: rgba(30, 41, 59, 0.85);
+  border: 1.5px solid rgba(56, 189, 248, 0.28);
+  border-radius: 14px;
+  padding: clamp(10px, 1.1vh, 16px) clamp(12px, 1.1cqi, 18px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: transform 0.18s ease, border-color 0.18s ease;
+}
+
+.space-concept-pill:hover {
+  transform: translateY(-2px);
+  border-color: #38bdf8;
+}
+
+.space-concept-icon {
+  font-size: clamp(24px, 1.8cqi, 32px);
+  line-height: 1;
+  flex: 0 0 auto;
+}
+
+.space-concept-label {
+  font-size: clamp(20px, 1.65cqi, 32px);
+  font-weight: 750;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+/* Sağ Kolon: Görsel */
+.space-right-col {
+  display: flex;
+  min-height: 0;
+  height: 100%;
+}
+
+.space-visual-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 2px solid rgba(56, 189, 248, 0.35);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.5), 0 0 28px rgba(56, 189, 248, 0.18);
+  background: #020617;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.space-visual-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.space-visual-badge {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  border-radius: 10px;
+  padding: 6px 14px;
+  color: #f0f9ff;
+  font-size: clamp(14px, 1cqi, 18px);
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.space-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 8px #38bdf8;
+}
+
+/* Footer: Alt Etkileşim & Mini Kavram Uyarısı */
+.space-slide-footer {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.95fr);
+  gap: clamp(14px, 1.6cqi, 26px);
+  flex: 0 0 auto;
+  align-items: start;
+}
+
+/* 4. Alt Etkileşim: Soru & Evet/Hayır */
+.space-quiz-card {
+  background: rgba(15, 23, 42, 0.88);
+  border: 2px solid rgba(56, 189, 248, 0.35);
+  border-radius: 18px;
+  padding: clamp(10px, 1.2vh, 16px) clamp(16px, 1.6cqi, 22px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.space-quiz-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.space-quiz-icon {
+  font-size: clamp(24px, 1.8cqi, 32px);
+  line-height: 1;
+}
+
+.space-quiz-prompt {
+  font-size: clamp(22px, 1.75cqi, 32px);
+  font-weight: 800;
+  color: #f8fafc;
+  letter-spacing: -0.01em;
+}
+
+.space-quiz-actions {
+  display: flex;
+  gap: 14px;
+}
+
+.space-choice-btn {
+  flex: 1;
+  min-height: clamp(46px, 3.2cqi, 58px);
+  padding: 0 20px;
+  font-size: clamp(22px, 1.75cqi, 32px);
+  font-weight: 850;
+  color: #f8fafc;
+  background: rgba(30, 41, 59, 0.9);
+  border: 2px solid rgba(148, 163, 184, 0.35);
+  border-radius: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  transition: all 0.2s ease;
+  display: grid;
+  place-items: center;
+}
+
+.space-choice-btn:hover {
+  border-color: #38bdf8;
+  background: rgba(56, 189, 248, 0.16);
+  transform: translateY(-2px);
+}
+
+.space-choice-btn.is-selected-correct {
+  background: rgba(16, 185, 129, 0.25);
+  border-color: #10b981;
+  color: #34d399;
+  box-shadow: 0 0 18px rgba(16, 185, 129, 0.4);
+}
+
+.space-choice-btn.is-selected-wrong {
+  background: rgba(239, 68, 68, 0.25);
+  border-color: #ef4444;
+  color: #f87171;
+  box-shadow: 0 0 18px rgba(239, 68, 68, 0.4);
+}
+
+.space-quiz-feedback {
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-size: clamp(20px, 1.55cqi, 28px);
+  line-height: 1.35;
+}
+
+.space-quiz-feedback.is-correct {
+  background: rgba(16, 185, 129, 0.16);
+  border: 1.5px solid #10b981;
+  color: #a7f3d0;
+}
+
+.space-quiz-feedback.is-wrong {
+  background: rgba(239, 68, 68, 0.16);
+  border: 1.5px solid #ef4444;
+  color: #fecaca;
+}
+
+/* 5. Mini Kavram Uyarısı (Tıkla -> Göster) */
+.space-warning-card {
+  background: rgba(15, 23, 42, 0.88);
+  border: 2px solid rgba(245, 158, 11, 0.4);
+  border-radius: 18px;
+  padding: clamp(10px, 1.2vh, 16px) clamp(14px, 1.4cqi, 20px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.space-warning-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: none;
+  border: none;
+  padding: 0;
+  width: 100%;
+  color: #fef08a;
+  cursor: pointer;
+  text-align: left;
+  min-height: 0;
+}
+
+.space-warning-icon {
+  font-size: clamp(24px, 1.8cqi, 32px);
+  line-height: 1;
+  flex: 0 0 auto;
+}
+
+.space-warning-title {
+  flex: 1;
+  font-size: clamp(22px, 1.75cqi, 32px);
+  font-weight: 850;
+  color: #fef08a;
+  letter-spacing: -0.01em;
+}
+
+.space-warning-badge {
+  font-size: clamp(16px, 1.2cqi, 22px);
+  font-weight: 800;
+  color: #0f172a;
+  background: #f59e0b;
+  padding: 6px 14px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.35);
+  flex: 0 0 auto;
+  transition: all 0.18s ease;
+}
+
+.space-warning-toggle:hover .space-warning-badge {
+  background: #fbbf24;
+  transform: scale(1.04);
+}
+
+.space-warning-content {
+  border-top: 1px dashed rgba(245, 158, 11, 0.4);
+  padding-top: 8px;
+}
+
+.space-warning-content p {
+  margin: 0;
+  font-size: clamp(20px, 1.55cqi, 28px);
+  line-height: 1.38;
+  color: #fef9c3;
+  font-weight: 600;
+}
+
+.space-warning-content strong {
+  color: #fde047;
+  font-weight: 850;
+}

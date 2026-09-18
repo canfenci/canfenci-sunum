@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "lesson_uzay_arastirmalari_1",
+  "title": "Uzay Araştırmaları",
+  "gradeId": "grade_7",
+  "curriculumProfileId": "maarif_model",
+  "unitId": "space_age",
+  "topicId": "space_research",
+  "modes": [
+    "presentation"
+  ],
+  "curriculumValidation": {
+    "outcomeIds": [
+      "FB.7.1.1.1"
+    ],
+    "authority": "MEB",
+    "sourceDocument": "Türkiye Yüzyılı Maarif Modeli Fen Bilimleri Dersi Öğretim Programı",
+    "sourceVersion": "2024",
+    "lastVerifiedAt": "2026-09-18",
+    "verifiedBy": "CanFenci",
+    "status": "verified"
+  },
+  "stages": [
+    {
+      "id": "stage_uzay_nedir",
+      "label": "Uzay Nedir?",
+      "order": 1,
+      "slides": [
+        {
+          "id": "slide_1_uzay_nedir",
+          "type": "content",
+          "layout": "space_uzay_nedir",
+          "tag": "UZAY NEDİR?",
+          "kicker": "7. SINIF · 1. ÜNİTE: UZAY ÇAĞI",
+          "title": "Uzay Nedir?",
+          "question": "Dünya’nın atmosferinin ötesinde ne vardır?",
+          "media": [
+            {
+              "id": "media_01_dunya_ve_uzay",
+              "src": "./assets/images/uzay-arastirmalari/01-dunya-ve-uzay.png",
+              "alt": "Dünya atmosferi ve uzay görünümü"
+            }
+          ],
+          "concepts": [
+            { "id": "yildizlar", "label": "Yıldızlar", "icon": "✨" },
+            { "id": "gezegenler", "label": "Gezegenler", "icon": "🪐" },
+            { "id": "uydular", "label": "Uydular", "icon": "🛰️" },
+            { "id": "asteroitler", "label": "Asteroitler", "icon": "☄️" },
+            { "id": "kuyruklu_yildizlar", "label": "Kuyruklu yıldızlar", "icon": "🌠" },
+            { "id": "gaz_toz_bulutlari", "label": "Gaz ve toz bulutları", "icon": "🌌" }
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_1_uzay_tanim",
+              "type": "reveal_fill",
+              "template": "Dünya’nın atmosferinin ötesinde bulunan ve gök cisimlerinin yer aldığı çok geniş ortama {uzay} denir.",
+              "blanks": [
+                {
+                  "id": "uzay",
+                  "answer": "uzay"
+                }
+              ]
+            }
+          ],
+          "bottomQuestion": {
+            "prompt": "Uzay tamamen boş mudur?",
+            "options": [
+              { "id": "opt_evet", "text": "Evet", "isCorrect": false },
+              { "id": "opt_hayir", "text": "Hayır", "isCorrect": true }
+            ],
+            "correctFeedback": "Uzay yalnızca boşluk değildir; gaz, toz ve farklı türlerde enerji de içerir.",
+            "incorrectFeedback": "Tekrar düşünelim! Uzayda gök cisimlerinin yanı sıra gaz, toz ve enerji de bulunur."
+          },
+          "conceptWarning": {
+            "buttonText": "Tıkla → Göster",
+            "title": "Uzay ve evren aynı kavram değildir.",
+            "explanation": "Dünya dışındaki evren parçasına <strong>uzay</strong> denirken; Dünya da dâhil olmak üzere tüm gök cisimlerini ve uzayı kapsayan bütüne <strong>evren</strong> denir."
+          }
+        }
+      ]
+    }
+  ]
+}

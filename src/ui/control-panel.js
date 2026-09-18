@@ -25,7 +25,8 @@ export function renderControlPanel(container, { catalog, curriculum, state, less
   const grades = catalog.grades ?? [];
   const selectedGrade = state.selection.gradeId ?? grades[0]?.id ?? "";
   const grade = grades.find((item) => item.id === selectedGrade);
-  const units = curriculum?.units ?? [];
+  const rawUnits = curriculum?.units ?? [];
+  const units = rawUnits.filter((u) => !u.gradeId || u.gradeId === selectedGrade);
   const selectedUnit = units.find((item) => item.id === state.selection.unitId) ?? units[0];
   const topics = selectedUnit?.topics ?? [];
   const selectedTopic = topics.find((item) => item.id === state.selection.topicId) ?? topics[0];

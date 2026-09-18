@@ -10,6 +10,7 @@ import { StorageLayer } from "./layers/storage.js";
 import { TeacherTools } from "./tools/teacher-tools.js";
 import { renderShell } from "./ui/app-shell.js";
 import { renderSolarSlide } from "./ui/solar-system-slides.js";
+import { renderSpaceSlide } from "./ui/space-research-slides.js";
 import { renderControlPanel } from "./ui/control-panel.js";
 import { renderPresentation, renderPlanItemsForState } from "./ui/presentation-view.js";
 import { renderWorkModePlaceholder as renderWorkModePlaceholderView } from "./ui/work-mode-placeholder.js";
@@ -169,7 +170,8 @@ class CanFenciApp {
     }
 
     const grade = this.curriculum.getGrade(gradeId);
-    const units = this.curriculumData?.units ?? [];
+    const rawUnits = this.curriculumData?.units ?? [];
+    const units = rawUnits.filter((u) => !u.gradeId || u.gradeId === gradeId);
     const targetUnitId = routeParams.unitId || currentSelection.unitId;
     const unit = units.find((item) => item.id === targetUnitId) ?? units[0] ?? null;
 
@@ -307,7 +309,9 @@ class CanFenciApp {
         this.curriculumData = grade?.curriculumProfileId
           ? await this.curriculum.loadCurriculum(grade.curriculumProfileId)
           : { units: [] };
-        const unit = this.curriculumData.units[0];
+        const rawUnits = this.curriculumData?.units ?? [];
+        const units = rawUnits.filter((u) => !u.gradeId || u.gradeId === value);
+        const unit = units[0];
         const topic = unit?.topics?.[0];
         const lesson = topic?.lessons?.[0];
         const presentationSource = getPresentationSource(topic);
@@ -816,6 +820,12 @@ class CanFenciApp {
   #renderCanvaSlide(slide, view) {
     if (slide.layout?.startsWith("solar_")) {
       return renderSolarSlide(slide, view, {
+        interactions: this.interactions,
+        activeInteractions: this.activeInteractions
+      });
+    }
+    if (slide.layout?.startsWith("space_")) {
+      return renderSpaceSlide(slide, view, {
         interactions: this.interactions,
         activeInteractions: this.activeInteractions
       });
