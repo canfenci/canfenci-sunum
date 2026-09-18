@@ -13,10 +13,10 @@ test("7. Sınıf Uzay Araştırmaları Ders Paketi ve Slayt 1 Sözleşmesi", asy
   assert.equal(lessonData.curriculumProfileId, "maarif_model");
   assert.equal(lessonData.unitId, "space_age");
   assert.equal(lessonData.topicId, "space_research");
-  assert.equal(lessonData.stages.length, 2, "2 ders aşaması bulunmalıdır");
+  assert.equal(lessonData.stages.length, 3, "3 ders aşaması bulunmalıdır");
 
   const slides = lessonData.stages.flatMap((stage) => stage.slides || []);
-  assert.equal(slides.length, 2, "Slayt sayısı tam olarak 2 olmalıdır");
+  assert.equal(slides.length, 3, "Slayt sayısı tam olarak 3 olmalıdır");
 
   const slide1 = slides[0];
   assert.equal(slide1.id, "slide_1_uzay_nedir");
@@ -75,6 +75,26 @@ test("7. Sınıf Uzay Araştırmaları Ders Paketi ve Slayt 1 Sözleşmesi", asy
   assert.ok(inter2.template.includes("{teknolojiler}"));
   assert.equal(inter2.blanks[0].answer, "teknolojiler");
 
+  // Slayt 3 Doğrulaması
+  const slide3 = slides[2];
+  assert.equal(slide3.id, "slide_3_uzay_araclari");
+  assert.equal(slide3.layout, "space_uzay_araclari");
+  assert.equal(slide3.title, "Uzay Araştırmalarında Kullanılan Araçlar");
+  assert.equal(slide3.tools?.length, 3, "3 araç bulunmalıdır");
+  assert.equal(slide3.tools[0].name, "Uzay Roketi");
+  assert.equal(slide3.tools[0].desc, "Uzaya araç, uydu veya yük taşımak için kullanılan güçlü taşıma sistemidir.");
+  assert.equal(slide3.tools[1].name, "Uzay Sondası");
+  assert.equal(slide3.tools[1].desc, "İnsan taşımadan uzaydaki gök cisimleri hakkında veri toplayan araştırma aracıdır.");
+  assert.equal(slide3.tools[2].name, "Uzay Mekiği");
+  assert.equal(slide3.tools[2].desc, "İnsan ve yük taşıyabilen, uzaya gidip yeniden Dünya’ya dönebilen uzay aracıdır.");
+  assert.equal(slide3.media?.length, 3, "3 adet görsel bulunmalıdır");
+  for (const m of slide3.media) {
+    const p = m.src.replace(/^\.\//, "");
+    await access(p);
+    const st = await stat(p);
+    assert.ok(st.size > 0, "Görsel dosyası boş olamaz");
+  }
+
   // LessonEngine testi
   const originalFetch = globalThis.fetch;
   globalThis.fetch = async (url) => {
@@ -91,7 +111,7 @@ test("7. Sınıf Uzay Araştırmaları Ders Paketi ve Slayt 1 Sözleşmesi", asy
     const engine = new LessonEngine();
     const loaded = await engine.load("data/lessons/uzay-arastirmalari.json");
     assert.equal(loaded.id, "lesson_uzay_arastirmalari_1");
-    assert.equal(engine.slideCount, 2);
+    assert.equal(engine.slideCount, 3);
   } finally {
     globalThis.fetch = originalFetch;
   }
@@ -162,4 +182,14 @@ test("Slayt 2 (Uzay Araştırmaları Neden Yapılır?) Tipografi ve 2+3 Düzen C
   assert.ok(css.includes(".space-bottom-slot .reveal-fill-sentence {\n  font-size: 36px;"), "Slayt 2 reveal_fill cümlesi 36px olmalıdır");
   assert.ok(css.includes(".space-bottom-slot .blank-slot-answer {\n  font-size: 36px;"), "Slayt 2 boşluk cevabı 36px olmalıdır");
   assert.ok(css.includes(".space-purposes-grid {\n  display: grid;\n  grid-template-columns: repeat(6, 1fr);"), "2+3 dengeli grid yapısı repeat(6, 1fr) olmalıdır");
+});
+
+test("Slayt 3 (Uzay Araştırmalarında Kullanılan Araçlar) Tipografi ve 3 Sütun CSS Doğrulaması", async () => {
+  const css = await readFile("src/styles/app.css", "utf8");
+
+  assert.ok(css.includes(".slide-space-uzay-araclari"), "Slayt 3 ana sınıfı tanımlı olmalıdır");
+  assert.ok(css.includes(".space-tools-grid {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);"), "3 sütunlu grid yapısı tanımlı olmalıdır");
+  assert.ok(css.includes(".space-tool-name {\n  margin: 0;\n  font-size: 36px;\n  font-weight: 700;"), "Araç adı 36px bold olmalıdır");
+  assert.ok(css.includes(".space-tool-desc {\n  margin: 0;\n  font-size: 36px;\n  font-weight: 400;"), "Açıklama 36px normal olmalıdır");
+  assert.ok(css.includes(".space-tool-visual {\n  width: 100%;\n  height: 480px;"), "Görsel alanı 480px yükseklikte olmalıdır");
 });

@@ -122,6 +122,41 @@ export function renderSpaceSlide(slide, view, { interactions, activeInteractions
       return true;
     }
 
+    case "space_uzay_araclari": {
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-space-uzay-araclari";
+
+      const tools = slide.tools ?? [];
+      const toolsHtml = tools.map((tool, idx) => {
+        const imgSrc = tool.image ?? slide.media?.[idx]?.src ?? "";
+        const imgAlt = tool.name ?? "Uzay aracı";
+        return `
+          <div class="space-tool-card space-tool-item-${idx + 1}">
+            <div class="space-tool-visual">
+              <img src="${imgSrc}" alt="${escapeHtml(imgAlt)}" class="space-tool-img" />
+            </div>
+            <div class="space-tool-info">
+              <h2 class="space-tool-name">${escapeHtml(tool.name)}</h2>
+              <p class="space-tool-desc">${escapeHtml(tool.desc)}</p>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      slideArticle.innerHTML = `
+        <header class="space-slide-header">
+          <h1 class="space-slide-title">${escapeHtml(slide.title ?? "Uzay Araştırmalarında Kullanılan Araçlar")}</h1>
+        </header>
+
+        <div class="space-tools-grid">
+          ${toolsHtml}
+        </div>
+      `;
+
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
     default:
       return false;
   }

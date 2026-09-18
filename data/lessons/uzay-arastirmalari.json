@@ -115,6 +115,56 @@
           ]
         }
       ]
+    },
+    {
+      "id": "stage_uzay_araclari",
+      "label": "Uzay Araştırmalarında Kullanılan Araçlar",
+      "order": 3,
+      "slides": [
+        {
+          "id": "slide_3_uzay_araclari",
+          "type": "content",
+          "layout": "space_uzay_araclari",
+          "title": "Uzay Araştırmalarında Kullanılan Araçlar",
+          "media": [
+            {
+              "id": "media_03_uzay_roketi",
+              "src": "./assets/images/uzay-arastirmalari/03-uzay-roketi.jpg",
+              "alt": "Uzay Roketi fırlatılış anı"
+            },
+            {
+              "id": "media_03_uzay_sondasi",
+              "src": "./assets/images/uzay-arastirmalari/03-uzay-sondasi.jpg",
+              "alt": "Derin uzayda araştırma yapan Uzay Sondası"
+            },
+            {
+              "id": "media_03_uzay_mekigi",
+              "src": "./assets/images/uzay-arastirmalari/03-uzay-mekigi.jpg",
+              "alt": "Dünya yörüngesinde uçan Uzay Mekiği"
+            }
+          ],
+          "tools": [
+            {
+              "id": "uzay_roketi",
+              "name": "Uzay Roketi",
+              "desc": "Uzaya araç, uydu veya yük taşımak için kullanılan güçlü taşıma sistemidir.",
+              "image": "./assets/images/uzay-arastirmalari/03-uzay-roketi.jpg"
+            },
+            {
+              "id": "uzay_sondasi",
+              "name": "Uzay Sondası",
+              "desc": "İnsan taşımadan uzaydaki gök cisimleri hakkında veri toplayan araştırma aracıdır.",
+              "image": "./assets/images/uzay-arastirmalari/03-uzay-sondasi.jpg"
+            },
+            {
+              "id": "uzay_mekigi",
+              "name": "Uzay Mekiği",
+              "desc": "İnsan ve yük taşıyabilen, uzaya gidip yeniden Dünya’ya dönebilen uzay aracıdır.",
+              "image": "./assets/images/uzay-arastirmalari/03-uzay-mekigi.jpg"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
