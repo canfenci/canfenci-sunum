@@ -113,3 +113,18 @@ test("Yeni Tipografi Standardı CSS Kural Doğrulaması", async () => {
   assert.ok(css.includes(".space-choice-btn"), "space-choice-btn stili tanımlı olmalıdır");
   assert.ok(css.includes(".space-warning-toggle"), "space-warning-toggle stili tanımlı olmalıdır");
 });
+
+test("Slayt 1 Tipografi Standartları Minimum 36px Kontrolü", async () => {
+  const css = await readFile("src/styles/app.css", "utf8");
+
+  // Zorunlu alanların minimum 36px clamp değerleri
+  assert.ok(css.includes(".space-slide-title {\n  margin: 0;\n  font-size: clamp(46px"), "Başlık 46-48px olmalıdır");
+  assert.ok(css.includes(".space-card-subhead span {\n  font-size: clamp(42px"), "Kart başlığı 42-44px olmalıdır");
+  assert.ok(css.includes(".space-tanim-slot .reveal-fill-sentence {\n  font-size: clamp(36px"), "Reveal fill cümlesi en az 36px olmalıdır");
+  assert.ok(css.includes(".space-concept-label {\n  font-size: clamp(36px"), "Kavram etiketi en az 36px olmalıdır");
+  assert.ok(css.includes(".space-quiz-prompt {\n  font-size: clamp(36px"), "Evet/Hayır soru metni en az 36px olmalıdır");
+  assert.ok(css.includes(".space-choice-btn {\n  flex: 1;\n  min-height: clamp(48px, 3.2cqi, 58px);\n  padding: 0 20px;\n  font-size: clamp(36px"), "Evet/Hayır buton yazıları en az 36px olmalıdır");
+  assert.ok(css.includes(".space-quiz-feedback {\n  border-radius: 12px;\n  padding: 8px 14px;\n  font-size: clamp(36px"), "Geri bildirim metni en az 36px olmalıdır");
+  assert.ok(css.includes(".space-warning-title {\n  flex: 1;\n  font-size: clamp(36px"), "Uyarı kartı başlığı en az 36px olmalıdır");
+  assert.ok(css.includes(".space-warning-content p {\n  margin: 0;\n  font-size: clamp(36px"), "Açıklama metni en az 36px olmalıdır");
+});
