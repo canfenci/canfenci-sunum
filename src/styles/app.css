@@ -4893,4 +4893,566 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   letter-spacing: -0.01em;
 }
 
+/* ==========================================================================
+   SLAYT 10: TELESKOP ÇEŞİTLERİ (1920x1080 Sabit Mantıksal Tuval)
+   ========================================================================== */
+.slide-space-teleskop-cesitleri {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 16px;
+  box-sizing: border-box;
+}
 
+.teleskop-cesitleri-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  flex: 1 1 auto;
+  min-height: 0;
+  box-sizing: border-box;
+}
+
+.teleskop-karsilastirma-card {
+  background: #ffffff;
+  border-radius: 24px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+  box-sizing: border-box;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Sol Kart: Uzay Teleskopları (Lacivert / Mor-Mavi Ton, Açık Okunaklı Zemin) */
+.uzay-teleskop-card {
+  border: 2.5px solid #c7d2fe;
+  background: #fbfcfe;
+}
+
+.uzay-teleskop-card .karsilastirma-card-title {
+  color: #312e81;
+}
+
+.uzay-teleskop-card .karsilastirma-detail-box {
+  background: #eef2ff;
+  border-left: 6px solid #4f46e5;
+}
+
+/* Sağ Kart: Yer Tabanlı Teleskoplar (Sıcak Gri / Açık Mavi Ton, Açık Okunaklı Zemin) */
+.yer-teleskop-card {
+  border: 2.5px solid #cbd5e1;
+  background: #f8fafc;
+}
+
+.yer-teleskop-card .karsilastirma-card-title {
+  color: #0f172a;
+}
+
+.yer-teleskop-card .karsilastirma-detail-box {
+  background: #f0f9ff;
+  border-left: 6px solid #0284c7;
+}
+
+/* Kart Görsel Alanı */
+.karsilastirma-visual-box {
+  position: relative;
+  width: 100%;
+  height: 360px;
+  overflow: hidden;
+  background: #0f172a;
+  flex: 0 0 360px;
+}
+
+.karsilastirma-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.karsilastirma-card-badge {
+  position: absolute;
+  top: 18px;
+  left: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 18px;
+  border-radius: 9999px;
+  background: rgba(49, 46, 129, 0.9);
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  backdrop-filter: blur(8px);
+}
+
+.karsilastirma-card-badge.yer-badge {
+  background: rgba(15, 23, 42, 0.9);
+}
+
+.card-badge-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #818cf8;
+}
+
+.card-badge-dot.yer-dot {
+  background: #38bdf8;
+}
+
+/* Kart İçerik Alanı */
+.karsilastirma-card-content {
+  padding: 28px 36px 32px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  flex: 1 1 auto;
+  justify-content: space-between;
+}
+
+.karsilastirma-card-title {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.karsilastirma-main-desc {
+  font-size: 36px;
+  font-weight: 600;
+  color: #1e293b;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.karsilastirma-detail-box {
+  padding: 16px 22px;
+  border-radius: 14px;
+}
+
+.karsilastirma-second-info {
+  font-size: 30px;
+  font-weight: 500;
+  color: #334155;
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* Alt Bölümler: Örnekler & Karşılaştırma Notu */
+.karsilastirma-bottom-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-top: 12px;
+  border-top: 1.5px solid #e2e8f0;
+}
+
+.karsilastirma-bottom-label {
+  font-size: 24px;
+  font-weight: 700;
+  color: #64748b;
+  white-space: nowrap;
+}
+
+.karsilastirma-examples-list {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.karsilastirma-example-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #ffffff;
+  border: 2px solid #c7d2fe;
+  padding: 8px 20px;
+  border-radius: 9999px;
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.08);
+}
+
+.example-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #4f46e5;
+  flex-shrink: 0;
+}
+
+.example-name {
+  font-size: 30px;
+  font-weight: 700;
+  color: #1e1b4b;
+  white-space: nowrap;
+}
+
+.karsilastirma-comparison-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #ffffff;
+  border: 2px solid #38bdf8;
+  padding: 8px 22px;
+  border-radius: 9999px;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.08);
+}
+
+.comparison-check {
+  font-size: 26px;
+  font-weight: 900;
+  color: #0284c7;
+}
+
+.comparison-text {
+  font-size: 30px;
+  font-weight: 700;
+  color: #0f172a;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   SLAYT 11: GÖZLEMEVİ NERELERE KURULUR? (1920x1080 Sabit Mantıksal Tuval)
+   ========================================================================== */
+.slide-space-gozlemevi-nerelere-kurulur {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 12px;
+  box-sizing: border-box;
+}
+
+.gozlemevi-page-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* Üst Tanım Çubuğu (36 px Tanım) */
+.gozlemevi-tanim-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 12px 28px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03);
+}
+
+.gozlemevi-tanim-badge {
+  background: #0284c7;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 800;
+  padding: 6px 16px;
+  border-radius: 10px;
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+}
+
+.gozlemevi-tanim-p {
+  font-size: 36px;
+  font-weight: 600;
+  color: #0f172a;
+  line-height: 1.35;
+  margin: 0;
+}
+
+/* Orta Bölüm: Büyük Dağ Gözlemevi Görseli + 6 Kriter Etiketi */
+.gozlemevi-main-row {
+  display: grid;
+  grid-template-columns: 780px 1012px;
+  gap: 28px;
+  height: 350px;
+  align-items: stretch;
+}
+
+.gozlemevi-hero-visual {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #0f172a;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+  border: 2px solid #cbd5e1;
+}
+
+.gozlemevi-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.gozlemevi-hero-badge {
+  position: absolute;
+  bottom: 16px;
+  left: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 18px;
+  border-radius: 9999px;
+  background: rgba(15, 23, 42, 0.88);
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 700;
+  backdrop-filter: blur(8px);
+}
+
+.hero-badge-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #38bdf8;
+}
+
+.gozlemevi-criteria-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 22px 28px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+}
+
+.criteria-section-header {
+  border-left: 6px solid #0284c7;
+  padding-left: 14px;
+}
+
+.criteria-section-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #0369a1;
+  letter-spacing: -0.01em;
+}
+
+.gozlemevi-criteria-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px 18px;
+}
+
+.gozlemevi-criteria-pill {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 10px 18px;
+}
+
+.criteria-bullet {
+  color: #0284c7;
+  font-size: 20px;
+}
+
+.criteria-text {
+  font-size: 30px;
+  font-weight: 700;
+  color: #1e293b;
+  line-height: 1.25;
+}
+
+/* Alt Bölüm: A / B Karşılaştırma Etkileşimi */
+.gozlemevi-interactive-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 16px 24px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+}
+
+.gozlemevi-question-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.gozlemevi-q-badge {
+  background: #f59e0b;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 900;
+  padding: 4px 14px;
+  border-radius: 8px;
+  letter-spacing: 0.03em;
+  flex-shrink: 0;
+}
+
+.gozlemevi-question-text {
+  font-size: 36px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.gozlemevi-choices-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.gozlemevi-choice-card {
+  border: 2.5px solid #cbd5e1;
+  border-radius: 18px;
+  background: #f8fafc;
+  padding: 14px 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  outline: none;
+}
+
+.gozlemevi-choice-card:hover {
+  transform: translateY(-2px);
+  border-color: #94a3b8;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06);
+}
+
+.gozlemevi-choice-card:focus-visible {
+  box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.3);
+}
+
+.choice-card-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.choice-letter {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #e2e8f0;
+  color: #0f172a;
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+
+.choice-title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.choice-card-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.choice-thumbnail-frame {
+  width: 190px;
+  height: 110px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #0f172a;
+  flex-shrink: 0;
+}
+
+.choice-thumbnail-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.choice-features-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+
+.choice-feature-tag {
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  padding: 6px 14px;
+  border-radius: 10px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #334155;
+}
+
+/* Doğru ve Yanlış Durumları */
+.gozlemevi-choice-card.is-correct {
+  border-color: #10b981;
+  background: #ecfdf5;
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.15);
+}
+
+.gozlemevi-choice-card.is-correct .choice-letter {
+  background: #10b981;
+  color: #ffffff;
+}
+
+.gozlemevi-choice-card.is-incorrect {
+  border-color: #f43f5e;
+  background: #fff1f2;
+}
+
+.gozlemevi-choice-card.is-incorrect .choice-letter {
+  background: #f43f5e;
+  color: #ffffff;
+}
+
+.gozlemevi-choice-card.is-dimmed {
+  opacity: 0.6;
+}
+
+/* Geri Bildirim Kutusu (30–32 px) */
+.gozlemevi-feedback-box {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: #ecfdf5;
+  border: 2px solid #10b981;
+  border-radius: 16px;
+  padding: 12px 24px;
+  margin-top: 4px;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.1);
+  transition: all 0.3s ease;
+}
+
+.gozlemevi-feedback-box.is-hidden {
+  display: none;
+}
+
+.feedback-indicator {
+  background: #10b981;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 900;
+  padding: 6px 16px;
+  border-radius: 8px;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.gozlemevi-feedback-text {
+  font-size: 32px;
+  font-weight: 700;
+  color: #065f46;
+  line-height: 1.3;
+  margin: 0;
+}

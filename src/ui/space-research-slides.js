@@ -499,6 +499,222 @@ export function renderSpaceSlide(slide, view, { interactions, activeInteractions
       return true;
     }
 
+    case "space_teleskop_cesitleri": {
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-space-teleskop-cesitleri";
+
+      const leftCard = slide.leftCard ?? {};
+      const rightCard = slide.rightCard ?? {};
+
+      const leftExamplesHtml = (leftCard.examples ?? []).map((ex) => `
+        <div class="karsilastirma-example-item">
+          <span class="example-dot" aria-hidden="true"></span>
+          <span class="example-name">${escapeHtml(ex)}</span>
+        </div>
+      `).join("");
+
+      slideArticle.innerHTML = `
+        <header class="space-slide-header">
+          <h1 class="space-slide-title">${escapeHtml(slide.title ?? "Teleskop Çeşitleri")}</h1>
+        </header>
+
+        <div class="teleskop-cesitleri-grid">
+          <!-- SOL KART: UZAY TELESKOPLARI -->
+          <div class="teleskop-karsilastirma-card uzay-teleskop-card">
+            <div class="karsilastirma-visual-box">
+              <img src="${escapeHtml(leftCard.image ?? "")}" alt="${escapeHtml(leftCard.title ?? "")}" class="karsilastirma-card-img" />
+              <div class="karsilastirma-card-badge">
+                <span class="card-badge-dot"></span>
+                <span>Uzay Tabanlı</span>
+              </div>
+            </div>
+            <div class="karsilastirma-card-content">
+              <h2 class="karsilastirma-card-title">${escapeHtml(leftCard.title ?? "UZAY TELESKOPLARI")}</h2>
+              <p class="karsilastirma-main-desc">${escapeHtml(leftCard.desc ?? "")}</p>
+              <div class="karsilastirma-detail-box">
+                <p class="karsilastirma-second-info">${escapeHtml(leftCard.detail ?? "")}</p>
+              </div>
+              <div class="karsilastirma-bottom-section">
+                <span class="karsilastirma-bottom-label">Önemli Örnekler:</span>
+                <div class="karsilastirma-examples-list">
+                  ${leftExamplesHtml}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SAĞ KART: YER TABANLI TELESKOPLAR -->
+          <div class="teleskop-karsilastirma-card yer-teleskop-card">
+            <div class="karsilastirma-visual-box">
+              <img src="${escapeHtml(rightCard.image ?? "")}" alt="${escapeHtml(rightCard.title ?? "")}" class="karsilastirma-card-img" />
+              <div class="karsilastirma-card-badge yer-badge">
+                <span class="card-badge-dot yer-dot"></span>
+                <span>Yer Tabanlı</span>
+              </div>
+            </div>
+            <div class="karsilastirma-card-content">
+              <h2 class="karsilastirma-card-title">${escapeHtml(rightCard.title ?? "YER TABANLI TELESKOPLAR")}</h2>
+              <p class="karsilastirma-main-desc">${escapeHtml(rightCard.desc ?? "")}</p>
+              <div class="karsilastirma-detail-box yer-detail-box">
+                <p class="karsilastirma-second-info">${escapeHtml(rightCard.detail ?? "")}</p>
+              </div>
+              <div class="karsilastirma-bottom-section">
+                <span class="karsilastirma-bottom-label">Temel Avantaj:</span>
+                <div class="karsilastirma-comparison-pill">
+                  <span class="comparison-check" aria-hidden="true">✓</span>
+                  <span class="comparison-text">${escapeHtml(rightCard.comparison ?? "Bakım ve yenileme daha kolay")}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
+    case "space_gozlemevi_nerelere_kurulur": {
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-space-gozlemevi-nerelere-kurulur";
+
+      const criteria = slide.criteria ?? [];
+      const criteriaHtml = criteria.map((item) => `
+        <div class="gozlemevi-criteria-pill">
+          <span class="criteria-bullet" aria-hidden="true">●</span>
+          <span class="criteria-text">${escapeHtml(item)}</span>
+        </div>
+      `).join("");
+
+      const compQ = slide.comparisonQuestion ?? {};
+      const options = compQ.options ?? [];
+      const optA = options[0] ?? {};
+      const optB = options[1] ?? {};
+
+      const optAFeatures = (optA.features ?? []).map((f) => `<span class="choice-feature-tag">${escapeHtml(f)}</span>`).join("");
+      const optBFeatures = (optB.features ?? []).map((f) => `<span class="choice-feature-tag">${escapeHtml(f)}</span>`).join("");
+
+      slideArticle.innerHTML = `
+        <header class="space-slide-header">
+          <h1 class="space-slide-title">${escapeHtml(slide.title ?? "Gözlemevi Nerelere Kurulur?")}</h1>
+        </header>
+
+        <div class="gozlemevi-page-layout">
+          <!-- Üst Tanım Çubuğu -->
+          <div class="gozlemevi-tanim-card">
+            <span class="gozlemevi-tanim-badge">TANIM</span>
+            <p class="gozlemevi-tanim-p">${escapeHtml(slide.definition ?? "")}</p>
+          </div>
+
+          <!-- Orta Bölüm: Büyük Dağ Gözlemevi Görseli + 6 Kriter Etiketi -->
+          <div class="gozlemevi-main-row">
+            <div class="gozlemevi-hero-visual">
+              <img src="${escapeHtml(slide.observatoryImage ?? "./assets/images/uzay-arastirmalari/11-dag-gozlemevi.jpg")}" alt="Dağ Gözlemevi" class="gozlemevi-hero-img" />
+              <div class="gozlemevi-hero-badge">
+                <span class="hero-badge-dot"></span>
+                <span>Optik Gözlemevi (Rasathane)</span>
+              </div>
+            </div>
+
+            <div class="gozlemevi-criteria-section">
+              <div class="criteria-section-header">
+                <span class="criteria-section-title">Kurulum İçin Aranan Şartlar (MEB)</span>
+              </div>
+              <div class="gozlemevi-criteria-grid">
+                ${criteriaHtml}
+              </div>
+            </div>
+          </div>
+
+          <!-- Alt Bölüm: A / B Karşılaştırma Etkileşimi -->
+          <div class="gozlemevi-interactive-section">
+            <div class="gozlemevi-question-bar">
+              <span class="gozlemevi-q-badge">SORU</span>
+              <span class="gozlemevi-question-text">${escapeHtml(compQ.question ?? "Gözlemevi kurmak için hangisi daha uygundur?")}</span>
+            </div>
+
+            <div class="gozlemevi-choices-row">
+              <!-- A Seçeneği: Şehir Merkezi -->
+              <div class="gozlemevi-choice-card choice-opt-a" role="button" tabindex="0" data-choice="A" aria-label="A seçeneği: Şehir merkezi">
+                <div class="choice-card-head">
+                  <span class="choice-letter">A</span>
+                  <span class="choice-title">${escapeHtml(optA.title ?? "Şehir Merkezi")}</span>
+                </div>
+                <div class="choice-card-content">
+                  <div class="choice-thumbnail-frame">
+                    <img src="${escapeHtml(optA.image ?? "")}" alt="Şehir Merkezi" class="choice-thumbnail-img" />
+                  </div>
+                  <div class="choice-features-tags">
+                    ${optAFeatures}
+                  </div>
+                </div>
+              </div>
+
+              <!-- B Seçeneği: Yüksek ve Karanlık Dağlık Bölge (Doğru) -->
+              <div class="gozlemevi-choice-card choice-opt-b" role="button" tabindex="0" data-choice="B" aria-label="B seçeneği: Yüksek ve karanlık dağlık bölge">
+                <div class="choice-card-head">
+                  <span class="choice-letter">B</span>
+                  <span class="choice-title">${escapeHtml(optB.title ?? "Yüksek ve Karanlık Dağlık Bölge")}</span>
+                </div>
+                <div class="choice-card-content">
+                  <div class="choice-thumbnail-frame">
+                    <img src="${escapeHtml(optB.image ?? "")}" alt="Yüksek ve Karanlık Dağlık Bölge" class="choice-thumbnail-img" />
+                  </div>
+                  <div class="choice-features-tags">
+                    ${optBFeatures}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Doğru Cevap Sonrası Geri Bildirim -->
+            <div class="gozlemevi-feedback-box is-hidden" id="gozlemeviFeedbackBox" aria-live="polite">
+              <span class="feedback-indicator">DOĞRU SEÇİM</span>
+              <p class="gozlemevi-feedback-text">${escapeHtml(compQ.feedback ?? "")}</p>
+            </div>
+          </div>
+        </div>
+      `;
+
+      // Etkileşim kontrolü: A ve B tıklamaları
+      const cardA = slideArticle.querySelector(".choice-opt-a");
+      const cardB = slideArticle.querySelector(".choice-opt-b");
+      const feedbackBox = slideArticle.querySelector("#gozlemeviFeedbackBox");
+
+      const selectOption = (opt) => {
+        if (opt === "B") {
+          cardB?.classList.add("is-correct");
+          cardB?.classList.remove("is-dimmed");
+          cardA?.classList.add("is-dimmed");
+          cardA?.classList.remove("is-incorrect");
+          if (feedbackBox) feedbackBox.classList.remove("is-hidden");
+        } else {
+          cardA?.classList.add("is-incorrect");
+          cardA?.classList.remove("is-dimmed");
+          cardB?.classList.remove("is-dimmed");
+        }
+      };
+
+      cardA?.addEventListener("click", () => selectOption("A"));
+      cardA?.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          selectOption("A");
+        }
+      });
+
+      cardB?.addEventListener("click", () => selectOption("B"));
+      cardB?.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          selectOption("B");
+        }
+      });
+
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
     default:
       return false;
   }

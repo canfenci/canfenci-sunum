@@ -16,7 +16,7 @@ test("7. Sınıf Uzay Araştırmaları Ders Paketi ve Slayt 1 Sözleşmesi", asy
   assert.equal(lessonData.stages.length, 3, "3 ders aşaması bulunmalıdır");
 
   const slides = lessonData.stages.flatMap((stage) => stage.slides || []);
-  assert.equal(slides.length, 9, "Slayt sayısı tam olarak 9 olmalıdır");
+  assert.equal(slides.length, 11, "Slayt sayısı tam olarak 11 olmalıdır");
 
   const slide1 = slides[0];
   assert.equal(slide1.id, "slide_1_uzay_nedir");
@@ -249,7 +249,7 @@ test("7. Sınıf Uzay Araştırmaları Ders Paketi ve Slayt 1 Sözleşmesi", asy
     const engine = new LessonEngine();
     const loaded = await engine.load("data/lessons/uzay-arastirmalari.json");
     assert.equal(loaded.id, "lesson_uzay_arastirmalari_1");
-    assert.equal(engine.slideCount, 9);
+    assert.equal(engine.slideCount, 11);
   } finally {
     globalThis.fetch = originalFetch;
   }
@@ -386,3 +386,84 @@ test("Slayt 9 (Teleskop Nedir?) Tipografi ve Düzen CSS Doğrulaması", async ()
   assert.ok(css.includes(".type-card-name {\n  font-size: 32px;"), "Teleskop tür adları 32px (30-32px) olmalıdır");
 });
 
+test("Slayt 10 (Teleskop Çeşitleri) Sözleşme ve Tipografi CSS Doğrulaması", async () => {
+  const lessonData = await readJson("data/lessons/uzay-arastirmalari.json");
+  const slides = lessonData.stages.flatMap((stage) => stage.slides || []);
+  const slide10 = slides[9];
+
+  assert.ok(slide10, "Slayt 10 mevcut olmalıdır");
+  assert.equal(slide10.id, "slide_10_teleskop_cesitleri");
+  assert.equal(slide10.layout, "space_teleskop_cesitleri");
+  assert.equal(slide10.title, "Teleskop Çeşitleri");
+
+  // Sol Kart: Uzay Teleskopları
+  assert.equal(slide10.leftCard.title, "UZAY TELESKOPLARI");
+  assert.equal(slide10.leftCard.desc, "Uzaya yerleştirilen teleskoplardır.");
+  assert.equal(slide10.leftCard.detail, "Atmosferin ve ışık kirliliğinin olumsuz etkilerinden daha az etkilenerek daha net ve ayrıntılı görüntüler elde ederler.");
+  assert.deepEqual(slide10.leftCard.examples, ["Hubble Uzay Teleskobu", "James Webb Uzay Teleskobu"]);
+
+  // Sağ Kart: Yer Tabanlı Teleskoplar
+  assert.equal(slide10.rightCard.title, "YER TABANLI TELESKOPLAR");
+  assert.equal(slide10.rightCard.desc, "Yeryüzüne yerleştirilen teleskoplardır.");
+  assert.equal(slide10.rightCard.detail, "Bakım ve yenilenmeleri daha kolaydır ancak atmosfer ve ışık kirliliği gözlemleri olumsuz etkileyebilir.");
+  assert.equal(slide10.rightCard.comparison, "Bakım ve yenileme daha kolay");
+
+  // Görsellerin varlığı
+  await access(slide10.leftCard.image.replace(/^\.\//, ""));
+  await access(slide10.rightCard.image.replace(/^\.\//, ""));
+
+  // CSS Kuralları
+  const css = await readFile("src/styles/app.css", "utf8");
+  assert.ok(css.includes(".slide-space-teleskop-cesitleri"), "Slayt 10 ana sınıfı tanımlı olmalıdır");
+  assert.ok(css.includes(".teleskop-cesitleri-grid"), "İki kartlı grid tanımlı olmalıdır");
+  assert.ok(css.includes(".karsilastirma-card-title {\n  font-size: 36px;\n  font-weight: 700;"), "Kart başlıkları 36px bold olmalıdır");
+  assert.ok(css.includes(".karsilastirma-main-desc {\n  font-size: 36px;\n  font-weight: 600;"), "Ana açıklamalar 36px olmalıdır");
+  assert.ok(css.includes(".karsilastirma-second-info {\n  font-size: 30px;"), "İkincil bilgiler 30px (30-32px) olmalıdır");
+  assert.ok(css.includes(".example-name {\n  font-size: 30px;"), "Örnek teleskop adları 30px (30-32px) olmalıdır");
+  assert.ok(css.includes(".comparison-text {\n  font-size: 30px;"), "Karşılaştırma avantajı 30px (30-32px) olmalıdır");
+});
+
+test("Slayt 11 (Gözlemevi Nerelere Kurulur?) Sözleşme, MEB Kriterleri ve Etkileşim CSS Doğrulaması", async () => {
+  const lessonData = await readJson("data/lessons/uzay-arastirmalari.json");
+  const slides = lessonData.stages.flatMap((stage) => stage.slides || []);
+  const slide11 = slides[10];
+
+  assert.ok(slide11, "Slayt 11 mevcut olmalıdır");
+  assert.equal(slide11.id, "slide_11_gozlemevi_nerelere_kurulur");
+  assert.equal(slide11.layout, "space_gozlemevi_nerelere_kurulur");
+  assert.equal(slide11.title, "Gözlemevi Nerelere Kurulur?");
+  assert.equal(slide11.definition, "Teleskopların yerleştirildiği kubbe benzeri yapılara gözlemevi (rasathane) denir.");
+
+  // MEB Kriterleri
+  const expectedCriteria = [
+    "Yerleşim merkezlerinden uzak",
+    "Işık kirliliğinin az olduğu",
+    "Hava koşullarının uygun olduğu",
+    "Yüksek rakımlı",
+    "Deprem kuşaklarından uzak",
+    "TV ve radyo yayınlarından uzak"
+  ];
+  assert.deepEqual(slide11.criteria, expectedCriteria, "6 MEB kriteri eksiksiz olmalıdır");
+
+  // Karşılaştırma Etkileşimi
+  assert.equal(slide11.comparisonQuestion.question, "Gözlemevi kurmak için hangisi daha uygundur?");
+  assert.equal(slide11.comparisonQuestion.correctOption, "B");
+  assert.equal(slide11.comparisonQuestion.feedback, "Yüksek, karanlık ve yerleşim merkezlerinden uzak bölgeler gözlem için daha uygundur.");
+  assert.equal(slide11.comparisonQuestion.options.length, 2);
+  assert.equal(slide11.comparisonQuestion.options[0].id, "A");
+  assert.equal(slide11.comparisonQuestion.options[1].id, "B");
+
+  // Görseller
+  await access(slide11.observatoryImage.replace(/^\.\//, ""));
+  await access(slide11.comparisonQuestion.options[0].image.replace(/^\.\//, ""));
+  await access(slide11.comparisonQuestion.options[1].image.replace(/^\.\//, ""));
+
+  // CSS Kuralları
+  const css = await readFile("src/styles/app.css", "utf8");
+  assert.ok(css.includes(".slide-space-gozlemevi-nerelere-kurulur"), "Slayt 11 ana sınıfı tanımlı olmalıdır");
+  assert.ok(css.includes(".gozlemevi-tanim-p {\n  font-size: 36px;"), "Tanım metni 36px olmalıdır");
+  assert.ok(css.includes(".criteria-text {\n  font-size: 30px;\n  font-weight: 700;"), "Özellik etiketleri 30px (30-32px) olmalıdır");
+  assert.ok(css.includes(".gozlemevi-question-text {\n  font-size: 36px;\n  font-weight: 800;"), "Soru 36px olmalıdır");
+  assert.ok(css.includes(".choice-title {\n  font-size: 36px;\n  font-weight: 700;"), "Seçenek başlıkları 36px bold olmalıdır");
+  assert.ok(css.includes(".gozlemevi-feedback-text {\n  font-size: 32px;\n  font-weight: 700;"), "Geri bildirim 32px (30-32px) olmalıdır");
+});

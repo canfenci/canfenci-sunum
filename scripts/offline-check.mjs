@@ -123,10 +123,10 @@ try {
 try {
   const uzay = JSON.parse(await readFile("data/lessons/uzay-arastirmalari.json", "utf8"));
   const uzaySlides = uzay.stages.flatMap((s) => s.slides ?? []);
-  if (uzaySlides.length === 9) {
+  if (uzaySlides.length === 11) {
     pass(`7. Sınıf Uzay Araştırmaları slayt sayısı korundu: ${uzaySlides.length} slayt`);
   } else {
-    fail(`7. Sınıf Uzay Araştırmaları slayt sayısı 9 olmalıydı, bulunan: ${uzaySlides.length}`);
+    fail(`7. Sınıf Uzay Araştırmaları slayt sayısı 11 olmalıydı, bulunan: ${uzaySlides.length}`);
   }
 
   let missingMedia = 0;
@@ -136,7 +136,9 @@ try {
       ...(slide.types ?? []).map((t) => t.image),
       ...(slide.tools ?? []).map((t) => t.image),
       slide.leftCard?.image,
-      slide.rightCard?.image
+      slide.rightCard?.image,
+      slide.observatoryImage,
+      ...(slide.comparisonQuestion?.options ?? []).map((o) => o.image)
     ].filter(Boolean);
 
     for (const src of allImages) {

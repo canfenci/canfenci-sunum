@@ -476,6 +476,100 @@
               "image": "./assets/images/uzay-arastirmalari/09-uzay-teleskobu.jpg"
             }
           ]
+        },
+        {
+          "id": "slide_10_teleskop_cesitleri",
+          "type": "content",
+          "layout": "space_teleskop_cesitleri",
+          "title": "Teleskop Çeşitleri",
+          "media": [
+            {
+              "id": "media_10_uzay_teleskobu",
+              "src": "./assets/images/uzay-arastirmalari/10-uzay-teleskobu.jpg",
+              "alt": "Uzay Teleskopları"
+            },
+            {
+              "id": "media_10_yer_tabanli_teleskop",
+              "src": "./assets/images/uzay-arastirmalari/10-yer-tabanli-teleskop.jpg",
+              "alt": "Yer Tabanlı Teleskoplar"
+            }
+          ],
+          "leftCard": {
+            "title": "UZAY TELESKOPLARI",
+            "desc": "Uzaya yerleştirilen teleskoplardır.",
+            "detail": "Atmosferin ve ışık kirliliğinin olumsuz etkilerinden daha az etkilenerek daha net ve ayrıntılı görüntüler elde ederler.",
+            "examples": [
+              "Hubble Uzay Teleskobu",
+              "James Webb Uzay Teleskobu"
+            ],
+            "image": "./assets/images/uzay-arastirmalari/10-uzay-teleskobu.jpg"
+          },
+          "rightCard": {
+            "title": "YER TABANLI TELESKOPLAR",
+            "desc": "Yeryüzüne yerleştirilen teleskoplardır.",
+            "detail": "Bakım ve yenilenmeleri daha kolaydır ancak atmosfer ve ışık kirliliği gözlemleri olumsuz etkileyebilir.",
+            "comparison": "Bakım ve yenileme daha kolay",
+            "image": "./assets/images/uzay-arastirmalari/10-yer-tabanli-teleskop.jpg"
+          }
+        },
+        {
+          "id": "slide_11_gozlemevi_nerelere_kurulur",
+          "type": "content",
+          "layout": "space_gozlemevi_nerelere_kurulur",
+          "title": "Gözlemevi Nerelere Kurulur?",
+          "definition": "Teleskopların yerleştirildiği kubbe benzeri yapılara gözlemevi (rasathane) denir.",
+          "media": [
+            {
+              "id": "media_11_dag_gozlemevi",
+              "src": "./assets/images/uzay-arastirmalari/11-dag-gozlemevi.jpg",
+              "alt": "Dağ gözlemevi"
+            },
+            {
+              "id": "media_11_sehir_merkezi",
+              "src": "./assets/images/uzay-arastirmalari/11-sehir-merkezi.jpg",
+              "alt": "Şehir merkezi"
+            },
+            {
+              "id": "media_11_karanlik_daglik_bolge",
+              "src": "./assets/images/uzay-arastirmalari/11-karanlik-daglik-bolge.jpg",
+              "alt": "Yüksek ve karanlık dağlık bölge"
+            }
+          ],
+          "observatoryImage": "./assets/images/uzay-arastirmalari/11-dag-gozlemevi.jpg",
+          "criteria": [
+            "Yerleşim merkezlerinden uzak",
+            "Işık kirliliğinin az olduğu",
+            "Hava koşullarının uygun olduğu",
+            "Yüksek rakımlı",
+            "Deprem kuşaklarından uzak",
+            "TV ve radyo yayınlarından uzak"
+          ],
+          "comparisonQuestion": {
+            "question": "Gözlemevi kurmak için hangisi daha uygundur?",
+            "correctOption": "B",
+            "feedback": "Yüksek, karanlık ve yerleşim merkezlerinden uzak bölgeler gözlem için daha uygundur.",
+            "options": [
+              {
+                "id": "A",
+                "title": "Şehir Merkezi",
+                "image": "./assets/images/uzay-arastirmalari/11-sehir-merkezi.jpg",
+                "features": [
+                  "Yoğun ışık",
+                  "Binalar",
+                  "Yapay aydınlatma"
+                ]
+              },
+              {
+                "id": "B",
+                "title": "Yüksek ve Karanlık Dağlık Bölge",
+                "image": "./assets/images/uzay-arastirmalari/11-karanlik-daglik-bolge.jpg",
+                "features": [
+                  "Düşük ışık kirliliği",
+                  "Açık gökyüzü"
+                ]
+              }
+            ]
+          }
         }
       ]
     }
