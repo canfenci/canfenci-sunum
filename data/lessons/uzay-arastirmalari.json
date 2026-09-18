@@ -570,6 +570,102 @@
               }
             ]
           }
+        },
+        {
+          "id": "slide_12_uzay_teknolojileri_gunluk_hayat",
+          "type": "content",
+          "layout": "space_uzay_teknolojileri_gunluk_hayat",
+          "title": "Uzay Teknolojilerinin Günlük Hayattaki Kullanımı",
+          "areas": [
+            {
+              "id": "saglik",
+              "order": 1,
+              "title": "SAĞLIK",
+              "desc": "Uzay teknolojileri sayesinde gelişen cihazlar sağlık alanında tanı ve tedavide kullanılır.",
+              "image": "./assets/images/uzay-arastirmalari/12-saglik.jpg",
+              "theme": "rose"
+            },
+            {
+              "id": "iletisim",
+              "order": 2,
+              "title": "İLETİŞİM",
+              "desc": "Uydu sistemleri televizyon, telefon ve internet iletişimini destekler.",
+              "image": "./assets/images/uzay-arastirmalari/12-iletisim.jpg",
+              "theme": "blue"
+            },
+            {
+              "id": "gida",
+              "order": 3,
+              "title": "GIDA",
+              "desc": "Uzay çalışmalarıyla geliştirilen bazı yöntemler gıdaların korunması ve paketlenmesinde kullanılır.",
+              "image": "./assets/images/uzay-arastirmalari/12-gida.jpg",
+              "theme": "amber"
+            },
+            {
+              "id": "endustri",
+              "order": 4,
+              "title": "ENDÜSTRİ",
+              "desc": "Uzay teknolojileri üretimde kullanılan dayanıklı ve gelişmiş malzemelerin geliştirilmesini sağlar.",
+              "image": "./assets/images/uzay-arastirmalari/12-endustri.jpg",
+              "theme": "indigo"
+            },
+            {
+              "id": "ulasim",
+              "order": 5,
+              "title": "ULAŞIM",
+              "desc": "Konum belirleme ve navigasyon sistemleri ulaşımı daha güvenli ve kolay hâle getirir.",
+              "image": "./assets/images/uzay-arastirmalari/12-ulasim.jpg",
+              "theme": "emerald"
+            },
+            {
+              "id": "enerji",
+              "order": 6,
+              "title": "ENERJİ",
+              "desc": "Güneş panelleri gibi teknolojiler enerji üretiminde yaygın olarak kullanılmaktadır.",
+              "image": "./assets/images/uzay-arastirmalari/12-enerji.jpg",
+              "theme": "teal"
+            }
+          ],
+          "interactions": [
+            {
+              "id": "inter_s12_gunluk_hayat",
+              "type": "reveal_fill",
+              "template": "Uzay teknolojileri yalnızca uzayda değil, günlük yaşamda da birçok {alanda} kullanılır.",
+              "blanks": [
+                {
+                  "id": "alanda",
+                  "answer": "alanda"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "slide_13_isik_kirliligi",
+          "type": "content",
+          "layout": "space_isik_kirliligi",
+          "title": "Işık Kirliliği",
+          "definition": "Işık kaynaklarının yanlış yerde, yanlış yönde, yanlış zamanda veya gereğinden fazla kullanılması ışık kirliliğine neden olur.",
+          "comparison": {
+            "left": {
+              "title": "Yoğun Işıklı Şehir",
+              "badge": "IŞIK KİRLİLİĞİ FAZLA",
+              "desc": "Yıldızların zor görüldüğü gökyüzü",
+              "image": "./assets/images/uzay-arastirmalari/13-sehir-isik-kirliligi.jpg"
+            },
+            "right": {
+              "title": "Karanlık ve Doğal Gökyüzü",
+              "badge": "IŞIK KİRLİLİĞİ AZ",
+              "desc": "Yıldızların net görüldüğü görünüm",
+              "image": "./assets/images/uzay-arastirmalari/13-karanlik-gokyuzu.jpg"
+            }
+          },
+          "consequences": [
+            "Yıldızların görülmesini zorlaştırır.",
+            "Teleskop gözlemlerini olumsuz etkiler.",
+            "Gözlemevlerinin yerleşim yerlerinden uzak kurulmasını gerektirir."
+          ],
+          "highlight": "Işık kirliliği azaldıkça gökyüzü gözlemleri daha net yapılır."
         }
       ]
     }

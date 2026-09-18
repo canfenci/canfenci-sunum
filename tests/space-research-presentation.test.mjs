@@ -16,7 +16,7 @@ test("7. Sınıf Uzay Araştırmaları Ders Paketi ve Slayt 1 Sözleşmesi", asy
   assert.equal(lessonData.stages.length, 3, "3 ders aşaması bulunmalıdır");
 
   const slides = lessonData.stages.flatMap((stage) => stage.slides || []);
-  assert.equal(slides.length, 11, "Slayt sayısı tam olarak 11 olmalıdır");
+  assert.equal(slides.length, 13, "Slayt sayısı tam olarak 13 olmalıdır");
 
   const slide1 = slides[0];
   assert.equal(slide1.id, "slide_1_uzay_nedir");
@@ -249,7 +249,7 @@ test("7. Sınıf Uzay Araştırmaları Ders Paketi ve Slayt 1 Sözleşmesi", asy
     const engine = new LessonEngine();
     const loaded = await engine.load("data/lessons/uzay-arastirmalari.json");
     assert.equal(loaded.id, "lesson_uzay_arastirmalari_1");
-    assert.equal(engine.slideCount, 11);
+    assert.equal(engine.slideCount, 13);
   } finally {
     globalThis.fetch = originalFetch;
   }
@@ -466,4 +466,77 @@ test("Slayt 11 (Gözlemevi Nerelere Kurulur?) Sözleşme, MEB Kriterleri ve Etki
   assert.ok(css.includes(".gozlemevi-question-text {\n  font-size: 36px;\n  font-weight: 800;"), "Soru 36px olmalıdır");
   assert.ok(css.includes(".choice-title {\n  font-size: 36px;\n  font-weight: 700;"), "Seçenek başlıkları 36px bold olmalıdır");
   assert.ok(css.includes(".gozlemevi-feedback-text {\n  font-size: 32px;\n  font-weight: 700;"), "Geri bildirim 32px (30-32px) olmalıdır");
+});
+
+test("Slayt 12 (Uzay Teknolojilerinin Günlük Hayattaki Kullanımı) Sözleşme ve Tipografi CSS Doğrulaması", async () => {
+  const lessonData = await readJson("data/lessons/uzay-arastirmalari.json");
+  const slides = lessonData.stages.flatMap((stage) => stage.slides || []);
+  const slide12 = slides[11];
+
+  assert.equal(slide12.id, "slide_12_uzay_teknolojileri_gunluk_hayat");
+  assert.equal(slide12.layout, "space_uzay_teknolojileri_gunluk_hayat");
+  assert.equal(slide12.title, "Uzay Teknolojilerinin Günlük Hayattaki Kullanımı");
+
+  // 6 Alan sırası ve başlıkları
+  assert.equal(slide12.areas?.length, 6, "6 adet teknoloji alanı bulunmalıdır");
+  const expectedTitles = ["SAĞLIK", "İLETİŞİM", "GIDA", "ENDÜSTRİ", "ULAŞIM", "ENERJİ"];
+  for (let i = 0; i < expectedTitles.length; i++) {
+    assert.equal(slide12.areas[i].order, i + 1);
+    assert.equal(slide12.areas[i].title, expectedTitles[i]);
+    assert.ok(slide12.areas[i].desc?.length > 0);
+    // Görseller mevcut olmalı
+    await access(slide12.areas[i].image.replace(/^\.\//, ""));
+    const st = await stat(slide12.areas[i].image.replace(/^\.\//, ""));
+    assert.ok(st.size > 0, `${slide12.areas[i].title} görseli boş olamaz`);
+  }
+
+  // reveal_fill etkileşimi
+  assert.equal(slide12.interactions?.length, 1);
+  const inter = slide12.interactions[0];
+  assert.equal(inter.type, "reveal_fill");
+  assert.ok(inter.template.includes("{alanda}"));
+  assert.equal(inter.blanks[0].answer, "alanda");
+
+  // CSS Kuralları
+  const css = await readFile("src/styles/app.css", "utf8");
+  assert.ok(css.includes(".slide-space-uzay-teknolojileri-gunluk-hayat"), "Slayt 12 ana sınıfı tanımlı olmalıdır");
+  assert.ok(css.includes(".tech-card-title {\n  font-size: 36px;\n  font-weight: 800;"), "Kart başlıkları 36px bold olmalıdır");
+  assert.ok(css.includes(".tech-card-desc {\n  font-size: 36px;"), "Kart açıklamaları 36px olmalıdır");
+});
+
+test("Slayt 13 (Işık Kirliliği) Sözleşme, Karşılaştırma ve Tipografi CSS Doğrulaması", async () => {
+  const lessonData = await readJson("data/lessons/uzay-arastirmalari.json");
+  const slides = lessonData.stages.flatMap((stage) => stage.slides || []);
+  const slide13 = slides[12];
+
+  assert.equal(slide13.id, "slide_13_isik_kirliligi");
+  assert.equal(slide13.layout, "space_isik_kirliligi");
+  assert.equal(slide13.title, "Işık Kirliliği");
+  assert.equal(slide13.interactions, undefined, "Slayt 13 etkileşimsiz anlatım slaytı olmalıdır");
+
+  // Tanım
+  assert.equal(slide13.definition, "Işık kaynaklarının yanlış yerde, yanlış yönde, yanlış zamanda veya gereğinden fazla kullanılması ışık kirliliğine neden olur.");
+
+  // Karşılaştırma görselleri
+  assert.ok(slide13.comparison?.left?.image);
+  assert.ok(slide13.comparison?.right?.image);
+  await access(slide13.comparison.left.image.replace(/^\.\//, ""));
+  await access(slide13.comparison.right.image.replace(/^\.\//, ""));
+
+  // 3 Sonuç maddesi
+  assert.equal(slide13.consequences?.length, 3);
+  assert.equal(slide13.consequences[0], "Yıldızların görülmesini zorlaştırır.");
+  assert.equal(slide13.consequences[1], "Teleskop gözlemlerini olumsuz etkiler.");
+  assert.equal(slide13.consequences[2], "Gözlemevlerinin yerleşim yerlerinden uzak kurulmasını gerektirir.");
+
+  // Vurgu
+  assert.equal(slide13.highlight, "Işık kirliliği azaldıkça gökyüzü gözlemleri daha net yapılır.");
+
+  // CSS Kuralları
+  const css = await readFile("src/styles/app.css", "utf8");
+  assert.ok(css.includes(".slide-space-isik-kirliligi"), "Slayt 13 ana sınıfı tanımlı olmalıdır");
+  assert.ok(css.includes(".isik-tanim-p {\n  font-size: 36px;"), "Tanım 36px olmalıdır");
+  assert.ok(css.includes(".isik-card-title {\n  font-size: 36px;\n  font-weight: 800;"), "Karşılaştırma kart başlıkları 36px bold olmalıdır");
+  assert.ok(css.includes(".isik-consequence-text {\n  font-size: 36px;\n  font-weight: 700;"), "Sonuç maddeleri 36px olmalıdır");
+  assert.ok(css.includes(".isik-highlight-text {\n  font-size: 36px;\n  font-weight: 800;"), "Vurgu metni 36px bold olmalıdır");
 });

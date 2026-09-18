@@ -715,6 +715,130 @@ export function renderSpaceSlide(slide, view, { interactions, activeInteractions
       return true;
     }
 
+    case "space_uzay_teknolojileri_gunluk_hayat": {
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-space-uzay-teknolojileri-gunluk-hayat";
+
+      const areas = slide.areas ?? [];
+      const cardsHtml = areas.map((area) => `
+        <div class="tech-area-card card-theme-${escapeHtml(area.theme ?? "blue")}">
+          <div class="tech-card-header">
+            <span class="tech-order-badge">${escapeHtml(String(area.order ?? ""))}</span>
+            <h2 class="tech-card-title">${escapeHtml(area.title ?? "")}</h2>
+          </div>
+          <div class="tech-card-body">
+            <div class="tech-thumb-frame">
+              <img src="${escapeHtml(area.image ?? "")}" alt="${escapeHtml(area.title ?? "")}" class="tech-thumb-img" />
+            </div>
+            <p class="tech-card-desc">${escapeHtml(area.desc ?? "")}</p>
+          </div>
+        </div>
+      `).join("");
+
+      slideArticle.innerHTML = `
+        <header class="space-slide-header">
+          <h1 class="space-slide-title">${escapeHtml(slide.title ?? "Uzay Teknolojilerinin Günlük Hayattaki Kullanımı")}</h1>
+        </header>
+
+        <div class="tech-areas-grid">
+          ${cardsHtml}
+        </div>
+
+        <div class="space-bottom-interaction-card tech-bottom-interaction">
+          <div class="space-bottom-slot"></div>
+        </div>
+      `;
+
+      const bottomSlot = slideArticle.querySelector(".space-bottom-slot");
+      if (slide.interactions?.[0] && bottomSlot) {
+        mountInteraction(slide.interactions[0], bottomSlot, interactions, activeInteractions);
+      }
+
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
+    case "space_isik_kirliligi": {
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-space-isik-kirliligi";
+
+      const comp = slide.comparison ?? {};
+      const left = comp.left ?? {};
+      const right = comp.right ?? {};
+      const consequences = slide.consequences ?? [];
+
+      const consequencesHtml = consequences.map((c) => `
+        <div class="isik-consequence-item">
+          <span class="isik-bullet" aria-hidden="true">●</span>
+          <span class="isik-consequence-text">${escapeHtml(c)}</span>
+        </div>
+      `).join("");
+
+      slideArticle.innerHTML = `
+        <header class="space-slide-header">
+          <h1 class="space-slide-title">${escapeHtml(slide.title ?? "Işık Kirliliği")}</h1>
+        </header>
+
+        <div class="isik-layout">
+          <!-- Üst Tanım Çubuğu (36px) -->
+          <div class="isik-tanim-card">
+            <span class="isik-tanim-badge">TANIM</span>
+            <p class="isik-tanim-p">${escapeHtml(slide.definition ?? "")}</p>
+          </div>
+
+          <!-- İki Büyük Karşılaştırma Görsel Kartı -->
+          <div class="isik-comparison-row">
+            <!-- Sol Kart: Yoğun Işıklı Şehir -->
+            <div class="isik-card card-city">
+              <div class="isik-card-head">
+                <span class="isik-card-badge badge-warning">${escapeHtml(left.badge ?? "IŞIK KİRLİLİĞİ FAZLA")}</span>
+                <h2 class="isik-card-title">${escapeHtml(left.title ?? "Yoğun Işıklı Şehir")}</h2>
+              </div>
+              <div class="isik-visual-frame">
+                <img src="${escapeHtml(left.image ?? "./assets/images/uzay-arastirmalari/13-sehir-isik-kirliligi.jpg")}" alt="${escapeHtml(left.title ?? "")}" class="isik-visual-img" />
+              </div>
+              <div class="isik-card-caption">
+                <span class="caption-text">${escapeHtml(left.desc ?? "Yıldızların zor görüldüğü gökyüzü")}</span>
+              </div>
+            </div>
+
+            <!-- Sağ Kart: Karanlık ve Doğal Gökyüzü -->
+            <div class="isik-card card-dark">
+              <div class="isik-card-head">
+                <span class="isik-card-badge badge-success">${escapeHtml(right.badge ?? "IŞIK KİRLİLİĞİ AZ")}</span>
+                <h2 class="isik-card-title">${escapeHtml(right.title ?? "Karanlık ve Doğal Gökyüzü")}</h2>
+              </div>
+              <div class="isik-visual-frame">
+                <img src="${escapeHtml(right.image ?? "./assets/images/uzay-arastirmalari/13-karanlik-gokyuzu.jpg")}" alt="${escapeHtml(right.title ?? "")}" class="isik-visual-img" />
+              </div>
+              <div class="isik-card-caption">
+                <span class="caption-text">${escapeHtml(right.desc ?? "Yıldızların net görüldüğü görünüm")}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Alt Bölüm: 3 Maddelik Sonuç Kartı -->
+          <div class="isik-consequences-card">
+            <div class="isik-consequences-header">
+              <span class="isik-consequences-title">Işık Kirliliğinin Gözlemlere Etkileri</span>
+            </div>
+            <div class="isik-consequences-grid">
+              ${consequencesHtml}
+            </div>
+          </div>
+
+          <!-- En Altta Vurgu Cümlesi -->
+          <div class="isik-highlight-bar">
+            <span class="isik-highlight-icon" aria-hidden="true">★</span>
+            <p class="isik-highlight-text">${escapeHtml(slide.highlight ?? "Işık kirliliği azaldıkça gökyüzü gözlemleri daha net yapılır.")}</p>
+          </div>
+        </div>
+      `;
+
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
     default:
       return false;
   }
