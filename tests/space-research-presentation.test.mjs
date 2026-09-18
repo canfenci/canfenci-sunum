@@ -16,7 +16,7 @@ test("7. Sınıf Uzay Araştırmaları Ders Paketi ve Slayt 1 Sözleşmesi", asy
   assert.equal(lessonData.stages.length, 3, "3 ders aşaması bulunmalıdır");
 
   const slides = lessonData.stages.flatMap((stage) => stage.slides || []);
-  assert.equal(slides.length, 13, "Slayt sayısı tam olarak 13 olmalıdır");
+  assert.equal(slides.length, 15, "Slayt sayısı tam olarak 15 olmalıdır");
 
   const slide1 = slides[0];
   assert.equal(slide1.id, "slide_1_uzay_nedir");
@@ -249,7 +249,7 @@ test("7. Sınıf Uzay Araştırmaları Ders Paketi ve Slayt 1 Sözleşmesi", asy
     const engine = new LessonEngine();
     const loaded = await engine.load("data/lessons/uzay-arastirmalari.json");
     assert.equal(loaded.id, "lesson_uzay_arastirmalari_1");
-    assert.equal(engine.slideCount, 13);
+    assert.equal(engine.slideCount, 15);
   } finally {
     globalThis.fetch = originalFetch;
   }
@@ -539,4 +539,82 @@ test("Slayt 13 (Işık Kirliliği) Sözleşme, Karşılaştırma ve Tipografi CS
   assert.ok(css.includes(".isik-card-title {\n  font-size: 36px;\n  font-weight: 800;"), "Karşılaştırma kart başlıkları 36px bold olmalıdır");
   assert.ok(css.includes(".isik-consequence-text {\n  font-size: 36px;\n  font-weight: 700;"), "Sonuç maddeleri 36px olmalıdır");
   assert.ok(css.includes(".isik-highlight-text {\n  font-size: 36px;\n  font-weight: 800;"), "Vurgu metni 36px bold olmalıdır");
+});
+
+test("Slayt 14 (Türkiye’de Uzay Çalışmaları) Sözleşme, Kurum Kartları ve Tipografi Doğrulaması", async () => {
+  const lessonData = await readJson("data/lessons/uzay-arastirmalari.json");
+  const slides = lessonData.stages.flatMap((stage) => stage.slides || []);
+  const slide14 = slides[13];
+
+  assert.equal(slide14.id, "slide_14_turkiyede_uzay_calismalari");
+  assert.equal(slide14.layout, "space_turkiyede_uzay_calismalari");
+  assert.equal(slide14.title, "Türkiye’de Uzay Çalışmaları");
+  assert.equal(slide14.interactions, undefined, "Slayt 14 etkileşimsiz anlatım slaytı olmalıdır");
+
+  // 3 Kurum
+  assert.equal(slide14.institutions?.length, 3, "3 kurum kartı bulunmalıdır");
+  const expectedTitles = ["TÜBİTAK UZAY", "Türkiye Uzay Ajansı (TUA)", "TEKNOFEST"];
+  for (let i = 0; i < 3; i++) {
+    const inst = slide14.institutions[i];
+    assert.equal(inst.title, expectedTitles[i]);
+    assert.ok(inst.logo);
+    await access(inst.logo.replace(/^\.\//, ""));
+    assert.ok(inst.desc);
+    assert.ok(inst.tag);
+  }
+
+  // Alt vurgu kartı
+  assert.ok(slide14.highlight);
+  assert.ok(slide14.highlightImage);
+  await access(slide14.highlightImage.replace(/^\.\//, ""));
+
+  // CSS Kuralları
+  const css = await readFile("src/styles/app.css", "utf8");
+  assert.ok(css.includes(".slide-space-turkiyede-uzay-calismalari"), "Slayt 14 ana sınıfı tanımlı olmalıdır");
+  assert.ok(css.includes(".inst-card-title {\n  font-size: 36px;\n  font-weight: 800;"), "Kurum başlıkları 36px bold olmalıdır");
+  assert.ok(css.includes(".inst-card-desc {\n  font-size: 34px;"), "Kurum açıklamaları 34px olmalıdır");
+  assert.ok(css.includes(".inst-tag-badge {\n  background: #f1f5f9;\n  border: 1.5px solid #cbd5e1;\n  border-radius: 12px;\n  padding: 10px 16px;\n  font-size: 28px;"), "Kurum etiketleri 28px olmalıdır");
+  assert.ok(css.includes(".turkiye-highlight-p {\n  font-size: 34px;\n  font-weight: 800;"), "Alt vurgu metni 34px olmalıdır");
+});
+
+test("Slayt 15 (Uzay Terimleri ve Önemli İsimler) Sözleşme, Terimler ve İsimler Tipografi Doğrulaması", async () => {
+  const lessonData = await readJson("data/lessons/uzay-arastirmalari.json");
+  const slides = lessonData.stages.flatMap((stage) => stage.slides || []);
+  const slide15 = slides[14];
+
+  assert.equal(slide15.id, "slide_15_terimler_ve_onemli_isimler");
+  assert.equal(slide15.layout, "space_terimler_ve_onemli_isimler");
+  assert.equal(slide15.title, "Uzay Terimleri ve Önemli İsimler");
+  assert.equal(slide15.interactions, undefined, "Slayt 15 etkileşimsiz anlatım slaytı olmalıdır");
+
+  // Sol Bölüm - Terimler
+  assert.equal(slide15.termsSection?.title, "Uzay Terimleri");
+  assert.equal(slide15.termsSection?.terms?.length, 3, "3 terim bulunmalıdır: Astronomi, Astronom, Astronot");
+  assert.equal(slide15.termsSection.terms[0].name, "ASTRONOMİ (GÖK BİLİMİ)");
+  assert.equal(slide15.termsSection.terms[1].name, "ASTRONOM (GÖK BİLİMCİ)");
+  assert.equal(slide15.termsSection.terms[2].name, "ASTRONOT");
+  assert.equal(slide15.termsSection.badges?.length, 2, "Kozmonot ve Taykonot rozetleri bulunmalıdır");
+
+  // Sağ Bölüm - Önemli İsimler
+  assert.equal(slide15.peopleSection?.title, "Önemli İsimler");
+  assert.equal(slide15.peopleSection?.people?.length, 3, "3 kişi bulunmalıdır");
+  const expectedPeople = ["Nüzhet Gökdoğan", "Yuri Gagarin", "Alper Gezeravcı"];
+  for (let i = 0; i < 3; i++) {
+    const person = slide15.peopleSection.people[i];
+    assert.equal(person.name, expectedPeople[i]);
+    assert.ok(person.image);
+    await access(person.image.replace(/^\.\//, ""));
+    assert.ok(person.role);
+    assert.ok(person.info);
+  }
+
+  // CSS Kuralları
+  const css = await readFile("src/styles/app.css", "utf8");
+  assert.ok(css.includes(".slide-space-terimler-ve-onemli-isimler"), "Slayt 15 ana sınıfı tanımlı olmalıdır");
+  assert.ok(css.includes(".column-title {\n  font-size: 36px;\n  font-weight: 800;"), "Bölüm başlıkları 36px bold olmalıdır");
+  assert.ok(css.includes(".term-name {\n  font-size: 36px;\n  font-weight: 800;"), "Terim adları 36px bold olmalıdır");
+  assert.ok(css.includes(".term-desc {\n  font-size: 32px;"), "Terim tanımları 32-34px aralığında olmalıdır");
+  assert.ok(css.includes(".person-name {\n  font-size: 36px;\n  font-weight: 800;"), "Kişi adları 36px bold olmalıdır");
+  assert.ok(css.includes(".person-role-tag {\n  background: #ede9fe;\n  color: #6d28d9;\n  border: 1.5px solid #ddd6fe;\n  border-radius: 10px;\n  padding: 4px 12px;\n  font-size: 28px;\n  font-weight: 700;"), "Kişi unvanları 28px bold olmalıdır");
+  assert.ok(css.includes(".person-bio-p {\n  font-size: 28px;"), "Kişi açıklamaları 28px olmalıdır");
 });

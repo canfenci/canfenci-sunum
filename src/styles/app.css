@@ -5838,3 +5838,365 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   margin: 0;
   letter-spacing: -0.01em;
 }
+
+/* ==========================================================================
+   SLAYT 14: TÜRKİYE'DE UZAY ÇALIŞMALARI (1920x1080)
+   ========================================================================== */
+.slide-space-turkiyede-uzay-calismalari {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 14px;
+  box-sizing: border-box;
+}
+
+.turkiye-uzay-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* 3 Büyük Eşit Kart */
+.inst-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.inst-card {
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 24px;
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.inst-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+}
+
+.inst-logo-frame {
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+}
+
+.inst-logo-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.inst-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1 1 auto;
+  margin-top: 14px;
+  justify-content: space-between;
+}
+
+.inst-card-title {
+  font-size: 36px;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.inst-card-desc {
+  font-size: 34px;
+  font-weight: 600;
+  color: #334155;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.inst-tag-badge {
+  background: #f1f5f9;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-size: 28px;
+  font-weight: 700;
+  color: #0284c7;
+  line-height: 1.25;
+}
+
+/* Alt Geniş Vurgu Kartı */
+.turkiye-highlight-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%);
+  border: 2px solid #93c5fd;
+  border-radius: 20px;
+  padding: 16px 28px;
+  box-shadow: 0 8px 24px rgba(2, 132, 199, 0.08);
+}
+
+.highlight-text-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1 1 auto;
+}
+
+.highlight-badge {
+  display: inline-block;
+  background: #0284c7;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 900;
+  padding: 4px 14px;
+  border-radius: 8px;
+  letter-spacing: 0.03em;
+  width: max-content;
+}
+
+.turkiye-highlight-p {
+  font-size: 34px;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.turkiye-highlight-visual {
+  width: 140px;
+  height: 90px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 2px solid #bfdbfe;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+}
+
+.highlight-visual-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ==========================================================================
+   SLAYT 15: UZAY TERİMLERİ VE ÖNEMLİ İSİMLER (1920x1080)
+   ========================================================================== */
+.slide-space-terimler-ve-onemli-isimler {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 14px;
+  box-sizing: border-box;
+}
+
+.terimler-isimler-layout {
+  display: grid;
+  grid-template-columns: 43fr 57fr;
+  gap: 28px;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.column-header-bar {
+  border-radius: 14px;
+  padding: 8px 18px;
+  margin-bottom: 12px;
+}
+
+.column-header-bar.header-blue {
+  background: #e0f2fe;
+  border-left: 6px solid #0284c7;
+}
+.column-header-bar.header-blue .column-title {
+  color: #0369a1;
+}
+
+.column-header-bar.header-purple {
+  background: #ede9fe;
+  border-left: 6px solid #7c3aed;
+}
+.column-header-bar.header-purple .column-title {
+  color: #6d28d9;
+}
+
+.column-title {
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+/* Sol: Uzay Terimleri */
+.terimler-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 24px;
+  padding: 20px 24px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+}
+
+.terms-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1 1 auto;
+}
+
+.term-card {
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 12px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.term-name {
+  font-size: 36px;
+  font-weight: 800;
+  color: #0284c7;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.term-desc {
+  font-size: 32px;
+  font-weight: 600;
+  color: #1e293b;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.term-badges-strip {
+  display: flex;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.term-badge-tag {
+  background: #f1f5f9;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 8px 16px;
+  font-size: 28px;
+  font-weight: 700;
+  color: #475569;
+}
+
+/* Sağ: Önemli İsimler */
+.isimler-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 24px;
+  padding: 20px 24px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+}
+
+.people-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1 1 auto;
+}
+
+.person-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 12px 18px;
+  transition: all 0.2s ease;
+}
+
+.person-card:hover {
+  transform: translateX(4px);
+  border-color: #cbd5e1;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06);
+}
+
+.person-avatar-frame {
+  width: 120px;
+  height: 130px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #0f172a;
+  border: 2px solid #cbd5e1;
+  flex-shrink: 0;
+}
+
+.person-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.person-info-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.person-header-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.person-name {
+  font-size: 36px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+}
+
+.person-role-tag {
+  background: #ede9fe;
+  color: #6d28d9;
+  border: 1.5px solid #ddd6fe;
+  border-radius: 10px;
+  padding: 4px 12px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.person-bio-p {
+  font-size: 28px;
+  font-weight: 600;
+  color: #334155;
+  line-height: 1.35;
+  margin: 0;
+}

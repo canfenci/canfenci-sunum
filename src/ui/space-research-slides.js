@@ -839,6 +839,125 @@ export function renderSpaceSlide(slide, view, { interactions, activeInteractions
       return true;
     }
 
+    case "space_turkiyede_uzay_calismalari": {
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-space-turkiyede-uzay-calismalari";
+
+      const institutions = slide.institutions ?? [];
+      const instCardsHtml = institutions.map((inst) => `
+        <div class="inst-card">
+          <div class="inst-logo-frame">
+            <img src="${escapeHtml(inst.logo ?? "")}" alt="${escapeHtml(inst.title ?? "")}" class="inst-logo-img" />
+          </div>
+          <div class="inst-card-content">
+            <h2 class="inst-card-title">${escapeHtml(inst.title ?? "")}</h2>
+            <p class="inst-card-desc">${escapeHtml(inst.desc ?? "")}</p>
+            <div class="inst-tag-badge">
+              <span>${escapeHtml(inst.tag ?? "")}</span>
+            </div>
+          </div>
+        </div>
+      `).join("");
+
+      slideArticle.innerHTML = `
+        <header class="space-slide-header">
+          <h1 class="space-slide-title">${escapeHtml(slide.title ?? "Türkiye’de Uzay Çalışmaları")}</h1>
+        </header>
+
+        <div class="turkiye-uzay-layout">
+          <!-- 3 Büyük Eşit Kart -->
+          <div class="inst-cards-grid">
+            ${instCardsHtml}
+          </div>
+
+          <!-- Alt Geniş Vurgu Kartı -->
+          <div class="turkiye-highlight-card">
+            <div class="highlight-text-wrap">
+              <span class="highlight-badge">TÜRKİYE'NİN HEDEFLERİ</span>
+              <p class="turkiye-highlight-p">${escapeHtml(slide.highlight ?? "Türkiye; uydu teknolojileri, uzay araştırmaları ve insanlı uzay çalışmaları alanında çalışmalar yürütmektedir.")}</p>
+            </div>
+            <div class="turkiye-highlight-visual">
+              <img src="${escapeHtml(slide.highlightImage ?? "./assets/images/uzay-arastirmalari/14-turkiye-uzay-vurgu.jpg")}" alt="Türkiye Uzay Çalışmaları" class="highlight-visual-img" />
+            </div>
+          </div>
+        </div>
+      `;
+
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
+    case "space_terimler_ve_onemli_isimler": {
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-space-terimler-ve-onemli-isimler";
+
+      const termsSec = slide.termsSection ?? {};
+      const terms = termsSec.terms ?? [];
+      const badges = termsSec.badges ?? [];
+      const peopleSec = slide.peopleSection ?? {};
+      const people = peopleSec.people ?? [];
+
+      const termsHtml = terms.map((t) => `
+        <div class="term-card">
+          <h3 class="term-name">${escapeHtml(t.name ?? "")}</h3>
+          <p class="term-desc">${escapeHtml(t.desc ?? "")}</p>
+        </div>
+      `).join("");
+
+      const badgesHtml = badges.map((b) => `
+        <span class="term-badge-tag">${escapeHtml(b)}</span>
+      `).join("");
+
+      const peopleHtml = people.map((p) => `
+        <div class="person-card">
+          <div class="person-avatar-frame">
+            <img src="${escapeHtml(p.image ?? "")}" alt="${escapeHtml(p.name ?? "")}" class="person-avatar-img" />
+          </div>
+          <div class="person-info-content">
+            <div class="person-header-row">
+              <h3 class="person-name">${escapeHtml(p.name ?? "")}</h3>
+              <span class="person-role-tag">${escapeHtml(p.role ?? "")}</span>
+            </div>
+            <p class="person-bio-p">${escapeHtml(p.info ?? "")}</p>
+          </div>
+        </div>
+      `).join("");
+
+      slideArticle.innerHTML = `
+        <header class="space-slide-header">
+          <h1 class="space-slide-title">${escapeHtml(slide.title ?? "Uzay Terimleri ve Önemli İsimler")}</h1>
+        </header>
+
+        <div class="terimler-isimler-layout">
+          <!-- Sol Sütun (%43): Uzay Terimleri -->
+          <div class="terimler-column">
+            <div class="column-header-bar header-blue">
+              <span class="column-title">${escapeHtml(termsSec.title ?? "Uzay Terimleri")}</span>
+            </div>
+            <div class="terms-cards-container">
+              ${termsHtml}
+            </div>
+            <div class="term-badges-strip">
+              ${badgesHtml}
+            </div>
+          </div>
+
+          <!-- Sağ Sütun (%57): Önemli İsimler -->
+          <div class="isimler-column">
+            <div class="column-header-bar header-purple">
+              <span class="column-title">${escapeHtml(peopleSec.title ?? "Önemli İsimler")}</span>
+            </div>
+            <div class="people-cards-container">
+              ${peopleHtml}
+            </div>
+          </div>
+        </div>
+      `;
+
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
     default:
       return false;
   }

@@ -666,6 +666,93 @@
             "Gözlemevlerinin yerleşim yerlerinden uzak kurulmasını gerektirir."
           ],
           "highlight": "Işık kirliliği azaldıkça gökyüzü gözlemleri daha net yapılır."
+        },
+        {
+          "id": "slide_14_turkiyede_uzay_calismalari",
+          "type": "content",
+          "layout": "space_turkiyede_uzay_calismalari",
+          "title": "Türkiye’de Uzay Çalışmaları",
+          "institutions": [
+            {
+              "id": "tubitak_uzay",
+              "title": "TÜBİTAK UZAY",
+              "desc": "Yerli ve millî uydu sistemleri ile uzay teknolojilerinin geliştirilmesine yönelik çalışmalar yapar.",
+              "tag": "Uydu sistemleri • haberleşme teknolojileri • uzay araştırmaları",
+              "logo": "./assets/images/uzay-arastirmalari/14-tubitak-uzay.svg"
+            },
+            {
+              "id": "tua",
+              "title": "Türkiye Uzay Ajansı (TUA)",
+              "desc": "Türkiye’nin uzay ve havacılık alanındaki hedefleri doğrultusunda çalışmalar yürütür.",
+              "tag": "Uzay bilimi • uzay teknolojileri • insanlı uzay çalışmaları",
+              "logo": "./assets/images/uzay-arastirmalari/14-tua.svg"
+            },
+            {
+              "id": "teknofest",
+              "title": "TEKNOFEST",
+              "desc": "Gençlerin havacılık, uzay ve teknoloji alanlarında üretmesini ve yeni teknolojiler geliştirmesini teşvik eder.",
+              "tag": "Teknoloji yarışmaları • havacılık • uzay",
+              "logo": "./assets/images/uzay-arastirmalari/14-teknofest.png"
+            }
+          ],
+          "highlight": "Türkiye; uydu teknolojileri, uzay araştırmaları ve insanlı uzay çalışmaları alanında çalışmalar yürütmektedir.",
+          "highlightImage": "./assets/images/uzay-arastirmalari/14-turkiye-uzay-vurgu.jpg"
+        },
+        {
+          "id": "slide_15_terimler_ve_onemli_isimler",
+          "type": "content",
+          "layout": "space_terimler_ve_onemli_isimler",
+          "title": "Uzay Terimleri ve Önemli İsimler",
+          "termsSection": {
+            "title": "Uzay Terimleri",
+            "terms": [
+              {
+                "id": "astronomi",
+                "name": "ASTRONOMİ (GÖK BİLİMİ)",
+                "desc": "Gök cisimlerinin konumlarını, hareketlerini, yapılarını ve birbirine olan uzaklıklarını inceleyen bilim dalıdır."
+              },
+              {
+                "id": "astronom",
+                "name": "ASTRONOM (GÖK BİLİMCİ)",
+                "desc": "Uzay araştırmaları alanında uzmanlaşmış bilim insanıdır."
+              },
+              {
+                "id": "astronot",
+                "name": "ASTRONOT",
+                "desc": "İnsanlı uzay çalışmalarında görev yapan kişidir."
+              }
+            ],
+            "badges": [
+              "Rusya → Kozmonot",
+              "Çin → Taykonot"
+            ]
+          },
+          "peopleSection": {
+            "title": "Önemli İsimler",
+            "people": [
+              {
+                "id": "nuzhet_gokdogan",
+                "name": "Nüzhet Gökdoğan",
+                "role": "Türk astronom",
+                "info": "Türkiye’de astronomi biliminin gelişmesine önemli katkılar sağlamıştır.",
+                "image": "./assets/images/uzay-arastirmalari/15-nuzhet-gokdogan.jpg"
+              },
+              {
+                "id": "yuri_gagarin",
+                "name": "Yuri Gagarin",
+                "role": "Uzaya çıkan ilk insan",
+                "info": "1961 yılında uzaya çıkarak insanlı uzay araştırmaları tarihinde bir ilki gerçekleştirdi.",
+                "image": "./assets/images/uzay-arastirmalari/15-yuri-gagarin.jpg"
+              },
+              {
+                "id": "alper_gezeravci",
+                "name": "Alper Gezeravcı",
+                "role": "Türkiye’nin ilk astronotu",
+                "info": "Uluslararası Uzay İstasyonu’nda bilimsel deneyler gerçekleştirerek Türkiye’nin ilk insanlı uzay görevinde yer aldı.",
+                "image": "./assets/images/uzay-arastirmalari/15-alper-gezeravci.jpg"
+              }
+            ]
+          }
         }
       ]
     }
