@@ -16,7 +16,7 @@ test("7. Sınıf Uzay Araştırmaları Ders Paketi ve Slayt 1 Sözleşmesi", asy
   assert.equal(lessonData.stages.length, 3, "3 ders aşaması bulunmalıdır");
 
   const slides = lessonData.stages.flatMap((stage) => stage.slides || []);
-  assert.equal(slides.length, 7, "Slayt sayısı tam olarak 7 olmalıdır");
+  assert.equal(slides.length, 8, "Slayt sayısı tam olarak 8 olmalıdır");
 
   const slide1 = slides[0];
   assert.equal(slide1.id, "slide_1_uzay_nedir");
@@ -158,13 +158,45 @@ test("7. Sınıf Uzay Araştırmaları Ders Paketi ve Slayt 1 Sözleşmesi", asy
   await access(media7Path);
   const st7 = await stat(media7Path);
   assert.ok(st7.size > 0, "Slayt 7 görsel dosyası boş olamaz");
+  assert.equal(slide7.interactions?.length ?? 0, 0, "Slayt 7 erken uzay kirliliği etkileşimi kaldırılmış olmalıdır");
 
-  // Slayt 7 Etkileşimi
-  assert.equal(slide7.interactions?.length, 1, "Slayt 7 tek reveal_fill etkileşimi içermelidir");
-  const inter7 = slide7.interactions[0];
-  assert.equal(inter7.type, "reveal_fill");
-  assert.ok(inter7.template.includes("{uzay_kirliligine}"));
-  assert.equal(inter7.blanks[0].answer, "uzay kirliliğine");
+  // Slayt 8 Doğrulaması (Uydular Ne İşe Yarar?)
+  const slide8 = slides[7];
+  assert.equal(slide8.id, "slide_8_uydular_ne_ise_yarar");
+  assert.equal(slide8.layout, "space_uydular_ne_ise_yarar");
+  assert.equal(slide8.title, "Uydular Ne İşe Yarar?");
+  assert.equal(slide8.leftCard.title, "HABERLEŞME UYDULARI");
+  assert.equal(slide8.leftCard.items.length, 3);
+  assert.equal(slide8.leftCard.items[0], "Televizyon ve radyo yayınları");
+  assert.equal(slide8.leftCard.items[1], "Telefon haberleşmesi");
+  assert.equal(slide8.leftCard.items[2], "İnternet ve veri iletişimi");
+
+  assert.equal(slide8.rightCard.title, "GÖZLEM UYDULARI");
+  assert.equal(slide8.rightCard.items.length, 4);
+  assert.equal(slide8.rightCard.items[0], "Dünya yüzeyinin görüntülenmesi");
+  assert.equal(slide8.rightCard.items[1], "Keşif ve gözlem");
+  assert.equal(slide8.rightCard.items[2], "Doğal afetlerin izlenmesi");
+  assert.equal(slide8.rightCard.items[3], "Tarım ve çevre çalışmalarında görüntüleme");
+
+  assert.equal(slide8.media?.length, 2, "2 adet görsel bulunmalıdır");
+  for (const m of slide8.media) {
+    const p = m.src.replace(/^\.\//, "");
+    await access(p);
+    const st = await stat(p);
+    assert.ok(st.size > 0, "Slayt 8 görsel dosyası boş olamaz");
+  }
+
+  // Slayt 8 Etkileşimi (2 boşluklu reveal_fill)
+  assert.equal(slide8.interactions?.length, 1, "Slayt 8 tek reveal_fill etkileşimi içermelidir");
+  const inter8 = slide8.interactions[0];
+  assert.equal(inter8.type, "reveal_fill");
+  assert.ok(inter8.template.includes("{haberlesme}"));
+  assert.ok(inter8.template.includes("{gozlem}"));
+  assert.equal(inter8.blanks.length, 2);
+  const blankHaber = inter8.blanks.find((b) => b.id === "haberlesme");
+  const blankGozlem = inter8.blanks.find((b) => b.id === "gozlem");
+  assert.equal(blankHaber?.answer, "haberleşme");
+  assert.equal(blankGozlem?.answer, "gözlem");
 
   // LessonEngine testi
   const originalFetch = globalThis.fetch;
@@ -182,7 +214,7 @@ test("7. Sınıf Uzay Araştırmaları Ders Paketi ve Slayt 1 Sözleşmesi", asy
     const engine = new LessonEngine();
     const loaded = await engine.load("data/lessons/uzay-arastirmalari.json");
     assert.equal(loaded.id, "lesson_uzay_arastirmalari_1");
-    assert.equal(engine.slideCount, 7);
+    assert.equal(engine.slideCount, 8);
   } finally {
     globalThis.fetch = originalFetch;
   }
@@ -291,5 +323,17 @@ test("Slayt 6 ve 7 (Türkiye’nin Uyduları) Tipografi ve Düzen CSS Doğrulama
   assert.ok(css.includes(".satellite-pill .sat-name {\n  font-size: 36px;"), "Uydu adları 36px olmalıdır");
   assert.ok(css.includes(".sat-highlight-label {\n  font-size: 30px;"), "Türksat 6A vurgusu 30px olmalıdır");
   assert.ok(css.includes(".sat-task-badge {\n  font-size: 30px;"), "Gözlem uyduları görev etiketi 30px olmalıdır");
-  assert.ok(css.includes(".sat-kirlilik-card"), "Slayt 7 kirlilik kartı sınıfı tanımlı olmalıdır");
+});
+
+test("Slayt 8 (Uydular Ne İşe Yarar?) Tipografi ve Düzen CSS Doğrulaması", async () => {
+  const css = await readFile("src/styles/app.css", "utf8");
+
+  assert.ok(css.includes(".slide-space-uydular-ne-ise-yarar"), "Slayt 8 ana sınıfı tanımlı olmalıdır");
+  assert.ok(css.includes(".functions-cards-layout"), "Slayt 8 iki kartlı düzen tanımlı olmalıdır");
+  assert.ok(css.includes(".function-card.card-blue"), "Mavi haberleşme kartı tanımlı olmalıdır");
+  assert.ok(css.includes(".function-card.card-turquoise"), "Turkuaz gözlem kartı tanımlı olmalıdır");
+  assert.ok(css.includes(".function-card-title {\n  margin: 0;\n  font-size: 36px;\n  font-weight: 700;"), "Kart başlıkları 36px bold olmalıdır");
+  assert.ok(css.includes(".function-text {\n  font-size: 36px;\n  font-weight: 400;"), "Madde metinleri 36px normal olmalıdır");
+  assert.ok(css.includes(".functions-bottom-interaction .space-bottom-slot .reveal-fill-sentence {\n  font-size: 36px;"), "Etkileşim cümlesi 36px olmalıdır");
+  assert.ok(css.includes(".functions-bottom-interaction .space-bottom-slot .blank-slot-answer {\n  font-size: 36px;\n  font-weight: 700;"), "Etkileşim cevabı 36px bold olmalıdır");
 });

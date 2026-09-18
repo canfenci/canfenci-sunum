@@ -357,14 +357,73 @@ export function renderSpaceSlide(slide, view, { interactions, activeInteractions
             </div>
           </div>
         </div>
+      `;
 
-        <!-- Alt Kısım: reveal_fill Etkileşimi -->
-        <div class="space-bottom-interaction-card sat-kirlilik-card">
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
+    case "space_uydular_ne_ise_yarar": {
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-space-uydular-ne-ise-yarar";
+
+      const left = slide.leftCard ?? {};
+      const right = slide.rightCard ?? {};
+
+      const leftItemsHtml = (left.items ?? []).map((item) => `
+        <li class="function-item">
+          <span class="function-bullet bullet-blue" aria-hidden="true">✦</span>
+          <span class="function-text">${escapeHtml(item)}</span>
+        </li>
+      `).join("");
+
+      const rightItemsHtml = (right.items ?? []).map((item) => `
+        <li class="function-item">
+          <span class="function-bullet bullet-turquoise" aria-hidden="true">✦</span>
+          <span class="function-text">${escapeHtml(item)}</span>
+        </li>
+      `).join("");
+
+      slideArticle.innerHTML = `
+        <header class="space-slide-header">
+          <h1 class="space-slide-title">${escapeHtml(slide.title ?? "Uydular Ne İşe Yarar?")}</h1>
+        </header>
+
+        <div class="functions-cards-layout">
+          <!-- Sol Kart: Haberleşme Uyduları (Mavi Tema) -->
+          <div class="function-card card-blue">
+            <div class="function-card-header">
+              <h2 class="function-card-title title-blue">${escapeHtml(left.title ?? "HABERLEŞME UYDULARI")}</h2>
+            </div>
+            <div class="function-card-visual">
+              <img src="${escapeHtml(left.image ?? "./assets/images/uzay-arastirmalari/08-haberlesme-gorev.jpg")}" alt="${escapeHtml(left.title ?? "Haberleşme Uyduları")}" class="function-card-img" />
+            </div>
+            <ul class="function-items-list">
+              ${leftItemsHtml}
+            </ul>
+          </div>
+
+          <!-- Sağ Kart: Gözlem Uyduları (Turkuaz Tema) -->
+          <div class="function-card card-turquoise">
+            <div class="function-card-header">
+              <h2 class="function-card-title title-turquoise">${escapeHtml(right.title ?? "GÖZLEM UYDULARI")}</h2>
+            </div>
+            <div class="function-card-visual">
+              <img src="${escapeHtml(right.image ?? "./assets/images/uzay-arastirmalari/08-gozlem-gorev.jpg")}" alt="${escapeHtml(right.title ?? "Gözlem Uyduları")}" class="function-card-img" />
+            </div>
+            <ul class="function-items-list">
+              ${rightItemsHtml}
+            </ul>
+          </div>
+        </div>
+
+        <!-- Alt Kısım: 2 Boşluklu reveal_fill Etkileşimi -->
+        <div class="space-bottom-interaction-card functions-bottom-interaction">
           <div class="space-bottom-slot"></div>
         </div>
       `;
 
-      // Reveal_fill etkileşimini bağla
+      // Etkileşimi bağla
       const bottomSlot = slideArticle.querySelector(".space-bottom-slot");
       if (slide.interactions?.[0] && bottomSlot) {
         mountInteraction(slide.interactions[0], bottomSlot, interactions, activeInteractions);

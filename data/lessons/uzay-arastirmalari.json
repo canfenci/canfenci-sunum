@@ -380,16 +380,59 @@
           "inactiveSatellites": [
             { "id": "bilsat", "name": "BİLSAT" },
             { "id": "rasat", "name": "RASAT" }
+          ]
+        },
+        {
+          "id": "slide_8_uydular_ne_ise_yarar",
+          "type": "content",
+          "layout": "space_uydular_ne_ise_yarar",
+          "title": "Uydular Ne İşe Yarar?",
+          "media": [
+            {
+              "id": "media_08_haberlesme",
+              "src": "./assets/images/uzay-arastirmalari/08-haberlesme-gorev.jpg",
+              "alt": "Haberleşme uydusu görev görseli"
+            },
+            {
+              "id": "media_08_gozlem",
+              "src": "./assets/images/uzay-arastirmalari/08-gozlem-gorev.jpg",
+              "alt": "Gözlem uydusu görev görseli"
+            }
           ],
+          "leftCard": {
+            "title": "HABERLEŞME UYDULARI",
+            "theme": "blue",
+            "image": "./assets/images/uzay-arastirmalari/08-haberlesme-gorev.jpg",
+            "items": [
+              "Televizyon ve radyo yayınları",
+              "Telefon haberleşmesi",
+              "İnternet ve veri iletişimi"
+            ]
+          },
+          "rightCard": {
+            "title": "GÖZLEM UYDULARI",
+            "theme": "turquoise",
+            "image": "./assets/images/uzay-arastirmalari/08-gozlem-gorev.jpg",
+            "items": [
+              "Dünya yüzeyinin görüntülenmesi",
+              "Keşif ve gözlem",
+              "Doğal afetlerin izlenmesi",
+              "Tarım ve çevre çalışmalarında görüntüleme"
+            ]
+          },
           "interactions": [
             {
-              "id": "inter_s7_uzay_kirliligi",
+              "id": "inter_s8_uydu_gorevleri",
               "type": "reveal_fill",
-              "template": "Görevini tamamlayan uydular yörüngede kalırsa {uzay_kirliligine} neden olur.",
+              "template": "Televizyon yayını için {haberlesme}, Dünya yüzeyini görüntülemek için {gozlem} uyduları kullanılır.",
               "blanks": [
                 {
-                  "id": "uzay_kirliligine",
-                  "answer": "uzay kirliliğine"
+                  "id": "haberlesme",
+                  "answer": "haberleşme"
+                },
+                {
+                  "id": "gozlem",
+                  "answer": "gözlem"
                 }
               ]
             }
