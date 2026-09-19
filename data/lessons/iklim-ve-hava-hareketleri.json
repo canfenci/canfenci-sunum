@@ -532,6 +532,175 @@
           "interactions": []
         }
       ]
+    },
+    {
+      "id": "stage_iklim_nedir",
+      "label": "İklim Nedir?",
+      "order": 12,
+      "slides": [
+        {
+          "id": "slide_12_iklim_nedir",
+          "type": "content",
+          "layout": "climate_definition_concepts",
+          "tag": "İKLİM NEDİR?",
+          "title": "İKLİM NEDİR?",
+          "definition": "Yeryüzünün geniş bir bölgesinde uzun yıllar boyunca gözlenen hava olaylarının ortalamasına iklim denir.",
+          "concepts": [
+            {
+              "title": "KLİMATOLOJİ",
+              "text": "İklimi inceleyen bilim dalıdır.",
+              "tone": "blue"
+            },
+            {
+              "title": "KLİMATOLOG",
+              "text": "İklim alanında çalışan bilim insanıdır.",
+              "tone": "lilac"
+            }
+          ],
+          "interactions": []
+        }
+      ]
+    },
+    {
+      "id": "stage_iklim_etmenleri",
+      "label": "İklimi Belirleyen Etmenler",
+      "order": 13,
+      "slides": [
+        {
+          "id": "slide_13_iklimi_belirleyen_etmenler",
+          "type": "content",
+          "layout": "climate_factors",
+          "tag": "İKLİMİ BELİRLEYEN ETMENLER",
+          "title": "İKLİMİ BELİRLEYEN ETMENLER",
+          "factors": ["Enlem", "Yükselti", "Yer şekilleri", "Bitki örtüsü", "Denize uzaklık"],
+          "bottomInfo": "Sıcaklık, nem, yağış, basınç ve rüzgâr iklimi belirlemede kullanılır.",
+          "interactions": []
+        }
+      ]
+    },
+    {
+      "id": "stage_turkiye_iklimleri",
+      "label": "Türkiye'de İklim Tipleri",
+      "order": 14,
+      "slides": [
+        {
+          "id": "slide_14_turkiyede_iklim_tipleri",
+          "type": "content",
+          "layout": "climate_turkey_types",
+          "tag": "TÜRKİYE'DE İKLİM TİPLERİ",
+          "title": "TÜRKİYE'DE İKLİM TİPLERİ",
+          "types": [
+            {
+              "title": "AKDENİZ İKLİMİ",
+              "details": ["Yazlar sıcak ve kurak", "Kışlar ılık ve yağışlı", "Bitki örtüsü: Maki"],
+              "tone": "peach"
+            },
+            {
+              "title": "KARADENİZ İKLİMİ",
+              "details": ["Yazlar serin ve yağışlı", "Kışlar soğuk ve yağışlı", "Bitki örtüsü: Orman"],
+              "tone": "blue"
+            },
+            {
+              "title": "KARASAL İKLİM",
+              "details": ["Yazlar sıcak ve kurak", "Kışlar soğuk ve karlı", "Bitki örtüsü: Bozkır"],
+              "tone": "lilac"
+            }
+          ],
+          "interactions": []
+        }
+      ]
+    },
+    {
+      "id": "stage_hava_olaylari_ve_iklim",
+      "label": "Hava Olayları ve İklim",
+      "order": 15,
+      "slides": [
+        {
+          "id": "slide_15_hava_olaylari_ve_iklim",
+          "type": "content",
+          "layout": "climate_weather_climate_comparison",
+          "tag": "HAVA OLAYLARI ve İKLİM",
+          "title": "HAVA OLAYLARI ve İKLİM",
+          "columns": [
+            {
+              "title": "HAVA OLAYLARI",
+              "items": ["Dar bölgede görülür", "Kısa süreli değişir", "Günlük olabilir", "Meteoroloji inceler", "Meteorolog ilgilenir"],
+              "tone": "blue"
+            },
+            {
+              "title": "İKLİM",
+              "items": ["Geniş bölgede görülür", "Uzun yılların ortalamasıdır", "Kolay değişmez", "Klimatoloji inceler", "Klimatolog ilgilenir"],
+              "tone": "lilac"
+            }
+          ],
+          "interactions": []
+        }
+      ]
+    },
+    {
+      "id": "stage_kuresel_iklim_degisikligi",
+      "label": "Küresel İklim Değişikliği",
+      "order": 16,
+      "slides": [
+        {
+          "id": "slide_16_kuresel_iklim_degisikligi",
+          "type": "content",
+          "layout": "climate_global_change",
+          "tag": "KÜRESEL İKLİM DEĞİŞİKLİĞİ",
+          "title": "KÜRESEL İKLİM DEĞİŞİKLİĞİ",
+          "cards": [
+            {
+              "title": "KÜRESEL İKLİM DEĞİŞİKLİĞİ",
+              "text": "Dünya genelinde iklimlerin yapısında meydana gelen değişimlerdir.",
+              "tone": "blue"
+            },
+            {
+              "title": "SERA ETKİSİ",
+              "text": "Güneşten yansıyan ışınların atmosferdeki gazlar tarafından tutulmasıdır.",
+              "tone": "lilac"
+            },
+            {
+              "title": "KÜRESEL ISINMA",
+              "text": "Atmosferde sera gazlarının artmasıyla Dünya'nın ısınmasıdır.",
+              "tone": "peach"
+            }
+          ],
+          "interactions": []
+        }
+      ]
+    },
+    {
+      "id": "stage_kuresel_iklim_cozumleri",
+      "label": "Nedenler, Sonuçlar ve Önlemler",
+      "order": 17,
+      "slides": [
+        {
+          "id": "slide_17_nedenler_sonuclar_onlemler",
+          "type": "content",
+          "layout": "climate_global_actions",
+          "tag": "NEDENLER / SONUÇLAR / ÖNLEMLER",
+          "title": "NEDENLER / SONUÇLAR / ÖNLEMLER",
+          "columns": [
+            {
+              "title": "NEDENLER",
+              "items": ["Endüstriyel faaliyetler", "Fosil yakıt tüketimi", "Orman tahribi ve yangınlar", "Sera gazlarının artması", "Arazi kullanım değişiklikleri"],
+              "tone": "peach"
+            },
+            {
+              "title": "SONUÇLAR",
+              "items": ["Kuraklık ve çölleşme", "Erozyon", "Sel ve fırtınaların artması", "Buzulların erimesi", "Deniz seviyelerinin artması"],
+              "tone": "blue"
+            },
+            {
+              "title": "ÖNLEMLER",
+              "items": ["Sera gazı salımını azaltmak", "Fosil yakıt kullanımını azaltmak", "Yenilenebilir enerji kullanmak", "Ormanlık alanları artırmak", "Geri dönüşümü yaygınlaştırmak"],
+              "tone": "lilac"
+            }
+          ],
+          "kyotoNote": "Kyoto Protokolü, gelişmiş ülkelerin sera gazı salımlarını 1990 yılına göre %5,2 azaltmalarını öngören uluslararası bir anlaşmadır.",
+          "interactions": []
+        }
+      ]
     }
   ]
 }

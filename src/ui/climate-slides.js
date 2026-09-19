@@ -346,6 +346,132 @@ export function renderClimateSlide(slide, view, { interactions, activeInteractio
       return true;
     }
 
+    case "climate_definition_concepts": {
+      const concepts = slide.concepts ?? [];
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-climate-definition-concepts";
+      slideArticle.innerHTML = `
+        <header class="climate-slide-header">
+          <h1 class="climate-slide-title">${escapeHtml(slide.title ?? "İKLİM NEDİR?")}</h1>
+        </header>
+        <section class="climate-definition-main">
+          <p>${escapeHtml(slide.definition ?? "")}</p>
+        </section>
+        <section class="climate-concept-cards" aria-label="İklim bilimi kavramları">
+          ${concepts.map((concept) => `
+            <article class="climate-card climate-concept-definition climate-concept-${escapeHtml(concept.tone ?? "blue")}">
+              <h2>${escapeHtml(concept.title ?? "")}</h2>
+              <p>${escapeHtml(concept.text ?? "")}</p>
+            </article>
+          `).join("")}
+        </section>
+      `;
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
+    case "climate_factors": {
+      const factors = slide.factors ?? [];
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-climate-factors";
+      slideArticle.innerHTML = `
+        <header class="climate-slide-header">
+          <h1 class="climate-slide-title">${escapeHtml(slide.title ?? "İKLİMİ BELİRLEYEN ETMENLER")}</h1>
+        </header>
+        <section class="climate-factor-grid" aria-label="İklimi belirleyen etmenler">
+          ${factors.map((factor, index) => `<article class="climate-card climate-factor-card climate-factor-${index % 3}"><p>${escapeHtml(factor)}</p></article>`).join("")}
+        </section>
+        <div class="climate-card climate-factor-bottom-info"><p>${escapeHtml(slide.bottomInfo ?? "")}</p></div>
+      `;
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
+    case "climate_turkey_types": {
+      const climateTypes = slide.types ?? [];
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-climate-turkey-types";
+      slideArticle.innerHTML = `
+        <header class="climate-slide-header">
+          <h1 class="climate-slide-title">${escapeHtml(slide.title ?? "TÜRKİYE'DE İKLİM TİPLERİ")}</h1>
+        </header>
+        <section class="climate-type-cards" aria-label="Türkiye'de görülen iklim tipleri">
+          ${climateTypes.map((climateType) => `
+            <article class="climate-card climate-type-card climate-type-${escapeHtml(climateType.tone ?? "blue")}">
+              <h2>${escapeHtml(climateType.title ?? "")}</h2>
+              <div>${(climateType.details ?? []).map((detail) => `<p>${escapeHtml(detail)}</p>`).join("")}</div>
+            </article>
+          `).join("")}
+        </section>
+      `;
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
+    case "climate_weather_climate_comparison": {
+      const columns = slide.columns ?? [];
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-climate-weather-climate-comparison";
+      slideArticle.innerHTML = `
+        <header class="climate-slide-header">
+          <h1 class="climate-slide-title">${escapeHtml(slide.title ?? "HAVA OLAYLARI ve İKLİM")}</h1>
+        </header>
+        <section class="climate-weather-climate-columns" aria-label="Hava olayları ve iklim karşılaştırması">
+          ${columns.map((column) => `
+            <article class="climate-card climate-weather-climate-column climate-weather-climate-${escapeHtml(column.tone ?? "blue")}">
+              <h2>${escapeHtml(column.title ?? "")}</h2>
+              <ul>${(column.items ?? []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+            </article>
+          `).join("")}
+        </section>
+      `;
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
+    case "climate_global_change": {
+      const cards = slide.cards ?? [];
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-climate-global-change";
+      slideArticle.innerHTML = `
+        <header class="climate-slide-header">
+          <h1 class="climate-slide-title">${escapeHtml(slide.title ?? "KÜRESEL İKLİM DEĞİŞİKLİĞİ")}</h1>
+        </header>
+        <section class="climate-global-change-cards" aria-label="Küresel iklim değişikliği kavramları">
+          ${cards.map((card) => `
+            <article class="climate-card climate-global-change-card climate-global-change-${escapeHtml(card.tone ?? "blue")}">
+              <h2>${escapeHtml(card.title ?? "")}</h2>
+              <p>${escapeHtml(card.text ?? "")}</p>
+            </article>
+          `).join("")}
+        </section>
+      `;
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
+    case "climate_global_actions": {
+      const columns = slide.columns ?? [];
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-climate-global-actions";
+      slideArticle.innerHTML = `
+        <header class="climate-slide-header">
+          <h1 class="climate-slide-title">${escapeHtml(slide.title ?? "NEDENLER / SONUÇLAR / ÖNLEMLER")}</h1>
+        </header>
+        <section class="climate-global-action-columns" aria-label="Küresel iklim değişikliği nedenleri, sonuçları ve önlemleri">
+          ${columns.map((column) => `
+            <article class="climate-card climate-global-action-column climate-global-action-${escapeHtml(column.tone ?? "blue")}">
+              <h2>${escapeHtml(column.title ?? "")}</h2>
+              <ul>${(column.items ?? []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+            </article>
+          `).join("")}
+        </section>
+        <aside class="climate-card climate-kyoto-note"><p>${escapeHtml(slide.kyotoNote ?? "")}</p></aside>
+      `;
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
     default:
       return false;
   }

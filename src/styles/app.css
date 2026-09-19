@@ -2306,6 +2306,330 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   text-align: center;
 }
 
+/* 8. Sınıf — İklim ve Hava Hareketleri: Slayt 12-17 */
+.slide-workspace:has(.slide-climate-definition-concepts) .slide-content,
+.slide-workspace:has(.slide-climate-factors) .slide-content,
+.slide-workspace:has(.slide-climate-turkey-types) .slide-content,
+.slide-workspace:has(.slide-climate-weather-climate-comparison) .slide-content,
+.slide-workspace:has(.slide-climate-global-change) .slide-content,
+.slide-workspace:has(.slide-climate-global-actions) .slide-content {
+  padding: 0;
+}
+
+.slide-climate-definition-concepts,
+.slide-climate-factors,
+.slide-climate-turkey-types,
+.slide-climate-weather-climate-comparison,
+.slide-climate-global-change,
+.slide-climate-global-actions {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 48px 64px 46px;
+  display: grid;
+  gap: 24px;
+  background: #ffffff;
+  color: #0a2540;
+}
+
+.slide-climate-definition-concepts {
+  grid-template-rows: auto minmax(0, 1fr) 230px;
+}
+
+.climate-definition-main {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  place-items: center;
+  padding: 34px 72px;
+  border: 2px solid rgba(148, 163, 184, 0.22);
+  border-radius: 24px;
+  background: #F8FBFF;
+}
+
+.climate-definition-main p {
+  max-width: 1480px;
+  margin: 0;
+  color: #111827;
+  font-size: 42px;
+  font-weight: 850;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.climate-concept-cards {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.climate-concept-definition {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 20px;
+  padding: 28px 40px;
+  text-align: center;
+}
+
+.climate-concept-definition h2,
+.climate-type-card h2,
+.climate-weather-climate-column h2,
+.climate-global-change-card h2,
+.climate-global-action-column h2 {
+  margin: 0;
+  color: #D8362A;
+  font-size: 42px;
+  font-weight: 900;
+  line-height: 1.06;
+  letter-spacing: 0;
+}
+
+.climate-concept-definition p {
+  margin: 0;
+  color: #111827;
+  font-size: 40px;
+  font-weight: 850;
+  line-height: 1.1;
+}
+
+.climate-concept-blue,
+.climate-factor-0,
+.climate-type-blue,
+.climate-weather-climate-blue,
+.climate-global-change-blue,
+.climate-global-action-blue { background: #EAF4FF; }
+
+.climate-concept-lilac,
+.climate-factor-1,
+.climate-type-lilac,
+.climate-weather-climate-lilac,
+.climate-global-change-lilac,
+.climate-global-action-lilac { background: #F1EEFF; }
+
+.climate-factor-2,
+.climate-type-peach,
+.climate-global-change-peach,
+.climate-global-action-peach { background: #FFF0E6; }
+
+.slide-climate-factors {
+  grid-template-rows: auto minmax(0, 1fr) 100px;
+}
+
+.climate-factor-grid {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.climate-factor-card {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px 18px;
+  text-align: center;
+}
+
+.climate-factor-card p {
+  margin: 0;
+  color: #111827;
+  font-size: 40px;
+  font-weight: 850;
+  line-height: 1.08;
+}
+
+.climate-factor-bottom-info,
+.climate-kyoto-note {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  place-items: center;
+  padding: 18px 30px;
+  background: #F2F6FA;
+}
+
+.climate-factor-bottom-info p {
+  margin: 0;
+  color: #111827;
+  font-size: 40px;
+  font-weight: 850;
+  line-height: 1.08;
+  text-align: center;
+}
+
+.slide-climate-turkey-types,
+.slide-climate-weather-climate-comparison,
+.slide-climate-global-change {
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.climate-type-cards,
+.climate-global-change-cards,
+.climate-global-action-columns {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.climate-type-card,
+.climate-global-change-card {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  align-content: center;
+  gap: 28px;
+  padding: 34px 32px;
+}
+
+.climate-type-card h2,
+.climate-global-change-card h2 {
+  text-align: center;
+}
+
+.climate-type-card h2::after,
+.climate-global-change-card h2::after,
+.climate-weather-climate-column h2::after,
+.climate-global-action-column h2::after {
+  content: "";
+  display: block;
+  width: 92px;
+  height: 5px;
+  margin: 12px auto 0;
+  border-radius: 999px;
+  background: #D8362A;
+}
+
+.climate-type-card > div {
+  min-width: 0;
+  display: grid;
+  gap: 20px;
+}
+
+.climate-type-card p,
+.climate-global-change-card p {
+  margin: 0;
+  color: #111827;
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1.12;
+  text-align: center;
+}
+
+.climate-weather-climate-columns {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.climate-weather-climate-column {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  align-content: start;
+  gap: 32px;
+  padding: 34px 44px;
+}
+
+.climate-weather-climate-column h2,
+.climate-global-action-column h2 {
+  text-align: center;
+}
+
+.climate-weather-climate-column ul,
+.climate-global-action-column ul {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 18px;
+  list-style: none;
+}
+
+.climate-weather-climate-column li,
+.climate-global-action-column li {
+  position: relative;
+  padding-left: 30px;
+  color: #111827;
+  font-size: 40px;
+  font-weight: 850;
+  line-height: 1.1;
+}
+
+.climate-weather-climate-column li::before,
+.climate-global-action-column li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #D8362A;
+  font-weight: 900;
+}
+
+.climate-global-change-card {
+  justify-items: center;
+}
+
+.climate-global-change-card h2 {
+  font-size: 40px;
+}
+
+.climate-global-change-card p {
+  font-size: 40px;
+}
+
+.slide-climate-global-actions {
+  grid-template-rows: auto minmax(0, 1fr) 134px;
+}
+
+.climate-global-action-column {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  align-content: start;
+  gap: 24px;
+  padding: 28px 28px;
+}
+
+.climate-global-action-column h2 {
+  font-size: 40px;
+}
+
+.climate-global-action-column ul {
+  gap: 14px;
+}
+
+.climate-global-action-column li {
+  padding-left: 26px;
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.climate-kyoto-note {
+  background: #F2F6FA;
+}
+
+.climate-kyoto-note p {
+  max-width: 1540px;
+  margin: 0;
+  color: #111827;
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1.12;
+  text-align: center;
+}
+
 /* Slayt 1: Merak Et (Türkiye & Avustralya) */
 .slide-canva-merak-et {
   display: flex;
