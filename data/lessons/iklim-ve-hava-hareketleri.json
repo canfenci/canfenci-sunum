@@ -144,6 +144,65 @@
           ]
         }
       ]
+    },
+    {
+      "id": "stage_meteoroloji_ve_olcum_araclari",
+      "label": "Meteoroloji ve Ölçüm Araçları",
+      "order": 4,
+      "slides": [
+        {
+          "id": "slide_4_meteoroloji_ve_olcum_araclari",
+          "type": "content",
+          "layout": "climate_meteorology_tools",
+          "tag": "METEOROLOJİ",
+          "kicker": "METEOROLOJİ VE ÖLÇÜM ARAÇLARI",
+          "title": "METEOROLOJİ VE ÖLÇÜM ARAÇLARI",
+          "concepts": [
+            {
+              "title": "METEOROLOJİ",
+              "description": "Hava olaylarını inceleyen bilim dalıdır.",
+              "tone": "blue"
+            },
+            {
+              "title": "METEOROLOG",
+              "description": "Hava olaylarıyla ilgilenen bilim insanıdır.",
+              "tone": "lilac"
+            }
+          ],
+          "tools": [
+            {
+              "title": "TERMOMETRE",
+              "description": "Hava sıcaklığını ölçer.",
+              "image": "./assets/images/iklim-ve-hava-hareketleri/04-termometre.png",
+              "tone": "peach",
+              "alt": "Termometre görseli"
+            },
+            {
+              "title": "HİGROMETRE",
+              "description": "Havadaki nem oranını ölçer.",
+              "image": "./assets/images/iklim-ve-hava-hareketleri/04-higrometre.png",
+              "tone": "turquoise",
+              "alt": "Higrometre görseli"
+            },
+            {
+              "title": "BAROMETRE",
+              "description": "Hava basıncını ölçer.",
+              "image": "./assets/images/iklim-ve-hava-hareketleri/04-barometre.png",
+              "tone": "slate",
+              "alt": "Barometre görseli"
+            },
+            {
+              "title": "ANEMOMETRE",
+              "description": "Rüzgârın hızını ve yönünü ölçer.",
+              "image": "./assets/images/iklim-ve-hava-hareketleri/04-anemometre.png",
+              "tone": "lilac",
+              "alt": "Anemometre görseli"
+            }
+          ],
+          "media": [],
+          "interactions": []
+        }
+      ]
     }
   ]
 }

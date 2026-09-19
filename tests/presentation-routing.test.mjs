@@ -74,7 +74,7 @@ test("Müfredat ve Rota Bağlantıları Doğrulaması (6. Sınıf ve 8. Sınıf)
   const climateEngine = new LessonEngine();
   const climateLesson = await climateEngine.load("data/lessons/iklim-ve-hava-hareketleri.json");
   assert.equal(climateLesson.id, "lesson_iklim_ve_hava_hareketleri_1");
-  assert.equal(climateEngine.slideCount, 3, "İklim ve Hava Hareketleri dersi 3 slayt olmalıdır");
+  assert.equal(climateEngine.slideCount, 4, "İklim ve Hava Hareketleri dersi 4 slayt olmalıdır");
   assert.equal(climateEngine.currentSlide.layout, "climate_cover");
   } finally {
     globalThis.fetch = originalFetch;

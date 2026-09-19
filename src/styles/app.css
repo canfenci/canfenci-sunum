@@ -1501,6 +1501,123 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   letter-spacing: 0;
 }
 
+/* 8. Sınıf — İklim ve Hava Hareketleri: Slayt 4 Meteoroloji */
+.slide-workspace:has(.slide-climate-meteorology-tools) .slide-content {
+  padding: 0;
+}
+
+.slide-climate-meteorology-tools {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 52px 64px 50px;
+  display: grid;
+  grid-template-rows: auto 196px minmax(0, 1fr);
+  gap: 24px;
+  background: #ffffff;
+  color: #0a2540;
+}
+
+.climate-meteorology-concepts,
+.climate-meteorology-tools-grid {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.climate-concept-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+  padding: 26px 34px;
+}
+
+.climate-concept-blue { background: #EAF4FF; }
+.climate-concept-lilac { background: #F2ECFF; }
+
+.climate-concept-card h2,
+.climate-tool-copy h2 {
+  width: max-content;
+  max-width: 100%;
+  margin: 0;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #D8362A;
+  font-size: 42px;
+  font-weight: 900;
+  line-height: 1.04;
+  letter-spacing: 0;
+  text-decoration: none;
+}
+
+.climate-concept-card h2::after,
+.climate-tool-copy h2::after {
+  content: "";
+  width: 92px;
+  height: 5px;
+  margin-top: 10px;
+  border-radius: 999px;
+  background: #D8362A;
+}
+
+.climate-concept-card p,
+.climate-tool-copy p {
+  margin: 0;
+  color: #111827;
+  font-size: 40px;
+  font-weight: 850;
+  line-height: 1.12;
+  letter-spacing: 0;
+}
+
+.climate-meteorology-tools-grid {
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+}
+
+.climate-tool-card {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 35% minmax(0, 1fr);
+  gap: 28px;
+  align-items: center;
+  padding: 20px 28px;
+}
+
+.climate-tool-peach { background: #FFF0E6; }
+.climate-tool-turquoise { background: #E6F7F5; }
+.climate-tool-slate { background: #EEF2F7; }
+.climate-tool-lilac { background: #F2ECFF; }
+
+.climate-tool-visual {
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  margin: 0;
+  display: grid;
+  place-items: center;
+}
+
+.climate-tool-visual img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: 210px;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 18px rgba(15, 23, 42, 0.13));
+}
+
+.climate-tool-copy {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 /* Slayt 1: Merak Et (Türkiye & Avustralya) */
 .slide-canva-merak-et {
   display: flex;

@@ -140,6 +140,41 @@ export function renderClimateSlide(slide, view, { interactions, activeInteractio
       return true;
     }
 
+    case "climate_meteorology_tools": {
+      const concepts = slide.concepts ?? [];
+      const tools = slide.tools ?? [];
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-climate-meteorology-tools";
+      slideArticle.innerHTML = `
+        <header class="climate-slide-header">
+          <h1 class="climate-slide-title">${escapeHtml(slide.title ?? "METEOROLOJİ VE ÖLÇÜM ARAÇLARI")}</h1>
+        </header>
+        <section class="climate-meteorology-concepts" aria-label="Meteoroloji ve meteorolog kavramları">
+          ${concepts.map((concept) => `
+            <article class="climate-card climate-concept-card climate-concept-${escapeHtml(concept.tone ?? "blue")}">
+              <h2>${escapeHtml(concept.title)}</h2>
+              <p>${escapeHtml(concept.description)}</p>
+            </article>
+          `).join("")}
+        </section>
+        <section class="climate-meteorology-tools-grid" aria-label="Meteorolojik ölçüm araçları">
+          ${tools.map((tool) => `
+            <article class="climate-card climate-tool-card climate-tool-${escapeHtml(tool.tone ?? "slate")}">
+              <figure class="climate-tool-visual">
+                <img src="${escapeHtml(tool.image ?? "")}" alt="${escapeHtml(tool.alt ?? `${tool.title} görseli`)}" />
+              </figure>
+              <div class="climate-tool-copy">
+                <h2>${escapeHtml(tool.title)}</h2>
+                <p>${escapeHtml(tool.description)}</p>
+              </div>
+            </article>
+          `).join("")}
+        </section>
+      `;
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
     default:
       return false;
   }

@@ -8,7 +8,7 @@ test("8. Sınıf İklim ve Hava Hareketleri kapak ve atmosfer slaytları doğrul
   const css = await readFile("src/styles/app.css", "utf8");
 
   assert.equal(lesson.title, "İklim ve Hava Hareketleri");
-  assert.equal(slides.length, 3, "Ders kapak, atmosfer ve hava olayları olmak üzere 3 slayt olmalıdır");
+  assert.equal(slides.length, 4, "Ders kapak, atmosfer, hava olayları ve ölçüm araçları olmak üzere 4 slayt olmalıdır");
 
   const cover = slides[0];
   assert.equal(cover.id, "slide_1_kapak");
@@ -99,4 +99,19 @@ test("8. Sınıf İklim ve Hava Hareketleri kapak ve atmosfer slaytları doğrul
   assert.ok(css.includes("background: #E6F7F5"), "Nem kartı pastel turkuaz olmalıdır");
   assert.ok(css.includes("background: #FFF0E6"), "Sıcaklık farkı kartı pastel şeftali olmalıdır");
   assert.ok(css.includes("background: #F2ECFF"), "Basınç farkı kartı pastel lila olmalıdır");
+
+  const meteorology = slides[3];
+  assert.equal(meteorology.id, "slide_4_meteoroloji_ve_olcum_araclari");
+  assert.equal(meteorology.layout, "climate_meteorology_tools");
+  assert.equal(meteorology.title, "METEOROLOJİ VE ÖLÇÜM ARAÇLARI");
+  assert.deepEqual(meteorology.concepts?.map((item) => item.title), ["METEOROLOJİ", "METEOROLOG"]);
+  assert.deepEqual(meteorology.tools?.map((item) => item.title), ["TERMOMETRE", "HİGROMETRE", "BAROMETRE", "ANEMOMETRE"]);
+  assert.deepEqual(meteorology.interactions, []);
+  for (const tool of meteorology.tools ?? []) {
+    assert.ok(tool.image, `${tool.title} için yerel görsel yolu tanımlı olmalıdır`);
+    await access(tool.image.replace(/^\.\//, ""));
+  }
+  assert.ok(css.includes(".slide-climate-meteorology-tools"), "Slayt 4 CSS kuralı mevcut olmalıdır");
+  assert.ok(css.includes("grid-template-columns: repeat(2, 1fr)"), "Slayt 4 araç kartları 2x2 grid olmalıdır");
+  assert.ok(css.includes("font-size: 42px"), "Slayt 4 araç başlıkları 42px olmalıdır");
 });
