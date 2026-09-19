@@ -128,8 +128,25 @@ test("8. Sınıf İklim ve Hava Hareketleri kapak ve atmosfer slaytları doğrul
   assert.equal(pressureComparison.id, "slide_6_basinc_karsilastirmasi");
   assert.equal(pressureComparison.layout, "climate_pressure_comparison");
   assert.equal(pressureComparison.interactions?.length, 0);
-  assert.equal(pressureComparison.areas?.[0]?.points?.length, 9);
-  assert.equal(pressureComparison.areas?.[1]?.points?.length, 9);
+  assert.equal(pressureComparison.title, "ALÇAK BASINÇ ve YÜKSEK BASINÇ KARŞILAŞTIRMASI");
+  assert.deepEqual(pressureComparison.areas?.[0]?.points, [
+    "Sıcaktır",
+    "Hava yoğunluğu azdır",
+    "Nem oranı fazla",
+    "Yağış ihtimali fazla",
+    "Gökyüzü kapalı ve bulutlu",
+    "Yükselici hava hareketi",
+    "Çevreden merkeze doğru"
+  ]);
+  assert.deepEqual(pressureComparison.areas?.[1]?.points, [
+    "Soğuktur",
+    "Hava yoğunluğu fazladır",
+    "Nem oranı az",
+    "Yağış ihtimali az",
+    "Gökyüzü açık",
+    "Alçalıcı hava hareketi",
+    "Merkezden çevreye doğru"
+  ]);
   for (const area of pressureComparison.areas ?? []) await access(area.image.replace(/^\.\//, ""));
   assert.ok(css.includes(".slide-climate-pressure-formation"), "Slayt 5 CSS kuralı mevcut olmalıdır");
   assert.ok(css.includes(".slide-climate-pressure-comparison"), "Slayt 6 CSS kuralı mevcut olmalıdır");

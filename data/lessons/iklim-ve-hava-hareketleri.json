@@ -259,7 +259,7 @@
           "type": "content",
           "layout": "climate_pressure_comparison",
           "tag": "BASINÇ KARŞILAŞTIRMASI",
-          "title": "ALÇAK VE YÜKSEK BASINÇ",
+          "title": "ALÇAK BASINÇ ve YÜKSEK BASINÇ KARŞILAŞTIRMASI",
           "areas": [
             {
               "title": "ALÇAK BASINÇ",
@@ -267,15 +267,13 @@
               "image": "./assets/images/iklim-ve-hava-hareketleri/06-alcak-basinc-karsilastirma.png",
               "alt": "Alçak basınçta merkeze yönelen ve yükselen hava diyagramı",
               "points": [
-                "Sıcaklık yüksektir.",
-                "Hava yoğunluğu azdır.",
-                "Basınç çevresine göre düşüktür.",
-                "Nem oranı fazladır.",
-                "Yağış ihtimali fazladır.",
-                "Gökyüzü kapalı ve bulutludur.",
-                "Hava hareketi çevreden merkeze doğrudur.",
-                "Yükselici hava hareketi görülür.",
-                "Bitki örtüsü daha gürdür."
+                "Sıcaktır",
+                "Hava yoğunluğu azdır",
+                "Nem oranı fazla",
+                "Yağış ihtimali fazla",
+                "Gökyüzü kapalı ve bulutlu",
+                "Yükselici hava hareketi",
+                "Çevreden merkeze doğru"
               ]
             },
             {
@@ -284,15 +282,13 @@
               "image": "./assets/images/iklim-ve-hava-hareketleri/06-yuksek-basinc-karsilastirma.png",
               "alt": "Yüksek basınçta merkezden çevreye yönelen ve alçalan hava diyagramı",
               "points": [
-                "Sıcaklık düşüktür.",
-                "Hava yoğunluğu fazladır.",
-                "Basınç çevresine göre yüksektir.",
-                "Nem oranı azdır.",
-                "Yağış ihtimali azdır.",
-                "Gökyüzü açık ve bulutsuzdur.",
-                "Hava hareketi merkezden çevreye doğrudur.",
-                "Alçalıcı hava hareketi görülür.",
-                "Bitki örtüsü daha cılızdır."
+                "Soğuktur",
+                "Hava yoğunluğu fazladır",
+                "Nem oranı az",
+                "Yağış ihtimali az",
+                "Gökyüzü açık",
+                "Alçalıcı hava hareketi",
+                "Merkezden çevreye doğru"
               ]
             }
           ],
