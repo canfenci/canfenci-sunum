@@ -1001,6 +1001,259 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   filter: drop-shadow(0 24px 46px rgba(15, 23, 42, 0.14));
 }
 
+/* 8. Sınıf — İklim ve Hava Hareketleri: Slayt 2 Atmosfer */
+.slide-workspace:has(.slide-climate-atmosphere) .slide-content {
+  padding: 0;
+}
+
+.slide-climate-atmosphere {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 56px 64px 52px;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 28px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fbff 56%, #eef7fc 100%);
+  color: #0a2540;
+}
+
+.climate-slide-header {
+  min-height: 68px;
+  display: flex;
+  align-items: center;
+}
+
+.climate-slide-title {
+  margin: 0;
+  color: #0a2540;
+  font-size: 56px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.climate-atmosphere-main {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 55fr 45fr;
+  gap: 32px;
+}
+
+.climate-atmosphere-left,
+.climate-atmosphere-right {
+  min-width: 0;
+  min-height: 0;
+}
+
+.climate-atmosphere-left {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) 210px;
+  gap: 24px;
+}
+
+.climate-card {
+  min-width: 0;
+  min-height: 0;
+  box-sizing: border-box;
+  border: 2px solid rgba(148, 163, 184, 0.26);
+  border-radius: 26px;
+  background: rgba(248, 251, 255, 0.94);
+  box-shadow: 0 18px 34px rgba(15, 23, 42, 0.07);
+}
+
+.climate-definition-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+  gap: 28px;
+  align-items: center;
+  padding: 34px 38px;
+}
+
+.climate-definition-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.climate-definition-copy h2,
+.climate-composition-card h2 {
+  margin: 0;
+  color: #0a2540;
+  font-size: 46px;
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+
+.climate-definition-copy p {
+  margin: 0;
+  color: #111827;
+  font-size: 44px;
+  font-weight: 850;
+  line-height: 1.16;
+  letter-spacing: 0;
+}
+
+.climate-atmosphere-visual {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 24px;
+  background: #ffffff;
+}
+
+.climate-atmosphere-visual::before {
+  content: "";
+  position: absolute;
+  inset: 9%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.18) 0%, rgba(14, 165, 233, 0) 70%);
+}
+
+.climate-atmosphere-visual img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 16px 30px rgba(15, 23, 42, 0.12));
+}
+
+.climate-duty-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.climate-duty-card {
+  display: flex;
+  align-items: center;
+  padding: 30px 34px;
+}
+
+.climate-duty-card p,
+.climate-bottom-info p {
+  margin: 0;
+  color: #0f172a;
+  font-size: 40px;
+  font-weight: 850;
+  line-height: 1.18;
+  letter-spacing: 0;
+}
+
+.climate-atmosphere-right {
+  display: flex;
+}
+
+.climate-composition-card {
+  width: 100%;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  align-items: center;
+  justify-items: center;
+  gap: 22px;
+  padding: 34px 34px 30px;
+}
+
+.climate-donut-wrap {
+  min-height: 0;
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.climate-donut-chart {
+  position: relative;
+  width: 390px;
+  height: 390px;
+  border-radius: 50%;
+  background: conic-gradient(#0a3b70 0deg 280.8deg, #38bdf8 280.8deg 356.4deg, #dbe4ec 356.4deg 360deg);
+  box-shadow: 0 18px 38px rgba(15, 23, 42, 0.12);
+}
+
+.climate-donut-chart::after {
+  content: "";
+  position: absolute;
+  inset: 84px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: inset 0 0 0 2px rgba(148, 163, 184, 0.18);
+}
+
+.climate-donut-center {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+}
+
+.climate-donut-center strong {
+  color: #0a2540;
+  font-size: 40px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.climate-composition-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.climate-mini-card {
+  min-width: 0;
+  min-height: 132px;
+  padding: 18px 12px;
+  border-radius: 22px;
+  border: 2px solid rgba(148, 163, 184, 0.22);
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.climate-mini-card strong,
+.climate-mini-card span {
+  color: #0a2540;
+  font-size: 40px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0;
+  text-align: center;
+}
+
+.climate-mini-card:nth-child(1) {
+  border-color: rgba(10, 59, 112, 0.3);
+}
+
+.climate-mini-card:nth-child(2) {
+  border-color: rgba(56, 189, 248, 0.42);
+}
+
+.climate-mini-card:nth-child(3) {
+  border-color: rgba(148, 163, 184, 0.36);
+}
+
+.climate-bottom-info {
+  min-height: 116px;
+  display: flex;
+  align-items: center;
+  padding: 30px 38px;
+  background: #eef7fc;
+}
+
 /* Slayt 1: Merak Et (Türkiye & Avustralya) */
 .slide-canva-merak-et {
   display: flex;

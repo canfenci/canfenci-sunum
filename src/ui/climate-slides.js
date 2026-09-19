@@ -25,6 +25,64 @@ export function renderClimateSlide(slide, view) {
       return true;
     }
 
+    case "climate_atmosphere": {
+      const media = slide.media?.[0];
+      const composition = slide.composition ?? [
+        { value: "%78", label: "AZOT" },
+        { value: "%21", label: "OKSİJEN" },
+        { value: "%1", label: "DİĞER GAZLAR" }
+      ];
+      const duties = slide.duties ?? [];
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-climate-atmosphere";
+      slideArticle.innerHTML = `
+        <header class="climate-slide-header">
+          <h1 class="climate-slide-title">${escapeHtml(slide.title ?? "ATMOSFER")}</h1>
+        </header>
+        <div class="climate-atmosphere-main">
+          <section class="climate-atmosphere-left">
+            <div class="climate-card climate-definition-card">
+              <div class="climate-definition-copy">
+                <h2>${escapeHtml(slide.definitionTitle ?? "Atmosfer Nedir?")}</h2>
+                <p>${escapeHtml(slide.definition ?? "Dünya’nın etrafını saran gaz tabakasına atmosfer denir.")}</p>
+              </div>
+              <figure class="climate-atmosphere-visual">
+                <img src="${escapeHtml(media?.src ?? "./assets/images/iklim-ve-hava-hareketleri/01-kapak-iklim-ve-hava-hareketleri.png")}" alt="${escapeHtml(media?.alt ?? "Atmosfer görseli")}" />
+              </figure>
+            </div>
+            <div class="climate-duty-grid">
+              ${duties.map((duty) => `<div class="climate-card climate-duty-card"><p>${escapeHtml(duty)}</p></div>`).join("")}
+            </div>
+          </section>
+          <section class="climate-atmosphere-right">
+            <div class="climate-card climate-composition-card">
+              <h2>${escapeHtml(slide.compositionTitle ?? "Havanın Bileşimi")}</h2>
+              <div class="climate-donut-wrap" aria-label="Havanın bileşimi halka grafiği">
+                <div class="climate-donut-chart">
+                  <div class="climate-donut-center">
+                    <strong>HAVA</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="climate-composition-grid">
+                ${composition.map((item) => `
+                  <div class="climate-mini-card">
+                    <strong>${escapeHtml(item.value)}</strong>
+                    <span>${escapeHtml(item.label)}</span>
+                  </div>
+                `).join("")}
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="climate-card climate-bottom-info">
+          <p>${escapeHtml(slide.bottomInfo ?? "Su buharı ve karbondioksit, hava olaylarının oluşmasında önemli rol oynar.")}</p>
+        </div>
+      `;
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
     default:
       return false;
   }

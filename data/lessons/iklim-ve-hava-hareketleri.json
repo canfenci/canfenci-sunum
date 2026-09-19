@@ -40,6 +40,42 @@
           "interactions": []
         }
       ]
+    },
+    {
+      "id": "stage_atmosfer",
+      "label": "Atmosfer",
+      "order": 2,
+      "slides": [
+        {
+          "id": "slide_2_atmosfer",
+          "type": "content",
+          "layout": "climate_atmosphere",
+          "tag": "ATMOSFER",
+          "kicker": "ATMOSFER",
+          "title": "ATMOSFER",
+          "definitionTitle": "Atmosfer Nedir?",
+          "definition": "Dünya’nın etrafını saran gaz tabakasına atmosfer denir.",
+          "duties": [
+            "Güneş’ten gelen zararlı ışınların bir bölümünü süzer.",
+            "Dünya’nın aşırı ısınıp soğumasını sınırlar."
+          ],
+          "compositionTitle": "Havanın Bileşimi",
+          "composition": [
+            { "value": "%78", "label": "AZOT" },
+            { "value": "%21", "label": "OKSİJEN" },
+            { "value": "%1", "label": "DİĞER GAZLAR" }
+          ],
+          "bottomInfo": "Su buharı ve karbondioksit, hava olaylarının oluşmasında önemli rol oynar.",
+          "media": [
+            {
+              "id": "media_atmosphere_layer",
+              "src": "./assets/images/iklim-ve-hava-hareketleri/01-kapak-iklim-ve-hava-hareketleri.png",
+              "alt": "Dünya'nın etrafındaki ince atmosfer tabakasını gösteren sade görsel"
+            }
+          ],
+          "interactions": []
+        }
+      ]
     }
   ]
 }
