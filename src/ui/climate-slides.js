@@ -322,6 +322,30 @@ export function renderClimateSlide(slide, view, { interactions, activeInteractio
       return true;
     }
 
+    case "climate_precipitation_classification": {
+      const rows = slide.rows ?? [];
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-climate-precipitation-classification";
+      slideArticle.innerHTML = `
+        <header class="climate-slide-header">
+          <h1 class="climate-slide-title">${escapeHtml(slide.title ?? "YAĞIŞLAR")}</h1>
+        </header>
+        <section class="climate-precipitation-table" aria-label="Yağışların oluşum yerine göre sınıflandırılması">
+          ${rows.map((row) => `
+            <article class="climate-card climate-precipitation-row climate-precipitation-${escapeHtml(row.tone ?? "blue")}" role="row">
+              <h2>${escapeHtml(row.title ?? "")}</h2>
+              <p>${escapeHtml(row.items ?? "")}</p>
+            </article>
+          `).join("")}
+        </section>
+        <div class="climate-card climate-precipitation-bottom-info">
+          <p>${escapeHtml(slide.bottomInfo ?? "Yağışlar oluşum yerlerine göre iki grupta incelenir.")}</p>
+        </div>
+      `;
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
     default:
       return false;
   }

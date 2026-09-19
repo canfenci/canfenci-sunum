@@ -2228,6 +2228,84 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   font-weight: 600;
 }
 
+/* 8. Sınıf — İklim ve Hava Hareketleri: Slayt 11 Yağışlar */
+.slide-workspace:has(.slide-climate-precipitation-classification) .slide-content {
+  padding: 0;
+}
+
+.slide-climate-precipitation-classification {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 48px 64px 46px;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) 100px;
+  gap: 24px;
+  background: #ffffff;
+  color: #0a2540;
+}
+
+.climate-precipitation-table {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 34px;
+}
+
+.climate-precipitation-row {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  align-items: center;
+  gap: 32px;
+  padding: 34px 42px;
+}
+
+.climate-precipitation-blue { background: #EAF4FF; }
+.climate-precipitation-lilac { background: #F1EEFF; }
+
+.climate-precipitation-row h2 {
+  min-width: 0;
+  margin: 0;
+  color: #111827;
+  font-size: 42px;
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+
+.climate-precipitation-row p {
+  min-width: 0;
+  margin: 0;
+  color: #0f172a;
+  font-size: 40px;
+  font-weight: 850;
+  line-height: 1.08;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.climate-precipitation-bottom-info {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  place-items: center;
+  padding: 18px 28px;
+  background: #F2F6FA;
+}
+
+.climate-precipitation-bottom-info p {
+  margin: 0;
+  color: #111827;
+  font-size: 42px;
+  font-weight: 850;
+  line-height: 1.06;
+  text-align: center;
+}
+
 /* Slayt 1: Merak Et (Türkiye & Avustralya) */
 .slide-canva-merak-et {
   display: flex;

@@ -8,7 +8,7 @@ test("8. Sınıf İklim ve Hava Hareketleri kapak ve atmosfer slaytları doğrul
   const css = await readFile("src/styles/app.css", "utf8");
 
   assert.equal(lesson.title, "İklim ve Hava Hareketleri");
-  assert.equal(slides.length, 10, "Ders kapak, atmosfer, hava olayları, ölçüm araçları, basınç, rüzgâr ve meltem slaytları olmak üzere 10 slayt olmalıdır");
+  assert.equal(slides.length, 11, "Ders kapak, atmosfer, hava olayları, ölçüm araçları, basınç, rüzgâr, meltem ve yağış slaytları olmak üzere 11 slayt olmalıdır");
 
   const cover = slides[0];
   assert.equal(cover.id, "slide_1_kapak");
@@ -205,4 +205,15 @@ test("8. Sınıf İklim ve Hava Hareketleri kapak ve atmosfer slaytları doğrul
   assert.deepEqual(valleyBreeze.interactions, []);
   for (const area of valleyBreeze.areas ?? []) await access(area.image.replace(/^\.\//, ""));
   assert.ok(css.includes(".slide-climate-valley-comparison"), "Slayt 10 vadi/dağ meltemi CSS sınıfı mevcut olmalıdır");
+
+  const precipitation = slides[10];
+  assert.equal(precipitation.id, "slide_11_yagislar");
+  assert.equal(precipitation.layout, "climate_precipitation_classification");
+  assert.equal(precipitation.title, "YAĞIŞLAR");
+  assert.deepEqual(precipitation.rows?.map((row) => row.title), ["ATMOSFERDE GERÇEKLEŞENLER", "YERYÜZÜNDE GERÇEKLEŞENLER"]);
+  assert.deepEqual(precipitation.rows?.map((row) => row.items), ["Yağmur • Kar • Dolu", "Çiy • Kırağı • Sis"]);
+  assert.deepEqual(precipitation.interactions, []);
+  assert.equal(precipitation.media, undefined, "Slayt 11 ayrı yağış görselleri kullanmamalıdır");
+  assert.ok(css.includes(".slide-climate-precipitation-classification"), "Slayt 11 yağış sınıflandırma CSS kuralı mevcut olmalıdır");
+  assert.ok(css.includes(".climate-precipitation-row"), "Slayt 11 yatay sınıflandırma bantları mevcut olmalıdır");
 });

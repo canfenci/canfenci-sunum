@@ -504,6 +504,34 @@
           "interactions": []
         }
       ]
+    },
+    {
+      "id": "stage_yagislar",
+      "label": "Yağışlar",
+      "order": 11,
+      "slides": [
+        {
+          "id": "slide_11_yagislar",
+          "type": "content",
+          "layout": "climate_precipitation_classification",
+          "tag": "YAĞIŞLAR",
+          "title": "YAĞIŞLAR",
+          "rows": [
+            {
+              "title": "ATMOSFERDE GERÇEKLEŞENLER",
+              "items": "Yağmur • Kar • Dolu",
+              "tone": "blue"
+            },
+            {
+              "title": "YERYÜZÜNDE GERÇEKLEŞENLER",
+              "items": "Çiy • Kırağı • Sis",
+              "tone": "lilac"
+            }
+          ],
+          "bottomInfo": "Yağışlar oluşum yerlerine göre iki grupta incelenir.",
+          "interactions": []
+        }
+      ]
     }
   ]
 }
