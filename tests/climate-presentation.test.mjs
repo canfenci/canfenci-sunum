@@ -36,7 +36,7 @@ test("8. Sınıf İklim ve Hava Hareketleri kapak ve atmosfer slaytları doğrul
   assert.equal(atmosphere.type, "content");
   assert.equal(atmosphere.layout, "climate_atmosphere");
   assert.equal(atmosphere.title, "ATMOSFER");
-  assert.equal(atmosphere.definitionTitle, "Atmosfer Nedir?");
+  assert.equal(atmosphere.definitionTitle, undefined, "Atmosfer Nedir? başlığı kaldırılmış olmalıdır");
   assert.equal(atmosphere.definition, "Dünya’nın etrafını saran gaz tabakasına atmosfer denir.");
   assert.deepEqual(atmosphere.duties, [
     "Güneş’ten gelen zararlı ışınların bir bölümünü süzer.",
@@ -48,7 +48,10 @@ test("8. Sınıf İklim ve Hava Hareketleri kapak ve atmosfer slaytları doğrul
     { value: "%1", label: "DİĞER GAZLAR" }
   ]);
   assert.equal(atmosphere.bottomInfo, "Su buharı ve karbondioksit, hava olaylarının oluşmasında önemli rol oynar.");
-  assert.deepEqual(atmosphere.interactions, [], "Slayt 2 etkileşimsiz kavram anlatım slaytı olmalıdır");
+  assert.equal(atmosphere.interactions?.length, 1, "Slayt 2'de yalnızca 1 etkileşim olmalıdır");
+  assert.equal(atmosphere.interactions[0].type, "reveal_fill");
+  assert.equal(atmosphere.interactions[0].template, "Dünya’nın etrafını saran gaz tabakasına {blank1} denir.");
+  assert.equal(atmosphere.interactions[0].blanks?.[0]?.answer, "atmosfer");
 
   const atmosphereImagePath = atmosphere.media[0].src.replace(/^\.\//, "");
   await access(atmosphereImagePath);
@@ -63,10 +66,11 @@ test("8. Sınıf İklim ve Hava Hareketleri kapak ve atmosfer slaytları doğrul
   assert.ok(css.includes("color: #D8362A"), "Slayt 2 başlıkları kırmızı olmalıdır");
   assert.ok(css.includes("text-decoration: none"), "Klasik underline kullanılmamalıdır");
   assert.ok(css.includes(".climate-slide-title::after"), "Ana başlık için modern kısa alt çizgi olmalıdır");
-  assert.ok(css.includes(".climate-definition-copy h2::after"), "Atmosfer Nedir başlığı için kısa alt çizgi olmalıdır");
   assert.ok(css.includes(".climate-composition-card h2::after"), "Havanın Bileşimi başlığı için kısa alt çizgi olmalıdır");
   assert.ok(css.includes("height: 6px"), "Ana başlık alt çizgisi 4-6px aralığında olmalıdır");
   assert.ok(css.includes("height: 5px"), "Kart başlığı alt çizgisi 4-6px aralığında olmalıdır");
   assert.ok(css.includes("margin-top: 10px"), "Başlık ile alt çizgi arasında 8-12px boşluk olmalıdır");
+  assert.ok(css.includes(".climate-definition-slot .reveal-fill-sentence"), "Tanım kartı reveal_fill etkileşimini kullanmalıdır");
+  assert.ok(css.includes(".climate-definition-slot .blank-slot-answer"), "Reveal cevabı özel tipografi ile görünmelidir");
   assert.ok(css.includes("conic-gradient(#0a3b70 0deg 280.8deg, #38bdf8 280.8deg 356.4deg, #dbe4ec 356.4deg 360deg)"), "Havanın bileşimi donut chart oranları doğru olmalıdır");
 });

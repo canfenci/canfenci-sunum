@@ -1085,12 +1085,9 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 }
 
 .climate-definition-copy {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+  min-width: 0;
 }
 
-.climate-definition-copy h2,
 .climate-composition-card h2 {
   margin: 0;
   display: inline-flex;
@@ -1106,7 +1103,6 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   text-decoration: none;
 }
 
-.climate-definition-copy h2::after,
 .climate-composition-card h2::after {
   content: "";
   width: 112px;
@@ -1116,13 +1112,51 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   background: #D8362A;
 }
 
-.climate-definition-copy p {
+.climate-definition-copy p,
+.climate-definition-slot .reveal-fill-sentence {
   margin: 0;
   color: #111827;
   font-size: 44px;
   font-weight: 850;
   line-height: 1.16;
   letter-spacing: 0;
+}
+
+.climate-definition-slot .reveal-fill-text {
+  display: inline;
+}
+
+.climate-definition-slot .reveal-fill-blank,
+.climate-definition-slot .reveal-fill-blank.size-medium {
+  min-width: 198px;
+  height: 58px;
+  padding: 0 22px;
+  margin: 0 8px;
+  border-radius: 14px;
+  background: rgba(216, 54, 42, 0.06);
+}
+
+.climate-definition-slot .reveal-fill-blank::after {
+  height: 4px;
+  background: #D8362A;
+}
+
+.climate-definition-slot .blank-slot-answer {
+  color: #D8362A;
+  font-size: 44px;
+  font-weight: 900;
+}
+
+.climate-definition-slot .reveal-fill-blank.is-revealed {
+  background: rgba(216, 54, 42, 0.1);
+}
+
+.climate-definition-slot .reveal-fill-blank.is-revealed .blank-slot-answer {
+  color: #D8362A;
+}
+
+.climate-definition-slot .reveal-fill-blank.is-revealed::after {
+  background: #D8362A;
 }
 
 .climate-atmosphere-visual {

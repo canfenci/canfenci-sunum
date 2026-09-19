@@ -53,7 +53,6 @@
           "tag": "ATMOSFER",
           "kicker": "ATMOSFER",
           "title": "ATMOSFER",
-          "definitionTitle": "Atmosfer Nedir?",
           "definition": "Dünya’nın etrafını saran gaz tabakasına atmosfer denir.",
           "duties": [
             "Güneş’ten gelen zararlı ışınların bir bölümünü süzer.",
@@ -73,7 +72,20 @@
               "alt": "Dünya'nın etrafındaki ince atmosfer tabakasını gösteren sade görsel"
             }
           ],
-          "interactions": []
+          "interactions": [
+            {
+              "id": "interaction_slide_2_atmosfer_tanim",
+              "type": "reveal_fill",
+              "template": "Dünya’nın etrafını saran gaz tabakasına {blank1} denir.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "atmosfer",
+                  "placeholder": "atmosfer"
+                }
+              ]
+            }
+          ]
         }
       ]
     }

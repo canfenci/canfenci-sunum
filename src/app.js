@@ -849,7 +849,10 @@ class CanFenciApp {
       });
     }
     if (slide.layout?.startsWith("climate_")) {
-      return renderClimateSlide(slide, view);
+      return renderClimateSlide(slide, view, {
+        interactions: this.interactions,
+        activeInteractions: this.activeInteractions
+      });
     }
     switch (slide.layout) {
       case "canva_merak_et":

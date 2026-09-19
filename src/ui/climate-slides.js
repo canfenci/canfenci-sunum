@@ -2,7 +2,16 @@ const escapeHtml = (value = "") => String(value).replace(/[&<>'"]/g, (char) => (
   "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", "\"": "&quot;"
 }[char]));
 
-export function renderClimateSlide(slide, view) {
+const mountInteraction = (interaction, container, interactions, activeInteractions) => {
+  if (!interaction || !container || !interactions) return;
+  const slot = document.createElement("div");
+  slot.className = "interaction-slot climate-definition-slot";
+  const instance = interactions.mount(interaction, slot);
+  if (instance) activeInteractions?.push(instance);
+  container.appendChild(slot);
+};
+
+export function renderClimateSlide(slide, view, { interactions, activeInteractions } = {}) {
   switch (slide.layout) {
     case "climate_cover": {
       const media = slide.media?.[0];
@@ -43,8 +52,7 @@ export function renderClimateSlide(slide, view) {
           <section class="climate-atmosphere-left">
             <div class="climate-card climate-definition-card">
               <div class="climate-definition-copy">
-                <h2>${escapeHtml(slide.definitionTitle ?? "Atmosfer Nedir?")}</h2>
-                <p>${escapeHtml(slide.definition ?? "Dünya’nın etrafını saran gaz tabakasına atmosfer denir.")}</p>
+                <div class="climate-definition-interaction"></div>
               </div>
               <figure class="climate-atmosphere-visual">
                 <img src="${escapeHtml(media?.src ?? "./assets/images/iklim-ve-hava-hareketleri/01-kapak-iklim-ve-hava-hareketleri.png")}" alt="${escapeHtml(media?.alt ?? "Atmosfer görseli")}" />
@@ -79,6 +87,13 @@ export function renderClimateSlide(slide, view) {
           <p>${escapeHtml(slide.bottomInfo ?? "Su buharı ve karbondioksit, hava olaylarının oluşmasında önemli rol oynar.")}</p>
         </div>
       `;
+      const definitionSlot = slideArticle.querySelector(".climate-definition-interaction");
+      const definitionInteraction = slide.interactions?.find((item) => item.id === "interaction_slide_2_atmosfer_tanim") ?? slide.interactions?.[0];
+      if (definitionInteraction) {
+        mountInteraction(definitionInteraction, definitionSlot, interactions, activeInteractions);
+      } else if (definitionSlot) {
+        definitionSlot.innerHTML = `<p>${escapeHtml(slide.definition ?? "Dünya’nın etrafını saran gaz tabakasına atmosfer denir.")}</p>`;
+      }
       view.slideContent.replaceChildren(slideArticle);
       return true;
     }
