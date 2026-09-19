@@ -464,6 +464,46 @@
           "interactions": []
         }
       ]
+    },
+    {
+      "id": "stage_vadi_ve_dag_meltemi",
+      "label": "Vadi ve Dağ Meltemi",
+      "order": 10,
+      "slides": [
+        {
+          "id": "slide_10_vadi_ve_dag_meltemi",
+          "type": "content",
+          "layout": "climate_valley_breeze_comparison",
+          "tag": "VADİ VE DAĞ MELTEMİ",
+          "title": "VADİ VE DAĞ MELTEMİ",
+          "areas": [
+            {
+              "id": "valley_breeze_day",
+              "period": "GÜNDÜZ",
+              "title": "VADİ MELTEMİ",
+              "tone": "sea",
+              "image": "./assets/images/iklim-ve-hava-hareketleri/10-vadi-meltemi-gunduz.png",
+              "alt": "Gündüz vadiden dağ yamaçlarına esen vadi meltemi şeması",
+              "temperature": "Gündüz, dağ yamaçları daha hızlı ısınır.",
+              "pressure": ["Yamaçlarda alçak basınç", "Vadi üzerinde yüksek basınç"],
+              "wind": "Rüzgâr vadiden dağa doğru eser."
+            },
+            {
+              "id": "mountain_breeze_night",
+              "period": "GECE",
+              "title": "DAĞ MELTEMİ",
+              "tone": "land",
+              "image": "./assets/images/iklim-ve-hava-hareketleri/10-dag-meltemi-gece.png",
+              "alt": "Gece dağ yamaçlarından vadiye esen dağ meltemi şeması",
+              "temperature": "Gece, dağ yamaçları daha hızlı soğur.",
+              "pressure": ["Yamaçlarda yüksek basınç", "Vadi üzerinde alçak basınç"],
+              "wind": "Rüzgâr dağdan vadiye doğru eser."
+            }
+          ],
+          "bottomInfo": "Gündüz vadiden dağa, gece dağdan vadiye doğru hava hareketi oluşur.",
+          "interactions": []
+        }
+      ]
     }
   ]
 }

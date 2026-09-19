@@ -284,10 +284,12 @@ export function renderClimateSlide(slide, view, { interactions, activeInteractio
       return true;
     }
 
-    case "climate_breeze_comparison": {
+    case "climate_breeze_comparison":
+    case "climate_valley_breeze_comparison": {
       const areas = slide.areas ?? [];
+      const isValleyBreeze = slide.layout === "climate_valley_breeze_comparison";
       const slideArticle = document.createElement("article");
-      slideArticle.className = "board-slide slide-climate-breeze-comparison";
+      slideArticle.className = `board-slide slide-climate-breeze-comparison${isValleyBreeze ? " slide-climate-valley-comparison" : ""}`;
       slideArticle.innerHTML = `
         <header class="climate-slide-header">
           <h1 class="climate-slide-title">${escapeHtml(slide.title ?? "DENİZ VE KARA MELTEMİ")}</h1>

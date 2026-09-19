@@ -2159,7 +2159,7 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 .climate-breeze-visual img {
   display: block;
   width: min(100%, 520px);
-  height: 250px;
+  height: 246px;
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
@@ -2221,6 +2221,11 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   font-weight: 850;
   line-height: 1.06;
   text-align: center;
+}
+
+.slide-climate-valley-comparison .climate-breeze-period {
+  font-size: 30px;
+  font-weight: 600;
 }
 
 /* Slayt 1: Merak Et (Türkiye & Avustralya) */

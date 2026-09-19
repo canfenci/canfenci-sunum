@@ -8,7 +8,7 @@ test("8. Sınıf İklim ve Hava Hareketleri kapak ve atmosfer slaytları doğrul
   const css = await readFile("src/styles/app.css", "utf8");
 
   assert.equal(lesson.title, "İklim ve Hava Hareketleri");
-  assert.equal(slides.length, 9, "Ders kapak, atmosfer, hava olayları, ölçüm araçları, basınç, rüzgâr ve meltem slaytları olmak üzere 9 slayt olmalıdır");
+  assert.equal(slides.length, 10, "Ders kapak, atmosfer, hava olayları, ölçüm araçları, basınç, rüzgâr ve meltem slaytları olmak üzere 10 slayt olmalıdır");
 
   const cover = slides[0];
   assert.equal(cover.id, "slide_1_kapak");
@@ -194,4 +194,15 @@ test("8. Sınıf İklim ve Hava Hareketleri kapak ve atmosfer slaytları doğrul
   assert.ok(css.includes(".slide-climate-breeze-comparison"), "Slayt 9 meltem karşılaştırma CSS kuralı mevcut olmalıdır");
   assert.ok(css.includes(".climate-breeze-visual"), "Slayt 9 meltem görsel alanı mevcut olmalıdır");
   assert.ok(css.includes(".climate-breeze-bottom-info"), "Slayt 9 alt bilgi bandı mevcut olmalıdır");
+
+  const valleyBreeze = slides[9];
+  assert.equal(valleyBreeze.id, "slide_10_vadi_ve_dag_meltemi");
+  assert.equal(valleyBreeze.layout, "climate_valley_breeze_comparison");
+  assert.equal(valleyBreeze.title, "VADİ VE DAĞ MELTEMİ");
+  assert.deepEqual(valleyBreeze.areas?.map((item) => item.title), ["VADİ MELTEMİ", "DAĞ MELTEMİ"]);
+  assert.deepEqual(valleyBreeze.areas?.map((item) => item.wind), ["Rüzgâr vadiden dağa doğru eser.", "Rüzgâr dağdan vadiye doğru eser."]);
+  assert.equal(valleyBreeze.bottomInfo, "Gündüz vadiden dağa, gece dağdan vadiye doğru hava hareketi oluşur.");
+  assert.deepEqual(valleyBreeze.interactions, []);
+  for (const area of valleyBreeze.areas ?? []) await access(area.image.replace(/^\.\//, ""));
+  assert.ok(css.includes(".slide-climate-valley-comparison"), "Slayt 10 vadi/dağ meltemi CSS sınıfı mevcut olmalıdır");
 });
