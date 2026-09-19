@@ -895,18 +895,20 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   height: 100%;
   overflow: hidden;
   box-sizing: border-box;
-  background: #ffffff;
-  color: #000000;
+  background:
+    radial-gradient(circle at 78% 42%, rgba(14, 165, 233, 0.14) 0%, rgba(14, 165, 233, 0.07) 28%, rgba(14, 165, 233, 0) 55%),
+    linear-gradient(135deg, #ffffff 0%, #f8fbff 54%, #eef7fc 100%);
+  color: #0a2540;
 }
 
 .climate-cover-layout {
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: 0.92fr 1.08fr;
+  grid-template-columns: 1.02fr 0.98fr;
   align-items: center;
-  gap: 54px;
-  padding: 96px 112px;
+  gap: 72px;
+  padding: 104px 124px;
   box-sizing: border-box;
 }
 
@@ -916,56 +918,63 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  gap: 30px;
-}
-
-.climate-cover-grade,
-.climate-cover-unit,
-.climate-cover-label {
-  margin: 0;
-  color: #000000;
-  font-weight: 800;
-  line-height: 1.16;
-  letter-spacing: 0;
+  gap: 28px;
 }
 
 .climate-cover-grade,
 .climate-cover-unit {
-  font-size: 40px;
+  margin: 0;
+  font-weight: 850;
+  letter-spacing: 0;
 }
 
 .climate-cover-grade {
-  padding: 16px 28px;
-  background: #fff3a6;
-  border-left: 12px solid #f6d44a;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  width: max-content;
+  padding: 12px 22px;
+  border: 2px solid rgba(2, 132, 199, 0.2);
+  border-radius: 999px;
+  background: rgba(240, 249, 255, 0.9);
+  color: #0369a1;
+  font-size: 36px;
+  line-height: 1.1;
+  box-shadow: 0 10px 24px rgba(2, 132, 199, 0.08);
+}
+
+.climate-cover-grade::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: #0284c7;
+  box-shadow: 0 0 0 7px rgba(2, 132, 199, 0.13);
 }
 
 .climate-cover-title {
   margin: 0;
-  max-width: 680px;
-  padding: 24px 34px 28px;
-  background: #fff3a6;
-  color: #000000;
-  font-size: 56px;
+  max-width: 760px;
+  color: #0a2540;
+  font-size: 64px;
   font-weight: 900;
-  line-height: 1.08;
+  line-height: 1.06;
   letter-spacing: 0;
 }
 
 .climate-cover-unit {
-  padding-left: 34px;
-}
-
-.climate-cover-label {
-  margin-top: 10px;
-  padding-left: 34px;
-  font-size: 36px;
+  padding-left: 4px;
+  color: #475569;
+  font-size: 38px;
+  line-height: 1.18;
 }
 
 .climate-cover-visual {
+  position: relative;
   min-width: 0;
   width: 100%;
-  height: 760px;
+  height: 680px;
   margin: 0;
   display: flex;
   align-items: center;
@@ -973,11 +982,23 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   overflow: visible;
 }
 
+.climate-cover-visual::before {
+  content: "";
+  position: absolute;
+  inset: 9% 7% 7% 9%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.22) 0%, rgba(56, 189, 248, 0.1) 35%, rgba(56, 189, 248, 0) 68%);
+  pointer-events: none;
+}
+
 .climate-cover-img {
+  position: relative;
+  z-index: 1;
   display: block;
   width: 100%;
   height: 100%;
   object-fit: contain;
+  filter: drop-shadow(0 24px 46px rgba(15, 23, 42, 0.14));
 }
 
 /* Slayt 1: Merak Et (Türkiye & Avustralya) */
