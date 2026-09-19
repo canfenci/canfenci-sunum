@@ -162,10 +162,10 @@ test("8. Sınıf İklim ve Hava Hareketleri kapak ve atmosfer slaytları doğrul
   assert.ok(css.includes(".slide-climate-wind-formation"), "Slayt 7 CSS kuralı mevcut olmalıdır");
   assert.ok(css.includes(".climate-wind-flow"), "Slayt 7 rüzgâr yönü akışı mevcut olmalıdır");
   assert.ok(css.includes(".climate-wind-area h2"), "Slayt 7 basınç kartı başlıkları mevcut olmalıdır");
-  assert.ok(css.includes("font-size: 38px"), "Slayt 7 basınç kartı başlıkları 38px olmalıdır");
-  assert.ok(css.includes("font-size: 44px"), "Slayt 7 yön metni 44px olmalıdır");
-  assert.ok(css.includes("font-size: 42px"), "Slayt 7 Rüzgâr etiketi 42px olmalıdır");
-  assert.ok(css.includes("font-size: 36px"), "Slayt 7 kart açıklamaları 36px olmalıdır");
+  assert.ok(css.includes("grid-template-rows: auto auto 190px minmax(0, 1fr) 112px"), "Slayt 7 üst akış alanı için nefes alanı korunmalıdır");
+  assert.ok(css.includes("font-size: 40px"), "Slayt 7 ana tanımı 40px olmalıdır");
+  assert.ok(css.includes("font-size: 36px"), "Slayt 7 yardımcı başlık ve yön metinleri 36px olmalıdır");
+  assert.ok(css.includes("font-size: 33px"), "Slayt 7 yardımcı kart açıklamaları küçültülmelidir");
 
   const windApplication = slides[7];
   assert.equal(windApplication.id, "slide_8_basinc_ve_ruzgar_uygulamasi");

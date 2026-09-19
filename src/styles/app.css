@@ -1827,13 +1827,13 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 }
 
 .slide-climate-wind-formation {
-  grid-template-rows: auto auto 172px minmax(0, 1fr) 112px;
+  grid-template-rows: auto auto 190px minmax(0, 1fr) 112px;
 }
 
 .climate-wind-definition {
   margin: 0;
   color: #111827;
-  font-size: 44px;
+  font-size: 40px;
   font-weight: 850;
   line-height: 1.1;
   text-align: center;
@@ -1843,17 +1843,17 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   min-width: 0;
   display: grid;
   grid-template-columns: 1fr 1.15fr 1fr;
-  gap: 24px;
+  gap: 32px;
   align-items: stretch;
 }
 
 .climate-wind-area {
   min-width: 0;
-  padding: 22px 28px;
+  padding: 24px 28px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 12px;
+  gap: 16px;
 }
 
 .climate-wind-cool { background: #EAF4FF; }
@@ -1864,7 +1864,7 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   max-width: 100%;
   margin: 0 0 4px;
   color: #D8362A;
-  font-size: 38px;
+  font-size: 36px;
   font-weight: 600;
   line-height: 1.04;
 }
@@ -1882,8 +1882,8 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 .climate-wind-area p {
   margin: 0;
   color: #111827;
-  font-size: 36px;
-  font-weight: 600;
+  font-size: 33px;
+  font-weight: 550;
   line-height: 1.08;
 }
 
@@ -1892,12 +1892,12 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   display: grid;
   align-content: center;
   justify-items: center;
-  gap: 5px;
+  gap: 12px;
   color: #111827;
 }
 
 .climate-wind-flow strong {
-  font-size: 44px;
+  font-size: 36px;
   font-weight: 600;
   line-height: 1.08;
   text-align: center;
@@ -1912,7 +1912,7 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 
 .climate-wind-flow b {
   color: #D8362A;
-  font-size: 42px;
+  font-size: 36px;
   font-weight: 600;
 }
 
