@@ -103,12 +103,12 @@
           "title": "HAVA OLAYLARI",
           "definition": "Dar bir bölgede meydana gelen yağmur, kar, dolu, rüzgâr, sis ve kırağı gibi olaylara hava olayları denir.",
           "weatherEvents": [
-            { "label": "YAĞMUR", "spriteClass": "rain" },
-            { "label": "KAR", "spriteClass": "snow" },
-            { "label": "DOLU", "spriteClass": "hail" },
-            { "label": "RÜZGÂR", "spriteClass": "wind" },
-            { "label": "SİS", "spriteClass": "fog" },
-            { "label": "KIRAĞI", "spriteClass": "frost" }
+            { "label": "YAĞMUR", "image": "./assets/images/iklim-ve-hava-hareketleri/03-yagmur.png" },
+            { "label": "KAR", "image": "./assets/images/iklim-ve-hava-hareketleri/03-kar.png" },
+            { "label": "DOLU", "image": "./assets/images/iklim-ve-hava-hareketleri/03-dolu.png" },
+            { "label": "RÜZGÂR", "image": "./assets/images/iklim-ve-hava-hareketleri/03-ruzgar.png" },
+            { "label": "SİS", "image": "./assets/images/iklim-ve-hava-hareketleri/03-sis.png" },
+            { "label": "KIRAĞI", "image": "./assets/images/iklim-ve-hava-hareketleri/03-kiragi.png" }
           ],
           "causeCards": [
             {
@@ -127,13 +127,7 @@
               "tone": "pressure"
             }
           ],
-          "media": [
-            {
-              "id": "media_weather_events_sprite",
-              "src": "./assets/images/iklim-ve-hava-hareketleri/03-hava-olaylari-sprite.png",
-              "alt": "Yağmur, kar, dolu, rüzgar, sis ve kırağı hava olaylarını gösteren görsel matris"
-            }
-          ],
+          "media": [],
           "interactions": [
             {
               "id": "interaction_slide_3_hava_olaylari_tanim",

@@ -99,7 +99,6 @@ export function renderClimateSlide(slide, view, { interactions, activeInteractio
     }
 
     case "climate_weather_events": {
-      const media = slide.media?.[0];
       const events = slide.weatherEvents ?? [];
       const causeCards = slide.causeCards ?? [];
       const slideArticle = document.createElement("article");
@@ -115,7 +114,7 @@ export function renderClimateSlide(slide, view, { interactions, activeInteractio
           <section class="climate-weather-visual-grid" aria-label="Hava olayları görsel matrisi">
             ${events.map((event) => `
               <figure class="climate-weather-item">
-                <div class="weather-sprite weather-${escapeHtml(event.spriteClass ?? "")}" style="--weather-sprite: url('${escapeHtml(media?.src ?? "./assets/images/iklim-ve-hava-hareketleri/03-hava-olaylari-sprite.png")}')"></div>
+                <img src="${escapeHtml(event.image ?? "")}" alt="${escapeHtml(event.label)} hava olayı görseli" class="climate-weather-img" />
                 <figcaption>${escapeHtml(event.label)}</figcaption>
               </figure>
             `).join("")}

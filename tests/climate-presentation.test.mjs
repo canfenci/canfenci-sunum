@@ -85,11 +85,14 @@ test("8. Sınıf İklim ve Hava Hareketleri kapak ve atmosfer slaytları doğrul
   assert.deepEqual(weather.weatherEvents?.map((item) => item.label), ["YAĞMUR", "KAR", "DOLU", "RÜZGÂR", "SİS", "KIRAĞI"]);
   assert.deepEqual(weather.causeCards?.map((item) => item.title), ["NEM", "SICAKLIK FARKI", "BASINÇ FARKI"]);
 
-  const weatherSpritePath = weather.media[0].src.replace(/^\.\//, "");
-  await access(weatherSpritePath);
+  for (const event of weather.weatherEvents ?? []) {
+    assert.ok(event.image, `${event.label} için yerel görsel yolu tanımlı olmalıdır`);
+    await access(event.image.replace(/^\.\//, ""));
+  }
 
   assert.ok(css.includes(".slide-climate-weather-events"), "Slayt 3 CSS kuralı mevcut olmalıdır");
   assert.ok(css.includes(".climate-weather-definition-slot .reveal-fill-sentence"), "Slayt 3 tanım kartı reveal_fill kullanmalıdır");
+  assert.ok(css.includes(".climate-weather-img"), "Slayt 3 hava olayları doğrudan img etiketiyle yüklenmelidir");
   assert.ok(css.includes("grid-template-columns: 43fr 57fr"), "Slayt 3 sol tanım ve sağ görsel oranları tanımlı olmalıdır");
   assert.ok(css.includes("grid-template-columns: repeat(3, 1fr)"), "Slayt 3 görsel matrisi ve neden kartları 3 sütun olmalıdır");
   assert.ok(css.includes("background: #EAF4FF"), "Tanım kartı pastel mavi olmalıdır");

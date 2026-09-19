@@ -133,8 +133,12 @@ try {
 
   let missingMedia = 0;
   for (const slide of iklimSlides) {
-    for (const m of slide.media ?? []) {
-      const p = m.src.replace(/^\.\//, "");
+    const allImages = [
+      ...(slide.media ?? []).map((m) => m.src),
+      ...(slide.weatherEvents ?? []).map((event) => event.image)
+    ].filter(Boolean);
+    for (const src of allImages) {
+      const p = src.replace(/^\.\//, "");
       try {
         await access(p);
       } catch {
