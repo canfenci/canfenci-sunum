@@ -346,6 +346,27 @@ export function renderClimateSlide(slide, view, { interactions, activeInteractio
       return true;
     }
 
+    case "climate_precipitation_types": {
+      const precipitationTypes = slide.types ?? [];
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-climate-precipitation-types";
+      slideArticle.innerHTML = `
+        <header class="climate-slide-header">
+          <h1 class="climate-slide-title">${escapeHtml(slide.title ?? "YAĞIŞ TÜRLERİ")}</h1>
+        </header>
+        <section class="climate-precipitation-type-grid" aria-label="Yağış türleri">
+          ${precipitationTypes.map((type) => `
+            <article class="climate-card climate-precipitation-type climate-precipitation-type-${escapeHtml(type.tone ?? "rain")}">
+              <h2>${escapeHtml(type.title ?? "")}</h2>
+              <p>${escapeHtml(type.text ?? "")}</p>
+            </article>
+          `).join("")}
+        </section>
+      `;
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
     case "climate_definition_concepts": {
       const concepts = slide.concepts ?? [];
       const slideArticle = document.createElement("article");

@@ -534,12 +534,59 @@
       ]
     },
     {
-      "id": "stage_iklim_nedir",
-      "label": "İklim Nedir?",
+      "id": "stage_yagis_turleri",
+      "label": "Yağış Türleri",
       "order": 12,
       "slides": [
         {
-          "id": "slide_12_iklim_nedir",
+          "id": "slide_12_yagis_turleri",
+          "type": "content",
+          "layout": "climate_precipitation_types",
+          "tag": "YAĞIŞ TÜRLERİ",
+          "title": "YAĞIŞ TÜRLERİ",
+          "types": [
+            {
+              "title": "YAĞMUR",
+              "text": "Bulutlardaki su damlacıklarının büyüyüp ağırlaşarak yeryüzüne düşmesidir.",
+              "tone": "rain"
+            },
+            {
+              "title": "KAR",
+              "text": "Atmosferdeki su buharının donarak buz kristalleri hâlinde yeryüzüne düşmesidir.",
+              "tone": "snow"
+            },
+            {
+              "title": "DOLU",
+              "text": "Bulutlardaki su damlacıklarının donarak buz parçaları hâlinde yeryüzüne düşmesidir.",
+              "tone": "hail"
+            },
+            {
+              "title": "KIRAĞI",
+              "text": "Havadaki su buharının çok soğuk yüzeylerde doğrudan buz kristallerine dönüşmesidir.",
+              "tone": "frost"
+            },
+            {
+              "title": "ÇİY",
+              "text": "Havadaki su buharının soğuk yüzeylerde yoğuşarak su damlacıkları oluşturmasıdır.",
+              "tone": "dew"
+            },
+            {
+              "title": "SİS",
+              "text": "Yeryüzüne yakın havadaki su buharının yoğuşarak küçük su damlacıkları oluşturmasıdır.",
+              "tone": "fog"
+            }
+          ],
+          "interactions": []
+        }
+      ]
+    },
+    {
+      "id": "stage_iklim_nedir",
+      "label": "İklim Nedir?",
+      "order": 13,
+      "slides": [
+        {
+          "id": "slide_13_iklim_nedir",
           "type": "content",
           "layout": "climate_definition_concepts",
           "tag": "İKLİM NEDİR?",
@@ -564,10 +611,10 @@
     {
       "id": "stage_iklim_etmenleri",
       "label": "İklimi Belirleyen Etmenler",
-      "order": 13,
+      "order": 14,
       "slides": [
         {
-          "id": "slide_13_iklimi_belirleyen_etmenler",
+          "id": "slide_14_iklimi_belirleyen_etmenler",
           "type": "content",
           "layout": "climate_factors",
           "tag": "İKLİMİ BELİRLEYEN ETMENLER",
@@ -581,10 +628,10 @@
     {
       "id": "stage_turkiye_iklimleri",
       "label": "Türkiye'de İklim Tipleri",
-      "order": 14,
+      "order": 15,
       "slides": [
         {
-          "id": "slide_14_turkiyede_iklim_tipleri",
+          "id": "slide_15_turkiyede_iklim_tipleri",
           "type": "content",
           "layout": "climate_turkey_types",
           "tag": "TÜRKİYE'DE İKLİM TİPLERİ",
@@ -613,10 +660,10 @@
     {
       "id": "stage_hava_olaylari_ve_iklim",
       "label": "Hava Olayları ve İklim",
-      "order": 15,
+      "order": 16,
       "slides": [
         {
-          "id": "slide_15_hava_olaylari_ve_iklim",
+          "id": "slide_16_hava_olaylari_ve_iklim",
           "type": "content",
           "layout": "climate_weather_climate_comparison",
           "tag": "HAVA OLAYLARI ve İKLİM",
@@ -640,10 +687,10 @@
     {
       "id": "stage_kuresel_iklim_degisikligi",
       "label": "Küresel İklim Değişikliği",
-      "order": 16,
+      "order": 17,
       "slides": [
         {
-          "id": "slide_16_kuresel_iklim_degisikligi",
+          "id": "slide_17_kuresel_iklim_degisikligi",
           "type": "content",
           "layout": "climate_global_change",
           "tag": "KÜRESEL İKLİM DEĞİŞİKLİĞİ",
@@ -672,10 +719,10 @@
     {
       "id": "stage_kuresel_iklim_cozumleri",
       "label": "Nedenler, Sonuçlar ve Önlemler",
-      "order": 17,
+      "order": 18,
       "slides": [
         {
-          "id": "slide_17_nedenler_sonuclar_onlemler",
+          "id": "slide_18_nedenler_sonuclar_onlemler",
           "type": "content",
           "layout": "climate_global_actions",
           "tag": "NEDENLER / SONUÇLAR / ÖNLEMLER",

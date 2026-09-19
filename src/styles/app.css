@@ -2306,7 +2306,8 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   text-align: center;
 }
 
-/* 8. Sınıf — İklim ve Hava Hareketleri: Slayt 12-17 */
+/* 8. Sınıf — İklim ve Hava Hareketleri: Slayt 12-18 */
+.slide-workspace:has(.slide-climate-precipitation-types) .slide-content,
 .slide-workspace:has(.slide-climate-definition-concepts) .slide-content,
 .slide-workspace:has(.slide-climate-factors) .slide-content,
 .slide-workspace:has(.slide-climate-turkey-types) .slide-content,
@@ -2317,6 +2318,7 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 }
 
 .slide-climate-definition-concepts,
+.slide-climate-precipitation-types,
 .slide-climate-factors,
 .slide-climate-turkey-types,
 .slide-climate-weather-climate-comparison,
@@ -2332,6 +2334,52 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   background: #ffffff;
   color: #0a2540;
 }
+
+.slide-climate-precipitation-types {
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.climate-precipitation-type-grid {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.climate-precipitation-type {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  align-content: center;
+  gap: 24px;
+  padding: 34px 38px;
+  text-align: center;
+}
+
+.climate-precipitation-type h2 {
+  margin: 0;
+  color: #D8362A;
+  font-size: 42px;
+  font-weight: 900;
+  line-height: 1.06;
+}
+
+.climate-precipitation-type p {
+  margin: 0;
+  color: #111827;
+  font-size: 35px;
+  font-weight: 600;
+  line-height: 1.14;
+}
+
+.climate-precipitation-type-rain { background: #EAF4FF; }
+.climate-precipitation-type-snow { background: #EEF8FF; }
+.climate-precipitation-type-hail { background: #E9EEF4; }
+.climate-precipitation-type-frost { background: #F1EEFF; }
+.climate-precipitation-type-dew { background: #E6F7F5; }
+.climate-precipitation-type-fog { background: #F2F4F7; }
 
 .slide-climate-definition-concepts {
   grid-template-rows: auto minmax(0, 1fr) 230px;

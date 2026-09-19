@@ -125,10 +125,10 @@ try {
 try {
   const iklim = JSON.parse(await readFile("data/lessons/iklim-ve-hava-hareketleri.json", "utf8"));
   const iklimSlides = iklim.stages.flatMap((s) => s.slides ?? []);
-  if (iklimSlides.length === 17) {
+  if (iklimSlides.length === 18) {
     pass(`8. Sınıf İklim ve Hava Hareketleri slayt sayısı doğru: ${iklimSlides.length} slayt`);
   } else {
-    fail(`8. Sınıf İklim ve Hava Hareketleri slayt sayısı 17 olmalıydı, bulunan: ${iklimSlides.length}`);
+    fail(`8. Sınıf İklim ve Hava Hareketleri slayt sayısı 18 olmalıydı, bulunan: ${iklimSlides.length}`);
   }
 
   let missingMedia = 0;

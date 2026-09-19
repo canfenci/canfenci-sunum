@@ -8,7 +8,7 @@ test("8. Sınıf İklim ve Hava Hareketleri sunumu doğrulaması", async () => {
   const css = await readFile("src/styles/app.css", "utf8");
 
   assert.equal(lesson.title, "İklim ve Hava Hareketleri");
-  assert.equal(slides.length, 17, "Ders kapak, atmosfer, hava olayları, ölçüm araçları, basınç, rüzgâr, meltem, yağış ve iklim slaytları olmak üzere 17 slayt olmalıdır");
+  assert.equal(slides.length, 18, "Ders kapak, atmosfer, hava olayları, ölçüm araçları, basınç, rüzgâr, meltem, yağış ve iklim slaytları olmak üzere 18 slayt olmalıdır");
 
   const cover = slides[0];
   assert.equal(cover.id, "slide_1_kapak");
@@ -217,49 +217,63 @@ test("8. Sınıf İklim ve Hava Hareketleri sunumu doğrulaması", async () => {
   assert.ok(css.includes(".slide-climate-precipitation-classification"), "Slayt 11 yağış sınıflandırma CSS kuralı mevcut olmalıdır");
   assert.ok(css.includes(".climate-precipitation-row"), "Slayt 11 yatay sınıflandırma bantları mevcut olmalıdır");
 
-  const climateDefinition = slides[11];
-  assert.equal(climateDefinition.id, "slide_12_iklim_nedir");
+  const precipitationTypes = slides[11];
+  assert.equal(precipitationTypes.id, "slide_12_yagis_turleri");
+  assert.equal(precipitationTypes.layout, "climate_precipitation_types");
+  assert.equal(precipitationTypes.title, "YAĞIŞ TÜRLERİ");
+  assert.deepEqual(precipitationTypes.types?.map((item) => item.title), ["YAĞMUR", "KAR", "DOLU", "KIRAĞI", "ÇİY", "SİS"]);
+  assert.ok(precipitationTypes.types.every((item) => item.text), "Slayt 12'deki her yağış türünün kısa tanımı olmalıdır");
+  assert.deepEqual(precipitationTypes.interactions, []);
+  assert.equal(precipitationTypes.media, undefined, "Slayt 12 görsel kullanmamalıdır");
+  assert.ok(css.includes(".slide-climate-precipitation-types"), "Slayt 12 yağış türleri CSS kuralı mevcut olmalıdır");
+  assert.ok(css.includes(".climate-precipitation-type-grid"), "Slayt 12 üçe iki kart gridi mevcut olmalıdır");
+  assert.ok(css.includes("grid-template-columns: repeat(3, minmax(0, 1fr))"), "Slayt 12 kartları üç sütun olmalıdır");
+  assert.ok(css.includes("grid-template-rows: repeat(2, minmax(0, 1fr))"), "Slayt 12 kartları iki satır olmalıdır");
+  assert.ok(css.includes("font-size: 35px"), "Slayt 12 tanımları 34-36px aralığında olmalıdır");
+
+  const climateDefinition = slides[12];
+  assert.equal(climateDefinition.id, "slide_13_iklim_nedir");
   assert.equal(climateDefinition.layout, "climate_definition_concepts");
   assert.equal(climateDefinition.definition, "Yeryüzünün geniş bir bölgesinde uzun yıllar boyunca gözlenen hava olaylarının ortalamasına iklim denir.");
   assert.deepEqual(climateDefinition.concepts?.map((item) => item.title), ["KLİMATOLOJİ", "KLİMATOLOG"]);
   assert.deepEqual(climateDefinition.interactions, []);
-  assert.ok(css.includes(".slide-climate-definition-concepts"), "Slayt 12 iklim tanımı CSS kuralı mevcut olmalıdır");
+  assert.ok(css.includes(".slide-climate-definition-concepts"), "Slayt 13 iklim tanımı CSS kuralı mevcut olmalıdır");
 
-  const climateFactors = slides[12];
-  assert.equal(climateFactors.id, "slide_13_iklimi_belirleyen_etmenler");
+  const climateFactors = slides[13];
+  assert.equal(climateFactors.id, "slide_14_iklimi_belirleyen_etmenler");
   assert.equal(climateFactors.layout, "climate_factors");
   assert.deepEqual(climateFactors.factors, ["Enlem", "Yükselti", "Yer şekilleri", "Bitki örtüsü", "Denize uzaklık"]);
   assert.equal(climateFactors.bottomInfo, "Sıcaklık, nem, yağış, basınç ve rüzgâr iklimi belirlemede kullanılır.");
   assert.deepEqual(climateFactors.interactions, []);
-  assert.ok(css.includes(".slide-climate-factors"), "Slayt 13 iklim etmenleri CSS kuralı mevcut olmalıdır");
+  assert.ok(css.includes(".slide-climate-factors"), "Slayt 14 iklim etmenleri CSS kuralı mevcut olmalıdır");
 
-  const turkeyTypes = slides[13];
-  assert.equal(turkeyTypes.id, "slide_14_turkiyede_iklim_tipleri");
+  const turkeyTypes = slides[14];
+  assert.equal(turkeyTypes.id, "slide_15_turkiyede_iklim_tipleri");
   assert.equal(turkeyTypes.layout, "climate_turkey_types");
   assert.deepEqual(turkeyTypes.types?.map((item) => item.title), ["AKDENİZ İKLİMİ", "KARADENİZ İKLİMİ", "KARASAL İKLİM"]);
   assert.deepEqual(turkeyTypes.interactions, []);
-  assert.ok(css.includes(".slide-climate-turkey-types"), "Slayt 14 Türkiye iklim tipleri CSS kuralı mevcut olmalıdır");
+  assert.ok(css.includes(".slide-climate-turkey-types"), "Slayt 15 Türkiye iklim tipleri CSS kuralı mevcut olmalıdır");
 
-  const weatherClimate = slides[14];
-  assert.equal(weatherClimate.id, "slide_15_hava_olaylari_ve_iklim");
+  const weatherClimate = slides[15];
+  assert.equal(weatherClimate.id, "slide_16_hava_olaylari_ve_iklim");
   assert.equal(weatherClimate.layout, "climate_weather_climate_comparison");
   assert.deepEqual(weatherClimate.columns?.map((item) => item.title), ["HAVA OLAYLARI", "İKLİM"]);
   assert.deepEqual(weatherClimate.interactions, []);
-  assert.ok(css.includes(".slide-climate-weather-climate-comparison"), "Slayt 15 karşılaştırma CSS kuralı mevcut olmalıdır");
+  assert.ok(css.includes(".slide-climate-weather-climate-comparison"), "Slayt 16 karşılaştırma CSS kuralı mevcut olmalıdır");
 
-  const globalChange = slides[15];
-  assert.equal(globalChange.id, "slide_16_kuresel_iklim_degisikligi");
+  const globalChange = slides[16];
+  assert.equal(globalChange.id, "slide_17_kuresel_iklim_degisikligi");
   assert.equal(globalChange.layout, "climate_global_change");
   assert.deepEqual(globalChange.cards?.map((item) => item.title), ["KÜRESEL İKLİM DEĞİŞİKLİĞİ", "SERA ETKİSİ", "KÜRESEL ISINMA"]);
   assert.deepEqual(globalChange.interactions, []);
-  assert.ok(css.includes(".slide-climate-global-change"), "Slayt 16 küresel iklim değişikliği CSS kuralı mevcut olmalıdır");
+  assert.ok(css.includes(".slide-climate-global-change"), "Slayt 17 küresel iklim değişikliği CSS kuralı mevcut olmalıdır");
 
-  const globalActions = slides[16];
-  assert.equal(globalActions.id, "slide_17_nedenler_sonuclar_onlemler");
+  const globalActions = slides[17];
+  assert.equal(globalActions.id, "slide_18_nedenler_sonuclar_onlemler");
   assert.equal(globalActions.layout, "climate_global_actions");
   assert.deepEqual(globalActions.columns?.map((item) => item.title), ["NEDENLER", "SONUÇLAR", "ÖNLEMLER"]);
   assert.ok(globalActions.columns.every((item) => item.items.length <= 5), "Slayt 17 sütunlarında en fazla beş kısa madde olmalıdır");
   assert.match(globalActions.kyotoNote, /Kyoto Protokolü/);
   assert.deepEqual(globalActions.interactions, []);
-  assert.ok(css.includes(".slide-climate-global-actions"), "Slayt 17 nedenler/sonuçlar/önlemler CSS kuralı mevcut olmalıdır");
+  assert.ok(css.includes(".slide-climate-global-actions"), "Slayt 18 nedenler/sonuçlar/önlemler CSS kuralı mevcut olmalıdır");
 });
