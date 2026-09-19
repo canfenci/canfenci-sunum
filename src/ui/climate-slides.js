@@ -175,6 +175,48 @@ export function renderClimateSlide(slide, view, { interactions, activeInteractio
       return true;
     }
 
+    case "climate_pressure_formation":
+    case "climate_pressure_comparison": {
+      const isFormation = slide.layout === "climate_pressure_formation";
+      const areas = slide.areas ?? [];
+      const comparison = slide.comparison ?? [];
+      const slideArticle = document.createElement("article");
+      slideArticle.className = `board-slide ${isFormation ? "slide-climate-pressure-formation" : "slide-climate-pressure-comparison"}`;
+      slideArticle.innerHTML = `
+        <header class="climate-slide-header">
+          <h1 class="climate-slide-title">${escapeHtml(slide.title ?? "BASINÇ ALANLARI")}</h1>
+        </header>
+        ${isFormation ? `
+          <section class="climate-pressure-process" aria-label="Basınç alanlarının oluşum süreci">
+            ${slide.process?.map((step, index) => `
+              <div class="climate-pressure-process-step"><strong>${escapeHtml(step)}</strong></div>
+              ${index < slide.process.length - 1 ? `<span class="climate-pressure-process-arrow" aria-hidden="true">→</span>` : ""}
+            `).join("") ?? ""}
+          </section>
+        ` : ""}
+        <section class="climate-pressure-areas" aria-label="Basınç alanları karşılaştırması">
+          ${areas.map((area) => `
+            <article class="climate-card climate-pressure-area climate-pressure-${escapeHtml(area.tone ?? "cool")}">
+              <figure class="climate-pressure-visual">
+                <img src="${escapeHtml(area.image ?? "")}" alt="${escapeHtml(area.alt ?? `${area.title} diyagramı`)}" />
+              </figure>
+              <div class="climate-pressure-copy">
+                <h2>${escapeHtml(area.title)}</h2>
+                <div class="climate-pressure-points">
+                  ${(area.points ?? []).map((point) => `<p>${escapeHtml(point)}</p>`).join("")}
+                </div>
+              </div>
+            </article>
+          `).join("")}
+        </section>
+        <section class="climate-pressure-comparison" aria-label="Basınç alanları hızlı hatırlama">
+          ${comparison.map((item) => `<div class="climate-card climate-pressure-summary climate-pressure-${escapeHtml(item.tone ?? "cool")}"><p>${escapeHtml(item.text)}</p></div>`).join("")}
+        </section>
+      `;
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
     default:
       return false;
   }

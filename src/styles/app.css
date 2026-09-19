@@ -1618,6 +1618,195 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   gap: 16px;
 }
 
+/* 8. Sınıf — İklim ve Hava Hareketleri: Slayt 5-6 Basınç Alanları */
+.slide-workspace:has(.slide-climate-pressure-formation) .slide-content,
+.slide-workspace:has(.slide-climate-pressure-comparison) .slide-content {
+  padding: 0;
+}
+
+.slide-climate-pressure-formation,
+.slide-climate-pressure-comparison {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 50px 64px 48px;
+  display: grid;
+  gap: 22px;
+  background: #ffffff;
+  color: #0a2540;
+}
+
+.slide-climate-pressure-formation {
+  grid-template-rows: auto 104px minmax(0, 1fr) 108px;
+}
+
+.slide-climate-pressure-comparison {
+  grid-template-rows: auto minmax(0, 1fr) 108px;
+}
+
+.climate-pressure-process {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 1fr 70px 1fr 70px 1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  border: 2px solid rgba(148, 163, 184, 0.22);
+  border-radius: 22px;
+  background: #f8fbff;
+}
+
+.climate-pressure-process-step {
+  min-width: 0;
+  text-align: center;
+}
+
+.climate-pressure-process-step strong {
+  color: #111827;
+  font-size: 40px;
+  font-weight: 900;
+  line-height: 1.06;
+  letter-spacing: 0;
+}
+
+.climate-pressure-process-arrow {
+  color: #D8362A;
+  font-size: 54px;
+  font-weight: 900;
+  line-height: 1;
+  text-align: center;
+}
+
+.climate-pressure-areas {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+.climate-pressure-area {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 34% minmax(0, 1fr);
+  gap: 28px;
+  align-items: center;
+  padding: 28px 32px;
+}
+
+.climate-pressure-warm { background: #FFF0E6; }
+.climate-pressure-cool { background: #EAF4FF; }
+
+.climate-pressure-visual {
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  margin: 0;
+  display: grid;
+  place-items: center;
+}
+
+.climate-pressure-visual img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: 330px;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 20px rgba(15, 23, 42, 0.12));
+}
+
+.climate-pressure-copy {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.climate-pressure-copy h2 {
+  width: max-content;
+  max-width: 100%;
+  margin: 0;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #D8362A;
+  font-size: 42px;
+  font-weight: 900;
+  line-height: 1.04;
+  letter-spacing: 0;
+  text-decoration: none;
+}
+
+.climate-pressure-copy h2::after {
+  content: "";
+  width: 96px;
+  height: 5px;
+  margin-top: 10px;
+  border-radius: 999px;
+  background: #D8362A;
+}
+
+.climate-pressure-points {
+  min-width: 0;
+  display: grid;
+  gap: 16px;
+}
+
+.climate-pressure-points p {
+  margin: 0;
+  color: #111827;
+  font-size: 40px;
+  font-weight: 850;
+  line-height: 1.1;
+  letter-spacing: 0;
+}
+
+.slide-climate-pressure-comparison .climate-pressure-area {
+  grid-template-columns: 30% minmax(0, 1fr);
+  padding: 24px 30px;
+}
+
+.slide-climate-pressure-comparison .climate-pressure-visual img {
+  max-height: 220px;
+}
+
+.slide-climate-pressure-comparison .climate-pressure-points {
+  gap: 8px;
+}
+
+.slide-climate-pressure-comparison .climate-pressure-points p {
+  font-size: 40px;
+  line-height: 1.02;
+}
+
+.climate-pressure-comparison {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.climate-pressure-summary {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px 28px;
+}
+
+.climate-pressure-summary p {
+  margin: 0;
+  color: #111827;
+  font-size: 44px;
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: 0;
+  text-align: center;
+}
+
 /* Slayt 1: Merak Et (Türkiye & Avustralya) */
 .slide-canva-merak-et {
   display: flex;

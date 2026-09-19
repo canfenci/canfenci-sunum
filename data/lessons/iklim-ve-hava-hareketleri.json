@@ -203,6 +203,107 @@
           "interactions": []
         }
       ]
+    },
+    {
+      "id": "stage_basinc_alanlari",
+      "label": "Basınç Alanları",
+      "order": 5,
+      "slides": [
+        {
+          "id": "slide_5_basinc_alanlari",
+          "type": "content",
+          "layout": "climate_pressure_formation",
+          "tag": "BASINÇ ALANLARI",
+          "title": "BASINÇ ALANLARI",
+          "process": ["SICAKLIK DEĞİŞİR", "HAVA YOĞUNLUĞU DEĞİŞİR", "BASINÇ ALANI OLUŞUR"],
+          "areas": [
+            {
+              "title": "ALÇAK BASINÇ",
+              "tone": "warm",
+              "image": "./assets/images/iklim-ve-hava-hareketleri/05-alcak-basinc.png",
+              "alt": "Isınan havanın yukarı yükseldiği alçak basınç diyagramı",
+              "points": [
+                "Isınan hava genleşir.",
+                "Yoğunluğu azalır ve yükselir.",
+                "Yüzeydeki hava miktarı azaldığı için alçak basınç alanı oluşur."
+              ]
+            },
+            {
+              "title": "YÜKSEK BASINÇ",
+              "tone": "cool",
+              "image": "./assets/images/iklim-ve-hava-hareketleri/05-yuksek-basinc.png",
+              "alt": "Soğuyan havanın aşağı indiği yüksek basınç diyagramı",
+              "points": [
+                "Soğuyan hava yoğunlaşır.",
+                "Hava alçalır.",
+                "Yüzeydeki hava miktarı arttığı için yüksek basınç alanı oluşur."
+              ]
+            }
+          ],
+          "comparison": [
+            { "text": "Sıcaklık ↑  →  Basınç ↓", "tone": "warm" },
+            { "text": "Sıcaklık ↓  →  Basınç ↑", "tone": "cool" }
+          ],
+          "media": [],
+          "interactions": []
+        }
+      ]
+    },
+    {
+      "id": "stage_basinc_karsilastirmasi",
+      "label": "Basınç Karşılaştırması",
+      "order": 6,
+      "slides": [
+        {
+          "id": "slide_6_basinc_karsilastirmasi",
+          "type": "content",
+          "layout": "climate_pressure_comparison",
+          "tag": "BASINÇ KARŞILAŞTIRMASI",
+          "title": "ALÇAK VE YÜKSEK BASINÇ",
+          "areas": [
+            {
+              "title": "ALÇAK BASINÇ",
+              "tone": "warm",
+              "image": "./assets/images/iklim-ve-hava-hareketleri/06-alcak-basinc-karsilastirma.png",
+              "alt": "Alçak basınçta merkeze yönelen ve yükselen hava diyagramı",
+              "points": [
+                "Sıcaklık yüksektir.",
+                "Hava yoğunluğu azdır.",
+                "Basınç çevresine göre düşüktür.",
+                "Nem oranı fazladır.",
+                "Yağış ihtimali fazladır.",
+                "Gökyüzü kapalı ve bulutludur.",
+                "Hava hareketi çevreden merkeze doğrudur.",
+                "Yükselici hava hareketi görülür.",
+                "Bitki örtüsü daha gürdür."
+              ]
+            },
+            {
+              "title": "YÜKSEK BASINÇ",
+              "tone": "cool",
+              "image": "./assets/images/iklim-ve-hava-hareketleri/06-yuksek-basinc-karsilastirma.png",
+              "alt": "Yüksek basınçta merkezden çevreye yönelen ve alçalan hava diyagramı",
+              "points": [
+                "Sıcaklık düşüktür.",
+                "Hava yoğunluğu fazladır.",
+                "Basınç çevresine göre yüksektir.",
+                "Nem oranı azdır.",
+                "Yağış ihtimali azdır.",
+                "Gökyüzü açık ve bulutsuzdur.",
+                "Hava hareketi merkezden çevreye doğrudur.",
+                "Alçalıcı hava hareketi görülür.",
+                "Bitki örtüsü daha cılızdır."
+              ]
+            }
+          ],
+          "comparison": [
+            { "text": "ALÇAK BASINÇ = YÜKSELEN HAVA", "tone": "warm" },
+            { "text": "YÜKSEK BASINÇ = ALÇALAN HAVA", "tone": "cool" }
+          ],
+          "media": [],
+          "interactions": []
+        }
+      ]
     }
   ]
 }

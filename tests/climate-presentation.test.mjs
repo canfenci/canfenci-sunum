@@ -8,7 +8,7 @@ test("8. Sınıf İklim ve Hava Hareketleri kapak ve atmosfer slaytları doğrul
   const css = await readFile("src/styles/app.css", "utf8");
 
   assert.equal(lesson.title, "İklim ve Hava Hareketleri");
-  assert.equal(slides.length, 4, "Ders kapak, atmosfer, hava olayları ve ölçüm araçları olmak üzere 4 slayt olmalıdır");
+  assert.equal(slides.length, 6, "Ders kapak, atmosfer, hava olayları, ölçüm araçları ve basınç slaytları olmak üzere 6 slayt olmalıdır");
 
   const cover = slides[0];
   assert.equal(cover.id, "slide_1_kapak");
@@ -114,4 +114,24 @@ test("8. Sınıf İklim ve Hava Hareketleri kapak ve atmosfer slaytları doğrul
   assert.ok(css.includes(".slide-climate-meteorology-tools"), "Slayt 4 CSS kuralı mevcut olmalıdır");
   assert.ok(css.includes("grid-template-columns: repeat(2, 1fr)"), "Slayt 4 araç kartları 2x2 grid olmalıdır");
   assert.ok(css.includes("font-size: 42px"), "Slayt 4 araç başlıkları 42px olmalıdır");
+
+  const pressureFormation = slides[4];
+  assert.equal(pressureFormation.id, "slide_5_basinc_alanlari");
+  assert.equal(pressureFormation.layout, "climate_pressure_formation");
+  assert.deepEqual(pressureFormation.process, ["SICAKLIK DEĞİŞİR", "HAVA YOĞUNLUĞU DEĞİŞİR", "BASINÇ ALANI OLUŞUR"]);
+  assert.deepEqual(pressureFormation.interactions, []);
+  assert.deepEqual(pressureFormation.areas?.map((item) => item.title), ["ALÇAK BASINÇ", "YÜKSEK BASINÇ"]);
+  assert.deepEqual(pressureFormation.comparison?.map((item) => item.text), ["Sıcaklık ↑  →  Basınç ↓", "Sıcaklık ↓  →  Basınç ↑"]);
+  for (const area of pressureFormation.areas ?? []) await access(area.image.replace(/^\.\//, ""));
+
+  const pressureComparison = slides[5];
+  assert.equal(pressureComparison.id, "slide_6_basinc_karsilastirmasi");
+  assert.equal(pressureComparison.layout, "climate_pressure_comparison");
+  assert.equal(pressureComparison.interactions?.length, 0);
+  assert.equal(pressureComparison.areas?.[0]?.points?.length, 9);
+  assert.equal(pressureComparison.areas?.[1]?.points?.length, 9);
+  for (const area of pressureComparison.areas ?? []) await access(area.image.replace(/^\.\//, ""));
+  assert.ok(css.includes(".slide-climate-pressure-formation"), "Slayt 5 CSS kuralı mevcut olmalıdır");
+  assert.ok(css.includes(".slide-climate-pressure-comparison"), "Slayt 6 CSS kuralı mevcut olmalıdır");
+  assert.ok(css.includes(".climate-pressure-process-arrow"), "Slayt 5 süreç okları mevcut olmalıdır");
 });

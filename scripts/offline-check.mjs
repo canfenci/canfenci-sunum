@@ -125,10 +125,10 @@ try {
 try {
   const iklim = JSON.parse(await readFile("data/lessons/iklim-ve-hava-hareketleri.json", "utf8"));
   const iklimSlides = iklim.stages.flatMap((s) => s.slides ?? []);
-  if (iklimSlides.length === 4) {
+  if (iklimSlides.length === 6) {
     pass(`8. Sınıf İklim ve Hava Hareketleri slayt sayısı doğru: ${iklimSlides.length} slayt`);
   } else {
-    fail(`8. Sınıf İklim ve Hava Hareketleri slayt sayısı 4 olmalıydı, bulunan: ${iklimSlides.length}`);
+    fail(`8. Sınıf İklim ve Hava Hareketleri slayt sayısı 6 olmalıydı, bulunan: ${iklimSlides.length}`);
   }
 
   let missingMedia = 0;
@@ -136,7 +136,8 @@ try {
     const allImages = [
       ...(slide.media ?? []).map((m) => m.src),
       ...(slide.weatherEvents ?? []).map((event) => event.image),
-      ...(slide.tools ?? []).map((tool) => tool.image)
+      ...(slide.tools ?? []).map((tool) => tool.image),
+      ...(slide.areas ?? []).map((area) => area.image)
     ].filter(Boolean);
     for (const src of allImages) {
       const p = src.replace(/^\.\//, "");
