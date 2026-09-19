@@ -1317,6 +1317,196 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   background: #eef7fc;
 }
 
+/* 8. Sınıf — İklim ve Hava Hareketleri: Slayt 3 Hava Olayları */
+.slide-workspace:has(.slide-climate-weather-events) .slide-content {
+  padding: 0;
+}
+
+.slide-climate-weather-events {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 56px 64px 52px;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) 218px;
+  gap: 28px;
+  background: #ffffff;
+  color: #0a2540;
+}
+
+.climate-weather-main {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 43fr 57fr;
+  gap: 30px;
+}
+
+.climate-weather-definition-card {
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  padding: 42px 44px;
+  background: #EAF4FF;
+}
+
+.climate-weather-definition-slot .reveal-fill-sentence {
+  margin: 0;
+  color: #111827;
+  font-size: 44px;
+  font-weight: 850;
+  line-height: 1.18;
+  letter-spacing: 0;
+}
+
+.climate-weather-definition-slot .reveal-fill-text {
+  display: inline;
+}
+
+.climate-weather-definition-slot .reveal-fill-blank,
+.climate-weather-definition-slot .reveal-fill-blank.size-long {
+  min-width: 292px;
+  height: 58px;
+  padding: 0 22px;
+  margin: 0 8px;
+  border-radius: 14px;
+  background: rgba(216, 54, 42, 0.06);
+}
+
+.climate-weather-definition-slot .reveal-fill-blank::after {
+  height: 4px;
+  background: #D8362A;
+}
+
+.climate-weather-definition-slot .blank-slot-answer {
+  color: #D8362A;
+  font-size: 44px;
+  font-weight: 900;
+}
+
+.climate-weather-definition-slot .reveal-fill-blank.is-revealed {
+  background: rgba(216, 54, 42, 0.1);
+}
+
+.climate-weather-definition-slot .reveal-fill-blank.is-revealed .blank-slot-answer {
+  color: #D8362A;
+}
+
+.climate-weather-definition-slot .reveal-fill-blank.is-revealed::after {
+  background: #D8362A;
+}
+
+.climate-weather-visual-grid {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.climate-weather-item {
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) 52px;
+  gap: 10px;
+  padding: 14px;
+  border: 2px solid rgba(148, 163, 184, 0.24);
+  border-radius: 24px;
+  background: #f8fbff;
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.06);
+  box-sizing: border-box;
+}
+
+.weather-sprite {
+  min-height: 0;
+  border-radius: 18px;
+  background-image: var(--weather-sprite);
+  background-size: 300% 200%;
+  background-repeat: no-repeat;
+  box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.06);
+}
+
+.weather-rain { background-position: 0% 0%; }
+.weather-snow { background-position: 50% 0%; }
+.weather-hail { background-position: 100% 0%; }
+.weather-wind { background-position: 0% 100%; }
+.weather-fog { background-position: 50% 100%; }
+.weather-frost { background-position: 100% 100%; }
+
+.climate-weather-item figcaption {
+  align-self: center;
+  justify-self: center;
+  color: #0f172a;
+  font-size: 38px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0;
+  text-align: center;
+}
+
+.climate-weather-causes {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.climate-cause-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+  padding: 28px 34px;
+}
+
+.climate-cause-humidity {
+  background: #E6F7F5;
+}
+
+.climate-cause-temperature {
+  background: #FFF0E6;
+}
+
+.climate-cause-pressure {
+  background: #F2ECFF;
+}
+
+.climate-cause-card h2 {
+  width: max-content;
+  max-width: 100%;
+  margin: 0;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #D8362A;
+  font-size: 42px;
+  font-weight: 900;
+  line-height: 1.04;
+  letter-spacing: 0;
+  text-decoration: none;
+}
+
+.climate-cause-card h2::after {
+  content: "";
+  width: 96px;
+  height: 5px;
+  margin-top: 10px;
+  border-radius: 999px;
+  background: #D8362A;
+}
+
+.climate-cause-card p {
+  margin: 0;
+  color: #111827;
+  font-size: 40px;
+  font-weight: 850;
+  line-height: 1.12;
+  letter-spacing: 0;
+}
+
 /* Slayt 1: Merak Et (Türkiye & Avustralya) */
 .slide-canva-merak-et {
   display: flex;

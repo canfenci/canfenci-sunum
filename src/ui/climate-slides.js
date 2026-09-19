@@ -98,6 +98,49 @@ export function renderClimateSlide(slide, view, { interactions, activeInteractio
       return true;
     }
 
+    case "climate_weather_events": {
+      const media = slide.media?.[0];
+      const events = slide.weatherEvents ?? [];
+      const causeCards = slide.causeCards ?? [];
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-climate-weather-events";
+      slideArticle.innerHTML = `
+        <header class="climate-slide-header">
+          <h1 class="climate-slide-title">${escapeHtml(slide.title ?? "HAVA OLAYLARI")}</h1>
+        </header>
+        <div class="climate-weather-main">
+          <section class="climate-card climate-weather-definition-card">
+            <div class="climate-weather-definition-slot"></div>
+          </section>
+          <section class="climate-weather-visual-grid" aria-label="Hava olayları görsel matrisi">
+            ${events.map((event) => `
+              <figure class="climate-weather-item">
+                <div class="weather-sprite weather-${escapeHtml(event.spriteClass ?? "")}" style="--weather-sprite: url('${escapeHtml(media?.src ?? "./assets/images/iklim-ve-hava-hareketleri/03-hava-olaylari-sprite.png")}')"></div>
+                <figcaption>${escapeHtml(event.label)}</figcaption>
+              </figure>
+            `).join("")}
+          </section>
+        </div>
+        <section class="climate-weather-causes" aria-label="Hava olaylarının oluşum nedenleri">
+          ${causeCards.map((card) => `
+            <article class="climate-card climate-cause-card climate-cause-${escapeHtml(card.tone ?? "")}">
+              <h2>${escapeHtml(card.title)}</h2>
+              <p>${escapeHtml(card.desc)}</p>
+            </article>
+          `).join("")}
+        </section>
+      `;
+      const definitionSlot = slideArticle.querySelector(".climate-weather-definition-slot");
+      const definitionInteraction = slide.interactions?.find((item) => item.id === "interaction_slide_3_hava_olaylari_tanim") ?? slide.interactions?.[0];
+      if (definitionInteraction) {
+        mountInteraction(definitionInteraction, definitionSlot, interactions, activeInteractions);
+      } else if (definitionSlot) {
+        definitionSlot.innerHTML = `<p>${escapeHtml(slide.definition ?? "")}</p>`;
+      }
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
     default:
       return false;
   }

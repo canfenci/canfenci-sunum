@@ -8,7 +8,7 @@ test("8. Sınıf İklim ve Hava Hareketleri kapak ve atmosfer slaytları doğrul
   const css = await readFile("src/styles/app.css", "utf8");
 
   assert.equal(lesson.title, "İklim ve Hava Hareketleri");
-  assert.equal(slides.length, 2, "Ders kapak ve atmosfer olmak üzere 2 slayt olmalıdır");
+  assert.equal(slides.length, 3, "Ders kapak, atmosfer ve hava olayları olmak üzere 3 slayt olmalıdır");
 
   const cover = slides[0];
   assert.equal(cover.id, "slide_1_kapak");
@@ -73,4 +73,27 @@ test("8. Sınıf İklim ve Hava Hareketleri kapak ve atmosfer slaytları doğrul
   assert.ok(css.includes(".climate-definition-slot .reveal-fill-sentence"), "Tanım kartı reveal_fill etkileşimini kullanmalıdır");
   assert.ok(css.includes(".climate-definition-slot .blank-slot-answer"), "Reveal cevabı özel tipografi ile görünmelidir");
   assert.ok(css.includes("conic-gradient(#0a3b70 0deg 280.8deg, #38bdf8 280.8deg 356.4deg, #dbe4ec 356.4deg 360deg)"), "Havanın bileşimi donut chart oranları doğru olmalıdır");
+
+  const weather = slides[2];
+  assert.equal(weather.id, "slide_3_hava_olaylari");
+  assert.equal(weather.type, "content");
+  assert.equal(weather.layout, "climate_weather_events");
+  assert.equal(weather.title, "HAVA OLAYLARI");
+  assert.equal(weather.interactions?.length, 1, "Slayt 3'te yalnızca 1 etkileşim olmalıdır");
+  assert.equal(weather.interactions[0].type, "reveal_fill");
+  assert.equal(weather.interactions[0].blanks?.[0]?.answer, "hava olayları");
+  assert.deepEqual(weather.weatherEvents?.map((item) => item.label), ["YAĞMUR", "KAR", "DOLU", "RÜZGÂR", "SİS", "KIRAĞI"]);
+  assert.deepEqual(weather.causeCards?.map((item) => item.title), ["NEM", "SICAKLIK FARKI", "BASINÇ FARKI"]);
+
+  const weatherSpritePath = weather.media[0].src.replace(/^\.\//, "");
+  await access(weatherSpritePath);
+
+  assert.ok(css.includes(".slide-climate-weather-events"), "Slayt 3 CSS kuralı mevcut olmalıdır");
+  assert.ok(css.includes(".climate-weather-definition-slot .reveal-fill-sentence"), "Slayt 3 tanım kartı reveal_fill kullanmalıdır");
+  assert.ok(css.includes("grid-template-columns: 43fr 57fr"), "Slayt 3 sol tanım ve sağ görsel oranları tanımlı olmalıdır");
+  assert.ok(css.includes("grid-template-columns: repeat(3, 1fr)"), "Slayt 3 görsel matrisi ve neden kartları 3 sütun olmalıdır");
+  assert.ok(css.includes("background: #EAF4FF"), "Tanım kartı pastel mavi olmalıdır");
+  assert.ok(css.includes("background: #E6F7F5"), "Nem kartı pastel turkuaz olmalıdır");
+  assert.ok(css.includes("background: #FFF0E6"), "Sıcaklık farkı kartı pastel şeftali olmalıdır");
+  assert.ok(css.includes("background: #F2ECFF"), "Basınç farkı kartı pastel lila olmalıdır");
 });

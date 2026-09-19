@@ -88,6 +88,68 @@
           ]
         }
       ]
+    },
+    {
+      "id": "stage_hava_olaylari",
+      "label": "Hava Olayları",
+      "order": 3,
+      "slides": [
+        {
+          "id": "slide_3_hava_olaylari",
+          "type": "content",
+          "layout": "climate_weather_events",
+          "tag": "HAVA OLAYLARI",
+          "kicker": "HAVA OLAYLARI",
+          "title": "HAVA OLAYLARI",
+          "definition": "Dar bir bölgede meydana gelen yağmur, kar, dolu, rüzgâr, sis ve kırağı gibi olaylara hava olayları denir.",
+          "weatherEvents": [
+            { "label": "YAĞMUR", "spriteClass": "rain" },
+            { "label": "KAR", "spriteClass": "snow" },
+            { "label": "DOLU", "spriteClass": "hail" },
+            { "label": "RÜZGÂR", "spriteClass": "wind" },
+            { "label": "SİS", "spriteClass": "fog" },
+            { "label": "KIRAĞI", "spriteClass": "frost" }
+          ],
+          "causeCards": [
+            {
+              "title": "NEM",
+              "desc": "Havadaki su buharı",
+              "tone": "humidity"
+            },
+            {
+              "title": "SICAKLIK FARKI",
+              "desc": "Havanın ısınıp soğuması",
+              "tone": "temperature"
+            },
+            {
+              "title": "BASINÇ FARKI",
+              "desc": "Hava hareketlerini etkiler",
+              "tone": "pressure"
+            }
+          ],
+          "media": [
+            {
+              "id": "media_weather_events_sprite",
+              "src": "./assets/images/iklim-ve-hava-hareketleri/03-hava-olaylari-sprite.png",
+              "alt": "Yağmur, kar, dolu, rüzgar, sis ve kırağı hava olaylarını gösteren görsel matris"
+            }
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_3_hava_olaylari_tanim",
+              "type": "reveal_fill",
+              "template": "Dar bir bölgede meydana gelen yağmur, kar, dolu, rüzgâr, sis ve kırağı gibi olaylara {blank1} denir.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "hava olayları",
+                  "placeholder": "hava olayları"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }
