@@ -11,6 +11,7 @@ import { TeacherTools } from "./tools/teacher-tools.js";
 import { renderShell } from "./ui/app-shell.js";
 import { renderSolarSlide } from "./ui/solar-system-slides.js";
 import { renderSpaceSlide } from "./ui/space-research-slides.js";
+import { renderClimateSlide } from "./ui/climate-slides.js";
 import { renderControlPanel } from "./ui/control-panel.js";
 import { renderPresentation, renderPlanItemsForState } from "./ui/presentation-view.js";
 import { renderWorkModePlaceholder as renderWorkModePlaceholderView } from "./ui/work-mode-placeholder.js";
@@ -846,6 +847,9 @@ class CanFenciApp {
         interactions: this.interactions,
         activeInteractions: this.activeInteractions
       });
+    }
+    if (slide.layout?.startsWith("climate_")) {
+      return renderClimateSlide(slide, view);
     }
     switch (slide.layout) {
       case "canva_merak_et":

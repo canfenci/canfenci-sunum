@@ -54,6 +54,42 @@
               "source": "./data/lessons/mevsimlerin-olusumu.json"
             }
           ]
+        },
+        {
+          "id": "climate_and_air_movements",
+          "label": "İklim ve Hava Hareketleri",
+          "metadata": {
+            "coreTopics": [
+              "İklim",
+              "Hava olayları",
+              "Atmosfer",
+              "Rüzgar ve basınç ilişkisi"
+            ],
+            "extraTopics": [],
+            "verified": true,
+            "lastVerifiedAt": "2026-09-19"
+          },
+          "workModes": {
+            "presentation": {
+              "status": "available",
+              "source": "./data/lessons/iklim-ve-hava-hareketleri.json"
+            },
+            "activity": {
+              "status": "planned",
+              "source": null
+            },
+            "test": {
+              "status": "planned",
+              "source": null
+            }
+          },
+          "lessons": [
+            {
+              "id": "lesson_iklim_ve_hava_hareketleri_1",
+              "label": "İklim ve Hava Hareketleri",
+              "source": "./data/lessons/iklim-ve-hava-hareketleri.json"
+            }
+          ]
         }
       ]
     }

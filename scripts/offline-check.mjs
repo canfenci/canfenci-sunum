@@ -23,12 +23,14 @@ const requiredFiles = [
   "src/app.js",
   "src/styles/app.css",
   "src/ui/control-panel.js",
+  "src/ui/climate-slides.js",
   "src/ui/solar-system-slides.js",
   "src/ui/space-research-slides.js",
   "data/catalog.json",
   "data/curricula/legacy_2018_lgs.json",
   "data/curricula/maarif_model.json",
   "data/lessons/gunes-sistemi.json",
+  "data/lessons/iklim-ve-hava-hareketleri.json",
   "data/lessons/mevsimlerin-olusumu.json",
   "data/lessons/uzay-arastirmalari.json"
 ];
@@ -118,6 +120,34 @@ try {
   }
 } catch (err) {
   fail(`mevsimlerin-olusumu.json doğrulanamadı: ${err.message}`);
+}
+
+try {
+  const iklim = JSON.parse(await readFile("data/lessons/iklim-ve-hava-hareketleri.json", "utf8"));
+  const iklimSlides = iklim.stages.flatMap((s) => s.slides ?? []);
+  if (iklimSlides.length === 1) {
+    pass(`8. Sınıf İklim ve Hava Hareketleri slayt sayısı doğru: ${iklimSlides.length} slayt`);
+  } else {
+    fail(`8. Sınıf İklim ve Hava Hareketleri slayt sayısı 1 olmalıydı, bulunan: ${iklimSlides.length}`);
+  }
+
+  let missingMedia = 0;
+  for (const slide of iklimSlides) {
+    for (const m of slide.media ?? []) {
+      const p = m.src.replace(/^\.\//, "");
+      try {
+        await access(p);
+      } catch {
+        missingMedia++;
+        fail(`Görsel dosyası eksik: ${p} (${slide.id})`);
+      }
+    }
+  }
+  if (missingMedia === 0) {
+    pass("8. Sınıf İklim ve Hava Hareketleri slaytlarındaki tüm yerel görseller eksiksiz mevcut");
+  }
+} catch (err) {
+  fail(`iklim-ve-hava-hareketleri.json doğrulanamadı: ${err.message}`);
 }
 
 try {

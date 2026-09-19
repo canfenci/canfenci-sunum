@@ -885,6 +885,101 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.1);
 }
 
+/* 8. Sınıf — İklim ve Hava Hareketleri: Kapak */
+.slide-workspace:has(.slide-climate-cover) .slide-content {
+  padding: 0;
+}
+
+.slide-climate-cover {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  background: #ffffff;
+  color: #000000;
+}
+
+.climate-cover-layout {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 0.92fr 1.08fr;
+  align-items: center;
+  gap: 54px;
+  padding: 96px 112px;
+  box-sizing: border-box;
+}
+
+.climate-cover-copy {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 30px;
+}
+
+.climate-cover-grade,
+.climate-cover-unit,
+.climate-cover-label {
+  margin: 0;
+  color: #000000;
+  font-weight: 800;
+  line-height: 1.16;
+  letter-spacing: 0;
+}
+
+.climate-cover-grade,
+.climate-cover-unit {
+  font-size: 40px;
+}
+
+.climate-cover-grade {
+  padding: 16px 28px;
+  background: #fff3a6;
+  border-left: 12px solid #f6d44a;
+}
+
+.climate-cover-title {
+  margin: 0;
+  max-width: 680px;
+  padding: 24px 34px 28px;
+  background: #fff3a6;
+  color: #000000;
+  font-size: 56px;
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+
+.climate-cover-unit {
+  padding-left: 34px;
+}
+
+.climate-cover-label {
+  margin-top: 10px;
+  padding-left: 34px;
+  font-size: 36px;
+}
+
+.climate-cover-visual {
+  min-width: 0;
+  width: 100%;
+  height: 760px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.climate-cover-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 /* Slayt 1: Merak Et (Türkiye & Avustralya) */
 .slide-canva-merak-et {
   display: flex;

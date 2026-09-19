@@ -51,6 +51,11 @@ test("Müfredat ve Rota Bağlantıları Doğrulaması (6. Sınıf ve 8. Sınıf)
   assert.equal(grade8Topic.workModes.presentation.status, "available");
   assert.equal(grade8Topic.workModes.presentation.source, "./data/lessons/mevsimlerin-olusumu.json");
 
+  const grade8ClimateTopic = grade8Unit.topics.find((t) => t.id === "climate_and_air_movements");
+  assert.ok(grade8ClimateTopic, "climate_and_air_movements konusu bulunamadı");
+  assert.equal(grade8ClimateTopic.workModes.presentation.status, "available");
+  assert.equal(grade8ClimateTopic.workModes.presentation.source, "./data/lessons/iklim-ve-hava-hareketleri.json");
+
   // 4. LessonEngine ile 6. sınıf ders yüklemesi
   const engine6 = new LessonEngine();
   const lesson6 = await engine6.load("data/lessons/gunes-sistemi.json");
@@ -64,6 +69,13 @@ test("Müfredat ve Rota Bağlantıları Doğrulaması (6. Sınıf ve 8. Sınıf)
   assert.equal(lesson8.id, "lesson_mevsimlerin_olusumu_1");
   assert.equal(engine8.slideCount, 25, "8. Sınıf dersi 25 slayt olarak korunmalıdır");
   assert.equal(engine8.stages.length, 7, "8. Sınıf dersi 7 aşama olmalıdır");
+
+  // 6. Yeni 8. sınıf İklim ve Hava Hareketleri kapak dersi
+  const climateEngine = new LessonEngine();
+  const climateLesson = await climateEngine.load("data/lessons/iklim-ve-hava-hareketleri.json");
+  assert.equal(climateLesson.id, "lesson_iklim_ve_hava_hareketleri_1");
+  assert.equal(climateEngine.slideCount, 1, "İklim ve Hava Hareketleri dersi şimdilik 1 slayt olmalıdır");
+  assert.equal(climateEngine.currentSlide.layout, "climate_cover");
   } finally {
     globalThis.fetch = originalFetch;
   }

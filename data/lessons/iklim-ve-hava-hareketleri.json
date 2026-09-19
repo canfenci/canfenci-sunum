@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "lesson_iklim_ve_hava_hareketleri_1",
+  "title": "İklim ve Hava Hareketleri",
+  "gradeId": "grade_8",
+  "curriculumProfileId": "legacy_2018_lgs",
+  "unitId": "seasons_and_climate",
+  "topicId": "climate_and_air_movements",
+  "modes": ["presentation"],
+  "curriculumValidation": {
+    "outcomeIds": ["F.8.1.2.1"],
+    "authority": "MEB",
+    "sourceDocument": "8. Sınıf Fen Bilimleri Dersi Öğretim Programı (2018 LGS)",
+    "sourceVersion": "2018",
+    "lastVerifiedAt": "2026-09-19",
+    "verifiedBy": "CanFenci",
+    "status": "verified"
+  },
+  "stages": [
+    {
+      "id": "stage_kapak",
+      "label": "Kapak",
+      "order": 1,
+      "slides": [
+        {
+          "id": "slide_1_kapak",
+          "type": "cover",
+          "layout": "climate_cover",
+          "tag": "KAPAK",
+          "kicker": "8. Sınıf Fen Bilimleri",
+          "title": "İklim ve Hava Hareketleri",
+          "subtitle": "Mevsimler ve İklim Ünitesi",
+          "label": "CanFenci Akıllı Tahta Sunumu",
+          "media": [
+            {
+              "id": "media_climate_cover",
+              "src": "./assets/images/iklim-ve-hava-hareketleri/01-kapak-iklim-ve-hava-hareketleri.png",
+              "alt": "Dünya, atmosfer, bulutlar, güneş ve rüzgar akışlarını gösteren sade iklim görseli"
+            }
+          ],
+          "interactions": []
+        }
+      ]
+    }
+  ]
+}
