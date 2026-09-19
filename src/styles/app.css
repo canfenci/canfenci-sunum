@@ -1027,11 +1027,24 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 
 .climate-slide-title {
   margin: 0;
-  color: #0a2540;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #D8362A;
   font-size: 56px;
   font-weight: 900;
   line-height: 1;
   letter-spacing: 0;
+  text-decoration: none;
+}
+
+.climate-slide-title::after {
+  content: "";
+  width: 132px;
+  height: 6px;
+  margin-top: 10px;
+  border-radius: 999px;
+  background: #D8362A;
 }
 
 .climate-atmosphere-main {
@@ -1080,11 +1093,27 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 .climate-definition-copy h2,
 .climate-composition-card h2 {
   margin: 0;
-  color: #0a2540;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: max-content;
+  max-width: 100%;
+  color: #D8362A;
   font-size: 46px;
   font-weight: 900;
   line-height: 1.08;
   letter-spacing: 0;
+  text-decoration: none;
+}
+
+.climate-definition-copy h2::after,
+.climate-composition-card h2::after {
+  content: "";
+  width: 112px;
+  height: 5px;
+  margin-top: 10px;
+  border-radius: 999px;
+  background: #D8362A;
 }
 
 .climate-definition-copy p {

@@ -60,5 +60,13 @@ test("8. Sınıf İklim ve Hava Hareketleri kapak ve atmosfer slaytları doğrul
   assert.ok(css.includes("font-size: 46px"), "Kart başlıkları 46px olmalıdır");
   assert.ok(css.includes("font-size: 44px"), "Tanım 44px olmalıdır");
   assert.ok(css.includes("font-size: 40px"), "Ana öğretim metinleri ve grafik etiketleri 40px olmalıdır");
+  assert.ok(css.includes("color: #D8362A"), "Slayt 2 başlıkları kırmızı olmalıdır");
+  assert.ok(css.includes("text-decoration: none"), "Klasik underline kullanılmamalıdır");
+  assert.ok(css.includes(".climate-slide-title::after"), "Ana başlık için modern kısa alt çizgi olmalıdır");
+  assert.ok(css.includes(".climate-definition-copy h2::after"), "Atmosfer Nedir başlığı için kısa alt çizgi olmalıdır");
+  assert.ok(css.includes(".climate-composition-card h2::after"), "Havanın Bileşimi başlığı için kısa alt çizgi olmalıdır");
+  assert.ok(css.includes("height: 6px"), "Ana başlık alt çizgisi 4-6px aralığında olmalıdır");
+  assert.ok(css.includes("height: 5px"), "Kart başlığı alt çizgisi 4-6px aralığında olmalıdır");
+  assert.ok(css.includes("margin-top: 10px"), "Başlık ile alt çizgi arasında 8-12px boşluk olmalıdır");
   assert.ok(css.includes("conic-gradient(#0a3b70 0deg 280.8deg, #38bdf8 280.8deg 356.4deg, #dbe4ec 356.4deg 360deg)"), "Havanın bileşimi donut chart oranları doğru olmalıdır");
 });
