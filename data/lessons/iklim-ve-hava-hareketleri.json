@@ -424,6 +424,46 @@
           ]
         }
       ]
+    },
+    {
+      "id": "stage_deniz_ve_kara_meltemi",
+      "label": "Deniz ve Kara Meltemi",
+      "order": 9,
+      "slides": [
+        {
+          "id": "slide_9_deniz_ve_kara_meltemi",
+          "type": "content",
+          "layout": "climate_breeze_comparison",
+          "tag": "DENİZ VE KARA MELTEMİ",
+          "title": "DENİZ VE KARA MELTEMİ",
+          "areas": [
+            {
+              "id": "sea_breeze_day",
+              "period": "GÜNDÜZ",
+              "title": "DENİZ MELTEMİ",
+              "tone": "sea",
+              "image": "./assets/images/iklim-ve-hava-hareketleri/09-deniz-meltemi-gunduz.png",
+              "alt": "Gündüz denizden karaya esen deniz meltemi şeması",
+              "temperature": "Kara daha hızlı ısınır.",
+              "pressure": ["Kara üzerinde alçak basınç", "Deniz üzerinde yüksek basınç"],
+              "wind": "Rüzgâr denizden karaya eser."
+            },
+            {
+              "id": "land_breeze_night",
+              "period": "GECE",
+              "title": "KARA MELTEMİ",
+              "tone": "land",
+              "image": "./assets/images/iklim-ve-hava-hareketleri/09-kara-meltemi-gece.png",
+              "alt": "Gece karadan denize esen kara meltemi şeması",
+              "temperature": "Kara daha hızlı soğur.",
+              "pressure": ["Kara üzerinde yüksek basınç", "Deniz üzerinde alçak basınç"],
+              "wind": "Rüzgâr karadan denize eser."
+            }
+          ],
+          "bottomInfo": "Kara, denize göre daha hızlı ısınır ve daha hızlı soğur.",
+          "interactions": []
+        }
+      ]
     }
   ]
 }

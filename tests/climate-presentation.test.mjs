@@ -8,7 +8,7 @@ test("8. Sınıf İklim ve Hava Hareketleri kapak ve atmosfer slaytları doğrul
   const css = await readFile("src/styles/app.css", "utf8");
 
   assert.equal(lesson.title, "İklim ve Hava Hareketleri");
-  assert.equal(slides.length, 8, "Ders kapak, atmosfer, hava olayları, ölçüm araçları, basınç ve rüzgâr slaytları olmak üzere 8 slayt olmalıdır");
+  assert.equal(slides.length, 9, "Ders kapak, atmosfer, hava olayları, ölçüm araçları, basınç, rüzgâr ve meltem slaytları olmak üzere 9 slayt olmalıdır");
 
   const cover = slides[0];
   assert.equal(cover.id, "slide_1_kapak");
@@ -181,4 +181,17 @@ test("8. Sınıf İklim ve Hava Hareketleri kapak ve atmosfer slaytları doğrul
   assert.ok(css.includes(".climate-wind-reveal-row"), "Slayt 8 bağımsız reveal satırları mevcut olmalıdır");
   assert.ok(css.includes("font-size: 34px"), "Slayt 8 uygulama maddeleri 32-36px aralığında olmalıdır");
   assert.ok(css.includes("white-space: normal"), "Slayt 8 uygulama maddeleri kontrollü satır kırabilmelidir");
+
+  const breeze = slides[8];
+  assert.equal(breeze.id, "slide_9_deniz_ve_kara_meltemi");
+  assert.equal(breeze.layout, "climate_breeze_comparison");
+  assert.equal(breeze.title, "DENİZ VE KARA MELTEMİ");
+  assert.deepEqual(breeze.areas?.map((item) => item.title), ["DENİZ MELTEMİ", "KARA MELTEMİ"]);
+  assert.deepEqual(breeze.areas?.map((item) => item.wind), ["Rüzgâr denizden karaya eser.", "Rüzgâr karadan denize eser."]);
+  assert.equal(breeze.bottomInfo, "Kara, denize göre daha hızlı ısınır ve daha hızlı soğur.");
+  assert.deepEqual(breeze.interactions, []);
+  for (const area of breeze.areas ?? []) await access(area.image.replace(/^\.\//, ""));
+  assert.ok(css.includes(".slide-climate-breeze-comparison"), "Slayt 9 meltem karşılaştırma CSS kuralı mevcut olmalıdır");
+  assert.ok(css.includes(".climate-breeze-visual"), "Slayt 9 meltem görsel alanı mevcut olmalıdır");
+  assert.ok(css.includes(".climate-breeze-bottom-info"), "Slayt 9 alt bilgi bandı mevcut olmalıdır");
 });

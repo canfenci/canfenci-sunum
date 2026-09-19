@@ -284,6 +284,42 @@ export function renderClimateSlide(slide, view, { interactions, activeInteractio
       return true;
     }
 
+    case "climate_breeze_comparison": {
+      const areas = slide.areas ?? [];
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-climate-breeze-comparison";
+      slideArticle.innerHTML = `
+        <header class="climate-slide-header">
+          <h1 class="climate-slide-title">${escapeHtml(slide.title ?? "DENİZ VE KARA MELTEMİ")}</h1>
+        </header>
+        <section class="climate-breeze-cards" aria-label="Gündüz ve gece meltemleri karşılaştırması">
+          ${areas.map((area) => `
+            <article class="climate-card climate-breeze-card climate-breeze-${escapeHtml(area.tone ?? "sea")}">
+              <header class="climate-breeze-card-header">
+                <span class="climate-breeze-period">${escapeHtml(area.period ?? "")}</span>
+                <h2>${escapeHtml(area.title ?? "")}</h2>
+              </header>
+              <figure class="climate-breeze-visual">
+                <img src="${escapeHtml(area.image ?? "")}" alt="${escapeHtml(area.alt ?? "Deniz ve kara meltemi şeması")}" />
+              </figure>
+              <div class="climate-breeze-copy">
+                <p class="climate-breeze-temperature">${escapeHtml(area.temperature ?? "")}</p>
+                <div class="climate-breeze-pressure-list">
+                  ${(area.pressure ?? []).map((item) => `<p>${escapeHtml(item)}</p>`).join("")}
+                </div>
+                <p class="climate-breeze-wind">${escapeHtml(area.wind ?? "")}</p>
+              </div>
+            </article>
+          `).join("")}
+        </section>
+        <div class="climate-card climate-breeze-bottom-info">
+          <p>${escapeHtml(slide.bottomInfo ?? "Kara, denize göre daha hızlı ısınır ve daha hızlı soğur.")}</p>
+        </div>
+      `;
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
     default:
       return false;
   }

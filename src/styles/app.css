@@ -2063,6 +2063,166 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   background: #D8362A;
 }
 
+/* 8. Sınıf — İklim ve Hava Hareketleri: Slayt 9 Meltemler */
+.slide-workspace:has(.slide-climate-breeze-comparison) .slide-content {
+  padding: 0;
+}
+
+.slide-climate-breeze-comparison {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 48px 64px 46px;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) 100px;
+  gap: 20px;
+  background: #ffffff;
+  color: #0a2540;
+}
+
+.climate-breeze-cards {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 28px;
+}
+
+.climate-breeze-card {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto 250px minmax(0, 1fr);
+  gap: 20px;
+  padding: 26px 30px;
+  overflow: hidden;
+}
+
+.climate-breeze-sea { background: #EAF4FF; }
+.climate-breeze-land { background: #F1EEFF; }
+
+.climate-breeze-card-header {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.climate-breeze-period {
+  color: #334155;
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.climate-breeze-card-header h2 {
+  width: max-content;
+  max-width: 100%;
+  margin: 0;
+  color: #D8362A;
+  font-size: 40px;
+  font-weight: 900;
+  line-height: 1.02;
+  letter-spacing: 0;
+  text-decoration: none;
+}
+
+.climate-breeze-card-header h2::after {
+  content: "";
+  display: block;
+  width: 112px;
+  height: 5px;
+  margin-top: 10px;
+  border-radius: 999px;
+  background: #D8362A;
+}
+
+.climate-breeze-visual {
+  min-width: 0;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.65);
+  border: 2px solid rgba(148, 163, 184, 0.2);
+  box-sizing: border-box;
+}
+
+.climate-breeze-visual img {
+  display: block;
+  width: min(100%, 520px);
+  height: 250px;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.climate-breeze-copy {
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}
+
+.climate-breeze-copy p {
+  margin: 0;
+  color: #111827;
+  white-space: nowrap;
+}
+
+.climate-breeze-temperature,
+.climate-breeze-wind {
+  font-size: 36px;
+  font-weight: 850;
+  line-height: 1.08;
+}
+
+.climate-breeze-wind {
+  color: #0a3b70;
+}
+
+.climate-breeze-pressure-list {
+  min-width: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.climate-breeze-pressure-list p {
+  color: #334155;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.08;
+}
+
+.climate-breeze-bottom-info {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  place-items: center;
+  padding: 18px 28px;
+  background: #F2ECFF;
+}
+
+.climate-breeze-bottom-info p {
+  margin: 0;
+  color: #111827;
+  font-size: 40px;
+  font-weight: 850;
+  line-height: 1.06;
+  text-align: center;
+}
+
 /* Slayt 1: Merak Et (Türkiye & Avustralya) */
 .slide-canva-merak-et {
   display: flex;
