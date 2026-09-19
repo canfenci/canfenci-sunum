@@ -174,5 +174,11 @@ test("8. Sınıf İklim ve Hava Hareketleri kapak ve atmosfer slaytları doğrul
   assert.deepEqual(windApplication.interactions.map((item) => item.blanks?.[0]?.answer), ["K", "K", "L", "K", "L", "L", "K", "K", "L", "L"]);
   await access(windApplication.media[0].src.replace(/^\.\//, ""));
   assert.ok(css.includes(".slide-climate-wind-application"), "Slayt 8 CSS kuralı mevcut olmalıdır");
+  assert.ok(css.includes("grid-template-rows: auto 360px minmax(0, 1fr)"), "Slayt 8 görsel alanı tam görünüm için yeterli yüksekliğe sahip olmalıdır");
+  assert.ok(css.includes("object-fit: contain"), "Slayt 8 uygulama görseli kırpılmadan görünmelidir");
+  assert.ok(css.includes("width: min(720px, 100%)"), "Slayt 8 görseli kutu içinde sabit oranlı ve taşmasız görünmelidir");
+  assert.ok(css.includes("grid-template-columns: minmax(0, 1fr) minmax(0, 1fr)"), "Slayt 8 uygulama sütunları taşmasız eşit genişlikte olmalıdır");
   assert.ok(css.includes(".climate-wind-reveal-row"), "Slayt 8 bağımsız reveal satırları mevcut olmalıdır");
+  assert.ok(css.includes("font-size: 34px"), "Slayt 8 uygulama maddeleri 32-36px aralığında olmalıdır");
+  assert.ok(css.includes("white-space: normal"), "Slayt 8 uygulama maddeleri kontrollü satır kırabilmelidir");
 });

@@ -1962,7 +1962,7 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 }
 
 .slide-climate-wind-application {
-  grid-template-rows: auto 246px minmax(0, 1fr);
+  grid-template-rows: auto 360px minmax(0, 1fr);
 }
 
 .climate-wind-application-visual {
@@ -1971,6 +1971,7 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   width: 100%;
   height: 100%;
   margin: 0;
+  box-sizing: border-box;
   display: grid;
   place-items: center;
   overflow: hidden;
@@ -1981,17 +1982,21 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 
 .climate-wind-application-visual img {
   display: block;
-  width: 100%;
-  height: 100%;
+  width: min(720px, 100%);
+  height: min(360px, 100%);
+  max-width: 100%;
+  max-height: 100%;
+  aspect-ratio: 1774 / 887;
   object-fit: contain;
+  object-position: center;
 }
 
 .climate-wind-application-columns {
   min-width: 0;
   min-height: 0;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 28px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
 }
 
 .climate-wind-application-column {
@@ -1999,8 +2004,8 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   min-height: 0;
   display: grid;
   grid-template-rows: repeat(5, minmax(0, 1fr));
-  gap: 10px;
-  padding: 16px 22px;
+  gap: 8px;
+  padding: 14px 20px;
   border-radius: 24px;
   border: 2px solid rgba(148, 163, 184, 0.22);
   background: #f8fbff;
@@ -2015,24 +2020,27 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 
 .climate-wind-reveal-row .interaction-slot {
   min-width: 0;
+  width: 100%;
 }
 
 .climate-wind-reveal-row .reveal-fill-sentence {
   display: block;
   color: #111827;
-  font-size: 40px;
+  width: 100%;
+  font-size: 34px;
   font-weight: 850;
-  line-height: 1.05;
-  white-space: nowrap;
+  line-height: 1.12;
+  white-space: normal;
+  overflow-wrap: normal;
 }
 
 .climate-wind-reveal-row .reveal-fill-blank,
 .climate-wind-reveal-row .reveal-fill-blank.size-short {
-  width: 84px;
-  min-width: 84px;
-  height: 52px;
+  width: 70px;
+  min-width: 70px;
+  height: 48px;
   padding: 0 8px;
-  margin: 0 6px;
+  margin: 0 5px;
   border-radius: 12px;
   background: rgba(216, 54, 42, 0.06);
 }
@@ -2043,7 +2051,7 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 
 .climate-wind-reveal-row .blank-slot-answer {
   color: #D8362A;
-  font-size: 40px;
+  font-size: 34px;
   font-weight: 900;
 }
 
