@@ -11,6 +11,17 @@ const mountInteraction = (interaction, container, interactions, activeInteractio
   container.appendChild(slot);
 };
 
+const registerLocalInteraction = (activeInteractions, reset, destroy = () => {}) => {
+  activeInteractions?.push({ reset, destroy });
+};
+
+const climateHeader = (title, notebook = false) => `
+  <header class="climate-slide-header${notebook ? " climate-notebook-header" : ""}">
+    <h1 class="climate-slide-title">${escapeHtml(title)}</h1>
+    ${notebook ? '<span class="climate-notebook-badge" aria-label="Defter özeti">📓</span>' : ""}
+  </header>
+`;
+
 export function renderClimateSlide(slide, view, { interactions, activeInteractions } = {}) {
   switch (slide.layout) {
     case "climate_cover": {
@@ -136,6 +147,330 @@ export function renderClimateSlide(slide, view, { interactions, activeInteractio
       } else if (definitionSlot) {
         definitionSlot.innerHTML = `<p>${escapeHtml(slide.definition ?? "")}</p>`;
       }
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
+    case "climate_tool_match": {
+      const tools = slide.tools ?? [];
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-climate-tool-match climate-interactive-slide";
+      slideArticle.innerHTML = `
+        ${climateHeader(slide.title ?? "METEOROLOJİ VE ÖLÇÜM ARAÇLARI")}
+        <p class="climate-instruction">Bir ölçüm aracı seç, ardından ölçtüğü büyüklüğe dokun.</p>
+        <section class="climate-tool-match-stage">
+          <div class="climate-match-tools" aria-label="Ölçüm araçları">
+            ${tools.map((tool, index) => `<button type="button" class="climate-match-tool" data-index="${index}"><img src="${escapeHtml(tool.image)}" alt="${escapeHtml(tool.title)}"/><strong>${escapeHtml(tool.title)}</strong></button>`).join("")}
+          </div>
+          <div class="climate-match-measures" aria-label="Ölçülen büyüklükler">
+            ${[...tools].reverse().map((tool) => `<button type="button" class="climate-match-measure" data-measure="${escapeHtml(tool.measure)}">${escapeHtml(tool.measure)}</button>`).join("")}
+          </div>
+        </section>
+        <p class="climate-feedback" aria-live="polite">Eşleştirmeye başlamak için bir araç seç.</p>
+      `;
+      let selected = null;
+      const toolButtons = [...slideArticle.querySelectorAll(".climate-match-tool")];
+      const measureButtons = [...slideArticle.querySelectorAll(".climate-match-measure")];
+      const feedback = slideArticle.querySelector(".climate-feedback");
+      toolButtons.forEach((button) => button.addEventListener("click", () => {
+        if (button.classList.contains("is-correct")) return;
+        toolButtons.forEach((item) => item.classList.remove("is-selected", "is-wrong"));
+        selected = Number(button.dataset.index);
+        button.classList.add("is-selected");
+        feedback.textContent = `${tools[selected].title} neyi ölçer?`;
+      }));
+      measureButtons.forEach((button) => button.addEventListener("click", () => {
+        if (selected === null || button.classList.contains("is-correct")) return;
+        const toolButton = toolButtons[selected];
+        if (button.dataset.measure === tools[selected].measure) {
+          toolButton.classList.remove("is-selected");
+          toolButton.classList.add("is-correct");
+          button.classList.add("is-correct");
+          feedback.textContent = `Doğru: ${tools[selected].title} → ${tools[selected].measure}`;
+          selected = null;
+        } else {
+          toolButton.classList.add("is-wrong");
+          button.classList.add("is-wrong");
+          feedback.textContent = "Bir kez daha düşün.";
+          setTimeout(() => button.classList.remove("is-wrong"), 320);
+        }
+      }));
+      const reset = () => {
+        selected = null;
+        [...toolButtons, ...measureButtons].forEach((item) => item.classList.remove("is-selected", "is-correct", "is-wrong"));
+        feedback.textContent = "Eşleştirmeye başlamak için bir araç seç.";
+      };
+      registerLocalInteraction(activeInteractions, reset);
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
+    case "climate_notebook": {
+      const sections = slide.sections ?? [];
+      const columns = slide.columns ?? [];
+      const precipitationTypes = slide.precipitationTypes ?? [];
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-climate-notebook";
+      slideArticle.innerHTML = `
+        ${climateHeader(slide.title ?? "ÖZET", true)}
+        ${columns.length ? `<section class="climate-notebook-columns">${columns.map((column) => `<article><h2>${escapeHtml(column.title)}</h2><ul>${column.lines.map((line) => `<li>${escapeHtml(line)}</li>`).join("")}</ul></article>`).join("")}</section>` : ""}
+        ${sections.length ? `<section class="climate-notebook-sections">${sections.map((section) => `<article><h2>${escapeHtml(section.title)}</h2>${section.lines.map((line) => `<p>${escapeHtml(line)}</p>`).join("")}</article>`).join("")}</section>` : ""}
+        ${precipitationTypes.length ? `<section class="climate-notebook-precipitation">${precipitationTypes.map((item) => `<article class="climate-note-${escapeHtml(item.tone)}"><h2>${escapeHtml(item.title)}</h2><p>${escapeHtml(item.text)}</p></article>`).join("")}</section>` : ""}
+        ${slide.note ? `<aside class="climate-notebook-note">${escapeHtml(slide.note)}</aside>` : ""}
+      `;
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
+    case "climate_pressure_reveal": {
+      const scenes = slide.scenes ?? [];
+      const steps = slide.steps ?? [];
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-climate-pressure-reveal climate-interactive-slide";
+      slideArticle.innerHTML = `
+        ${climateHeader(slide.title ?? "BASINÇ NASIL OLUŞUR?")}
+        <section class="climate-pressure-scene-pair">${scenes.map((scene) => `<figure class="climate-process-scene climate-process-${escapeHtml(scene.tone)}"><img src="${escapeHtml(scene.image)}" alt="${escapeHtml(scene.title)}"/><figcaption>${escapeHtml(scene.title)}</figcaption></figure>`).join("")}</section>
+        <section class="climate-progress-track">${steps.map((step, index) => `<div class="climate-progress-step" data-step="${index}"><span>${index + 1}</span><p>${escapeHtml(step)}</p></div>`).join("")}</section>
+        <button type="button" class="climate-reveal-next">Sonraki adım</button>
+      `;
+      const stepEls = [...slideArticle.querySelectorAll(".climate-progress-step")];
+      const next = slideArticle.querySelector(".climate-reveal-next");
+      let current = 0;
+      const render = () => {
+        stepEls.forEach((item, index) => item.classList.toggle("is-revealed", index < current));
+        next.textContent = current >= steps.length ? "Süreç tamamlandı" : "Sonraki adım";
+        next.disabled = current >= steps.length;
+      };
+      next.addEventListener("click", () => { current = Math.min(steps.length, current + 1); render(); });
+      registerLocalInteraction(activeInteractions, () => { current = 0; render(); });
+      render();
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
+    case "climate_pressure_toggle":
+    case "climate_breeze_toggle": {
+      const modes = slide.modes ?? [];
+      const isBreeze = slide.layout === "climate_breeze_toggle";
+      const slideArticle = document.createElement("article");
+      slideArticle.className = `board-slide climate-interactive-slide ${isBreeze ? "slide-climate-breeze-toggle" : "slide-climate-pressure-toggle"}`;
+      slideArticle.innerHTML = `
+        ${climateHeader(slide.title ?? "KARŞILAŞTIR")}
+        <div class="climate-segmented-control">${modes.map((mode, index) => `<button type="button" data-index="${index}">${escapeHtml(isBreeze ? mode.period : mode.title)}</button>`).join("")}</div>
+        <section class="climate-toggle-scene" aria-live="polite">
+          <figure><img alt=""/></figure>
+          <div class="climate-toggle-copy"><span></span><h2></h2><strong class="climate-toggle-direction"></strong><div class="climate-toggle-facts"></div></div>
+        </section>
+      `;
+      const buttons = [...slideArticle.querySelectorAll(".climate-segmented-control button")];
+      const scene = slideArticle.querySelector(".climate-toggle-scene");
+      const render = (index) => {
+        const mode = modes[index];
+        buttons.forEach((button, buttonIndex) => button.classList.toggle("is-active", buttonIndex === index));
+        scene.className = `climate-toggle-scene climate-toggle-${escapeHtml(mode.tone ?? (index ? "night" : "day"))}`;
+        scene.querySelector("img").src = mode.image;
+        scene.querySelector("img").alt = `${mode.title} bilimsel şeması`;
+        scene.querySelector("span").textContent = mode.period ?? "";
+        scene.querySelector("h2").textContent = mode.title;
+        scene.querySelector(".climate-toggle-direction").textContent = mode.direction ?? "";
+        const facts = mode.facts ?? mode.details ?? [];
+        scene.querySelector(".climate-toggle-facts").innerHTML = facts.map((fact) => `<p>${escapeHtml(fact)}</p>`).join("");
+      };
+      buttons.forEach((button) => button.addEventListener("click", () => render(Number(button.dataset.index))));
+      registerLocalInteraction(activeInteractions, () => render(0));
+      render(0);
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
+    case "climate_wind_predict": {
+      const reveals = slide.reveals ?? [];
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-climate-wind-predict climate-interactive-slide";
+      slideArticle.innerHTML = `
+        ${climateHeader(slide.title ?? "RÜZGÂR HANGİ YÖNDE ESER?")}
+        <section class="climate-wind-predict-stage">
+          <figure><img src="${escapeHtml(slide.image)}" alt="Yüksek ve alçak basınç bölgeleri"/></figure>
+          <div class="climate-wind-hidden-arrow"><span>YÜKSEK BASINÇ</span><b>→</b><span>ALÇAK BASINÇ</span></div>
+        </section>
+        <div class="climate-wind-predict-reveals">${reveals.map((text, index) => `<p data-step="${index}">${escapeHtml(text)}</p>`).join("")}</div>
+        <button type="button" class="climate-reveal-next">Cevabı göster</button>
+      `;
+      const items = [...slideArticle.querySelectorAll(".climate-wind-predict-reveals p")];
+      const arrow = slideArticle.querySelector(".climate-wind-hidden-arrow");
+      const next = slideArticle.querySelector(".climate-reveal-next");
+      let current = 0;
+      const render = () => {
+        arrow.classList.toggle("is-revealed", current >= 1);
+        items.forEach((item, index) => item.classList.toggle("is-revealed", index < current));
+        next.textContent = current === 0 ? "Cevabı göster" : current === 1 ? "İkinci bilgiyi göster" : "Tamamlandı";
+        next.disabled = current >= reveals.length;
+      };
+      next.addEventListener("click", () => { current = Math.min(reveals.length, current + 1); render(); });
+      registerLocalInteraction(activeInteractions, () => { current = 0; render(); });
+      render();
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
+    case "climate_precipitation_classify": {
+      const items = slide.items ?? [];
+      const categories = slide.categories ?? [];
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-climate-precipitation-classify climate-interactive-slide";
+      slideArticle.innerHTML = `
+        ${climateHeader(slide.title ?? "YAĞIŞLARI SINIFLANDIR")}
+        <p class="climate-instruction">Bir yağış türü seç, ardından oluştuğu yere dokun.</p>
+        <div class="climate-classify-items">${items.map((item, index) => `<button type="button" data-index="${index}">${escapeHtml(item.label)}</button>`).join("")}</div>
+        <section class="climate-classify-targets">${categories.map((category) => `<button type="button" data-category="${escapeHtml(category.id)}"><h2>${escapeHtml(category.title)}</h2><div></div></button>`).join("")}</section>
+        <p class="climate-feedback" aria-live="polite">Sınıflandırmaya başlamak için bir tür seç.</p>
+      `;
+      const itemButtons = [...slideArticle.querySelectorAll(".climate-classify-items button")];
+      const targets = [...slideArticle.querySelectorAll(".climate-classify-targets > button")];
+      const feedback = slideArticle.querySelector(".climate-feedback");
+      let selected = null;
+      itemButtons.forEach((button) => button.addEventListener("click", () => {
+        if (button.classList.contains("is-placed")) return;
+        itemButtons.forEach((item) => item.classList.remove("is-selected"));
+        selected = Number(button.dataset.index);
+        button.classList.add("is-selected");
+        feedback.textContent = `${items[selected].label} nerede oluşur?`;
+      }));
+      targets.forEach((target) => target.addEventListener("click", () => {
+        if (selected === null) return;
+        if (target.dataset.category === items[selected].category) {
+          const button = itemButtons[selected];
+          button.classList.remove("is-selected");
+          button.classList.add("is-placed");
+          target.querySelector("div").insertAdjacentHTML("beforeend", `<span>${escapeHtml(items[selected].label)}</span>`);
+          feedback.textContent = "Doğru sınıflandırma.";
+          selected = null;
+        } else {
+          target.classList.add("is-wrong");
+          feedback.textContent = "Bu oluşum yerini yeniden düşün.";
+          setTimeout(() => target.classList.remove("is-wrong"), 320);
+        }
+      }));
+      const reset = () => {
+        selected = null;
+        itemButtons.forEach((item) => item.classList.remove("is-selected", "is-placed"));
+        targets.forEach((target) => { target.classList.remove("is-wrong"); target.querySelector("div").innerHTML = ""; });
+        feedback.textContent = "Sınıflandırmaya başlamak için bir tür seç.";
+      };
+      registerLocalInteraction(activeInteractions, reset);
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
+    case "climate_climate_hero": {
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-climate-hero";
+      slideArticle.innerHTML = `
+        ${climateHeader(slide.title ?? "İKLİM NEDİR?")}
+        <section class="climate-hero-layout">
+          <div class="climate-hero-copy"><p>${escapeHtml(slide.definition)}</p><div>${(slide.concepts ?? []).map((concept) => `<span>${escapeHtml(concept)}</span>`).join("")}</div></div>
+          <figure><img src="${escapeHtml(slide.image)}" alt="Dünya, atmosfer ve iklim görseli"/></figure>
+        </section>
+      `;
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
+    case "climate_type_selector": {
+      const climateTypes = slide.climateTypes ?? [];
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-climate-type-selector climate-interactive-slide";
+      slideArticle.innerHTML = `
+        ${climateHeader(slide.title ?? "TÜRKİYE'DE İKLİM TİPLERİ")}
+        <div class="climate-region-selector">${climateTypes.map((item, index) => `<button type="button" data-index="${index}" class="climate-region-${escapeHtml(item.tone)}">${escapeHtml(item.title)}</button>`).join("")}</div>
+        <section class="climate-region-stage"><div class="climate-turkey-silhouette" aria-hidden="true">TÜRKİYE</div><article><h2>Bir iklim tipi seç</h2><div></div></article></section>
+      `;
+      const buttons = [...slideArticle.querySelectorAll(".climate-region-selector button")];
+      const detail = slideArticle.querySelector(".climate-region-stage article");
+      const render = (index) => {
+        const item = climateTypes[index];
+        buttons.forEach((button, buttonIndex) => button.classList.toggle("is-active", buttonIndex === index));
+        detail.innerHTML = `<h2>${escapeHtml(item.title)} İKLİMİ</h2><div>${item.details.map((line) => `<p>${escapeHtml(line)}</p>`).join("")}</div>`;
+      };
+      buttons.forEach((button) => button.addEventListener("click", () => render(Number(button.dataset.index))));
+      const reset = () => { buttons.forEach((button) => button.classList.remove("is-active")); detail.innerHTML = "<h2>Bir iklim tipi seç</h2><div></div>"; };
+      registerLocalInteraction(activeInteractions, reset);
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
+    case "climate_weather_quiz": {
+      const items = slide.items ?? [];
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-climate-weather-quiz climate-interactive-slide";
+      slideArticle.innerHTML = `
+        ${climateHeader(slide.title ?? "HAVA OLAYI MI, İKLİM Mİ?")}
+        <div class="climate-quiz-legend"><span>H = Hava Olayı</span><span>İ = İklim</span></div>
+        <section class="climate-weather-quiz-grid">${items.map((item, index) => `<article data-index="${index}"><p><b>${index + 1}.</b> ${escapeHtml(item.text)}</p><div><button type="button" data-answer="H">H</button><button type="button" data-answer="İ">İ</button></div></article>`).join("")}</section>
+      `;
+      const rows = [...slideArticle.querySelectorAll(".climate-weather-quiz-grid article")];
+      rows.forEach((row) => row.querySelectorAll("button").forEach((button) => button.addEventListener("click", () => {
+        const item = items[Number(row.dataset.index)];
+        row.querySelectorAll("button").forEach((candidate) => candidate.classList.remove("is-correct", "is-wrong"));
+        button.classList.add(button.dataset.answer === item.answer ? "is-correct" : "is-wrong");
+      })));
+      registerLocalInteraction(activeInteractions, () => rows.forEach((row) => row.querySelectorAll("button").forEach((button) => button.classList.remove("is-correct", "is-wrong"))));
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
+    case "climate_greenhouse_reveal": {
+      const steps = slide.steps ?? [];
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-climate-greenhouse climate-interactive-slide";
+      slideArticle.innerHTML = `
+        ${climateHeader(slide.title ?? "SERA ETKİSİ")}
+        <section class="climate-greenhouse-layout">
+          <div class="climate-greenhouse-scene" aria-label="Dünya ve atmosferde sera etkisi şeması"><div class="climate-sun">GÜNEŞ</div><div class="climate-ray climate-ray-in">↓</div><div class="climate-earth">DÜNYA</div><div class="climate-atmosphere-ring"></div><div class="climate-ray climate-ray-out">↑</div><div class="climate-heat-trap">ISI TUTULUR</div></div>
+          <ol>${steps.map((step, index) => `<li data-step="${index}"><span>${index + 1}</span>${escapeHtml(step)}</li>`).join("")}</ol>
+        </section>
+        <button type="button" class="climate-reveal-next">Süreci başlat</button>
+      `;
+      const items = [...slideArticle.querySelectorAll("ol li")];
+      const scene = slideArticle.querySelector(".climate-greenhouse-scene");
+      const next = slideArticle.querySelector(".climate-reveal-next");
+      let current = 0;
+      const render = () => {
+        items.forEach((item, index) => item.classList.toggle("is-revealed", index < current));
+        scene.dataset.step = String(current);
+        next.textContent = current >= steps.length ? "Süreç tamamlandı" : current ? "Sonraki adım" : "Süreci başlat";
+        next.disabled = current >= steps.length;
+      };
+      next.addEventListener("click", () => { current = Math.min(steps.length, current + 1); render(); });
+      registerLocalInteraction(activeInteractions, () => { current = 0; render(); });
+      render();
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
+    case "climate_chain_reveal": {
+      const groups = slide.groups ?? [];
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-climate-chain climate-interactive-slide";
+      slideArticle.innerHTML = `
+        ${climateHeader(slide.title ?? "KÜRESEL İKLİM DEĞİŞİKLİĞİ")}
+        <section class="climate-chain-flow">${groups.map((group, index) => `<article class="climate-chain-${escapeHtml(group.tone)}" data-step="${index}"><h2>${escapeHtml(group.title)}</h2><ul>${group.items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></article>${index < groups.length - 1 ? '<span class="climate-chain-arrow">→</span>' : ""}`).join("")}</section>
+        <button type="button" class="climate-reveal-next">Nedenleri göster</button>
+      `;
+      const cards = [...slideArticle.querySelectorAll(".climate-chain-flow article")];
+      const arrows = [...slideArticle.querySelectorAll(".climate-chain-arrow")];
+      const next = slideArticle.querySelector(".climate-reveal-next");
+      let current = 0;
+      const labels = ["Nedenleri göster", "Sonuçları göster", "Önlemleri göster", "Akış tamamlandı"];
+      const render = () => {
+        cards.forEach((card, index) => card.classList.toggle("is-revealed", index < current));
+        arrows.forEach((arrow, index) => arrow.classList.toggle("is-revealed", index < current - 1));
+        next.textContent = labels[current];
+        next.disabled = current >= groups.length;
+      };
+      next.addEventListener("click", () => { current = Math.min(groups.length, current + 1); render(); });
+      registerLocalInteraction(activeInteractions, () => { current = 0; render(); });
+      render();
       view.slideContent.replaceChildren(slideArticle);
       return true;
     }

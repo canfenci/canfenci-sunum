@@ -6,9 +6,13 @@
   "curriculumProfileId": "legacy_2018_lgs",
   "unitId": "seasons_and_climate",
   "topicId": "climate_and_air_movements",
-  "modes": ["presentation"],
+  "modes": [
+    "presentation"
+  ],
   "curriculumValidation": {
-    "outcomeIds": ["F.8.1.2.1"],
+    "outcomeIds": [
+      "F.8.1.2.1"
+    ],
     "authority": "MEB",
     "sourceDocument": "8. Sınıf Fen Bilimleri Dersi Öğretim Programı (2018 LGS)",
     "sourceVersion": "2018",
@@ -60,9 +64,18 @@
           ],
           "compositionTitle": "Havanın Bileşimi",
           "composition": [
-            { "value": "%78", "label": "AZOT" },
-            { "value": "%21", "label": "OKSİJEN" },
-            { "value": "%1", "label": "DİĞER GAZLAR" }
+            {
+              "value": "%78",
+              "label": "AZOT"
+            },
+            {
+              "value": "%21",
+              "label": "OKSİJEN"
+            },
+            {
+              "value": "%1",
+              "label": "DİĞER GAZLAR"
+            }
           ],
           "bottomInfo": "Su buharı ve karbondioksit, hava olaylarının oluşmasında önemli rol oynar.",
           "media": [
@@ -103,12 +116,30 @@
           "title": "HAVA OLAYLARI",
           "definition": "Dar bir bölgede meydana gelen yağmur, kar, dolu, rüzgâr, sis ve kırağı gibi olaylara hava olayları denir.",
           "weatherEvents": [
-            { "label": "YAĞMUR", "image": "./assets/images/iklim-ve-hava-hareketleri/03-yagmur.png" },
-            { "label": "KAR", "image": "./assets/images/iklim-ve-hava-hareketleri/03-kar.png" },
-            { "label": "DOLU", "image": "./assets/images/iklim-ve-hava-hareketleri/03-dolu.png" },
-            { "label": "RÜZGÂR", "image": "./assets/images/iklim-ve-hava-hareketleri/03-ruzgar.png" },
-            { "label": "SİS", "image": "./assets/images/iklim-ve-hava-hareketleri/03-sis.png" },
-            { "label": "KIRAĞI", "image": "./assets/images/iklim-ve-hava-hareketleri/03-kiragi.png" }
+            {
+              "label": "YAĞMUR",
+              "image": "./assets/images/iklim-ve-hava-hareketleri/03-yagmur.png"
+            },
+            {
+              "label": "KAR",
+              "image": "./assets/images/iklim-ve-hava-hareketleri/03-kar.png"
+            },
+            {
+              "label": "DOLU",
+              "image": "./assets/images/iklim-ve-hava-hareketleri/03-dolu.png"
+            },
+            {
+              "label": "RÜZGÂR",
+              "image": "./assets/images/iklim-ve-hava-hareketleri/03-ruzgar.png"
+            },
+            {
+              "label": "SİS",
+              "image": "./assets/images/iklim-ve-hava-hareketleri/03-sis.png"
+            },
+            {
+              "label": "KIRAĞI",
+              "image": "./assets/images/iklim-ve-hava-hareketleri/03-kiragi.png"
+            }
           ],
           "causeCards": [
             {
@@ -146,196 +177,295 @@
       ]
     },
     {
-      "id": "stage_meteoroloji_ve_olcum_araclari",
+      "id": "stage_meteoroloji_eslestirme",
       "label": "Meteoroloji ve Ölçüm Araçları",
       "order": 4,
       "slides": [
         {
-          "id": "slide_4_meteoroloji_ve_olcum_araclari",
+          "id": "slide_4_meteoroloji_eslestirme",
           "type": "content",
-          "layout": "climate_meteorology_tools",
-          "tag": "METEOROLOJİ",
-          "kicker": "METEOROLOJİ VE ÖLÇÜM ARAÇLARI",
+          "layout": "climate_tool_match",
+          "tag": "METEOROLOJİ VE ÖLÇÜM ARAÇLARI",
           "title": "METEOROLOJİ VE ÖLÇÜM ARAÇLARI",
-          "concepts": [
-            {
-              "title": "METEOROLOJİ",
-              "description": "Hava olaylarını inceleyen bilim dalıdır.",
-              "tone": "blue"
-            },
-            {
-              "title": "METEOROLOG",
-              "description": "Hava olaylarıyla ilgilenen bilim insanıdır.",
-              "tone": "lilac"
-            }
-          ],
           "tools": [
             {
               "title": "TERMOMETRE",
-              "description": "Hava sıcaklığını ölçer.",
-              "image": "./assets/images/iklim-ve-hava-hareketleri/04-termometre.png",
-              "tone": "peach",
-              "alt": "Termometre görseli"
+              "measure": "Sıcaklık",
+              "image": "./assets/images/iklim-ve-hava-hareketleri/04-termometre.png"
             },
             {
               "title": "HİGROMETRE",
-              "description": "Havadaki nem oranını ölçer.",
-              "image": "./assets/images/iklim-ve-hava-hareketleri/04-higrometre.png",
-              "tone": "turquoise",
-              "alt": "Higrometre görseli"
+              "measure": "Nem",
+              "image": "./assets/images/iklim-ve-hava-hareketleri/04-higrometre.png"
             },
             {
               "title": "BAROMETRE",
-              "description": "Hava basıncını ölçer.",
-              "image": "./assets/images/iklim-ve-hava-hareketleri/04-barometre.png",
-              "tone": "slate",
-              "alt": "Barometre görseli"
+              "measure": "Basınç",
+              "image": "./assets/images/iklim-ve-hava-hareketleri/04-barometre.png"
             },
             {
               "title": "ANEMOMETRE",
-              "description": "Rüzgârın hızını ve yönünü ölçer.",
-              "image": "./assets/images/iklim-ve-hava-hareketleri/04-anemometre.png",
-              "tone": "lilac",
-              "alt": "Anemometre görseli"
+              "measure": "Rüzgâr",
+              "image": "./assets/images/iklim-ve-hava-hareketleri/04-anemometre.png"
             }
           ],
-          "media": [],
+          "interactions": [
+            {
+              "id": "interaction_slide_4_match",
+              "type": "match"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stage_meteoroloji_ozeti",
+      "label": "Meteoroloji Özeti",
+      "order": 5,
+      "slides": [
+        {
+          "id": "slide_5_meteoroloji_ozeti",
+          "type": "content",
+          "layout": "climate_notebook",
+          "tag": "METEOROLOJİ ÖZETİ",
+          "title": "METEOROLOJİ ÖZETİ",
+          "sections": [
+            {
+              "title": "METEOROLOJİ",
+              "lines": [
+                "Hava olaylarını inceleyen bilim dalıdır."
+              ]
+            },
+            {
+              "title": "METEOROLOG",
+              "lines": [
+                "Hava olaylarıyla ilgilenen bilim insanıdır."
+              ]
+            },
+            {
+              "title": "ÖLÇÜM ARAÇLARI",
+              "lines": [
+                "Termometre → Sıcaklık",
+                "Higrometre → Nem",
+                "Barometre → Basınç",
+                "Anemometre → Rüzgâr"
+              ]
+            }
+          ],
           "interactions": []
         }
       ]
     },
     {
-      "id": "stage_basinc_alanlari",
-      "label": "Basınç Alanları",
-      "order": 5,
+      "id": "stage_basinc_nasil_olusur",
+      "label": "Basınç Nasıl Oluşur?",
+      "order": 6,
       "slides": [
         {
-          "id": "slide_5_basinc_alanlari",
+          "id": "slide_6_basinc_nasil_olusur",
           "type": "content",
-          "layout": "climate_pressure_formation",
-          "tag": "BASINÇ ALANLARI",
-          "title": "BASINÇ ALANLARI",
-          "process": ["SICAKLIK DEĞİŞİR", "HAVA YOĞUNLUĞU DEĞİŞİR", "BASINÇ ALANI OLUŞUR"],
-          "areas": [
+          "layout": "climate_pressure_reveal",
+          "tag": "BASINÇ NASIL OLUŞUR?",
+          "title": "BASINÇ NASIL OLUŞUR?",
+          "scenes": [
             {
               "title": "ALÇAK BASINÇ",
-              "tone": "warm",
               "image": "./assets/images/iklim-ve-hava-hareketleri/05-alcak-basinc.png",
-              "alt": "Isınan havanın yukarı yükseldiği alçak basınç diyagramı",
-              "points": [
-                "Isınan hava genleşir.",
-                "Yoğunluğu azalır ve yükselir.",
-                "Yüzeydeki hava miktarı azaldığı için alçak basınç alanı oluşur."
+              "tone": "warm"
+            },
+            {
+              "title": "YÜKSEK BASINÇ",
+              "image": "./assets/images/iklim-ve-hava-hareketleri/05-yuksek-basinc.png",
+              "tone": "cool"
+            }
+          ],
+          "steps": [
+            "Hava ısınır / soğur",
+            "Yoğunluk değişir",
+            "Hava yükselir / alçalır",
+            "Alçak / yüksek basınç oluşur",
+            "Bulutlu / açık hava görülür"
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_6_progressive_reveal",
+              "type": "progressive_reveal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stage_basinc_olusumu_ozeti",
+      "label": "Basınç Oluşumu",
+      "order": 7,
+      "slides": [
+        {
+          "id": "slide_7_basinc_olusumu_ozeti",
+          "type": "content",
+          "layout": "climate_notebook",
+          "tag": "BASINÇ OLUŞUMU",
+          "title": "BASINÇ OLUŞUMU",
+          "sections": [
+            {
+              "title": "ALÇAK BASINÇ",
+              "lines": [
+                "Isınan hava → yoğunluğu azalır → yükselir."
               ]
             },
             {
               "title": "YÜKSEK BASINÇ",
-              "tone": "cool",
-              "image": "./assets/images/iklim-ve-hava-hareketleri/05-yuksek-basinc.png",
-              "alt": "Soğuyan havanın aşağı indiği yüksek basınç diyagramı",
-              "points": [
-                "Soğuyan hava yoğunlaşır.",
-                "Hava alçalır.",
-                "Yüzeydeki hava miktarı arttığı için yüksek basınç alanı oluşur."
+              "lines": [
+                "Soğuyan hava → yoğunluğu artar → alçalır."
+              ]
+            },
+            {
+              "title": "HIZLI HATIRLAMA",
+              "lines": [
+                "Sıcaklık ↑ → Basınç ↓",
+                "Sıcaklık ↓ → Basınç ↑"
               ]
             }
           ],
-          "comparison": [
-            { "text": "Sıcaklık ↑  →  Basınç ↓", "tone": "warm" },
-            { "text": "Sıcaklık ↓  →  Basınç ↑", "tone": "cool" }
-          ],
-          "media": [],
           "interactions": []
         }
       ]
     },
     {
-      "id": "stage_basinc_karsilastirmasi",
-      "label": "Basınç Karşılaştırması",
-      "order": 6,
+      "id": "stage_basinc_toggle",
+      "label": "Alçak ve Yüksek Basınç",
+      "order": 8,
       "slides": [
         {
-          "id": "slide_6_basinc_karsilastirmasi",
+          "id": "slide_8_basinc_toggle",
           "type": "content",
-          "layout": "climate_pressure_comparison",
-          "tag": "BASINÇ KARŞILAŞTIRMASI",
-          "title": "ALÇAK BASINÇ ve YÜKSEK BASINÇ KARŞILAŞTIRMASI",
-          "areas": [
+          "layout": "climate_pressure_toggle",
+          "tag": "ALÇAK / YÜKSEK BASINÇ",
+          "title": "ALÇAK / YÜKSEK BASINÇ",
+          "modes": [
             {
               "title": "ALÇAK BASINÇ",
               "tone": "warm",
               "image": "./assets/images/iklim-ve-hava-hareketleri/06-alcak-basinc-karsilastirma.png",
-              "alt": "Alçak basınçta merkeze yönelen ve yükselen hava diyagramı",
-              "points": [
+              "facts": [
                 "Sıcaktır",
-                "Hava yoğunluğu azdır",
-                "Nem oranı fazla",
+                "Yoğunluk az",
+                "Nem fazla",
                 "Yağış ihtimali fazla",
-                "Gökyüzü kapalı ve bulutlu",
-                "Yükselici hava hareketi",
-                "Çevreden merkeze doğru"
+                "Gökyüzü bulutlu",
+                "Hava yükselir",
+                "Çevreden merkeze"
               ]
             },
             {
               "title": "YÜKSEK BASINÇ",
               "tone": "cool",
               "image": "./assets/images/iklim-ve-hava-hareketleri/06-yuksek-basinc-karsilastirma.png",
-              "alt": "Yüksek basınçta merkezden çevreye yönelen ve alçalan hava diyagramı",
-              "points": [
+              "facts": [
+                "Soğuktur",
+                "Yoğunluk fazla",
+                "Nem az",
+                "Yağış ihtimali az",
+                "Gökyüzü açık",
+                "Hava alçalır",
+                "Merkezden çevreye"
+              ]
+            }
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_8_toggle",
+              "type": "toggle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stage_basinc_karsilastirmasi_ozeti",
+      "label": "Basınç Karşılaştırması",
+      "order": 9,
+      "slides": [
+        {
+          "id": "slide_9_basinc_karsilastirmasi_ozeti",
+          "type": "content",
+          "layout": "climate_notebook",
+          "tag": "BASINÇ KARŞILAŞTIRMASI",
+          "title": "BASINÇ KARŞILAŞTIRMASI",
+          "columns": [
+            {
+              "title": "ALÇAK BASINÇ",
+              "lines": [
+                "Sıcaktır",
+                "Hava yoğunluğu azdır",
+                "Nem oranı fazla",
+                "Yağış ihtimali fazla",
+                "Gökyüzü kapalı ve bulutlu",
+                "Yükselici hava hareketi",
+                "Çevreden merkeze"
+              ]
+            },
+            {
+              "title": "YÜKSEK BASINÇ",
+              "lines": [
                 "Soğuktur",
                 "Hava yoğunluğu fazladır",
                 "Nem oranı az",
                 "Yağış ihtimali az",
                 "Gökyüzü açık",
                 "Alçalıcı hava hareketi",
-                "Merkezden çevreye doğru"
+                "Merkezden çevreye"
               ]
             }
           ],
-          "comparison": [
-            { "text": "ALÇAK BASINÇ = YÜKSELEN HAVA", "tone": "warm" },
-            { "text": "YÜKSEK BASINÇ = ALÇALAN HAVA", "tone": "cool" }
-          ],
-          "media": [],
           "interactions": []
         }
       ]
     },
     {
-      "id": "stage_ruzgar",
+      "id": "stage_ruzgar_tahmin",
       "label": "Rüzgâr",
-      "order": 7,
+      "order": 10,
       "slides": [
         {
-          "id": "slide_7_ruzgar_nasil_olusur",
+          "id": "slide_10_ruzgar_tahmin",
           "type": "content",
-          "layout": "climate_wind_formation",
-          "tag": "RÜZGÂR",
-          "title": "RÜZGÂR NASIL OLUŞUR?",
-          "definition": "Yatay yönde gerçekleşen hava hareketine rüzgâr denir.",
-          "windDirection": "YÜKSEK BASINÇ → ALÇAK BASINÇ",
-          "windLabel": "RÜZGÂR",
-          "areas": [
-            {
-              "title": "YÜKSEK BASINÇ",
-              "tone": "cool",
-              "points": ["Alçalan hava", "Yüzeyde daha fazla hava"]
-            },
-            {
-              "title": "ALÇAK BASINÇ",
-              "tone": "warm",
-              "points": ["Yükselen hava", "Bulut oluşumu"]
-            }
-          ],
-          "notes": [
-            "Rüzgâr, yüksek basınçtan alçak basınca doğru eser.",
+          "layout": "climate_wind_predict",
+          "tag": "RÜZGÂR HANGİ YÖNDE ESER?",
+          "title": "RÜZGÂR HANGİ YÖNDE ESER?",
+          "image": "./assets/images/iklim-ve-hava-hareketleri/07-ruzgar-olusumu.png",
+          "reveals": [
+            "YÜKSEK BASINÇ → ALÇAK BASINÇ",
             "Basınç farkı arttıkça rüzgârın hızı artar."
           ],
-          "media": [
+          "interactions": [
             {
-              "id": "media_wind_formation",
-              "src": "./assets/images/iklim-ve-hava-hareketleri/07-ruzgar-olusumu.png",
-              "alt": "Yüksek basınçtan alçak basınca doğru esen rüzgâr şeması"
+              "id": "interaction_slide_10_progressive_reveal",
+              "type": "progressive_reveal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stage_ruzgar_ozeti",
+      "label": "Rüzgâr Özeti",
+      "order": 11,
+      "slides": [
+        {
+          "id": "slide_11_ruzgar_ozeti",
+          "type": "content",
+          "layout": "climate_notebook",
+          "tag": "RÜZGÂR ÖZETİ",
+          "title": "RÜZGÂR ÖZETİ",
+          "sections": [
+            {
+              "title": "RÜZGÂR",
+              "lines": [
+                "Yatay yönde gerçekleşen hava hareketine rüzgâr denir.",
+                "Rüzgâr yüksek basınçtan alçak basınca doğru eser.",
+                "Basınç farkı arttıkça rüzgârın hızı artar."
+              ]
             }
           ],
           "interactions": []
@@ -343,12 +473,12 @@
       ]
     },
     {
-      "id": "stage_basinc_ve_ruzgar_uygulamasi",
+      "id": "stage_basinc_ruzgar_uygulamasi",
       "label": "Basınç ve Rüzgâr Uygulaması",
-      "order": 8,
+      "order": 12,
       "slides": [
         {
-          "id": "slide_8_basinc_ve_ruzgar_uygulamasi",
+          "id": "slide_12_basinc_ruzgar_uygulamasi",
           "type": "content",
           "layout": "climate_wind_application",
           "tag": "BASINÇ VE RÜZGÂR UYGULAMASI",
@@ -362,189 +492,314 @@
           ],
           "interactions": [
             {
-              "id": "interaction_slide_8_01",
+              "id": "interaction_slide_12_01",
               "type": "reveal_fill",
               "template": "1. {blank1} şehrinde hava sıcaklığı daha fazladır.",
-              "blanks": [{ "id": "blank1", "answer": "K", "placeholder": "K" }]
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "K",
+                  "placeholder": "K"
+                }
+              ]
             },
             {
-              "id": "interaction_slide_8_02",
+              "id": "interaction_slide_12_02",
               "type": "reveal_fill",
               "template": "2. {blank1} şehrinde hava yoğunluğu daha azdır.",
-              "blanks": [{ "id": "blank1", "answer": "K", "placeholder": "K" }]
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "K",
+                  "placeholder": "K"
+                }
+              ]
             },
             {
-              "id": "interaction_slide_8_03",
+              "id": "interaction_slide_12_03",
               "type": "reveal_fill",
               "template": "3. {blank1} şehrinde alçalıcı hava hareketi görülür.",
-              "blanks": [{ "id": "blank1", "answer": "L", "placeholder": "L" }]
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "L",
+                  "placeholder": "L"
+                }
+              ]
             },
             {
-              "id": "interaction_slide_8_04",
+              "id": "interaction_slide_12_04",
               "type": "reveal_fill",
               "template": "4. {blank1} şehrinde nem oranı fazladır.",
-              "blanks": [{ "id": "blank1", "answer": "K", "placeholder": "K" }]
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "K",
+                  "placeholder": "K"
+                }
+              ]
             },
             {
-              "id": "interaction_slide_8_05",
+              "id": "interaction_slide_12_05",
               "type": "reveal_fill",
               "template": "5. {blank1} şehrinde basınç fazladır.",
-              "blanks": [{ "id": "blank1", "answer": "L", "placeholder": "L" }]
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "L",
+                  "placeholder": "L"
+                }
+              ]
             },
             {
-              "id": "interaction_slide_8_06",
+              "id": "interaction_slide_12_06",
               "type": "reveal_fill",
               "template": "6. {blank1} şehrinde yağış ihtimali azdır.",
-              "blanks": [{ "id": "blank1", "answer": "L", "placeholder": "L" }]
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "L",
+                  "placeholder": "L"
+                }
+              ]
             },
             {
-              "id": "interaction_slide_8_07",
+              "id": "interaction_slide_12_07",
               "type": "reveal_fill",
               "template": "7. {blank1} şehrinde yükselici hava hareketi görülür.",
-              "blanks": [{ "id": "blank1", "answer": "K", "placeholder": "K" }]
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "K",
+                  "placeholder": "K"
+                }
+              ]
             },
             {
-              "id": "interaction_slide_8_08",
+              "id": "interaction_slide_12_08",
               "type": "reveal_fill",
               "template": "8. {blank1} şehrinde çevreden merkeze doğru hava hareketi görülür.",
-              "blanks": [{ "id": "blank1", "answer": "K", "placeholder": "K" }]
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "K",
+                  "placeholder": "K"
+                }
+              ]
             },
             {
-              "id": "interaction_slide_8_09",
+              "id": "interaction_slide_12_09",
               "type": "reveal_fill",
               "template": "9. {blank1} şehrinde merkezden çevreye doğru hava hareketi görülür.",
-              "blanks": [{ "id": "blank1", "answer": "L", "placeholder": "L" }]
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "L",
+                  "placeholder": "L"
+                }
+              ]
             },
             {
-              "id": "interaction_slide_8_10",
+              "id": "interaction_slide_12_10",
               "type": "reveal_fill",
-              "template": "10. {blank1} şehrinde bitkisi örtüsü cılızdır.",
-              "blanks": [{ "id": "blank1", "answer": "L", "placeholder": "L" }]
+              "template": "10. {blank1} şehrinde bitki örtüsü cılızdır.",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "L",
+                  "placeholder": "L"
+                }
+              ]
             }
           ]
         }
       ]
     },
     {
-      "id": "stage_deniz_ve_kara_meltemi",
+      "id": "stage_deniz_kara_meltemi",
       "label": "Deniz ve Kara Meltemi",
-      "order": 9,
+      "order": 13,
       "slides": [
         {
-          "id": "slide_9_deniz_ve_kara_meltemi",
+          "id": "slide_13_deniz_kara_meltemi",
           "type": "content",
-          "layout": "climate_breeze_comparison",
-          "tag": "DENİZ VE KARA MELTEMİ",
-          "title": "DENİZ VE KARA MELTEMİ",
-          "areas": [
+          "layout": "climate_breeze_toggle",
+          "tag": "DENİZ / KARA MELTEMİ",
+          "title": "DENİZ / KARA MELTEMİ",
+          "modes": [
             {
-              "id": "sea_breeze_day",
               "period": "GÜNDÜZ",
               "title": "DENİZ MELTEMİ",
-              "tone": "sea",
+              "direction": "Deniz → Kara",
               "image": "./assets/images/iklim-ve-hava-hareketleri/09-deniz-meltemi-gunduz.png",
-              "alt": "Gündüz denizden karaya esen deniz meltemi şeması",
-              "temperature": "Kara daha hızlı ısınır.",
-              "pressure": ["Kara üzerinde alçak basınç", "Deniz üzerinde yüksek basınç"],
-              "wind": "Rüzgâr denizden karaya eser."
+              "details": [
+                "Kara daha hızlı ısınır",
+                "Karada alçak basınç",
+                "Denizde yüksek basınç"
+              ]
             },
             {
-              "id": "land_breeze_night",
               "period": "GECE",
               "title": "KARA MELTEMİ",
-              "tone": "land",
+              "direction": "Kara → Deniz",
               "image": "./assets/images/iklim-ve-hava-hareketleri/09-kara-meltemi-gece.png",
-              "alt": "Gece karadan denize esen kara meltemi şeması",
-              "temperature": "Kara daha hızlı soğur.",
-              "pressure": ["Kara üzerinde yüksek basınç", "Deniz üzerinde alçak basınç"],
-              "wind": "Rüzgâr karadan denize eser."
+              "details": [
+                "Kara daha hızlı soğur",
+                "Karada yüksek basınç",
+                "Denizde alçak basınç"
+              ]
             }
           ],
-          "bottomInfo": "Kara, denize göre daha hızlı ısınır ve daha hızlı soğur.",
-          "interactions": []
+          "interactions": [
+            {
+              "id": "interaction_slide_13_toggle",
+              "type": "toggle"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "stage_vadi_ve_dag_meltemi",
+      "id": "stage_vadi_dag_meltemi",
       "label": "Vadi ve Dağ Meltemi",
-      "order": 10,
+      "order": 14,
       "slides": [
         {
-          "id": "slide_10_vadi_ve_dag_meltemi",
+          "id": "slide_14_vadi_dag_meltemi",
           "type": "content",
-          "layout": "climate_valley_breeze_comparison",
-          "tag": "VADİ VE DAĞ MELTEMİ",
-          "title": "VADİ VE DAĞ MELTEMİ",
-          "areas": [
+          "layout": "climate_breeze_toggle",
+          "tag": "VADİ / DAĞ MELTEMİ",
+          "title": "VADİ / DAĞ MELTEMİ",
+          "modes": [
             {
-              "id": "valley_breeze_day",
               "period": "GÜNDÜZ",
               "title": "VADİ MELTEMİ",
-              "tone": "sea",
+              "direction": "Vadi → Dağ",
               "image": "./assets/images/iklim-ve-hava-hareketleri/10-vadi-meltemi-gunduz.png",
-              "alt": "Gündüz vadiden dağ yamaçlarına esen vadi meltemi şeması",
-              "temperature": "Gündüz, dağ yamaçları daha hızlı ısınır.",
-              "pressure": ["Yamaçlarda alçak basınç", "Vadi üzerinde yüksek basınç"],
-              "wind": "Rüzgâr vadiden dağa doğru eser."
+              "details": [
+                "Dağ yamaçları daha hızlı ısınır",
+                "Hava yamaç boyunca yükselir"
+              ]
             },
             {
-              "id": "mountain_breeze_night",
               "period": "GECE",
               "title": "DAĞ MELTEMİ",
-              "tone": "land",
+              "direction": "Dağ → Vadi",
               "image": "./assets/images/iklim-ve-hava-hareketleri/10-dag-meltemi-gece.png",
-              "alt": "Gece dağ yamaçlarından vadiye esen dağ meltemi şeması",
-              "temperature": "Gece, dağ yamaçları daha hızlı soğur.",
-              "pressure": ["Yamaçlarda yüksek basınç", "Vadi üzerinde alçak basınç"],
-              "wind": "Rüzgâr dağdan vadiye doğru eser."
+              "details": [
+                "Dağ yamaçları daha hızlı soğur",
+                "Hava vadiye doğru alçalır"
+              ]
             }
           ],
-          "bottomInfo": "Gündüz vadiden dağa, gece dağdan vadiye doğru hava hareketi oluşur.",
-          "interactions": []
+          "interactions": [
+            {
+              "id": "interaction_slide_14_toggle",
+              "type": "toggle"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "stage_yagislar",
-      "label": "Yağışlar",
-      "order": 11,
+      "id": "stage_meltemler_ozeti",
+      "label": "Meltemler Özeti",
+      "order": 15,
       "slides": [
         {
-          "id": "slide_11_yagislar",
+          "id": "slide_15_meltemler_ozeti",
           "type": "content",
-          "layout": "climate_precipitation_classification",
-          "tag": "YAĞIŞLAR",
-          "title": "YAĞIŞLAR",
-          "rows": [
+          "layout": "climate_notebook",
+          "tag": "MELTEMLER ÖZETİ",
+          "title": "MELTEMLER ÖZETİ",
+          "sections": [
             {
-              "title": "ATMOSFERDE GERÇEKLEŞENLER",
-              "items": "Yağmur • Kar • Dolu",
-              "tone": "blue"
+              "title": "GÜNDÜZ",
+              "lines": [
+                "Deniz → Kara = Deniz Meltemi",
+                "Vadi → Dağ = Vadi Meltemi"
+              ]
             },
             {
-              "title": "YERYÜZÜNDE GERÇEKLEŞENLER",
-              "items": "Çiy • Kırağı • Sis",
-              "tone": "lilac"
+              "title": "GECE",
+              "lines": [
+                "Kara → Deniz = Kara Meltemi",
+                "Dağ → Vadi = Dağ Meltemi"
+              ]
             }
           ],
-          "bottomInfo": "Yağışlar oluşum yerlerine göre iki grupta incelenir.",
           "interactions": []
         }
       ]
     },
     {
-      "id": "stage_yagis_turleri",
-      "label": "Yağış Türleri",
-      "order": 12,
+      "id": "stage_yagislari_siniflandir",
+      "label": "Yağışları Sınıflandır",
+      "order": 16,
       "slides": [
         {
-          "id": "slide_12_yagis_turleri",
+          "id": "slide_16_yagislari_siniflandir",
           "type": "content",
-          "layout": "climate_precipitation_types",
+          "layout": "climate_precipitation_classify",
+          "tag": "YAĞIŞLARI SINIFLANDIR",
+          "title": "YAĞIŞLARI SINIFLANDIR",
+          "categories": [
+            {
+              "id": "atmosfer",
+              "title": "ATMOSFERDE"
+            },
+            {
+              "id": "yeryuzu",
+              "title": "YERYÜZÜNDE"
+            }
+          ],
+          "items": [
+            {
+              "label": "Yağmur",
+              "category": "atmosfer"
+            },
+            {
+              "label": "Kar",
+              "category": "atmosfer"
+            },
+            {
+              "label": "Dolu",
+              "category": "atmosfer"
+            },
+            {
+              "label": "Çiy",
+              "category": "yeryuzu"
+            },
+            {
+              "label": "Kırağı",
+              "category": "yeryuzu"
+            },
+            {
+              "label": "Sis",
+              "category": "yeryuzu"
+            }
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_16_classify",
+              "type": "classify"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stage_yagis_turleri_ozeti",
+      "label": "Yağış Türleri",
+      "order": 17,
+      "slides": [
+        {
+          "id": "slide_17_yagis_turleri_ozeti",
+          "type": "content",
+          "layout": "climate_notebook",
           "tag": "YAĞIŞ TÜRLERİ",
           "title": "YAĞIŞ TÜRLERİ",
-          "types": [
+          "precipitationTypes": [
             {
               "title": "YAĞMUR",
               "text": "Bulutlardaki su damlacıklarının büyüyüp ağırlaşarak yeryüzüne düşmesidir.",
@@ -583,168 +838,317 @@
     {
       "id": "stage_iklim_nedir",
       "label": "İklim Nedir?",
-      "order": 13,
-      "slides": [
-        {
-          "id": "slide_13_iklim_nedir",
-          "type": "content",
-          "layout": "climate_definition_concepts",
-          "tag": "İKLİM NEDİR?",
-          "title": "İKLİM NEDİR?",
-          "definition": "Yeryüzünün geniş bir bölgesinde uzun yıllar boyunca gözlenen hava olaylarının ortalamasına iklim denir.",
-          "concepts": [
-            {
-              "title": "KLİMATOLOJİ",
-              "text": "İklimi inceleyen bilim dalıdır.",
-              "tone": "blue"
-            },
-            {
-              "title": "KLİMATOLOG",
-              "text": "İklim alanında çalışan bilim insanıdır.",
-              "tone": "lilac"
-            }
-          ],
-          "interactions": []
-        }
-      ]
-    },
-    {
-      "id": "stage_iklim_etmenleri",
-      "label": "İklimi Belirleyen Etmenler",
-      "order": 14,
-      "slides": [
-        {
-          "id": "slide_14_iklimi_belirleyen_etmenler",
-          "type": "content",
-          "layout": "climate_factors",
-          "tag": "İKLİMİ BELİRLEYEN ETMENLER",
-          "title": "İKLİMİ BELİRLEYEN ETMENLER",
-          "factors": ["Enlem", "Yükselti", "Yer şekilleri", "Bitki örtüsü", "Denize uzaklık"],
-          "bottomInfo": "Sıcaklık, nem, yağış, basınç ve rüzgâr iklimi belirlemede kullanılır.",
-          "interactions": []
-        }
-      ]
-    },
-    {
-      "id": "stage_turkiye_iklimleri",
-      "label": "Türkiye'de İklim Tipleri",
-      "order": 15,
-      "slides": [
-        {
-          "id": "slide_15_turkiyede_iklim_tipleri",
-          "type": "content",
-          "layout": "climate_turkey_types",
-          "tag": "TÜRKİYE'DE İKLİM TİPLERİ",
-          "title": "TÜRKİYE'DE İKLİM TİPLERİ",
-          "types": [
-            {
-              "title": "AKDENİZ İKLİMİ",
-              "details": ["Yazlar sıcak ve kurak", "Kışlar ılık ve yağışlı", "Bitki örtüsü: Maki"],
-              "tone": "peach"
-            },
-            {
-              "title": "KARADENİZ İKLİMİ",
-              "details": ["Yazlar serin ve yağışlı", "Kışlar soğuk ve yağışlı", "Bitki örtüsü: Orman"],
-              "tone": "blue"
-            },
-            {
-              "title": "KARASAL İKLİM",
-              "details": ["Yazlar sıcak ve kurak", "Kışlar soğuk ve karlı", "Bitki örtüsü: Bozkır"],
-              "tone": "lilac"
-            }
-          ],
-          "interactions": []
-        }
-      ]
-    },
-    {
-      "id": "stage_hava_olaylari_ve_iklim",
-      "label": "Hava Olayları ve İklim",
-      "order": 16,
-      "slides": [
-        {
-          "id": "slide_16_hava_olaylari_ve_iklim",
-          "type": "content",
-          "layout": "climate_weather_climate_comparison",
-          "tag": "HAVA OLAYLARI ve İKLİM",
-          "title": "HAVA OLAYLARI ve İKLİM",
-          "columns": [
-            {
-              "title": "HAVA OLAYLARI",
-              "items": ["Dar bölgede görülür", "Kısa süreli değişir", "Günlük olabilir", "Meteoroloji inceler", "Meteorolog ilgilenir"],
-              "tone": "blue"
-            },
-            {
-              "title": "İKLİM",
-              "items": ["Geniş bölgede görülür", "Uzun yılların ortalamasıdır", "Kolay değişmez", "Klimatoloji inceler", "Klimatolog ilgilenir"],
-              "tone": "lilac"
-            }
-          ],
-          "interactions": []
-        }
-      ]
-    },
-    {
-      "id": "stage_kuresel_iklim_degisikligi",
-      "label": "Küresel İklim Değişikliği",
-      "order": 17,
-      "slides": [
-        {
-          "id": "slide_17_kuresel_iklim_degisikligi",
-          "type": "content",
-          "layout": "climate_global_change",
-          "tag": "KÜRESEL İKLİM DEĞİŞİKLİĞİ",
-          "title": "KÜRESEL İKLİM DEĞİŞİKLİĞİ",
-          "cards": [
-            {
-              "title": "KÜRESEL İKLİM DEĞİŞİKLİĞİ",
-              "text": "Dünya genelinde iklimlerin yapısında meydana gelen değişimlerdir.",
-              "tone": "blue"
-            },
-            {
-              "title": "SERA ETKİSİ",
-              "text": "Güneşten yansıyan ışınların atmosferdeki gazlar tarafından tutulmasıdır.",
-              "tone": "lilac"
-            },
-            {
-              "title": "KÜRESEL ISINMA",
-              "text": "Atmosferde sera gazlarının artmasıyla Dünya'nın ısınmasıdır.",
-              "tone": "peach"
-            }
-          ],
-          "interactions": []
-        }
-      ]
-    },
-    {
-      "id": "stage_kuresel_iklim_cozumleri",
-      "label": "Nedenler, Sonuçlar ve Önlemler",
       "order": 18,
       "slides": [
         {
-          "id": "slide_18_nedenler_sonuclar_onlemler",
+          "id": "slide_18_iklim_nedir",
           "type": "content",
-          "layout": "climate_global_actions",
-          "tag": "NEDENLER / SONUÇLAR / ÖNLEMLER",
-          "title": "NEDENLER / SONUÇLAR / ÖNLEMLER",
+          "layout": "climate_climate_hero",
+          "tag": "İKLİM NEDİR?",
+          "title": "İKLİM NEDİR?",
+          "definition": "Geniş bir bölgede uzun yıllar boyunca gözlenen hava olaylarının ortalamasına iklim denir.",
+          "concepts": [
+            "Klimatoloji: İklimi inceleyen bilim dalıdır.",
+            "Klimatolog: İklim alanında çalışan bilim insanıdır."
+          ],
+          "image": "./assets/images/iklim-ve-hava-hareketleri/01-kapak-iklim-ve-hava-hareketleri.png",
+          "interactions": []
+        }
+      ]
+    },
+    {
+      "id": "stage_iklim_ozeti",
+      "label": "İklim Özeti",
+      "order": 19,
+      "slides": [
+        {
+          "id": "slide_19_iklim_ozeti",
+          "type": "content",
+          "layout": "climate_notebook",
+          "tag": "İKLİM ÖZETİ",
+          "title": "İKLİM ÖZETİ",
+          "sections": [
+            {
+              "title": "İKLİM",
+              "lines": [
+                "Geniş bir bölgede uzun yıllar boyunca gözlenen hava olaylarının ortalamasıdır."
+              ]
+            },
+            {
+              "title": "BİLİM VE UZMAN",
+              "lines": [
+                "Klimatoloji: İklimi inceleyen bilim dalıdır.",
+                "Klimatolog: İklim bilimiyle ilgilenen bilim insanıdır."
+              ]
+            },
+            {
+              "title": "İKLİMİ BELİRLEYEN ETMENLER",
+              "lines": [
+                "Enlem • Yükselti • Yer şekilleri • Bitki örtüsü • Denize uzaklık"
+              ]
+            }
+          ],
+          "interactions": []
+        }
+      ]
+    },
+    {
+      "id": "stage_turkiye_iklim_tipleri",
+      "label": "Türkiye'de İklim Tipleri",
+      "order": 20,
+      "slides": [
+        {
+          "id": "slide_20_turkiye_iklim_tipleri",
+          "type": "content",
+          "layout": "climate_type_selector",
+          "tag": "TÜRKİYE'DE İKLİM TİPLERİ",
+          "title": "TÜRKİYE'DE İKLİM TİPLERİ",
+          "climateTypes": [
+            {
+              "title": "AKDENİZ",
+              "tone": "peach",
+              "details": [
+                "Yazlar sıcak ve kurak",
+                "Kışlar ılık ve yağışlı",
+                "Bitki örtüsü: Maki"
+              ]
+            },
+            {
+              "title": "KARADENİZ",
+              "tone": "blue",
+              "details": [
+                "Yazlar serin ve yağışlı",
+                "Kışlar soğuk ve yağışlı",
+                "Bitki örtüsü: Orman"
+              ]
+            },
+            {
+              "title": "KARASAL",
+              "tone": "lilac",
+              "details": [
+                "Yazlar sıcak ve kurak",
+                "Kışlar soğuk ve kar yağışlı",
+                "Bitki örtüsü: Bozkır"
+              ]
+            }
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_20_selector",
+              "type": "selector"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stage_hava_olayi_mi_iklim_mi",
+      "label": "Hava Olayı mı, İklim mi?",
+      "order": 21,
+      "slides": [
+        {
+          "id": "slide_21_hava_olayi_mi_iklim_mi",
+          "type": "content",
+          "layout": "climate_weather_quiz",
+          "tag": "HAVA OLAYI MI, İKLİM Mİ?",
+          "title": "HAVA OLAYI MI, İKLİM Mİ?",
+          "items": [
+            {
+              "text": "Meteorolojiye göre yarın Ankara’da kar yağışı bekleniyor.",
+              "answer": "H"
+            },
+            {
+              "text": "Karadeniz kıyılarında yılın her mevsiminde yağış görülebilir.",
+              "answer": "İ"
+            },
+            {
+              "text": "İstanbul’da bu sabah yoğun sis nedeniyle görüş mesafesi azaldı.",
+              "answer": "H"
+            },
+            {
+              "text": "Akdeniz kıyılarında yazlar genellikle sıcak ve kurak geçer.",
+              "answer": "İ"
+            },
+            {
+              "text": "Öğleden sonra rüzgârın hızının artacağı tahmin ediliyor.",
+              "answer": "H"
+            },
+            {
+              "text": "Gece sıcaklığın 0 °C’nin altına düşmesi bekleniyor.",
+              "answer": "H"
+            },
+            {
+              "text": "Doğu Anadolu Bölgesi’nde kışlar uzun, soğuk ve kar yağışlıdır.",
+              "answer": "İ"
+            },
+            {
+              "text": "Rize’de yıl boyunca yağış miktarı genellikle yüksektir.",
+              "answer": "İ"
+            },
+            {
+              "text": "Bugün İzmir’de hava parçalı bulutlu ve ılık olacak.",
+              "answer": "H"
+            },
+            {
+              "text": "İç Anadolu Bölgesi’nde yazlar sıcak ve kurak, kışlar ise soğuk geçer.",
+              "answer": "İ"
+            }
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_21_binary_classify",
+              "type": "binary_classify"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stage_hava_olaylari_iklim_ozeti",
+      "label": "Hava Olayları ve İklim",
+      "order": 22,
+      "slides": [
+        {
+          "id": "slide_22_hava_olaylari_iklim_ozeti",
+          "type": "content",
+          "layout": "climate_notebook",
+          "tag": "HAVA OLAYLARI / İKLİM",
+          "title": "HAVA OLAYLARI / İKLİM",
           "columns": [
             {
+              "title": "HAVA OLAYLARI",
+              "lines": [
+                "Dar alan",
+                "Kısa süre",
+                "Değişken",
+                "Meteoroloji",
+                "Meteorolog"
+              ]
+            },
+            {
+              "title": "İKLİM",
+              "lines": [
+                "Geniş alan",
+                "Uzun yıllar",
+                "Kolay değişmez",
+                "Klimatoloji",
+                "Klimatolog"
+              ]
+            }
+          ],
+          "interactions": []
+        }
+      ]
+    },
+    {
+      "id": "stage_sera_etkisi",
+      "label": "Sera Etkisi",
+      "order": 23,
+      "slides": [
+        {
+          "id": "slide_23_sera_etkisi",
+          "type": "content",
+          "layout": "climate_greenhouse_reveal",
+          "tag": "SERA ETKİSİ",
+          "title": "SERA ETKİSİ",
+          "steps": [
+            "Güneş ışınları Dünya’ya ulaşır.",
+            "Dünya enerjinin bir bölümünü ısı olarak uzaya yayar.",
+            "Sera gazları bu ısının bir bölümünü atmosferde tutar.",
+            "Sera gazlarının artması → daha fazla ısının tutulması."
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_23_progressive_reveal",
+              "type": "progressive_reveal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stage_iklim_degisikligi_zinciri",
+      "label": "Küresel İklim Değişikliği",
+      "order": 24,
+      "slides": [
+        {
+          "id": "slide_24_iklim_degisikligi_zinciri",
+          "type": "content",
+          "layout": "climate_chain_reveal",
+          "tag": "KÜRESEL İKLİM DEĞİŞİKLİĞİ",
+          "title": "KÜRESEL İKLİM DEĞİŞİKLİĞİ",
+          "groups": [
+            {
               "title": "NEDENLER",
-              "items": ["Endüstriyel faaliyetler", "Fosil yakıt tüketimi", "Orman tahribi ve yangınlar", "Sera gazlarının artması", "Arazi kullanım değişiklikleri"],
+              "items": [
+                "Endüstriyel faaliyetler",
+                "Fosil yakıt tüketimi",
+                "Ormanların tahribi",
+                "Sera gazlarının artması",
+                "Arazi kullanım değişiklikleri"
+              ],
               "tone": "peach"
             },
             {
               "title": "SONUÇLAR",
-              "items": ["Kuraklık ve çölleşme", "Erozyon", "Sel ve fırtınaların artması", "Buzulların erimesi", "Deniz seviyelerinin artması"],
+              "items": [
+                "Kuraklık ve çölleşme",
+                "Erozyon",
+                "Sel ve fırtınaların artması",
+                "Buzulların erimesi",
+                "Deniz seviyelerinin artması"
+              ],
               "tone": "blue"
             },
             {
               "title": "ÖNLEMLER",
-              "items": ["Sera gazı salımını azaltmak", "Fosil yakıt kullanımını azaltmak", "Yenilenebilir enerji kullanmak", "Ormanlık alanları artırmak", "Geri dönüşümü yaygınlaştırmak"],
+              "items": [
+                "Sera gazı salımını azaltmak",
+                "Fosil yakıt kullanımını azaltmak",
+                "Yenilenebilir enerji kullanmak",
+                "Ormanlık alanları artırmak",
+                "Geri dönüşümü yaygınlaştırmak"
+              ],
               "tone": "lilac"
             }
           ],
-          "kyotoNote": "Kyoto Protokolü, gelişmiş ülkelerin sera gazı salımlarını 1990 yılına göre %5,2 azaltmalarını öngören uluslararası bir anlaşmadır.",
+          "interactions": [
+            {
+              "id": "interaction_slide_24_progressive_reveal",
+              "type": "progressive_reveal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stage_iklim_degisikligi_ozeti",
+      "label": "Küresel İklim Değişikliği Özeti",
+      "order": 25,
+      "slides": [
+        {
+          "id": "slide_25_iklim_degisikligi_ozeti",
+          "type": "content",
+          "layout": "climate_notebook",
+          "tag": "KÜRESEL İKLİM DEĞİŞİKLİĞİ ÖZETİ",
+          "title": "KÜRESEL İKLİM DEĞİŞİKLİĞİ ÖZETİ",
+          "sections": [
+            {
+              "title": "TEMEL KAVRAMLAR",
+              "lines": [
+                "Küresel iklim değişikliği: İklimlerin yapısında meydana gelen değişimlerdir.",
+                "Sera etkisi: Atmosferdeki gazların ısının bir bölümünü tutmasıdır.",
+                "Küresel ısınma: Sera gazlarının artmasıyla Dünya’nın ısınmasıdır."
+              ]
+            },
+            {
+              "title": "NEDEN → SONUÇ → ÖNLEM",
+              "lines": [
+                "Fosil yakıtlar ve orman tahribi → Kuraklık, buzulların erimesi → Yenilenebilir enerji, ormanları koruma"
+              ]
+            }
+          ],
+          "note": "Kyoto Protokolü, gelişmiş ülkelerin sera gazı salımlarını 1990 yılına göre %5,2 azaltmalarını öngören uluslararası bir anlaşmadır.",
           "interactions": []
         }
       ]
