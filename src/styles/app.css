@@ -1864,8 +1864,8 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   max-width: 100%;
   margin: 0 0 4px;
   color: #D8362A;
-  font-size: 42px;
-  font-weight: 900;
+  font-size: 38px;
+  font-weight: 600;
   line-height: 1.04;
 }
 
@@ -1882,8 +1882,8 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 .climate-wind-area p {
   margin: 0;
   color: #111827;
-  font-size: 40px;
-  font-weight: 850;
+  font-size: 36px;
+  font-weight: 600;
   line-height: 1.08;
 }
 
@@ -1897,8 +1897,8 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 }
 
 .climate-wind-flow strong {
-  font-size: 40px;
-  font-weight: 900;
+  font-size: 44px;
+  font-weight: 600;
   line-height: 1.08;
   text-align: center;
 }
@@ -1912,8 +1912,8 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 
 .climate-wind-flow b {
   color: #D8362A;
-  font-size: 44px;
-  font-weight: 900;
+  font-size: 42px;
+  font-weight: 600;
 }
 
 .climate-wind-visual {
