@@ -1807,6 +1807,254 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   text-align: center;
 }
 
+/* 8. Sınıf — İklim ve Hava Hareketleri: Slayt 7-8 Rüzgâr */
+.slide-workspace:has(.slide-climate-wind-formation) .slide-content,
+.slide-workspace:has(.slide-climate-wind-application) .slide-content {
+  padding: 0;
+}
+
+.slide-climate-wind-formation,
+.slide-climate-wind-application {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 48px 64px 46px;
+  display: grid;
+  gap: 20px;
+  background: #ffffff;
+  color: #0a2540;
+}
+
+.slide-climate-wind-formation {
+  grid-template-rows: auto auto 172px minmax(0, 1fr) 112px;
+}
+
+.climate-wind-definition {
+  margin: 0;
+  color: #111827;
+  font-size: 44px;
+  font-weight: 850;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.climate-wind-diagram {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 1fr 1.15fr 1fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+.climate-wind-area {
+  min-width: 0;
+  padding: 22px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+}
+
+.climate-wind-cool { background: #EAF4FF; }
+.climate-wind-warm { background: #FFF0E6; }
+
+.climate-wind-area h2 {
+  width: max-content;
+  max-width: 100%;
+  margin: 0 0 4px;
+  color: #D8362A;
+  font-size: 42px;
+  font-weight: 900;
+  line-height: 1.04;
+}
+
+.climate-wind-area h2::after {
+  content: "";
+  display: block;
+  width: 92px;
+  height: 5px;
+  margin-top: 10px;
+  border-radius: 999px;
+  background: #D8362A;
+}
+
+.climate-wind-area p {
+  margin: 0;
+  color: #111827;
+  font-size: 40px;
+  font-weight: 850;
+  line-height: 1.08;
+}
+
+.climate-wind-flow {
+  min-width: 0;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 5px;
+  color: #111827;
+}
+
+.climate-wind-flow strong {
+  font-size: 40px;
+  font-weight: 900;
+  line-height: 1.08;
+  text-align: center;
+}
+
+.climate-wind-flow span {
+  color: #D8362A;
+  font-size: 74px;
+  font-weight: 900;
+  line-height: .8;
+}
+
+.climate-wind-flow b {
+  color: #D8362A;
+  font-size: 44px;
+  font-weight: 900;
+}
+
+.climate-wind-visual {
+  min-width: 0;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 24px;
+  background: #f8fbff;
+  border: 2px solid rgba(148, 163, 184, 0.2);
+}
+
+.climate-wind-visual img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.climate-wind-notes {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.climate-wind-note {
+  min-width: 0;
+  display: grid;
+  place-items: center;
+  padding: 22px 28px;
+  background: #F2ECFF;
+}
+
+.climate-wind-note p {
+  margin: 0;
+  color: #111827;
+  font-size: 40px;
+  font-weight: 850;
+  line-height: 1.08;
+  text-align: center;
+}
+
+.slide-climate-wind-application {
+  grid-template-rows: auto 246px minmax(0, 1fr);
+}
+
+.climate-wind-application-visual {
+  min-width: 0;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 24px;
+  background: #f8fbff;
+  border: 2px solid rgba(148, 163, 184, 0.2);
+}
+
+.climate-wind-application-visual img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.climate-wind-application-columns {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+.climate-wind-application-column {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  padding: 16px 22px;
+  border-radius: 24px;
+  border: 2px solid rgba(148, 163, 184, 0.22);
+  background: #f8fbff;
+}
+
+.climate-wind-reveal-row {
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+}
+
+.climate-wind-reveal-row .interaction-slot {
+  min-width: 0;
+}
+
+.climate-wind-reveal-row .reveal-fill-sentence {
+  display: block;
+  color: #111827;
+  font-size: 40px;
+  font-weight: 850;
+  line-height: 1.05;
+  white-space: nowrap;
+}
+
+.climate-wind-reveal-row .reveal-fill-blank,
+.climate-wind-reveal-row .reveal-fill-blank.size-short {
+  width: 84px;
+  min-width: 84px;
+  height: 52px;
+  padding: 0 8px;
+  margin: 0 6px;
+  border-radius: 12px;
+  background: rgba(216, 54, 42, 0.06);
+}
+
+.climate-wind-reveal-row .reveal-fill-blank::after {
+  background: #D8362A;
+}
+
+.climate-wind-reveal-row .blank-slot-answer {
+  color: #D8362A;
+  font-size: 40px;
+  font-weight: 900;
+}
+
+.climate-wind-reveal-row .reveal-fill-blank.is-revealed {
+  background: rgba(216, 54, 42, 0.1);
+}
+
+.climate-wind-reveal-row .reveal-fill-blank.is-revealed::after {
+  background: #D8362A;
+}
+
 /* Slayt 1: Merak Et (Türkiye & Avustralya) */
 .slide-canva-merak-et {
   display: flex;

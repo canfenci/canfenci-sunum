@@ -8,7 +8,7 @@ test("8. Sınıf İklim ve Hava Hareketleri kapak ve atmosfer slaytları doğrul
   const css = await readFile("src/styles/app.css", "utf8");
 
   assert.equal(lesson.title, "İklim ve Hava Hareketleri");
-  assert.equal(slides.length, 6, "Ders kapak, atmosfer, hava olayları, ölçüm araçları ve basınç slaytları olmak üzere 6 slayt olmalıdır");
+  assert.equal(slides.length, 8, "Ders kapak, atmosfer, hava olayları, ölçüm araçları, basınç ve rüzgâr slaytları olmak üzere 8 slayt olmalıdır");
 
   const cover = slides[0];
   assert.equal(cover.id, "slide_1_kapak");
@@ -151,4 +151,23 @@ test("8. Sınıf İklim ve Hava Hareketleri kapak ve atmosfer slaytları doğrul
   assert.ok(css.includes(".slide-climate-pressure-formation"), "Slayt 5 CSS kuralı mevcut olmalıdır");
   assert.ok(css.includes(".slide-climate-pressure-comparison"), "Slayt 6 CSS kuralı mevcut olmalıdır");
   assert.ok(css.includes(".climate-pressure-process-arrow"), "Slayt 5 süreç okları mevcut olmalıdır");
+
+  const windFormation = slides[6];
+  assert.equal(windFormation.id, "slide_7_ruzgar_nasil_olusur");
+  assert.equal(windFormation.layout, "climate_wind_formation");
+  assert.equal(windFormation.definition, "Yatay yönde gerçekleşen hava hareketine rüzgâr denir.");
+  assert.equal(windFormation.windDirection, "YÜKSEK BASINÇ → ALÇAK BASINÇ");
+  assert.deepEqual(windFormation.interactions, []);
+  await access(windFormation.media[0].src.replace(/^\.\//, ""));
+  assert.ok(css.includes(".slide-climate-wind-formation"), "Slayt 7 CSS kuralı mevcut olmalıdır");
+  assert.ok(css.includes(".climate-wind-flow"), "Slayt 7 rüzgâr yönü akışı mevcut olmalıdır");
+
+  const windApplication = slides[7];
+  assert.equal(windApplication.id, "slide_8_basinc_ve_ruzgar_uygulamasi");
+  assert.equal(windApplication.layout, "climate_wind_application");
+  assert.equal(windApplication.interactions?.length, 10);
+  assert.deepEqual(windApplication.interactions.map((item) => item.blanks?.[0]?.answer), ["K", "K", "L", "K", "L", "L", "K", "K", "L", "L"]);
+  await access(windApplication.media[0].src.replace(/^\.\//, ""));
+  assert.ok(css.includes(".slide-climate-wind-application"), "Slayt 8 CSS kuralı mevcut olmalıdır");
+  assert.ok(css.includes(".climate-wind-reveal-row"), "Slayt 8 bağımsız reveal satırları mevcut olmalıdır");
 });

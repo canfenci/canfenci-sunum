@@ -300,6 +300,130 @@
           "interactions": []
         }
       ]
+    },
+    {
+      "id": "stage_ruzgar",
+      "label": "Rüzgâr",
+      "order": 7,
+      "slides": [
+        {
+          "id": "slide_7_ruzgar_nasil_olusur",
+          "type": "content",
+          "layout": "climate_wind_formation",
+          "tag": "RÜZGÂR",
+          "title": "RÜZGÂR NASIL OLUŞUR?",
+          "definition": "Yatay yönde gerçekleşen hava hareketine rüzgâr denir.",
+          "windDirection": "YÜKSEK BASINÇ → ALÇAK BASINÇ",
+          "windLabel": "RÜZGÂR",
+          "areas": [
+            {
+              "title": "YÜKSEK BASINÇ",
+              "tone": "cool",
+              "points": ["Alçalan hava", "Yüzeyde daha fazla hava"]
+            },
+            {
+              "title": "ALÇAK BASINÇ",
+              "tone": "warm",
+              "points": ["Yükselen hava", "Bulut oluşumu"]
+            }
+          ],
+          "notes": [
+            "Rüzgâr, yüksek basınçtan alçak basınca doğru eser.",
+            "Basınç farkı arttıkça rüzgârın hızı artar."
+          ],
+          "media": [
+            {
+              "id": "media_wind_formation",
+              "src": "./assets/images/iklim-ve-hava-hareketleri/07-ruzgar-olusumu.png",
+              "alt": "Yüksek basınçtan alçak basınca doğru esen rüzgâr şeması"
+            }
+          ],
+          "interactions": []
+        }
+      ]
+    },
+    {
+      "id": "stage_basinc_ve_ruzgar_uygulamasi",
+      "label": "Basınç ve Rüzgâr Uygulaması",
+      "order": 8,
+      "slides": [
+        {
+          "id": "slide_8_basinc_ve_ruzgar_uygulamasi",
+          "type": "content",
+          "layout": "climate_wind_application",
+          "tag": "BASINÇ VE RÜZGÂR UYGULAMASI",
+          "title": "BASINÇ VE RÜZGÂR UYGULAMASI",
+          "media": [
+            {
+              "id": "media_pressure_wind_application",
+              "src": "./assets/images/iklim-ve-hava-hareketleri/08-k-l-uygulamasi.png",
+              "alt": "K ve L bölgelerinde basınç, hava hareketi ve rüzgâr yönü şeması"
+            }
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_8_01",
+              "type": "reveal_fill",
+              "template": "1. {blank1} şehrinde hava sıcaklığı daha fazladır.",
+              "blanks": [{ "id": "blank1", "answer": "K", "placeholder": "K" }]
+            },
+            {
+              "id": "interaction_slide_8_02",
+              "type": "reveal_fill",
+              "template": "2. {blank1} şehrinde hava yoğunluğu daha azdır.",
+              "blanks": [{ "id": "blank1", "answer": "K", "placeholder": "K" }]
+            },
+            {
+              "id": "interaction_slide_8_03",
+              "type": "reveal_fill",
+              "template": "3. {blank1} şehrinde alçalıcı hava hareketi görülür.",
+              "blanks": [{ "id": "blank1", "answer": "L", "placeholder": "L" }]
+            },
+            {
+              "id": "interaction_slide_8_04",
+              "type": "reveal_fill",
+              "template": "4. {blank1} şehrinde nem oranı fazladır.",
+              "blanks": [{ "id": "blank1", "answer": "K", "placeholder": "K" }]
+            },
+            {
+              "id": "interaction_slide_8_05",
+              "type": "reveal_fill",
+              "template": "5. {blank1} şehrinde basınç fazladır.",
+              "blanks": [{ "id": "blank1", "answer": "L", "placeholder": "L" }]
+            },
+            {
+              "id": "interaction_slide_8_06",
+              "type": "reveal_fill",
+              "template": "6. {blank1} şehrinde yağış ihtimali azdır.",
+              "blanks": [{ "id": "blank1", "answer": "L", "placeholder": "L" }]
+            },
+            {
+              "id": "interaction_slide_8_07",
+              "type": "reveal_fill",
+              "template": "7. {blank1} şehrinde yükselici hava hareketi görülür.",
+              "blanks": [{ "id": "blank1", "answer": "K", "placeholder": "K" }]
+            },
+            {
+              "id": "interaction_slide_8_08",
+              "type": "reveal_fill",
+              "template": "8. {blank1} şehrinde çevreden merkeze doğru hava hareketi görülür.",
+              "blanks": [{ "id": "blank1", "answer": "K", "placeholder": "K" }]
+            },
+            {
+              "id": "interaction_slide_8_09",
+              "type": "reveal_fill",
+              "template": "9. {blank1} şehrinde merkezden çevreye doğru hava hareketi görülür.",
+              "blanks": [{ "id": "blank1", "answer": "L", "placeholder": "L" }]
+            },
+            {
+              "id": "interaction_slide_8_10",
+              "type": "reveal_fill",
+              "template": "10. {blank1} şehrinde bitkisi örtüsü cılızdır.",
+              "blanks": [{ "id": "blank1", "answer": "L", "placeholder": "L" }]
+            }
+          ]
+        }
+      ]
     }
   ]
 }

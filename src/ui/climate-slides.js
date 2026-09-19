@@ -217,6 +217,73 @@ export function renderClimateSlide(slide, view, { interactions, activeInteractio
       return true;
     }
 
+    case "climate_wind_formation": {
+      const media = slide.media?.[0];
+      const areas = slide.areas ?? [];
+      const notes = slide.notes ?? [];
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-climate-wind-formation";
+      slideArticle.innerHTML = `
+        <header class="climate-slide-header">
+          <h1 class="climate-slide-title">${escapeHtml(slide.title ?? "RÜZGÂR NASIL OLUŞUR?")}</h1>
+        </header>
+        <p class="climate-wind-definition">${escapeHtml(slide.definition ?? "")}</p>
+        <section class="climate-wind-diagram" aria-label="Rüzgârın oluşum şeması">
+          <article class="climate-card climate-wind-area climate-wind-${escapeHtml(areas[0]?.tone ?? "cool")}">
+            <h2>${escapeHtml(areas[0]?.title ?? "YÜKSEK BASINÇ")}</h2>
+            ${(areas[0]?.points ?? []).map((point) => `<p>${escapeHtml(point)}</p>`).join("")}
+          </article>
+          <div class="climate-wind-flow">
+            <strong>${escapeHtml(slide.windDirection ?? "YÜKSEK BASINÇ → ALÇAK BASINÇ")}</strong>
+            <span aria-hidden="true">→</span>
+            <b>${escapeHtml(slide.windLabel ?? "RÜZGÂR")}</b>
+          </div>
+          <article class="climate-card climate-wind-area climate-wind-${escapeHtml(areas[1]?.tone ?? "warm")}">
+            <h2>${escapeHtml(areas[1]?.title ?? "ALÇAK BASINÇ")}</h2>
+            ${(areas[1]?.points ?? []).map((point) => `<p>${escapeHtml(point)}</p>`).join("")}
+          </article>
+        </section>
+        <figure class="climate-wind-visual">
+          <img src="${escapeHtml(media?.src ?? "")}" alt="${escapeHtml(media?.alt ?? "Rüzgâr şeması")}" />
+        </figure>
+        <section class="climate-wind-notes" aria-label="Rüzgâr bilgileri">
+          ${notes.map((note) => `<div class="climate-card climate-wind-note"><p>${escapeHtml(note)}</p></div>`).join("")}
+        </section>
+      `;
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
+    case "climate_wind_application": {
+      const media = slide.media?.[0];
+      const slideInteractions = slide.interactions ?? [];
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-climate-wind-application";
+      slideArticle.innerHTML = `
+        <header class="climate-slide-header">
+          <h1 class="climate-slide-title">${escapeHtml(slide.title ?? "BASINÇ VE RÜZGÂR UYGULAMASI")}</h1>
+        </header>
+        <figure class="climate-wind-application-visual">
+          <img src="${escapeHtml(media?.src ?? "")}" alt="${escapeHtml(media?.alt ?? "K ve L basınç uygulaması")}" />
+        </figure>
+        <section class="climate-wind-application-columns" aria-label="K ve L uygulaması çıkarımları">
+          <div class="climate-wind-application-column">
+            ${slideInteractions.slice(0, 5).map((item, index) => `<div class="climate-wind-reveal-row" data-interaction-index="${index}"></div>`).join("")}
+          </div>
+          <div class="climate-wind-application-column">
+            ${slideInteractions.slice(5, 10).map((item, index) => `<div class="climate-wind-reveal-row" data-interaction-index="${index + 5}"></div>`).join("")}
+          </div>
+        </section>
+      `;
+      const slots = slideArticle.querySelectorAll(".climate-wind-reveal-row");
+      slots.forEach((slot) => {
+        const interaction = slideInteractions[Number(slot.dataset.interactionIndex)];
+        if (interaction) mountInteraction(interaction, slot, interactions, activeInteractions);
+      });
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
     default:
       return false;
   }
