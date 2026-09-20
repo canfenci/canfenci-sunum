@@ -2683,6 +2683,7 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 /* 8. Sınıf İklim ve Hava Hareketleri: 25 slaytlık öğretim akışı */
 .slide-workspace:has(.slide-climate-tool-match) .slide-content,
 .slide-workspace:has(.slide-climate-notebook) .slide-content,
+.slide-workspace:has(.slide-climate-notebook-cards) .slide-content,
 .slide-workspace:has(.slide-climate-pressure-notebook) .slide-content,
 .slide-workspace:has(.slide-climate-pressure-reveal) .slide-content,
 .slide-workspace:has(.slide-climate-pressure-toggle) .slide-content,
@@ -2697,6 +2698,7 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 
 .slide-climate-tool-match,
 .slide-climate-notebook,
+.slide-climate-notebook-cards,
 .slide-climate-pressure-notebook,
 .slide-climate-pressure-reveal,
 .slide-climate-pressure-toggle,
@@ -2817,6 +2819,87 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 .climate-note-dew { background: #e6f7f5; } .climate-note-fog { background: #f2f4f7; }
 .climate-notebook-note { align-self: end; padding: 18px 28px; border-radius: 16px; background: #eef4f8; font-size: 30px; font-weight: 700; line-height: 1.1; }
 .slide-climate-notebook:has(.climate-notebook-note) { grid-template-rows: auto minmax(0, 1fr) auto; }
+
+/* Slayt 5 ve 7: büyük yazılı defter kartları */
+.slide-climate-notebook-cards {
+  grid-template-rows: auto minmax(0, 1fr);
+  background: #fcfdff;
+}
+
+.climate-notebook-card-grid {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 32px;
+}
+
+.slide-climate-notebook-cards.is-compare .climate-notebook-card-grid {
+  grid-template-rows: minmax(0, 1fr);
+}
+
+.climate-notebook-summary-card {
+  min-width: 0;
+  min-height: 0;
+  padding: 34px 42px;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 24px;
+  overflow: hidden;
+  border: 2px solid rgba(148, 163, 184, 0.24);
+  border-radius: 24px;
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.06);
+}
+
+.climate-notebook-summary-card h2 {
+  margin: 0;
+  color: #d8362a;
+  font-size: 42px;
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+
+.climate-notebook-summary-card > div {
+  min-width: 0;
+  display: grid;
+  align-content: center;
+  gap: 14px;
+}
+
+.climate-notebook-summary-card p {
+  margin: 0;
+  color: #111827;
+  font-size: 40px;
+  font-weight: 850;
+  line-height: 1.08;
+}
+
+.slide-climate-notebook-cards.is-compare .climate-notebook-summary-card > div {
+  row-gap: 22px;
+  align-content: center;
+}
+
+.slide-climate-notebook-cards.is-compare .climate-notebook-summary-card p {
+  position: relative;
+  padding-left: 24px;
+}
+
+.slide-climate-notebook-cards.is-compare .climate-notebook-summary-card p::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #d8362a;
+}
+
+.climate-summary-blue { background: #eaf4ff; }
+.climate-summary-lilac { background: #f1eeff; }
+.climate-summary-turquoise { background: #e6f7f5; }
+.climate-summary-slate { background: #edf2f6; }
+.climate-summary-warm { background: #fff0e9; }
+.climate-summary-cool { background: #edf3ff; }
 
 /* Slayt 6: Basınç oluşumu notebook özeti */
 .slide-climate-pressure-notebook {

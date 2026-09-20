@@ -14,7 +14,7 @@ test("8. Sınıf İklim ve Hava Hareketleri 25 slaytlık öğretim akışı", as
   assert.deepEqual(slides.slice(0, 3).map((slide) => slide.layout), ["climate_cover", "climate_atmosphere", "climate_weather_events"]);
 
   const expectedLayouts = [
-    "climate_tool_match", "climate_notebook", "climate_pressure_notebook", "climate_notebook",
+    "climate_tool_match", "climate_notebook_cards", "climate_pressure_notebook", "climate_notebook_cards",
     "climate_pressure_toggle", "climate_notebook", "climate_wind_predict", "climate_notebook",
     "climate_wind_application", "climate_breeze_toggle", "climate_breeze_toggle", "climate_notebook",
     "climate_precipitation_classify", "climate_notebook", "climate_climate_hero", "climate_notebook",
@@ -24,7 +24,7 @@ test("8. Sınıf İklim ve Hava Hareketleri 25 slaytlık öğretim akışı", as
   assert.deepEqual(slides.slice(3).map((slide) => slide.layout), expectedLayouts);
   assert.deepEqual(lesson.stages.map((stage) => stage.order), Array.from({ length: 25 }, (_, index) => index + 1));
 
-  const notebookNumbers = [5, 7, 9, 11, 15, 17, 19, 22, 25];
+  const notebookNumbers = [9, 11, 15, 17, 19, 22, 25];
   for (const number of notebookNumbers) {
     const slide = slides[number - 1];
     assert.equal(slide.layout, "climate_notebook", `Slayt ${number} notebook özeti olmalıdır`);
@@ -44,11 +44,33 @@ test("8. Sınıf İklim ve Hava Hareketleri 25 slaytlık öğretim akışı", as
   assert.deepEqual(toolSlide.tools.map((tool) => tool.measure), ["Sıcaklık", "Nem", "Basınç", "Rüzgâr"]);
   for (const tool of toolSlide.tools) await access(tool.image.replace(/^\.\//, ""));
 
+  const meteorologyNotebook = slides[4];
+  assert.equal(meteorologyNotebook.layout, "climate_notebook_cards");
+  assert.equal(meteorologyNotebook.title, "METEOROLOJİ VE ÖLÇÜM ARAÇLARI");
+  assert.deepEqual(meteorologyNotebook.interactions, []);
+  assert.deepEqual(meteorologyNotebook.cards.map((card) => card.title), ["METEOROLOJİ", "METEOROLOG", "SICAKLIK / NEM", "BASINÇ / RÜZGÂR"]);
+  assert.deepEqual(meteorologyNotebook.cards.flatMap((card) => card.lines), [
+    "Hava olaylarını inceleyen bilim dalıdır.",
+    "Hava olaylarıyla ilgilenen bilim insanıdır.",
+    "Termometre → Sıcaklık",
+    "Higrometre → Nem",
+    "Barometre → Basınç",
+    "Anemometre → Rüzgâr"
+  ]);
+
   const pressureNotebook = slides[5];
   assert.equal(pressureNotebook.title, "BASINÇ OLUŞUMU");
   assert.deepEqual(pressureNotebook.interactions, []);
   assert.deepEqual(pressureNotebook.cards.map((card) => card.title), ["ALÇAK BASINÇ", "YÜKSEK BASINÇ", "SICAKLIK / BASINÇ", "HAVA HAREKETİ"]);
   assert.ok(pressureNotebook.cards.every((card) => card.lines.length >= 2));
+
+  const pressureComparisonNotebook = slides[6];
+  assert.equal(pressureComparisonNotebook.layout, "climate_notebook_cards");
+  assert.equal(pressureComparisonNotebook.title, "ALÇAK BASINÇ VE YÜKSEK BASINÇ");
+  assert.deepEqual(pressureComparisonNotebook.interactions, []);
+  assert.deepEqual(pressureComparisonNotebook.cards.map((card) => card.title), ["ALÇAK BASINÇ", "YÜKSEK BASINÇ"]);
+  assert.ok(pressureComparisonNotebook.cards.every((card) => card.lines.length === 7));
+  assert.ok(!JSON.stringify(pressureComparisonNotebook).includes("HIZLI HATIRLAMA"));
 
   const pressureToggle = slides[7];
   assert.deepEqual(pressureToggle.modes.map((mode) => mode.title), ["ALÇAK BASINÇ", "YÜKSEK BASINÇ"]);
@@ -92,12 +114,15 @@ test("8. Sınıf İklim ve Hava Hareketleri 25 slaytlık öğretim akışı", as
 
   assert.ok(css.includes(".climate-notebook-badge"), "Notebook slaytlarında ortak badge bulunmalıdır");
   assert.ok(css.includes(".climate-pressure-notebook-grid"), "Slayt 6 özel 2x2 notebook gridi bulunmalıdır");
+  assert.ok(css.includes(".climate-notebook-card-grid"), "Slayt 5 ve 7 defter kart gridi bulunmalıdır");
+  assert.ok(css.includes(".slide-climate-notebook-cards.is-compare"), "Slayt 7 karşılaştırma düzeni bulunmalıdır");
   assert.ok(css.includes("grid-template-rows: repeat(2, minmax(0, 1fr))"), "Slayt 6 iki eşit satır kullanmalıdır");
   assert.ok(css.includes("font-size: 40px"), "Notebook ana metinleri 40px olmalıdır");
   assert.ok(css.includes(".climate-segmented-control"), "Toggle slaytlarında segmented control bulunmalıdır");
   assert.ok(css.includes("transition: 280ms ease"), "Etkileşim animasyonları 200-350ms aralığında olmalıdır");
   assert.ok(css.includes(".climate-weather-quiz-grid"), "H/İ mini etkinliği CSS'i bulunmalıdır");
   assert.ok(renderer.includes("case \"climate_tool_match\""));
+  assert.ok(renderer.includes("case \"climate_notebook_cards\""));
   assert.ok(renderer.includes("case \"climate_greenhouse_reveal\""));
   assert.ok(renderer.includes("registerLocalInteraction"), "Yerel etkileşimler sunum reset yaşam döngüsüne bağlanmalıdır");
 });

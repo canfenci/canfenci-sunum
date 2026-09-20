@@ -226,27 +226,37 @@
         {
           "id": "slide_5_meteoroloji_ozeti",
           "type": "content",
-          "layout": "climate_notebook",
-          "tag": "METEOROLOJİ ÖZETİ",
-          "title": "METEOROLOJİ ÖZETİ",
-          "sections": [
+          "layout": "climate_notebook_cards",
+          "tag": "METEOROLOJİ VE ÖLÇÜM ARAÇLARI",
+          "title": "METEOROLOJİ VE ÖLÇÜM ARAÇLARI",
+          "variant": "grid",
+          "cards": [
             {
               "title": "METEOROLOJİ",
+              "tone": "blue",
               "lines": [
                 "Hava olaylarını inceleyen bilim dalıdır."
               ]
             },
             {
               "title": "METEOROLOG",
+              "tone": "lilac",
               "lines": [
                 "Hava olaylarıyla ilgilenen bilim insanıdır."
               ]
             },
             {
-              "title": "ÖLÇÜM ARAÇLARI",
+              "title": "SICAKLIK / NEM",
+              "tone": "turquoise",
               "lines": [
                 "Termometre → Sıcaklık",
-                "Higrometre → Nem",
+                "Higrometre → Nem"
+              ]
+            },
+            {
+              "title": "BASINÇ / RÜZGÂR",
+              "tone": "slate",
+              "lines": [
                 "Barometre → Basınç",
                 "Anemometre → Rüzgâr"
               ]
@@ -317,27 +327,35 @@
         {
           "id": "slide_7_basinc_olusumu_ozeti",
           "type": "content",
-          "layout": "climate_notebook",
-          "tag": "BASINÇ OLUŞUMU",
-          "title": "BASINÇ OLUŞUMU",
-          "sections": [
+          "layout": "climate_notebook_cards",
+          "tag": "ALÇAK BASINÇ VE YÜKSEK BASINÇ",
+          "title": "ALÇAK BASINÇ VE YÜKSEK BASINÇ",
+          "variant": "compare",
+          "cards": [
             {
               "title": "ALÇAK BASINÇ",
+              "tone": "warm",
               "lines": [
-                "Isınan hava → yoğunluğu azalır → yükselir."
+                "Sıcaktır",
+                "Hava yoğunluğu azdır",
+                "Nem oranı fazla",
+                "Yağış ihtimali fazla",
+                "Gökyüzü kapalı ve bulutlu",
+                "Yükselici hava hareketi",
+                "Çevreden merkeze doğru"
               ]
             },
             {
               "title": "YÜKSEK BASINÇ",
+              "tone": "cool",
               "lines": [
-                "Soğuyan hava → yoğunluğu artar → alçalır."
-              ]
-            },
-            {
-              "title": "HIZLI HATIRLAMA",
-              "lines": [
-                "Sıcaklık ↑ → Basınç ↓",
-                "Sıcaklık ↓ → Basınç ↑"
+                "Soğuktur",
+                "Hava yoğunluğu fazladır",
+                "Nem oranı az",
+                "Yağış ihtimali az",
+                "Gökyüzü açık",
+                "Alçalıcı hava hareketi",
+                "Merkezden çevreye doğru"
               ]
             }
           ],

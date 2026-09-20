@@ -222,6 +222,26 @@ export function renderClimateSlide(slide, view, { interactions, activeInteractio
       return true;
     }
 
+    case "climate_notebook_cards": {
+      const cards = slide.cards ?? [];
+      const variant = slide.variant === "compare" ? " is-compare" : "";
+      const slideArticle = document.createElement("article");
+      slideArticle.className = `board-slide slide-climate-notebook-cards${variant}`;
+      slideArticle.innerHTML = `
+        ${climateHeader(slide.title ?? "ÖZET", true)}
+        <section class="climate-notebook-card-grid" aria-label="${escapeHtml(slide.title ?? "Defter özeti")}">
+          ${cards.map((card) => `
+            <article class="climate-notebook-summary-card climate-summary-${escapeHtml(card.tone ?? "slate")}">
+              <h2>${escapeHtml(card.title ?? "")}</h2>
+              <div>${(card.lines ?? []).map((line) => `<p>${escapeHtml(line)}</p>`).join("")}</div>
+            </article>
+          `).join("")}
+        </section>
+      `;
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
     case "climate_pressure_notebook": {
       const cards = slide.cards ?? [];
       const slideArticle = document.createElement("article");
