@@ -535,21 +535,14 @@ export function renderSolarSlide(slide, view, { interactions, activeInteractions
         <div class="solar-concept-grid">
         </div>
       `;
-      const conceptVisual = (defId) => {
-        const visualMap = {
-          def_goktasi: "🪨",
-          def_meteor: "🌠",
-          def_meteorit: "☄️",
-          def_cukur: "🕳️"
-        };
-        return visualMap[defId] ?? "☄️";
-      };
       const conceptGrid = slideArticle.querySelector(".solar-concept-grid");
       for (const def of slide.definitions ?? []) {
         const cCard = document.createElement("div");
         cCard.className = "solar-concept-card";
         cCard.innerHTML = `
-          <div class="solar-concept-visual" role="img" aria-label="${escapeHtml(def.title)}"><span class="solar-concept-emoji">${conceptVisual(def.id)}</span></div>
+          <div class="solar-concept-visual">
+            <img class="solar-concept-image" src="${escapeHtml(def.image ?? "")}" alt="${escapeHtml(def.title)}" />
+          </div>
           <div class="solar-concept-label">${escapeHtml(def.title)}</div>
         `;
         conceptGrid.appendChild(cCard);

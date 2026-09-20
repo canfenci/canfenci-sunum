@@ -5906,25 +5906,15 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   min-height: 0;
   display: grid;
   place-items: center;
-  padding: 12px;
-  background: radial-gradient(circle at 50% 38%, #e0f2fe 0%, #bae6fd 48%, #7dd3fc 100%);
+  background: #f8fafc;
+  overflow: hidden;
 }
 
-.slide-solar-goktasi-tanimlar .solar-concept-card:nth-child(2) .solar-concept-visual {
-  background: radial-gradient(circle at 50% 38%, #fef9c3 0%, #fde047 48%, #eab308 100%);
-}
-
-.slide-solar-goktasi-tanimlar .solar-concept-card:nth-child(3) .solar-concept-visual {
-  background: radial-gradient(circle at 50% 38%, #ffedd5 0%, #fdba74 48%, #f97316 100%);
-}
-
-.slide-solar-goktasi-tanimlar .solar-concept-card:nth-child(4) .solar-concept-visual {
-  background: radial-gradient(circle at 50% 38%, #e2e8f0 0%, #94a3b8 55%, #64748b 100%);
-}
-
-.slide-solar-goktasi-tanimlar .solar-concept-emoji {
-  font-size: 120px;
-  line-height: 1;
+.slide-solar-goktasi-tanimlar .solar-concept-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
 }
 
 .slide-solar-goktasi-tanimlar .solar-concept-label {

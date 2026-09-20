@@ -1312,21 +1312,25 @@
             {
               "id": "def_goktasi",
               "title": "Göktaşı",
+              "image": "./assets/images/gunes-sistemi/solitary_asteroid_in_deep_space.png",
               "interactionId": "interaction_slide_24_goktasi"
             },
             {
               "id": "def_meteor",
               "title": "Meteor",
+              "image": "./assets/images/gunes-sistemi/blazing_meteor_over_earth.png",
               "interactionId": "interaction_slide_24_meteor"
             },
             {
               "id": "def_meteorit",
               "title": "Meteorit",
+              "image": "./assets/images/gunes-sistemi/meteorite_in_the_mountain_wilderness.png",
               "interactionId": "interaction_slide_24_meteorit"
             },
             {
               "id": "def_cukur",
               "title": "Meteor Çukuru",
+              "image": "./assets/images/gunes-sistemi/vast_desert_meteor_crater.png",
               "interactionId": "interaction_slide_24_cukur"
             }
           ],

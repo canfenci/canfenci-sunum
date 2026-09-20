@@ -320,6 +320,12 @@ test("6. Sınıf Slayt 23-25 Revize Doğrulaması (Sadeleşme, 40px Tipografi, 4
   assert.equal(slide24.kicker, undefined, "Kicker metni kaldırılmış olmalıdır");
   assert.equal(slide24.lead, undefined, "Yardımcı açıklama kaldırılmış olmalıdır");
   assert.deepEqual(slide24.definitions?.map((d) => d.title), ["Göktaşı", "Meteor", "Meteorit", "Meteor Çukuru"]);
+  assert.deepEqual(slide24.definitions?.map((d) => d.image), [
+    "./assets/images/gunes-sistemi/solitary_asteroid_in_deep_space.png",
+    "./assets/images/gunes-sistemi/blazing_meteor_over_earth.png",
+    "./assets/images/gunes-sistemi/meteorite_in_the_mountain_wilderness.png",
+    "./assets/images/gunes-sistemi/vast_desert_meteor_crater.png"
+  ]);
 
   // Slayt 25: başlık korunur, küçük yazılar temizlenir
   const slide25 = slides.find((s) => s.id === "slide_25_goktasi_meteor_meteorit_sema");
@@ -337,11 +343,14 @@ test("6. Sınıf Slayt 23-25 Revize Doğrulaması (Sadeleşme, 40px Tipografi, 4
   assert.ok(!renderer.includes('slide.kicker ?? "TANIMLAR"'), "Slayt 24 kicker fallback'i kaldırılmış olmalıdır");
   assert.ok(!renderer.includes('slide.kicker ?? "GEÇİŞ ŞEMASI"'), "Slayt 25 kicker fallback'i kaldırılmış olmalıdır");
   assert.ok(renderer.includes("solar-concept-grid"), "Slayt 24 kavram kart ızgarası basılmalıdır");
+  assert.ok(renderer.includes("solar-concept-image"), "Slayt 24 gerçek görsel sınıfı basılmalıdır");
   assert.ok(renderer.includes("solar-concept-label"), "Slayt 24 kavram etiketi basılmalıdır");
+  assert.ok(!renderer.includes("solar-concept-emoji"), "Slayt 24 emoji görselleri kaldırılmış olmalıdır");
 
   // CSS tipografi kontrolleri (40px standardı)
   const css = await readFile("src/styles/app.css", "utf8");
   assert.match(css, /\.slide-solar-asteroit-kusak \.reveal-fill-sentence \{[\s\S]*?font-size: 40px;[\s\S]*?font-weight: 700;/, "Slayt 23 etkileşimli metni 40px bold olmalıdır");
   assert.match(css, /\.slide-solar-goktasi-tanimlar \.solar-concept-label \{[\s\S]*?font-size: 40px;[\s\S]*?font-weight: 400;/, "Slayt 24 kart yazıları 40px normal olmalıdır");
+  assert.match(css, /\.slide-solar-goktasi-tanimlar \.solar-concept-image \{[\s\S]*?object-fit: contain;/, "Slayt 24 görselleri kırpılmadan sığmalıdır");
   assert.match(css, /\.slide-solar-atmosfer-semasi \.reveal-fill-sentence \{[\s\S]*?font-size: 40px;/, "Slayt 25 etkileşimli metni 40px olmalıdır");
 });
