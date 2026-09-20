@@ -1257,9 +1257,7 @@
           "type": "content",
           "layout": "solar_asteroit_kusak",
           "tag": "ASTEROİT",
-          "kicker": "ASTEROİT, GÖKTAŞI, METEOR VE METEORİT",
-          "title": "1. Asteroit ve Asteroit Kuşağı",
-          "lead": "Güneş çevresinde dolanan kaya ve metal parçalarını ve Asteroit Kuşağı’nın konumunu öğrenelim.",
+          "title": "Asteroit ve Asteroit Kuşağı",
           "media": [
             {
               "id": "media_23_asteroit",
@@ -1309,9 +1307,7 @@
           "type": "content",
           "layout": "solar_goktasi_tanimlar",
           "tag": "TANIMLAR",
-          "kicker": "GÖK CİSİMLERİ SÜRECİ",
-          "title": "2. Göktaşı - Meteor - Meteorit - Meteor Çukuru",
-          "lead": "Gök cisimlerinin uzaydan yeryüzüne kadar aldıkları farklı isimleri öğrenelim:",
+          "title": "Göktaşı, Meteor, Meteorit, Meteor Çukuru",
           "definitions": [
             {
               "id": "def_goktasi",
@@ -1390,9 +1386,7 @@
           "type": "content",
           "layout": "solar_atmosfer_semasi",
           "tag": "GEÇİŞ ŞEMASI",
-          "kicker": "DÜNYA ATMOSFERİ",
           "title": "Göktaşı → Meteor → Meteorit",
-          "lead": "Bir gök taşının Dünya atmosferine girişinden yeryüzüne inişine kadar geçirdiği aşamalar:",
           "media": [
             {
               "id": "media_25_sema",

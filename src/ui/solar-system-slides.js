@@ -501,7 +501,7 @@ export function renderSolarSlide(slide, view, { interactions, activeInteractions
       slideArticle.className = "board-slide board-slide-interactive slide-solar-asteroit-kusak";
       slideArticle.innerHTML = `
         <header class="solar-slide-header">
-          <span class="solar-slide-kicker">${escapeHtml(slide.kicker ?? "ASTEROİT KAVRAMI")}</span>
+          ${slide.kicker ? `<span class="solar-slide-kicker">${escapeHtml(slide.kicker)}</span>` : ""}
           <h1 class="solar-slide-title">${escapeHtml(slide.title)}</h1>
           ${slide.lead ? `<p class="solar-slide-lead">${escapeHtml(slide.lead)}</p>` : ""}
         </header>
@@ -525,29 +525,34 @@ export function renderSolarSlide(slide, view, { interactions, activeInteractions
 
     case "solar_goktasi_tanimlar": {
       const slideArticle = document.createElement("article");
-      slideArticle.className = "board-slide board-slide-interactive slide-solar-goktasi-tanimlar";
+      slideArticle.className = "board-slide slide-solar-goktasi-tanimlar";
       slideArticle.innerHTML = `
         <header class="solar-slide-header">
-          <span class="solar-slide-kicker">${escapeHtml(slide.kicker ?? "TANIMLAR")}</span>
+          ${slide.kicker ? `<span class="solar-slide-kicker">${escapeHtml(slide.kicker)}</span>` : ""}
           <h1 class="solar-slide-title">${escapeHtml(slide.title)}</h1>
           ${slide.lead ? `<p class="solar-slide-lead">${escapeHtml(slide.lead)}</p>` : ""}
         </header>
-        <div class="solar-definitions-grid">
+        <div class="solar-concept-grid">
         </div>
       `;
-      const defGrid = slideArticle.querySelector(".solar-definitions-grid");
-      for (let i = 0; i < (slide.definitions ?? []).length; i++) {
-        const def = slide.definitions[i];
-        const dCard = document.createElement("div");
-        dCard.className = "solar-def-card";
-        dCard.innerHTML = `
-          <div class="solar-def-badge">${escapeHtml(def.title)}</div>
-          <div class="solar-def-interaction-slot"></div>
+      const conceptVisual = (defId) => {
+        const visualMap = {
+          def_goktasi: "🪨",
+          def_meteor: "🌠",
+          def_meteorit: "☄️",
+          def_cukur: "🕳️"
+        };
+        return visualMap[defId] ?? "☄️";
+      };
+      const conceptGrid = slideArticle.querySelector(".solar-concept-grid");
+      for (const def of slide.definitions ?? []) {
+        const cCard = document.createElement("div");
+        cCard.className = "solar-concept-card";
+        cCard.innerHTML = `
+          <div class="solar-concept-visual" role="img" aria-label="${escapeHtml(def.title)}"><span class="solar-concept-emoji">${conceptVisual(def.id)}</span></div>
+          <div class="solar-concept-label">${escapeHtml(def.title)}</div>
         `;
-        const slot = dCard.querySelector(".solar-def-interaction-slot");
-        const interaction = slide.interactions?.find(item => item.id === def.interactionId) ?? slide.interactions?.[i];
-        if (interaction) mountInteraction(interaction, slot, interactions, activeInteractions);
-        defGrid.appendChild(dCard);
+        conceptGrid.appendChild(cCard);
       }
       view.slideContent.replaceChildren(slideArticle);
       return true;
@@ -558,7 +563,7 @@ export function renderSolarSlide(slide, view, { interactions, activeInteractions
       slideArticle.className = "board-slide board-slide-interactive slide-solar-atmosfer-semasi";
       slideArticle.innerHTML = `
         <header class="solar-slide-header">
-          <span class="solar-slide-kicker">${escapeHtml(slide.kicker ?? "GEÇİŞ ŞEMASI")}</span>
+          ${slide.kicker ? `<span class="solar-slide-kicker">${escapeHtml(slide.kicker)}</span>` : ""}
           <h1 class="solar-slide-title">${escapeHtml(slide.title)}</h1>
           ${slide.lead ? `<p class="solar-slide-lead">${escapeHtml(slide.lead)}</p>` : ""}
         </header>

@@ -292,7 +292,56 @@ test("6. Sınıf Slayt 26 Oluşum Süreci Okunabilirlik ve Regresyon Doğrulamas
   // CSS okunabilirlik kontrolleri
   const css = await readFile("src/styles/app.css", "utf8");
   assert.ok(css.includes(".slide-solar-olusum-sureci"), "Slayt 26'ya özel CSS kuralları mevcut olmalıdır");
-  assert.ok(css.includes("clamp(24px, 1.8cqi, 36px)"), "Kutu başlıkları font-size tanımlı olmalıdır");
-  assert.ok(css.includes("clamp(22px, 1.6cqi, 34px)"), "Açıklama metinleri font-size tanımlı olmalıdır");
+  assert.match(css, /\.slide-solar-olusum-sureci \.solar-step-title \{[\s\S]*?font-size: 40px;/, "Kutu başlıkları 40px olmalıdır");
+  assert.match(css, /\.slide-solar-olusum-sureci \.solar-step-desc \{[\s\S]*?font-size: 40px;/, "Açıklama metinleri 40px olmalıdır");
+  assert.match(css, /\.slide-solar-olusum-sureci \.reveal-fill-sentence \{[\s\S]*?font-size: 40px;/, "Etkileşim cümlesi 40px olmalıdır");
   assert.ok(css.includes("clamp(22px, 1.5cqi, 32px)"), "Numara rozetleri font-size tanımlı olmalıdır");
+});
+
+test("6. Sınıf Slayt 23-25 Revize Doğrulaması (Sadeleşme, 40px Tipografi, 4 Kavram Kartı)", async () => {
+  const lessonData = JSON.parse(await readFile("data/lessons/gunes-sistemi.json", "utf8"));
+  const slides = lessonData.stages.flatMap((s) => s.slides || []);
+
+  // Slayt 23: yalnızca asteroit odağı
+  const slide23 = slides.find((s) => s.id === "slide_23_asteroit_ve_kusagi");
+  assert.ok(slide23, "Slayt 23 mevcut olmalıdır");
+  assert.equal(slide23.layout, "solar_asteroit_kusak");
+  assert.equal(slide23.title, "Asteroit ve Asteroit Kuşağı");
+  assert.equal(slide23.kicker, undefined, "Kicker metni kaldırılmış olmalıdır");
+  assert.equal(slide23.lead, undefined, "Yardımcı açıklama kaldırılmış olmalıdır");
+  assert.ok(slide23.media?.[0]?.src, "Asteroit görseli korunmalıdır");
+  assert.equal(slide23.interactions?.length, 2, "2 etkileşimli yazı korunmalıdır");
+
+  // Slayt 24: 4 kavram kartı
+  const slide24 = slides.find((s) => s.id === "slide_24_goktasi_meteor_meteorit_cukur");
+  assert.ok(slide24, "Slayt 24 mevcut olmalıdır");
+  assert.equal(slide24.layout, "solar_goktasi_tanimlar");
+  assert.equal(slide24.title, "Göktaşı, Meteor, Meteorit, Meteor Çukuru");
+  assert.equal(slide24.kicker, undefined, "Kicker metni kaldırılmış olmalıdır");
+  assert.equal(slide24.lead, undefined, "Yardımcı açıklama kaldırılmış olmalıdır");
+  assert.deepEqual(slide24.definitions?.map((d) => d.title), ["Göktaşı", "Meteor", "Meteorit", "Meteor Çukuru"]);
+
+  // Slayt 25: başlık korunur, küçük yazılar temizlenir
+  const slide25 = slides.find((s) => s.id === "slide_25_goktasi_meteor_meteorit_sema");
+  assert.ok(slide25, "Slayt 25 mevcut olmalıdır");
+  assert.equal(slide25.layout, "solar_atmosfer_semasi");
+  assert.equal(slide25.title, "Göktaşı → Meteor → Meteorit");
+  assert.equal(slide25.kicker, undefined, "Kicker metni kaldırılmış olmalıdır");
+  assert.equal(slide25.lead, undefined, "Yardımcı açıklama kaldırılmış olmalıdır");
+  assert.ok(slide25.media?.[0]?.src, "Süreç görseli korunmalıdır");
+  assert.ok(slide25.interactions?.length > 0, "Etkileşimli yazı korunmalıdır");
+
+  // Renderer kontrolleri
+  const renderer = await readFile("src/ui/solar-system-slides.js", "utf8");
+  assert.ok(!renderer.includes('slide.kicker ?? "ASTEROİT KAVRAMI"'), "Slayt 23 kicker fallback'i kaldırılmış olmalıdır");
+  assert.ok(!renderer.includes('slide.kicker ?? "TANIMLAR"'), "Slayt 24 kicker fallback'i kaldırılmış olmalıdır");
+  assert.ok(!renderer.includes('slide.kicker ?? "GEÇİŞ ŞEMASI"'), "Slayt 25 kicker fallback'i kaldırılmış olmalıdır");
+  assert.ok(renderer.includes("solar-concept-grid"), "Slayt 24 kavram kart ızgarası basılmalıdır");
+  assert.ok(renderer.includes("solar-concept-label"), "Slayt 24 kavram etiketi basılmalıdır");
+
+  // CSS tipografi kontrolleri (40px standardı)
+  const css = await readFile("src/styles/app.css", "utf8");
+  assert.match(css, /\.slide-solar-asteroit-kusak \.reveal-fill-sentence \{[\s\S]*?font-size: 40px;[\s\S]*?font-weight: 700;/, "Slayt 23 etkileşimli metni 40px bold olmalıdır");
+  assert.match(css, /\.slide-solar-goktasi-tanimlar \.solar-concept-label \{[\s\S]*?font-size: 40px;[\s\S]*?font-weight: 400;/, "Slayt 24 kart yazıları 40px normal olmalıdır");
+  assert.match(css, /\.slide-solar-atmosfer-semasi \.reveal-fill-sentence \{[\s\S]*?font-size: 40px;/, "Slayt 25 etkileşimli metni 40px olmalıdır");
 });

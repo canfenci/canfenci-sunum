@@ -5824,6 +5824,24 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   box-shadow: 0 4px 12px rgba(11, 78, 162, 0.05);
 }
 
+/* Slayt 23 revize: büyük görsel + 40px bold etkileşim (yalnızca bu scope) */
+.slide-solar-asteroit-kusak .solar-asteroit-stage {
+  grid-template-columns: 1.12fr 1fr;
+}
+
+.slide-solar-asteroit-kusak .solar-asteroit-visual {
+  max-height: 560px;
+}
+
+.slide-solar-asteroit-kusak .reveal-fill-sentence {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.slide-solar-asteroit-kusak .blank-slot-answer {
+  font-size: 40px;
+}
+
 /* Slayt 24: Göktaşı Tanımlar */
 .solar-definitions-grid {
   display: grid;
@@ -5860,6 +5878,65 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   margin-top: auto;
 }
 
+/* Slayt 24 revize: 4 görsel kavram kartı, 2x2 grid (yalnızca bu scope) */
+.slide-solar-goktasi-tanimlar .solar-concept-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 20px;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.slide-solar-goktasi-tanimlar .solar-concept-card {
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+}
+
+.slide-solar-goktasi-tanimlar .solar-concept-visual {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  place-items: center;
+  padding: 12px;
+  background: radial-gradient(circle at 50% 38%, #e0f2fe 0%, #bae6fd 48%, #7dd3fc 100%);
+}
+
+.slide-solar-goktasi-tanimlar .solar-concept-card:nth-child(2) .solar-concept-visual {
+  background: radial-gradient(circle at 50% 38%, #fef9c3 0%, #fde047 48%, #eab308 100%);
+}
+
+.slide-solar-goktasi-tanimlar .solar-concept-card:nth-child(3) .solar-concept-visual {
+  background: radial-gradient(circle at 50% 38%, #ffedd5 0%, #fdba74 48%, #f97316 100%);
+}
+
+.slide-solar-goktasi-tanimlar .solar-concept-card:nth-child(4) .solar-concept-visual {
+  background: radial-gradient(circle at 50% 38%, #e2e8f0 0%, #94a3b8 55%, #64748b 100%);
+}
+
+.slide-solar-goktasi-tanimlar .solar-concept-emoji {
+  font-size: 120px;
+  line-height: 1;
+}
+
+.slide-solar-goktasi-tanimlar .solar-concept-label {
+  font-size: 40px;
+  font-weight: 400;
+  color: #0f172a;
+  text-align: center;
+  line-height: 1.2;
+  padding: 10px 12px 14px;
+  flex: 0 0 auto;
+}
+
 /* Slayt 25: Atmosfer Şeması */
 .solar-atmosfer-stage {
   flex: 1;
@@ -5884,6 +5961,15 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   object-fit: contain;
   border-radius: 16px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* Slayt 25 revize: 40px etkileşim metni (yalnızca bu scope) */
+.slide-solar-atmosfer-semasi .reveal-fill-sentence {
+  font-size: 40px;
+}
+
+.slide-solar-atmosfer-semasi .blank-slot-answer {
+  font-size: 40px;
 }
 
 /* Slayt 26: Oluşum Süreci */
@@ -6003,6 +6089,31 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   justify-content: center;
   flex: 0 0 auto;
   align-self: center;
+}
+
+/* Slayt 26 revize: 40px yazılar + orantılı büyük görsel (yalnızca bu scope) */
+.slide-solar-olusum-sureci .solar-flow-diagram {
+  max-height: clamp(200px, 30vh, 330px);
+}
+
+.slide-solar-olusum-sureci .solar-flow-img {
+  max-width: clamp(640px, 62cqi, 1020px);
+}
+
+.slide-solar-olusum-sureci .solar-step-title {
+  font-size: 40px;
+}
+
+.slide-solar-olusum-sureci .solar-step-desc {
+  font-size: 40px;
+}
+
+.slide-solar-olusum-sureci .reveal-fill-sentence {
+  font-size: 40px;
+}
+
+.slide-solar-olusum-sureci .blank-slot-answer {
+  font-size: 40px;
 }
 
 /* ==========================================================================
