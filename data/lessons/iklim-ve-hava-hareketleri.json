@@ -264,34 +264,48 @@
         {
           "id": "slide_6_basinc_nasil_olusur",
           "type": "content",
-          "layout": "climate_pressure_reveal",
-          "tag": "BASINÇ NASIL OLUŞUR?",
-          "title": "BASINÇ NASIL OLUŞUR?",
-          "scenes": [
+          "layout": "climate_pressure_notebook",
+          "tag": "BASINÇ OLUŞUMU",
+          "title": "BASINÇ OLUŞUMU",
+          "cards": [
             {
               "title": "ALÇAK BASINÇ",
-              "image": "./assets/images/iklim-ve-hava-hareketleri/05-alcak-basinc.png",
-              "tone": "warm"
+              "tone": "warm",
+              "lines": [
+                "Isınan hava genleşir.",
+                "Yoğunluğu azalır.",
+                "Yükselir.",
+                "Alçak basınç oluşur."
+              ]
             },
             {
               "title": "YÜKSEK BASINÇ",
-              "image": "./assets/images/iklim-ve-hava-hareketleri/05-yuksek-basinc.png",
-              "tone": "cool"
-            }
-          ],
-          "steps": [
-            "Hava ısınır / soğur",
-            "Yoğunluk değişir",
-            "Hava yükselir / alçalır",
-            "Alçak / yüksek basınç oluşur",
-            "Bulutlu / açık hava görülür"
-          ],
-          "interactions": [
+              "tone": "cool",
+              "lines": [
+                "Soğuyan hava yoğunlaşır.",
+                "Yoğunluğu artar.",
+                "Alçalır.",
+                "Yüksek basınç oluşur."
+              ]
+            },
             {
-              "id": "interaction_slide_6_progressive_reveal",
-              "type": "progressive_reveal"
+              "title": "SICAKLIK / BASINÇ",
+              "tone": "turquoise",
+              "lines": [
+                "Sıcaklık ↑ → Basınç ↓",
+                "Sıcaklık ↓ → Basınç ↑"
+              ]
+            },
+            {
+              "title": "HAVA HAREKETİ",
+              "tone": "slate",
+              "lines": [
+                "Alçak basınç = yükselen hava",
+                "Yüksek basınç = alçalan hava"
+              ]
             }
-          ]
+          ],
+          "interactions": []
         }
       ]
     },

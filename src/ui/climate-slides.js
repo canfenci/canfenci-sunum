@@ -222,6 +222,25 @@ export function renderClimateSlide(slide, view, { interactions, activeInteractio
       return true;
     }
 
+    case "climate_pressure_notebook": {
+      const cards = slide.cards ?? [];
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-climate-pressure-notebook";
+      slideArticle.innerHTML = `
+        ${climateHeader(slide.title ?? "BASINÇ OLUŞUMU", true)}
+        <section class="climate-pressure-notebook-grid" aria-label="Basınç oluşumu özeti">
+          ${cards.map((card) => `
+            <article class="climate-pressure-notebook-card climate-pressure-note-${escapeHtml(card.tone ?? "slate")}">
+              <h2>${escapeHtml(card.title ?? "")}</h2>
+              <div>${(card.lines ?? []).map((line) => `<p>${escapeHtml(line)}</p>`).join("")}</div>
+            </article>
+          `).join("")}
+        </section>
+      `;
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
     case "climate_pressure_reveal": {
       const scenes = slide.scenes ?? [];
       const steps = slide.steps ?? [];

@@ -14,7 +14,7 @@ test("8. Sınıf İklim ve Hava Hareketleri 25 slaytlık öğretim akışı", as
   assert.deepEqual(slides.slice(0, 3).map((slide) => slide.layout), ["climate_cover", "climate_atmosphere", "climate_weather_events"]);
 
   const expectedLayouts = [
-    "climate_tool_match", "climate_notebook", "climate_pressure_reveal", "climate_notebook",
+    "climate_tool_match", "climate_notebook", "climate_pressure_notebook", "climate_notebook",
     "climate_pressure_toggle", "climate_notebook", "climate_wind_predict", "climate_notebook",
     "climate_wind_application", "climate_breeze_toggle", "climate_breeze_toggle", "climate_notebook",
     "climate_precipitation_classify", "climate_notebook", "climate_climate_hero", "climate_notebook",
@@ -32,7 +32,7 @@ test("8. Sınıf İklim ve Hava Hareketleri 25 slaytlık öğretim akışı", as
   }
 
   const interactiveTypes = new Map([
-    [4, "match"], [6, "progressive_reveal"], [8, "toggle"], [10, "progressive_reveal"],
+    [4, "match"], [8, "toggle"], [10, "progressive_reveal"],
     [13, "toggle"], [14, "toggle"], [16, "classify"], [20, "selector"],
     [21, "binary_classify"], [23, "progressive_reveal"], [24, "progressive_reveal"]
   ]);
@@ -44,9 +44,11 @@ test("8. Sınıf İklim ve Hava Hareketleri 25 slaytlık öğretim akışı", as
   assert.deepEqual(toolSlide.tools.map((tool) => tool.measure), ["Sıcaklık", "Nem", "Basınç", "Rüzgâr"]);
   for (const tool of toolSlide.tools) await access(tool.image.replace(/^\.\//, ""));
 
-  const pressureReveal = slides[5];
-  assert.equal(pressureReveal.steps.length, 5);
-  for (const scene of pressureReveal.scenes) await access(scene.image.replace(/^\.\//, ""));
+  const pressureNotebook = slides[5];
+  assert.equal(pressureNotebook.title, "BASINÇ OLUŞUMU");
+  assert.deepEqual(pressureNotebook.interactions, []);
+  assert.deepEqual(pressureNotebook.cards.map((card) => card.title), ["ALÇAK BASINÇ", "YÜKSEK BASINÇ", "SICAKLIK / BASINÇ", "HAVA HAREKETİ"]);
+  assert.ok(pressureNotebook.cards.every((card) => card.lines.length >= 2));
 
   const pressureToggle = slides[7];
   assert.deepEqual(pressureToggle.modes.map((mode) => mode.title), ["ALÇAK BASINÇ", "YÜKSEK BASINÇ"]);
@@ -89,6 +91,8 @@ test("8. Sınıf İklim ve Hava Hareketleri 25 slaytlık öğretim akışı", as
   }
 
   assert.ok(css.includes(".climate-notebook-badge"), "Notebook slaytlarında ortak badge bulunmalıdır");
+  assert.ok(css.includes(".climate-pressure-notebook-grid"), "Slayt 6 özel 2x2 notebook gridi bulunmalıdır");
+  assert.ok(css.includes("grid-template-rows: repeat(2, minmax(0, 1fr))"), "Slayt 6 iki eşit satır kullanmalıdır");
   assert.ok(css.includes("font-size: 40px"), "Notebook ana metinleri 40px olmalıdır");
   assert.ok(css.includes(".climate-segmented-control"), "Toggle slaytlarında segmented control bulunmalıdır");
   assert.ok(css.includes("transition: 280ms ease"), "Etkileşim animasyonları 200-350ms aralığında olmalıdır");

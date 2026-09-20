@@ -2683,6 +2683,7 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 /* 8. Sınıf İklim ve Hava Hareketleri: 25 slaytlık öğretim akışı */
 .slide-workspace:has(.slide-climate-tool-match) .slide-content,
 .slide-workspace:has(.slide-climate-notebook) .slide-content,
+.slide-workspace:has(.slide-climate-pressure-notebook) .slide-content,
 .slide-workspace:has(.slide-climate-pressure-reveal) .slide-content,
 .slide-workspace:has(.slide-climate-pressure-toggle) .slide-content,
 .slide-workspace:has(.slide-climate-wind-predict) .slide-content,
@@ -2696,6 +2697,7 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 
 .slide-climate-tool-match,
 .slide-climate-notebook,
+.slide-climate-pressure-notebook,
 .slide-climate-pressure-reveal,
 .slide-climate-pressure-toggle,
 .slide-climate-wind-predict,
@@ -2815,6 +2817,64 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 .climate-note-dew { background: #e6f7f5; } .climate-note-fog { background: #f2f4f7; }
 .climate-notebook-note { align-self: end; padding: 18px 28px; border-radius: 16px; background: #eef4f8; font-size: 30px; font-weight: 700; line-height: 1.1; }
 .slide-climate-notebook:has(.climate-notebook-note) { grid-template-rows: auto minmax(0, 1fr) auto; }
+
+/* Slayt 6: Basınç oluşumu notebook özeti */
+.slide-climate-pressure-notebook {
+  grid-template-rows: auto minmax(0, 1fr);
+  background: #fcfdff;
+}
+
+.climate-pressure-notebook-grid {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 32px;
+}
+
+.climate-pressure-notebook-card {
+  min-width: 0;
+  min-height: 0;
+  padding: 34px 42px;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 24px;
+  overflow: hidden;
+  border: 2px solid rgba(148, 163, 184, 0.24);
+  border-radius: 24px;
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.06);
+}
+
+.climate-pressure-notebook-card h2 {
+  margin: 0;
+  color: #d8362a;
+  font-size: 42px;
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+
+.climate-pressure-notebook-card > div {
+  min-width: 0;
+  display: grid;
+  align-content: center;
+  gap: 14px;
+}
+
+.climate-pressure-notebook-card p {
+  margin: 0;
+  color: #111827;
+  font-size: 40px;
+  font-weight: 850;
+  line-height: 1.08;
+}
+
+.climate-pressure-note-warm { background: #fff0e9; }
+.climate-pressure-note-cool { background: #edf3ff; }
+.climate-pressure-note-turquoise { background: #e6f7f5; }
+.climate-pressure-note-slate { background: #edf2f6; }
 
 /* Progressive reveal */
 .slide-climate-pressure-reveal { grid-template-rows: auto minmax(0, 1fr) 118px 70px; }
