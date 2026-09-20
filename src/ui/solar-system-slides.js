@@ -427,7 +427,7 @@ export function renderSolarSlide(slide, view, { interactions, activeInteractions
         <div class="solar-note-box">
           <div class="solar-note-icon">${iconSvg(n.icon)}</div>
           <div class="solar-note-content">
-            <span class="solar-note-tag">Kural ${i + 1}</span>
+            <span class="solar-note-tag">Not ${i + 1}</span>
             <p class="solar-note-text">${escapeHtml(n.text)}</p>
           </div>
         </div>
@@ -435,7 +435,7 @@ export function renderSolarSlide(slide, view, { interactions, activeInteractions
 
       slideArticle.innerHTML = `
         <header class="solar-slide-header">
-          <span class="solar-slide-kicker">${escapeHtml(slide.kicker ?? "DİKKAT EDELİM")}</span>
+          ${slide.kicker ? `<span class="solar-slide-kicker">${escapeHtml(slide.kicker)}</span>` : ""}
           <h1 class="solar-slide-title">${escapeHtml(slide.title)}</h1>
           ${slide.lead ? `<p class="solar-slide-lead">${escapeHtml(slide.lead)}</p>` : ""}
         </header>

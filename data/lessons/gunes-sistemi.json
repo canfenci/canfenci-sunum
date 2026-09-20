@@ -1134,9 +1134,7 @@
           "type": "content",
           "layout": "solar_aklimizda_bulunsun",
           "tag": "ÖZEL NOTLAR",
-          "kicker": "DİKKAT EDELİM",
           "title": "Aklımızda Bulunsun!",
-          "lead": "Sınavlarda ve soru çözümlerinde karşımıza en sık çıkan kritik bilgiler:",
           "notes": [
             {
               "icon": "eye",
@@ -1192,7 +1190,7 @@
             },
             {
               "planet": "Dünya",
-              "satellite": "Var (1)",
+              "satellite": "Var",
               "ring": "Yok",
               "terrestrial": "✓",
               "gas": "—",
@@ -1201,7 +1199,7 @@
             },
             {
               "planet": "Mars",
-              "satellite": "Var (2)",
+              "satellite": "Var",
               "ring": "Yok",
               "terrestrial": "✓",
               "gas": "—",
@@ -1210,7 +1208,7 @@
             },
             {
               "planet": "Jüpiter",
-              "satellite": "Var (95)",
+              "satellite": "Var",
               "ring": "Var",
               "terrestrial": "—",
               "gas": "✓",
@@ -1219,7 +1217,7 @@
             },
             {
               "planet": "Satürn",
-              "satellite": "Var (146)",
+              "satellite": "Var",
               "ring": "Var",
               "terrestrial": "—",
               "gas": "✓",
@@ -1228,7 +1226,7 @@
             },
             {
               "planet": "Uranüs",
-              "satellite": "Var (28)",
+              "satellite": "Var",
               "ring": "Var",
               "terrestrial": "—",
               "gas": "✓",
@@ -1237,7 +1235,7 @@
             },
             {
               "planet": "Neptün",
-              "satellite": "Var (16)",
+              "satellite": "Var",
               "ring": "Var",
               "terrestrial": "—",
               "gas": "✓",

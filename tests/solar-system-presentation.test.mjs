@@ -217,7 +217,9 @@ test("6. Sınıf Slayt 21 Aklımızda Bulunsun Okunabilirlik ve Slayt 20/22 Regr
   const slide21 = slides.find((s) => s.id === "slide_21_aklimizda_bulunsun");
   assert.ok(slide21, "Slayt 21 mevcut olmalıdır");
   assert.equal(slide21.layout, "solar_aklimizda_bulunsun");
-  assert.equal(slide21.notes.length, 6, "Tam olarak 6 kural notu bulunmalıdır");
+  assert.equal(slide21.notes.length, 6, "Tam olarak 6 not bulunmalıdır");
+  assert.equal(slide21.kicker, undefined, "DİKKAT EDELİM kicker metni kaldırılmış olmalıdır");
+  assert.equal(slide21.lead, undefined, "Açıklama cümlesi kaldırılmış olmalıdır");
 
   // Slayt 22 regresyon kontrolü
   const slide22 = slides.find((s) => s.id === "slide_22_gezegen_karsilastirma_tablosu");
@@ -226,10 +228,16 @@ test("6. Sınıf Slayt 21 Aklımızda Bulunsun Okunabilirlik ve Slayt 20/22 Regr
 
   // CSS okunabilirlik kontrolü
   const css = await readFile("src/styles/app.css", "utf8");
-  assert.ok(css.includes(".solar-note-tag"), ".solar-note-tag CSS kuralı mevcut olmalıdır");
-  assert.ok(css.includes("clamp(16px, 1.1cqi, 22px)"), "Kural etiketleri font-size tanımlı olmalıdır");
-  assert.ok(css.includes(".solar-note-text"), ".solar-note-text CSS kuralı mevcut olmalıdır");
-  assert.ok(css.includes("clamp(20px, 1.45cqi, 28px)"), "Kural açıklamaları font-size tanımlı olmalıdır");
+  assert.ok(css.includes(".slide-solar-aklimizda-bulunsun .solar-slide-title"), "Slayt 21 başlık CSS kuralı mevcut olmalıdır");
+  assert.match(css, /\.slide-solar-aklimizda-bulunsun \.solar-slide-title \{[\s\S]*?font-size: 48px;[\s\S]*?font-weight: 700;/, "Başlık 48px bold olmalıdır");
+  assert.match(css, /\.slide-solar-aklimizda-bulunsun \.solar-note-tag \{[\s\S]*?font-size: 40px;[\s\S]*?font-weight: 700;/, "Not etiketleri 40px bold olmalıdır");
+  assert.match(css, /\.slide-solar-aklimizda-bulunsun \.solar-note-text \{[\s\S]*?font-size: 40px;[\s\S]*?font-weight: 400;/, "Not açıklamaları 40px normal olmalıdır");
+
+  // Renderer kontrolü: Kural yerine Not, kicker fallback'siz koşullu
+  const renderer = await readFile("src/ui/solar-system-slides.js", "utf8");
+  assert.ok(renderer.includes("Not ${i + 1}"), "Not etiketleri 'Not' olarak basılmalıdır");
+  assert.ok(!renderer.includes("Kural ${i + 1}"), "Slayt 21'de 'Kural' etiketi kalmamalıdır");
+  assert.ok(!renderer.includes('slide.kicker ?? "DİKKAT EDELİM"'), "DİKKAT EDELİM fallback'i kaldırılmış olmalıdır");
 });
 
 test("6. Sınıf Slayt 22 Gezegen Karşılaştırma Tablosu Okunabilirlik ve Slayt 21/23 Regresyon Doğrulaması", async () => {

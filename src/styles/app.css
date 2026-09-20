@@ -5671,6 +5671,22 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   line-height: 1.34;
 }
 
+/* Slayt 21 revize: tipografi (yalnızca bu scope; 1920px fixed canvas'ta sabit px, scale ile küçülür) */
+.slide-solar-aklimizda-bulunsun .solar-slide-title {
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.slide-solar-aklimizda-bulunsun .solar-note-tag {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.slide-solar-aklimizda-bulunsun .solar-note-text {
+  font-size: 40px;
+  font-weight: 400;
+}
+
 /* Slayt 22: Karşılaştırma Tablosu */
 .slide-solar-karsilastirma-tablosu .solar-slide-header {
   margin-bottom: clamp(0.2rem, 0.45vh, 0.4rem);
