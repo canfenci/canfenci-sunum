@@ -5066,11 +5066,22 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 .slide-solar-planet-card {
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: clamp(1rem, 2vh, 1.8rem) clamp(1.5rem, 2.5vw, 2.8rem);
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) 216px;
+  gap: 20px;
+  padding: 38px 58px;
   box-sizing: border-box;
+  overflow: hidden;
+  background: #fbfdff;
+}
+
+.slide-solar-planet-card .solar-slide-header {
+  position: relative;
+  min-width: 0;
+  margin: 0;
+  padding-right: 94px;
 }
 
 .solar-planet-meta {
@@ -5080,84 +5091,169 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 }
 
 .solar-planet-category {
-  font-size: clamp(13px, 0.95cqi, 15px);
+  font-size: 32px;
   font-weight: 700;
   color: #0284c7;
   background: #f0f9ff;
   border: 1px solid #bae6fd;
-  padding: 0.2rem 0.6rem;
+  padding: 5px 14px;
   border-radius: 8px;
 }
 
-.solar-planet-stage {
-  flex: 1;
+.solar-planet-notebook-badge {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  border: 2px solid #d7e2ec;
+  border-radius: 16px;
+  background: #f7fafc;
+  font-size: 36px;
+  line-height: 1;
+}
+
+.solar-planet-teaching-layout {
+  min-width: 0;
   min-height: 0;
   display: grid;
-  grid-template-columns: 56% 44%;
-  gap: clamp(1.5rem, 2.5cqi, 2.8rem);
-  align-items: center;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
+  gap: 30px;
 }
 
-.solar-planet-info-col {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-  gap: clamp(0.6rem, 1.2vh, 1rem);
+.solar-planet-core-panel {
+  min-width: 0;
+  min-height: 0;
+  padding: 24px 28px;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 18px;
+  overflow: hidden;
+  border: 2px solid #dce6ef;
+  border-radius: 24px;
+  background: #f6f9fc;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
 }
 
-.solar-facts-list {
-  list-style: none;
-  padding: 0;
+.solar-planet-core-panel > h2,
+.solar-planet-extra-section > h2 {
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(0.5rem, 1vh, 0.85rem);
+  color: #0b4ea2;
+  font-size: 32px;
+  font-weight: 850;
+  line-height: 1;
+  letter-spacing: 0;
 }
 
-.solar-fact-item {
-  display: flex;
-  align-items: flex-start;
-  gap: clamp(0.65rem, 1cqi, 0.95rem);
-  background: white;
-  border: 1.5px solid #e2e8f0;
-  border-radius: 14px;
-  padding: clamp(0.5rem, 0.9cqi, 0.85rem) clamp(0.85rem, 1.3cqi, 1.25rem);
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+.solar-planet-core-grid {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 16px;
 }
 
-.solar-fact-dot {
-  width: clamp(9px, 0.7cqi, 12px);
-  height: clamp(9px, 0.7cqi, 12px);
-  border-radius: 50%;
-  background: var(--blue, #0284c7);
-  margin-top: clamp(6px, 0.5cqi, 9px);
-  flex: 0 0 auto;
-  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2);
+.solar-planet-core-card {
+  min-width: 0;
+  min-height: 0;
+  padding: 16px 20px;
+  display: grid;
+  grid-template-rows: auto minmax(58px, 1fr);
+  align-items: center;
+  gap: 10px;
+  overflow: hidden;
+  border: 1.5px solid #d5e2ed;
+  border-radius: 18px;
+  background: #fff;
 }
 
-.solar-fact-text {
-  font-size: clamp(21px, 1.55cqi, 30px);
-  font-weight: 650;
-  color: #1e293b;
-  line-height: 1.38;
+.solar-planet-core-card h3 {
+  margin: 0;
+  color: #334155;
+  font-size: 32px;
+  font-weight: 750;
+  line-height: 1;
+  letter-spacing: 0;
 }
 
-.solar-planet-interaction-card {
-  background: #f0f7ff;
-  border: 1.5px solid #bfdbfe;
-  border-radius: 16px;
-  padding: clamp(0.7rem, 1.2vh, 1rem) clamp(1rem, 1.6cqi, 1.4rem);
-  box-shadow: 0 4px 14px rgba(11, 78, 162, 0.05);
-}
-
-.solar-planet-visual-col {
-  position: relative;
+.solar-planet-core-slot,
+.solar-planet-core-slot .interaction-slot,
+.solar-planet-core-slot .reveal-fill-sentence {
+  width: 100%;
   height: 100%;
-  max-height: 480px;
+  min-width: 0;
+  display: grid;
+  place-items: center;
+}
+
+.solar-planet-core-slot .reveal-fill-blank,
+.solar-planet-core-slot .reveal-fill-blank.size-short,
+.solar-planet-core-slot .reveal-fill-blank.size-medium,
+.solar-planet-core-slot .reveal-fill-blank.size-long {
+  width: 100%;
+  min-width: 0;
+  height: 62px;
+  margin: 0;
+  padding: 0 14px;
+  background: #eef5fb;
+}
+
+.solar-planet-core-slot .blank-slot-answer {
+  max-width: 100%;
+  overflow: hidden;
+  color: #0f172a;
+  font-size: 40px;
+  font-weight: 850;
+  line-height: 1;
+  text-overflow: ellipsis;
+}
+
+.solar-planet-core-slot .reveal-fill-blank.is-revealed {
+  background: #e6f2ff;
+}
+
+.solar-planet-core-slot .reveal-fill-blank.is-revealed .blank-slot-answer {
+  color: #0b4ea2;
+}
+
+.solar-planet-highlights {
+  min-width: 0;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 14px;
+}
+
+.solar-planet-highlights p {
+  min-width: 0;
+  margin: 0;
+  padding: 16px 20px;
+  display: grid;
+  align-items: center;
+  border-left: 6px solid #0b4ea2;
+  border-radius: 14px;
+  background: #eaf3fb;
+  color: #111827;
+  font-size: 40px;
+  font-weight: 850;
+  line-height: 1.08;
+}
+
+.solar-planet-visual-panel {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  border: 2px solid #dce6ef;
+  border-radius: 24px;
+  background: #f2f7fb;
 }
 
 .solar-planet-glow {
@@ -5170,8 +5266,8 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 }
 
 .solar-planet-img {
-  max-height: 95%;
-  max-width: 95%;
+  width: 94%;
+  height: 94%;
   object-fit: contain;
   filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.12));
   z-index: 1;
@@ -5182,6 +5278,51 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   max-height: 90%;
   object-fit: contain;
   transform: scale(1.02);
+}
+
+.solar-planet-extra-section {
+  min-width: 0;
+  min-height: 0;
+  padding: 14px 24px;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 10px;
+  overflow: hidden;
+  border: 2px solid #e2e8f0;
+  border-radius: 24px;
+  background: #f8fafc;
+}
+
+.solar-planet-extra-grid {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 16px;
+}
+
+.solar-planet-extra-grid article {
+  min-width: 0;
+  min-height: 0;
+  padding: 10px 18px;
+  display: grid;
+  align-items: center;
+  overflow: hidden;
+  border: 1.5px solid #dce6ef;
+  border-radius: 16px;
+  background: #eef3f7;
+}
+
+.solar-planet-extra-grid article:nth-child(2) { background: #edf4f8; }
+.solar-planet-extra-grid article:nth-child(3) { background: #f1eff8; }
+
+.solar-planet-extra-grid p {
+  margin: 0;
+  color: #334155;
+  font-size: 34px;
+  font-weight: 650;
+  line-height: 1.12;
 }
 
 /* Slayt 16-18: Karşılaştırma Genel */

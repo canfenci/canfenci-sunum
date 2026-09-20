@@ -368,28 +368,42 @@
               "alt": "Merkür Gezegeni Görseli"
             }
           ],
-          "facts": [
-            "Güneş Sistemi’nin en küçük gezegenidir.",
-            "Uydusu ve halkası yoktur.",
+          "coreFacts": [
+            { "label": "YAPISI", "interactionId": "interaction_slide_8_merkur_yapisi" },
+            { "label": "GÜNEŞ’E YAKINLIK", "interactionId": "interaction_slide_8_merkur_sirasi" },
+            { "label": "UYDU", "interactionId": "interaction_slide_8_merkur_uydu" },
+            { "label": "HALKA", "interactionId": "interaction_slide_8_merkur_halka" }
+          ],
+          "highlights": [
+            "Güneş Sistemi’nin en küçük gezegenidir."
+          ],
+          "extraFacts": [
             "Atmosferi yok denecek kadar incedir; bu yüzden gece ile gündüz arasındaki sıcaklık farkı son derece yüksektir."
           ],
           "interactions": [
             {
-              "id": "interaction_slide_8_merkur",
+              "id": "interaction_slide_8_merkur_yapisi",
               "type": "reveal_fill",
-              "template": "Güneş’e en {blank1} gezegendir. Yapı olarak {blank2} yapıdadır.",
-              "blanks": [
-                {
-                  "id": "blank1",
-                  "answer": "yakın",
-                  "placeholder": "yakın"
-                },
-                {
-                  "id": "blank2",
-                  "answer": "karasal",
-                  "placeholder": "karasal"
-                }
-              ]
+              "template": "{answer}",
+              "blanks": [{ "id": "answer", "answer": "Karasal", "placeholder": "?" }]
+            },
+            {
+              "id": "interaction_slide_8_merkur_sirasi",
+              "type": "reveal_fill",
+              "template": "{answer}",
+              "blanks": [{ "id": "answer", "answer": "1.", "placeholder": "?" }]
+            },
+            {
+              "id": "interaction_slide_8_merkur_uydu",
+              "type": "reveal_fill",
+              "template": "{answer}",
+              "blanks": [{ "id": "answer", "answer": "Yok", "placeholder": "?" }]
+            },
+            {
+              "id": "interaction_slide_8_merkur_halka",
+              "type": "reveal_fill",
+              "template": "{answer}",
+              "blanks": [{ "id": "answer", "answer": "Yok", "placeholder": "?" }]
             }
           ]
         },
@@ -410,29 +424,44 @@
               "alt": "Venüs Gezegeni Görseli"
             }
           ],
-          "facts": [
-            "Güneş Sistemi’nin en sıcak gezegenidir (yaklaşık 460 °C).",
-            "Uydusu ve halkası yoktur. Karasal yapıdadır.",
+          "coreFacts": [
+            { "label": "YAPISI", "interactionId": "interaction_slide_9_venus_yapisi" },
+            { "label": "GÜNEŞ’E YAKINLIK", "interactionId": "interaction_slide_9_venus_sirasi" },
+            { "label": "UYDU", "interactionId": "interaction_slide_9_venus_uydu" },
+            { "label": "HALKA", "interactionId": "interaction_slide_9_venus_halka" }
+          ],
+          "highlights": [
+            "Güneş Sistemi’nin en sıcak gezegenidir (yaklaşık 460 °C)."
+          ],
+          "extraFacts": [
             "Boyut ve kütle olarak Dünya’ya çok yakın olduğu için Dünya’nın ikizi olarak bilinir.",
-            "Diğer gezegenlerin çoğunun aksine doğudan batıya (saat yönünde) döner."
+            "Diğer gezegenlerin çoğunun aksine doğudan batıya (saat yönünde) döner.",
+            "Halk arasında “Çoban Yıldızı” olarak bilinir."
           ],
           "interactions": [
             {
-              "id": "interaction_slide_9_venus",
+              "id": "interaction_slide_9_venus_yapisi",
               "type": "reveal_fill",
-              "template": "Güneş’e en yakın {blank1} gezegendir. Halk arasında “{blank2}” olarak bilinir.",
-              "blanks": [
-                {
-                  "id": "blank1",
-                  "answer": "ikinci",
-                  "placeholder": "ikinci"
-                },
-                {
-                  "id": "blank2",
-                  "answer": "Çoban Yıldızı",
-                  "placeholder": "Çoban Yıldızı"
-                }
-              ]
+              "template": "{answer}",
+              "blanks": [{ "id": "answer", "answer": "Karasal", "placeholder": "?" }]
+            },
+            {
+              "id": "interaction_slide_9_venus_sirasi",
+              "type": "reveal_fill",
+              "template": "{answer}",
+              "blanks": [{ "id": "answer", "answer": "2.", "placeholder": "?" }]
+            },
+            {
+              "id": "interaction_slide_9_venus_uydu",
+              "type": "reveal_fill",
+              "template": "{answer}",
+              "blanks": [{ "id": "answer", "answer": "Yok", "placeholder": "?" }]
+            },
+            {
+              "id": "interaction_slide_9_venus_halka",
+              "type": "reveal_fill",
+              "template": "{answer}",
+              "blanks": [{ "id": "answer", "answer": "Yok", "placeholder": "?" }]
             }
           ]
         },
@@ -453,29 +482,43 @@
               "alt": "Dünya Gezegeni Görseli"
             }
           ],
-          "facts": [
-            "Üzerinde canlı yaşamının olduğu bilinen tek gezegendir.",
-            "Karasal yapıdadır ve karasal gezegenlerin en büyüğüdür.",
-            "Halkası yoktur.",
+          "coreFacts": [
+            { "label": "YAPISI", "interactionId": "interaction_slide_10_dunya_yapisi" },
+            { "label": "GÜNEŞ’E YAKINLIK", "interactionId": "interaction_slide_10_dunya_sirasi" },
+            { "label": "UYDU", "interactionId": "interaction_slide_10_dunya_uydu" },
+            { "label": "HALKA", "interactionId": "interaction_slide_10_dunya_halka" }
+          ],
+          "highlights": [
+            "Üzerinde canlı yaşamının olduğu bilinen tek gezegendir."
+          ],
+          "extraFacts": [
+            "Karasal gezegenlerin en büyüğüdür.",
             "Yüzeyinin yaklaşık %70'i sularla kaplı olduğu için Mavi Gezegen olarak da adlandırılır."
           ],
           "interactions": [
             {
-              "id": "interaction_slide_10_dunya",
+              "id": "interaction_slide_10_dunya_yapisi",
               "type": "reveal_fill",
-              "template": "Güneş’e yakınlık bakımından {blank1} gezegendir. Tek doğal uydusu {blank2}’dır.",
-              "blanks": [
-                {
-                  "id": "blank1",
-                  "answer": "üçüncü",
-                  "placeholder": "üçüncü"
-                },
-                {
-                  "id": "blank2",
-                  "answer": "Ay",
-                  "placeholder": "Ay"
-                }
-              ]
+              "template": "{answer}",
+              "blanks": [{ "id": "answer", "answer": "Karasal", "placeholder": "?" }]
+            },
+            {
+              "id": "interaction_slide_10_dunya_sirasi",
+              "type": "reveal_fill",
+              "template": "{answer}",
+              "blanks": [{ "id": "answer", "answer": "3.", "placeholder": "?" }]
+            },
+            {
+              "id": "interaction_slide_10_dunya_uydu",
+              "type": "reveal_fill",
+              "template": "{answer}",
+              "blanks": [{ "id": "answer", "answer": "Var (1: Ay)", "placeholder": "?" }]
+            },
+            {
+              "id": "interaction_slide_10_dunya_halka",
+              "type": "reveal_fill",
+              "template": "{answer}",
+              "blanks": [{ "id": "answer", "answer": "Yok", "placeholder": "?" }]
             }
           ]
         },
@@ -496,29 +539,43 @@
               "alt": "Mars Gezegeni Görseli"
             }
           ],
-          "facts": [
-            "Karasal yapıdadır.",
-            "Bilinen iki doğal uydusu vardır (Phobos ve Deimos).",
-            "Halkası yoktur.",
+          "coreFacts": [
+            { "label": "YAPISI", "interactionId": "interaction_slide_11_mars_yapisi" },
+            { "label": "GÜNEŞ’E YAKINLIK", "interactionId": "interaction_slide_11_mars_sirasi" },
+            { "label": "UYDU", "interactionId": "interaction_slide_11_mars_uydu" },
+            { "label": "HALKA", "interactionId": "interaction_slide_11_mars_halka" }
+          ],
+          "highlights": [
             "Yüzeyindeki zengin demiroksit (pas) tozları nedeniyle kızıl renkte görünür."
+          ],
+          "extraFacts": [
+            "Bilinen iki doğal uydusu vardır (Phobos ve Deimos).",
+            "Görünümünden dolayı “Kızıl Gezegen” olarak da bilinir."
           ],
           "interactions": [
             {
-              "id": "interaction_slide_11_mars",
+              "id": "interaction_slide_11_mars_yapisi",
               "type": "reveal_fill",
-              "template": "Güneş’e yakınlık bakımından {blank1} gezegendir. Görünümünden dolayı “{blank2}” olarak da bilinir.",
-              "blanks": [
-                {
-                  "id": "blank1",
-                  "answer": "dördüncü",
-                  "placeholder": "dördüncü"
-                },
-                {
-                  "id": "blank2",
-                  "answer": "Kızıl Gezegen",
-                  "placeholder": "Kızıl Gezegen"
-                }
-              ]
+              "template": "{answer}",
+              "blanks": [{ "id": "answer", "answer": "Karasal", "placeholder": "?" }]
+            },
+            {
+              "id": "interaction_slide_11_mars_sirasi",
+              "type": "reveal_fill",
+              "template": "{answer}",
+              "blanks": [{ "id": "answer", "answer": "4.", "placeholder": "?" }]
+            },
+            {
+              "id": "interaction_slide_11_mars_uydu",
+              "type": "reveal_fill",
+              "template": "{answer}",
+              "blanks": [{ "id": "answer", "answer": "Var (2)", "placeholder": "?" }]
+            },
+            {
+              "id": "interaction_slide_11_mars_halka",
+              "type": "reveal_fill",
+              "template": "{answer}",
+              "blanks": [{ "id": "answer", "answer": "Yok", "placeholder": "?" }]
             }
           ]
         },
@@ -539,29 +596,44 @@
               "alt": "Jüpiter Gezegeni Görseli"
             }
           ],
-          "facts": [
+          "coreFacts": [
+            { "label": "YAPISI", "interactionId": "interaction_slide_12_jupiter_yapisi" },
+            { "label": "GÜNEŞ’E YAKINLIK", "interactionId": "interaction_slide_12_jupiter_sirasi" },
+            { "label": "UYDU", "interactionId": "interaction_slide_12_jupiter_uydu" },
+            { "label": "HALKA", "interactionId": "interaction_slide_12_jupiter_halka" }
+          ],
+          "highlights": [
+            "Güneş Sistemi’nin en büyük gezegenidir."
+          ],
+          "extraFacts": [
             "Gazsal yapıdadır (Gaz devi).",
-            "Hem uydusu hem de halkası vardır (95 uydusu bilinmektedir).",
             "Güneş Sistemi’nin en büyük uydusu olan Ganymede, Jüpiter’in uydusudur.",
             "Yüzeyinde dev fırtınalardan oluşan Büyük Kırmızı Leke yer alır."
           ],
           "interactions": [
             {
-              "id": "interaction_slide_12_jupiter",
+              "id": "interaction_slide_12_jupiter_yapisi",
               "type": "reveal_fill",
-              "template": "Güneş’e yakınlık bakımından {blank1} gezegendir. Güneş sisteminin en {blank2} gezegenidir.",
-              "blanks": [
-                {
-                  "id": "blank1",
-                  "answer": "beşinci",
-                  "placeholder": "beşinci"
-                },
-                {
-                  "id": "blank2",
-                  "answer": "büyük",
-                  "placeholder": "büyük"
-                }
-              ]
+              "template": "{answer}",
+              "blanks": [{ "id": "answer", "answer": "Gazsal", "placeholder": "?" }]
+            },
+            {
+              "id": "interaction_slide_12_jupiter_sirasi",
+              "type": "reveal_fill",
+              "template": "{answer}",
+              "blanks": [{ "id": "answer", "answer": "5.", "placeholder": "?" }]
+            },
+            {
+              "id": "interaction_slide_12_jupiter_uydu",
+              "type": "reveal_fill",
+              "template": "{answer}",
+              "blanks": [{ "id": "answer", "answer": "Var (95)", "placeholder": "?" }]
+            },
+            {
+              "id": "interaction_slide_12_jupiter_halka",
+              "type": "reveal_fill",
+              "template": "{answer}",
+              "blanks": [{ "id": "answer", "answer": "Var", "placeholder": "?" }]
             }
           ]
         },
@@ -582,29 +654,44 @@
               "alt": "Satürn Gezegeni Görseli"
             }
           ],
-          "facts": [
+          "coreFacts": [
+            { "label": "YAPISI", "interactionId": "interaction_slide_13_saturn_yapisi" },
+            { "label": "GÜNEŞ’E YAKINLIK", "interactionId": "interaction_slide_13_saturn_sirasi" },
+            { "label": "UYDU", "interactionId": "interaction_slide_13_saturn_uydu" },
+            { "label": "HALKA", "interactionId": "interaction_slide_13_saturn_halka" }
+          ],
+          "highlights": [
             "Buz ve kaya parçalarından oluşan son derece belirgin halkaları vardır.",
-            "Gazsal yapıdadır.",
+            "Güneş Sistemi’nin en büyük ikinci gezegenidir."
+          ],
+          "extraFacts": [
             "Çok sayıda uydusu vardır (146 uydu ile en çok uyduya sahip gezegendir; en büyüğü Titan'dır).",
             "Özkütlesi suyun özkütlesinden bile daha düşüktür."
           ],
           "interactions": [
             {
-              "id": "interaction_slide_13_saturn",
+              "id": "interaction_slide_13_saturn_yapisi",
               "type": "reveal_fill",
-              "template": "Güneş’e yakınlık bakımından {blank1} gezegendir. Güneş Sistemi’nin en büyük {blank2} gezegenidir.",
-              "blanks": [
-                {
-                  "id": "blank1",
-                  "answer": "altıncı",
-                  "placeholder": "altıncı"
-                },
-                {
-                  "id": "blank2",
-                  "answer": "ikinci",
-                  "placeholder": "ikinci"
-                }
-              ]
+              "template": "{answer}",
+              "blanks": [{ "id": "answer", "answer": "Gazsal", "placeholder": "?" }]
+            },
+            {
+              "id": "interaction_slide_13_saturn_sirasi",
+              "type": "reveal_fill",
+              "template": "{answer}",
+              "blanks": [{ "id": "answer", "answer": "6.", "placeholder": "?" }]
+            },
+            {
+              "id": "interaction_slide_13_saturn_uydu",
+              "type": "reveal_fill",
+              "template": "{answer}",
+              "blanks": [{ "id": "answer", "answer": "Var (146)", "placeholder": "?" }]
+            },
+            {
+              "id": "interaction_slide_13_saturn_halka",
+              "type": "reveal_fill",
+              "template": "{answer}",
+              "blanks": [{ "id": "answer", "answer": "Var", "placeholder": "?" }]
             }
           ]
         },
@@ -625,29 +712,44 @@
               "alt": "Uranüs Gezegeni Görseli"
             }
           ],
-          "facts": [
+          "coreFacts": [
+            { "label": "YAPISI", "interactionId": "interaction_slide_14_uranus_yapisi" },
+            { "label": "GÜNEŞ’E YAKINLIK", "interactionId": "interaction_slide_14_uranus_sirasi" },
+            { "label": "UYDU", "interactionId": "interaction_slide_14_uranus_uydu" },
+            { "label": "HALKA", "interactionId": "interaction_slide_14_uranus_halka" }
+          ],
+          "highlights": [
+            "Güneş Sistemi’nin en soğuk gezegenidir (yaklaşık -224 °C)."
+          ],
+          "extraFacts": [
             "Gazsal (buz devi) yapıdadır.",
-            "Uydusu ve ince halkaları vardır (28 uydusu bilinmektedir).",
-            "Güneş Sistemi’nin en soğuk gezegenidir (yaklaşık -224 °C).",
-            "Dönüş ekseni yaklaşık 98 derece eğiktir; yörüngesinde yuvarlanan bir varil gibi döner."
+            "Dönüş ekseni yaklaşık 98 derece eğiktir; yörüngesinde yuvarlanan bir varil gibi döner.",
+            "Güneş Sistemi’nin en büyük üçüncü gezegenidir."
           ],
           "interactions": [
             {
-              "id": "interaction_slide_14_uranus",
+              "id": "interaction_slide_14_uranus_yapisi",
               "type": "reveal_fill",
-              "template": "Güneş’e yakınlık bakımından {blank1} gezegendir. Güneş Sistemi’nin en büyük {blank2} gezegenidir.",
-              "blanks": [
-                {
-                  "id": "blank1",
-                  "answer": "yedinci",
-                  "placeholder": "yedinci"
-                },
-                {
-                  "id": "blank2",
-                  "answer": "üçüncü",
-                  "placeholder": "üçüncü"
-                }
-              ]
+              "template": "{answer}",
+              "blanks": [{ "id": "answer", "answer": "Gazsal", "placeholder": "?" }]
+            },
+            {
+              "id": "interaction_slide_14_uranus_sirasi",
+              "type": "reveal_fill",
+              "template": "{answer}",
+              "blanks": [{ "id": "answer", "answer": "7.", "placeholder": "?" }]
+            },
+            {
+              "id": "interaction_slide_14_uranus_uydu",
+              "type": "reveal_fill",
+              "template": "{answer}",
+              "blanks": [{ "id": "answer", "answer": "Var (28)", "placeholder": "?" }]
+            },
+            {
+              "id": "interaction_slide_14_uranus_halka",
+              "type": "reveal_fill",
+              "template": "{answer}",
+              "blanks": [{ "id": "answer", "answer": "Var (ince)", "placeholder": "?" }]
             }
           ]
         },
@@ -668,29 +770,44 @@
               "alt": "Neptün Gezegeni Görseli"
             }
           ],
-          "facts": [
-            "Gazsal (buz devi) yapıdadır.",
-            "Uydusu ve halkası vardır (16 uydusu bilinmektedir; en büyüğü Triton'dur).",
-            "Atmosferindeki metan gazı nedeniyle belirgin mavi renktedir.",
+          "coreFacts": [
+            { "label": "YAPISI", "interactionId": "interaction_slide_15_neptun_yapisi" },
+            { "label": "GÜNEŞ’E YAKINLIK", "interactionId": "interaction_slide_15_neptun_sirasi" },
+            { "label": "UYDU", "interactionId": "interaction_slide_15_neptun_uydu" },
+            { "label": "HALKA", "interactionId": "interaction_slide_15_neptun_halka" }
+          ],
+          "highlights": [
             "Yapısında zehirli gazlar bulunur ve Güneş Sistemi’nin en şiddetli rüzgarlarına sahiptir."
+          ],
+          "extraFacts": [
+            "En büyük uydusu Triton'dur. Güneş’e en uzak gezegendir.",
+            "Atmosferindeki metan gazı nedeniyle belirgin mavi renktedir.",
+            "Güneş Sistemi’nin en büyük dördüncü gezegenidir."
           ],
           "interactions": [
             {
-              "id": "interaction_slide_15_neptun",
+              "id": "interaction_slide_15_neptun_yapisi",
               "type": "reveal_fill",
-              "template": "Güneş’e en {blank1} gezegendir. Güneş Sistemi’nin en büyük {blank2} gezegenidir.",
-              "blanks": [
-                {
-                  "id": "blank1",
-                  "answer": "uzak",
-                  "placeholder": "uzak"
-                },
-                {
-                  "id": "blank2",
-                  "answer": "dördüncü",
-                  "placeholder": "dördüncü"
-                }
-              ]
+              "template": "{answer}",
+              "blanks": [{ "id": "answer", "answer": "Gazsal", "placeholder": "?" }]
+            },
+            {
+              "id": "interaction_slide_15_neptun_sirasi",
+              "type": "reveal_fill",
+              "template": "{answer}",
+              "blanks": [{ "id": "answer", "answer": "8.", "placeholder": "?" }]
+            },
+            {
+              "id": "interaction_slide_15_neptun_uydu",
+              "type": "reveal_fill",
+              "template": "{answer}",
+              "blanks": [{ "id": "answer", "answer": "Var (16)", "placeholder": "?" }]
+            },
+            {
+              "id": "interaction_slide_15_neptun_halka",
+              "type": "reveal_fill",
+              "template": "{answer}",
+              "blanks": [{ "id": "answer", "answer": "Var", "placeholder": "?" }]
             }
           ]
         }

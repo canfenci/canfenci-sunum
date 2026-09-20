@@ -108,14 +108,14 @@ test("6. Sınıf Slayt 8-15 Gezegen Kartları Yapısı ve Satürn Regresyon Doğ
   assert.equal(planetSlides.length, 8, "Tam olarak 8 gezegen kartı bulunmalıdır (Slayt 8-15)");
 
   const expectedPlanets = [
-    { id: "slide_8_merkur", name: "Merkür", num: 1 },
-    { id: "slide_9_venus", name: "Venüs", num: 2 },
-    { id: "slide_10_dunya", name: "Dünya", num: 3 },
-    { id: "slide_11_mars", name: "Mars", num: 4 },
-    { id: "slide_12_jupiter", name: "Jüpiter", num: 5 },
-    { id: "slide_13_saturn", name: "Satürn", num: 6 },
-    { id: "slide_14_uranus", name: "Uranüs", num: 7 },
-    { id: "slide_15_neptun", name: "Neptün", num: 8 }
+    { id: "slide_8_merkur", name: "Merkür", num: 1, answers: ["Karasal", "1.", "Yok", "Yok"] },
+    { id: "slide_9_venus", name: "Venüs", num: 2, answers: ["Karasal", "2.", "Yok", "Yok"] },
+    { id: "slide_10_dunya", name: "Dünya", num: 3, answers: ["Karasal", "3.", "Var (1: Ay)", "Yok"] },
+    { id: "slide_11_mars", name: "Mars", num: 4, answers: ["Karasal", "4.", "Var (2)", "Yok"] },
+    { id: "slide_12_jupiter", name: "Jüpiter", num: 5, answers: ["Gazsal", "5.", "Var (95)", "Var"] },
+    { id: "slide_13_saturn", name: "Satürn", num: 6, answers: ["Gazsal", "6.", "Var (146)", "Var"] },
+    { id: "slide_14_uranus", name: "Uranüs", num: 7, answers: ["Gazsal", "7.", "Var (28)", "Var (ince)"] },
+    { id: "slide_15_neptun", name: "Neptün", num: 8, answers: ["Gazsal", "8.", "Var (16)", "Var"] }
   ];
 
   for (let i = 0; i < expectedPlanets.length; i++) {
@@ -124,8 +124,13 @@ test("6. Sınıf Slayt 8-15 Gezegen Kartları Yapısı ve Satürn Regresyon Doğ
     assert.equal(slide.id, exp.id);
     assert.equal(slide.planet, exp.name);
     assert.equal(slide.planetNumber, exp.num);
-    assert.ok(Array.isArray(slide.facts) && slide.facts.length >= 3, `${exp.name} en az 3 bilgi maddesi içermelidir`);
-    assert.ok(slide.interactions?.length > 0, `${exp.name} etkileşimi eksik olamaz`);
+    assert.deepEqual(slide.coreFacts.map((fact) => fact.label), ["YAPISI", "GÜNEŞ’E YAKINLIK", "UYDU", "HALKA"]);
+    assert.equal(slide.interactions?.length, 4, `${exp.name} dört bağımsız temel bilgi etkileşimi içermelidir`);
+    assert.ok(slide.interactions.every((interaction) => interaction.type === "reveal_fill"));
+    assert.deepEqual(slide.interactions.map((interaction) => interaction.blanks[0].answer), exp.answers);
+    assert.ok(slide.coreFacts.every((fact) => slide.interactions.some((interaction) => interaction.id === fact.interactionId)));
+    assert.ok(Array.isArray(slide.highlights) && slide.highlights.length >= 1, `${exp.name} kritik ana bilgi içermelidir`);
+    assert.ok(Array.isArray(slide.extraFacts) && slide.extraFacts.length >= 1 && slide.extraFacts.length <= 3, `${exp.name} 1-3 ek bilgi kartı içermelidir`);
     assert.ok(slide.media?.[0]?.src, `${exp.name} medya görseli tanımlı olmalıdır`);
   }
 
@@ -135,8 +140,15 @@ test("6. Sınıf Slayt 8-15 Gezegen Kartları Yapısı ve Satürn Regresyon Doğ
 
   // CSS okunabilirlik kontrolü
   const css = await readFile("src/styles/app.css", "utf8");
-  assert.ok(css.includes(".solar-fact-text"), ".solar-fact-text CSS kuralı mevcut olmalıdır");
-  assert.ok(css.includes("clamp(21px, 1.55cqi, 30px)"), "Akıllı tahta okunabilirlik font-size tanımlı olmalıdır");
+  assert.ok(css.includes(".solar-planet-core-grid"), "Gezegen slaytlarında 2x2 temel bilgi gridi bulunmalıdır");
+  assert.ok(css.includes(".solar-planet-core-slot .blank-slot-answer"), "Temel bilgi cevap stili tanımlı olmalıdır");
+  assert.match(css, /\.solar-planet-core-slot \.blank-slot-answer \{[\s\S]*?font-size: 40px;/, "Temel bilgi cevapları 40px olmalıdır");
+  assert.match(css, /\.solar-planet-highlights p \{[\s\S]*?font-size: 40px;/, "Kritik bilgiler 40px olmalıdır");
+  assert.match(css, /\.solar-planet-extra-grid p \{[\s\S]*?font-size: 34px;/, "Ek bilgiler 34px olmalıdır");
+  assert.ok(css.includes(".solar-planet-notebook-badge"), "Gezegen slaytlarında notebook badge bulunmalıdır");
+
+  const renderer = await readFile("src/ui/solar-system-slides.js", "utf8");
+  assert.ok(renderer.includes("slide.interactions?.find((item) => item.id === interactionId)"), "Dört temel etkileşim kimliğiyle bağımsız bağlanmalıdır");
 });
 
 test("6. Sınıf Slayt 16-18 Karşılaştırma Slaytları Yapısı ve Okunabilirlik Doğrulaması", async () => {
@@ -262,5 +274,4 @@ test("6. Sınıf Slayt 26 Oluşum Süreci Okunabilirlik ve Regresyon Doğrulamas
   assert.ok(css.includes("clamp(22px, 1.6cqi, 34px)"), "Açıklama metinleri font-size tanımlı olmalıdır");
   assert.ok(css.includes("clamp(22px, 1.5cqi, 32px)"), "Numara rozetleri font-size tanımlı olmalıdır");
 });
-
 

@@ -267,13 +267,9 @@ export function renderSolarSlide(slide, view, { interactions, activeInteractions
       const planetSlug = (slide.planet ?? "planet").toLowerCase()
         .replace(/ü/g, "u").replace(/ı/g, "i").replace(/i̇/g, "i").replace(/ö/g, "o");
       slideArticle.className = `board-slide board-slide-interactive slide-solar-planet-card planet-${planetSlug}`;
-
-      const factsHtml = (slide.facts ?? []).map(f => `
-        <li class="solar-fact-item">
-          <span class="solar-fact-dot"></span>
-          <span class="solar-fact-text">${escapeHtml(f)}</span>
-        </li>
-      `).join("");
+      const coreFacts = slide.coreFacts ?? [];
+      const highlights = slide.highlights ?? [];
+      const extraFacts = slide.extraFacts ?? slide.facts ?? [];
 
       slideArticle.innerHTML = `
         <header class="solar-slide-header">
@@ -282,25 +278,41 @@ export function renderSolarSlide(slide, view, { interactions, activeInteractions
             <span class="solar-planet-category">${escapeHtml(slide.category ?? "")}</span>
           </div>
           <h1 class="solar-slide-title">${escapeHtml(slide.title ?? slide.planet)}</h1>
+          <span class="solar-planet-notebook-badge" aria-label="Defter özeti">📓</span>
         </header>
-        <div class="solar-planet-stage">
-          <div class="solar-planet-info-col">
-            <ul class="solar-facts-list">
-              ${factsHtml}
-            </ul>
-            <div class="solar-planet-interaction-card">
-              <div class="solar-interaction-slot-container"></div>
+        <div class="solar-planet-teaching-layout">
+          <section class="solar-planet-core-panel" aria-label="${escapeHtml(slide.planet ?? "Gezegen")} temel bilgileri">
+            <h2>TEMEL BİLGİLER</h2>
+            <div class="solar-planet-core-grid">
+              ${coreFacts.map((fact) => `
+                <article class="solar-planet-core-card">
+                  <h3>${escapeHtml(fact.label)}</h3>
+                  <div class="solar-planet-core-slot" data-interaction-id="${escapeHtml(fact.interactionId ?? "")}"></div>
+                </article>
+              `).join("")}
             </div>
-          </div>
-          <div class="solar-planet-visual-col">
+            <div class="solar-planet-highlights">
+              ${highlights.map((highlight) => `<p>${escapeHtml(highlight)}</p>`).join("")}
+            </div>
+          </section>
+          <figure class="solar-planet-visual-panel">
             <div class="solar-planet-glow"></div>
-            <img src="${slide.media?.[0]?.src ?? ""}" alt="${escapeHtml(slide.planet ?? "")}" class="solar-planet-img" />
-          </div>
+            <img src="${slide.media?.[0]?.src ?? ""}" alt="${escapeHtml(slide.media?.[0]?.alt ?? slide.planet ?? "")}" class="solar-planet-img" />
+          </figure>
         </div>
+        <section class="solar-planet-extra-section" aria-label="Ek bilgiler">
+          <h2>EK BİLGİ</h2>
+          <div class="solar-planet-extra-grid">
+            ${extraFacts.map((fact) => `<article><p>${escapeHtml(fact)}</p></article>`).join("")}
+          </div>
+        </section>
       `;
 
-      const slotCont = slideArticle.querySelector(".solar-interaction-slot-container");
-      if (slide.interactions?.[0]) mountInteraction(slide.interactions[0], slotCont, interactions, activeInteractions);
+      slideArticle.querySelectorAll(".solar-planet-core-slot").forEach((slot, index) => {
+        const interactionId = slot.dataset.interactionId;
+        const interaction = slide.interactions?.find((item) => item.id === interactionId) ?? slide.interactions?.[index];
+        if (interaction) mountInteraction(interaction, slot, interactions, activeInteractions);
+      });
       view.slideContent.replaceChildren(slideArticle);
       return true;
     }
