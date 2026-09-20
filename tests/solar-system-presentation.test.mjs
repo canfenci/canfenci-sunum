@@ -151,7 +151,7 @@ test("6. Sınıf Slayt 8-15 Gezegen Kartları Yapısı ve Satürn Regresyon Doğ
   assert.ok(renderer.includes("slide.interactions?.find((item) => item.id === interactionId)"), "Dört temel etkileşim kimliğiyle bağımsız bağlanmalıdır");
 });
 
-test("6. Sınıf Slayt 16-18 Karşılaştırma Slaytları Yapısı ve Okunabilirlik Doğrulaması", async () => {
+test("6. Sınıf Slayt 16-20 Karşılaştırma Slaytları Yapısı ve Okunabilirlik Doğrulaması", async () => {
   const lessonData = JSON.parse(await readFile("data/lessons/gunes-sistemi.json", "utf8"));
   const slides = lessonData.stages.flatMap((s) => s.slides || []);
 
@@ -182,12 +182,26 @@ test("6. Sınıf Slayt 16-18 Karşılaştırma Slaytları Yapısı ve Okunabilir
   assert.equal(slide18.comparison.rightItems.length, 6);
   assert.ok(slide18.interactions?.length > 0);
 
+  const slide19 = slides.find((s) => s.id === "slide_19_buyukluklerine_gore");
+  const slide20 = slides.find((s) => s.id === "slide_20_gunese_yakinliklarina_gore");
+  assert.equal(slide19.layout, "solar_karsilastirma_siralama");
+  assert.equal(slide20.layout, "solar_karsilastirma_siralama");
+  assert.equal(slide19.ranking.length, 8);
+  assert.equal(slide20.ranking.length, 8);
+  assert.ok(slide19.interactions?.length > 0);
+  assert.ok(slide20.interactions?.length > 0);
+
   // CSS okunabilirlik kontrolü
   const css = await readFile("src/styles/app.css", "utf8");
-  assert.ok(css.includes(".solar-comp-head h3"), ".solar-comp-head h3 CSS kuralı mevcut olmalıdır");
-  assert.ok(css.includes("clamp(23px, 1.65cqi, 31px)"), "Grup başlıkları okunabilirlik font-size tanımlı olmalıdır");
-  assert.ok(css.includes(".solar-comp-card ul"), ".solar-comp-card ul CSS kuralı mevcut olmalıdır");
-  assert.ok(css.includes("clamp(21px, 1.5cqi, 28px)"), "Statik liste metinleri okunabilirlik font-size tanımlı olmalıdır");
+  assert.match(css, /\.solar-comp-head h3 \{[\s\S]*?font-size: 42px;/, "Grup başlıkları 42px olmalıdır");
+  assert.match(css, /\.solar-comp-card ul \{[\s\S]*?font-size: 40px;[\s\S]*?font-weight: 800;/, "Karşılaştırma listeleri 40px bold olmalıdır");
+  assert.match(css, /\.solar-rank-name \{[\s\S]*?font-size: 40px;[\s\S]*?font-weight: 850;/, "Sıralama adları 40px bold olmalıdır");
+  assert.match(css, /\.solar-mnemonic-text \{[\s\S]*?font-size: 40px;[\s\S]*?font-weight: 800;/, "Akılda tutma metni 40px bold olmalıdır");
+  assert.ok(css.includes("grid-template-rows: 236px minmax(0, 1fr) 140px"), "Slayt 16-18 görsel alanı büyütülmüş olmalıdır");
+  assert.ok(css.includes("grid-template-rows: 280px minmax(0, 1fr) 126px"), "Slayt 19 görsel alanı 280px olmalıdır");
+  assert.ok(css.includes("grid-template-rows: 240px 82px minmax(0, 1fr) 126px"), "Slayt 20 görsel alanı 240px olmalıdır");
+  assert.match(css, /\.solar-comp-img \{[\s\S]*?object-fit: contain;/, "Karşılaştırma görselleri kırpılmadan gösterilmelidir");
+  assert.match(css, /\.solar-siralama-img \{[\s\S]*?object-fit: contain;/, "Sıralama görselleri kırpılmadan gösterilmelidir");
 });
 
 test("6. Sınıf Slayt 21 Aklımızda Bulunsun Okunabilirlik ve Slayt 20/22 Regresyon Doğrulaması", async () => {
@@ -274,4 +288,3 @@ test("6. Sınıf Slayt 26 Oluşum Süreci Okunabilirlik ve Regresyon Doğrulamas
   assert.ok(css.includes("clamp(22px, 1.6cqi, 34px)"), "Açıklama metinleri font-size tanımlı olmalıdır");
   assert.ok(css.includes("clamp(22px, 1.5cqi, 32px)"), "Numara rozetleri font-size tanımlı olmalıdır");
 });
-

@@ -5326,42 +5326,82 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 }
 
 /* Slayt 16-18: Karşılaştırma Genel */
-.solar-comp-stage {
-  flex: 1;
+.slide-solar-karsilastirma-genel {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
   min-height: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 0.7rem;
+  padding: 30px 48px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 18px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.slide-solar-karsilastirma-genel .solar-slide-header,
+.slide-solar-karsilastirma-siralama .solar-slide-header {
+  min-width: 0;
+  margin: 0;
+}
+
+.slide-solar-karsilastirma-genel .solar-slide-kicker,
+.slide-solar-karsilastirma-siralama .solar-slide-kicker {
+  font-size: 32px;
+}
+
+.slide-solar-karsilastirma-genel .solar-slide-lead,
+.slide-solar-karsilastirma-siralama .solar-slide-lead {
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.12;
+}
+
+.solar-comp-stage {
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: 236px minmax(0, 1fr) 140px;
+  gap: 18px;
 }
 
 .solar-comp-diagram {
-  max-height: 160px;
+  min-width: 0;
+  min-height: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .solar-comp-img {
-  max-height: 100%;
-  max-width: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   border-radius: 12px;
 }
 
 .solar-comp-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.2rem;
-  flex: 1;
+  min-width: 0;
   min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
 }
 
 .solar-comp-card {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  align-content: start;
   background: white;
   border: 2px solid #e2e8f0;
-  border-radius: 16px;
-  padding: clamp(0.7rem, 1.2cqi, 1rem);
+  border-radius: 20px;
+  padding: 18px 28px;
+  overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
 }
 
@@ -5375,144 +5415,196 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 
 .solar-comp-head h3 {
   margin: 0;
-  font-size: clamp(23px, 1.65cqi, 31px);
+  font-size: 42px;
   font-weight: 850;
   color: #0f172a;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
+  letter-spacing: 0;
+  line-height: 1.05;
 }
 
 .solar-comp-head small {
   display: block;
-  margin-top: 0.2rem;
-  font-size: clamp(14.5px, 1.05cqi, 18px);
+  margin-top: 8px;
+  font-size: 32px;
   font-weight: 700;
   color: #64748b;
+  line-height: 1.05;
 }
 
 .solar-comp-card ul {
-  margin: clamp(0.5rem, 0.8vh, 0.75rem) 0 0;
-  padding-left: clamp(1.1rem, 1.5cqi, 1.5rem);
-  font-size: clamp(21px, 1.5cqi, 28px);
-  font-weight: 650;
+  min-width: 0;
+  min-height: 0;
+  margin: 14px 0 0;
+  padding-left: 30px;
+  display: grid;
+  align-content: center;
+  gap: 5px;
+  font-size: 40px;
+  font-weight: 800;
   color: #1e293b;
-  line-height: 1.38;
+  line-height: 1.08;
 }
 
 .solar-comp-card li {
-  margin-bottom: clamp(0.2rem, 0.4vh, 0.35rem);
+  margin: 0;
 }
 
-/* Yalnızca Slayt 17: Üst kartlar ile alt mavi interaction kutusu arasındaki dikey boşluk */
-.slide-solar-karsilastirma-genel[data-slide-id="slide_17_halkalarina_gore"] .solar-comp-diagram,
-.slide-slide-17-halkalarina-gore .solar-comp-diagram {
-  max-height: clamp(85px, 9.5cqi, 120px);
+.slide-solar-karsilastirma-genel .solar-bottom-interaction-bar,
+.slide-solar-karsilastirma-siralama .solar-bottom-interaction-bar {
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 10px 22px;
+  overflow: hidden;
 }
 
-.slide-solar-karsilastirma-genel[data-slide-id="slide_17_halkalarina_gore"] .solar-comp-stage,
-.slide-slide-17-halkalarina-gore .solar-comp-stage {
-  gap: clamp(12px, 1.2cqi, 18px);
+.slide-solar-karsilastirma-genel .solar-bottom-interaction-bar .reveal-fill-sentence,
+.slide-solar-karsilastirma-siralama .solar-bottom-interaction-bar .reveal-fill-sentence {
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1.08;
+  text-align: center;
 }
 
-.slide-solar-karsilastirma-genel[data-slide-id="slide_17_halkalarina_gore"] .solar-bottom-interaction-bar,
-.slide-slide-17-halkalarina-gore .solar-bottom-interaction-bar {
-  margin-top: clamp(14px, 1.5cqi, 26px);
+.slide-solar-karsilastirma-genel .solar-bottom-interaction-bar .blank-slot-answer,
+.slide-solar-karsilastirma-siralama .solar-bottom-interaction-bar .blank-slot-answer {
+  font-size: 40px;
+  font-weight: 850;
 }
 
 /* Slayt 19-20: Karşılaştırma Sıralama */
-.solar-siralama-stage {
-  flex: 1;
+.slide-solar-karsilastirma-siralama {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
   min-height: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 0.7rem;
+  padding: 30px 48px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 18px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.solar-siralama-stage {
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: 280px minmax(0, 1fr) 126px;
+  gap: 18px;
+}
+
+.solar-siralama-stage:has(.solar-mnemonic-box) {
+  grid-template-rows: 240px 82px minmax(0, 1fr) 126px;
 }
 
 .solar-siralama-diagram {
-  max-height: 160px;
+  min-width: 0;
+  min-height: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .solar-siralama-img {
-  max-height: 100%;
-  max-width: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   border-radius: 12px;
 }
 
 .solar-mnemonic-box {
+  min-width: 0;
+  min-height: 0;
   background: #fffbeb;
   border: 1.5px solid #fef3c7;
   border-radius: 14px;
-  padding: 0.5rem 1.2rem;
+  padding: 10px 22px;
   display: flex;
   align-items: center;
-  gap: 0.8rem;
-  width: max-content;
+  justify-content: center;
+  gap: 18px;
+  width: 100%;
   margin: 0 auto;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .solar-mnemonic-badge {
   background: #f59e0b;
   color: white;
-  font-size: 13px;
+  font-size: 32px;
   font-weight: 800;
-  padding: 0.2rem 0.6rem;
-  border-radius: 6px;
+  padding: 7px 14px;
+  border-radius: 10px;
+  white-space: nowrap;
 }
 
 .solar-mnemonic-text {
-  font-size: clamp(16px, 1.15cqi, 20px);
+  min-width: 0;
+  font-size: 40px;
   color: #92400e;
-  font-weight: 700;
+  font-weight: 800;
+  line-height: 1.05;
+  white-space: nowrap;
 }
 
 .solar-ranking-strip {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.6rem;
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 12px;
 }
 
 .solar-rank-pill {
-  display: flex;
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) auto;
   align-items: center;
-  gap: 0.5rem;
+  gap: 12px;
   background: white;
   border: 1.5px solid #cbd5e1;
-  border-radius: 12px;
-  padding: 0.35rem 0.75rem;
+  border-radius: 16px;
+  padding: 10px 16px;
+  overflow: hidden;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
 .solar-rank-order {
-  width: 24px;
-  height: 24px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   background: #0284c7;
   color: white;
-  font-size: 13px;
+  font-size: 32px;
   font-weight: 800;
   display: grid;
   place-items: center;
 }
 
 .solar-rank-name {
-  font-size: clamp(15px, 1.1cqi, 18px);
-  font-weight: 750;
+  min-width: 0;
+  font-size: 40px;
+  font-weight: 850;
   color: #0f172a;
+  line-height: 1;
+  white-space: nowrap;
 }
 
 .solar-rank-type {
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 32px;
+  font-weight: 700;
   color: #64748b;
   background: #f1f5f9;
-  padding: 0.1rem 0.4rem;
-  border-radius: 4px;
+  padding: 5px 8px;
+  border-radius: 8px;
+  white-space: nowrap;
 }
 
 /* Slayt 21: Aklımızda Bulunsun! */
