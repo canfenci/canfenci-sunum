@@ -836,7 +836,7 @@ class CanFenciApp {
   }
 
   #renderCanvaSlide(slide, view) {
-    if (slide.layout?.startsWith("solar_")) {
+    if (slide.layout?.startsWith("solar_") || slide.layout?.startsWith("eclipse_")) {
       return renderSolarSlide(slide, view, {
         interactions: this.interactions,
         activeInteractions: this.activeInteractions

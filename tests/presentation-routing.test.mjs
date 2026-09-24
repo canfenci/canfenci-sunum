@@ -42,6 +42,11 @@ test("Müfredat ve Rota Bağlantıları Doğrulaması (6. Sınıf ve 8. Sınıf)
   assert.equal(grade6Topic.workModes.activity.status, "planned");
   assert.equal(grade6Topic.workModes.test.status, "planned");
 
+  const grade6EclipseTopic = grade6Unit.topics.find((t) => t.id === "solar_and_lunar_eclipses");
+  assert.ok(grade6EclipseTopic, "solar_and_lunar_eclipses konusu bulunamadı");
+  assert.equal(grade6EclipseTopic.workModes.presentation.status, "available");
+  assert.equal(grade6EclipseTopic.workModes.presentation.source, "./data/lessons/gunes-ve-ay-tutulmalari.json");
+
   // 3. 8. Sınıf Mevsimlerin Oluşumu rotası
   const grade8Unit = legacyCurriculum.units.find((u) => u.id === "seasons_and_climate");
   assert.ok(grade8Unit, "seasons_and_climate ünitesi bulunamadı");
@@ -63,6 +68,12 @@ test("Müfredat ve Rota Bağlantıları Doğrulaması (6. Sınıf ve 8. Sınıf)
   assert.equal(engine6.slideCount, 26, "6. Sınıf dersi 26 slayt olmalıdır");
   assert.equal(engine6.stages.length, 5, "6. Sınıf dersi 5 aşama olmalıdır");
 
+  const eclipseEngine = new LessonEngine();
+  const eclipseLesson = await eclipseEngine.load("data/lessons/gunes-ve-ay-tutulmalari.json");
+  assert.equal(eclipseLesson.id, "lesson_gunes_ve_ay_tutulmalari_1");
+  assert.equal(eclipseEngine.slideCount, 8, "Güneş ve Ay Tutulmaları dersi 8 slayt olmalıdır");
+  assert.equal(eclipseEngine.currentSlide.layout, "eclipse_image_slide");
+
   // 5. LessonEngine ile 8. sınıf ders yüklemesi (regresyon)
   const engine8 = new LessonEngine();
   const lesson8 = await engine8.load("data/lessons/mevsimlerin-olusumu.json");
@@ -74,7 +85,7 @@ test("Müfredat ve Rota Bağlantıları Doğrulaması (6. Sınıf ve 8. Sınıf)
   const climateEngine = new LessonEngine();
   const climateLesson = await climateEngine.load("data/lessons/iklim-ve-hava-hareketleri.json");
   assert.equal(climateLesson.id, "lesson_iklim_ve_hava_hareketleri_1");
-  assert.equal(climateEngine.slideCount, 25, "İklim ve Hava Hareketleri dersi 25 slayt olmalıdır");
+  assert.equal(climateEngine.slideCount, 24, "İklim ve Hava Hareketleri dersi 24 slayt olmalıdır");
   assert.equal(climateEngine.currentSlide.layout, "climate_cover");
   } finally {
     globalThis.fetch = originalFetch;

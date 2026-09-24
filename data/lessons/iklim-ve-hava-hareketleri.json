@@ -414,53 +414,12 @@
       ]
     },
     {
-      "id": "stage_basinc_karsilastirmasi_ozeti",
-      "label": "Basınç Karşılaştırması",
+      "id": "stage_ruzgar_tahmin",
+      "label": "Rüzgâr",
       "order": 9,
       "slides": [
         {
-          "id": "slide_9_basinc_karsilastirmasi_ozeti",
-          "type": "content",
-          "layout": "climate_notebook",
-          "tag": "BASINÇ KARŞILAŞTIRMASI",
-          "title": "BASINÇ KARŞILAŞTIRMASI",
-          "columns": [
-            {
-              "title": "ALÇAK BASINÇ",
-              "lines": [
-                "Sıcaktır",
-                "Hava yoğunluğu azdır",
-                "Nem oranı fazla",
-                "Yağış ihtimali fazla",
-                "Gökyüzü kapalı ve bulutlu",
-                "Yükselici hava hareketi",
-                "Çevreden merkeze"
-              ]
-            },
-            {
-              "title": "YÜKSEK BASINÇ",
-              "lines": [
-                "Soğuktur",
-                "Hava yoğunluğu fazladır",
-                "Nem oranı az",
-                "Yağış ihtimali az",
-                "Gökyüzü açık",
-                "Alçalıcı hava hareketi",
-                "Merkezden çevreye"
-              ]
-            }
-          ],
-          "interactions": []
-        }
-      ]
-    },
-    {
-      "id": "stage_ruzgar_tahmin",
-      "label": "Rüzgâr",
-      "order": 10,
-      "slides": [
-        {
-          "id": "slide_10_ruzgar_tahmin",
+          "id": "slide_9_ruzgar_tahmin",
           "type": "content",
           "layout": "climate_wind_predict",
           "tag": "RÜZGÂR HANGİ YÖNDE ESER?",
@@ -472,7 +431,7 @@
           ],
           "interactions": [
             {
-              "id": "interaction_slide_10_progressive_reveal",
+              "id": "interaction_slide_9_progressive_reveal",
               "type": "progressive_reveal"
             }
           ]
@@ -482,35 +441,48 @@
     {
       "id": "stage_ruzgar_ozeti",
       "label": "Rüzgâr Özeti",
-      "order": 11,
+      "order": 10,
       "slides": [
         {
-          "id": "slide_11_ruzgar_ozeti",
+          "id": "slide_10_ruzgar_ozeti",
           "type": "content",
-          "layout": "climate_notebook",
+          "layout": "climate_notebook_cards",
           "tag": "RÜZGÂR ÖZETİ",
           "title": "RÜZGÂR ÖZETİ",
-          "sections": [
+          "interactions": [],
+          "cards": [
             {
-              "title": "RÜZGÂR",
+              "title": "RÜZGÂR NEDİR?",
+              "tone": "blue",
               "lines": [
-                "Yatay yönde gerçekleşen hava hareketine rüzgâr denir.",
-                "Rüzgâr yüksek basınçtan alçak basınca doğru eser.",
+                "Yatay yönde gerçekleşen hava hareketine rüzgâr denir."
+              ]
+            },
+            {
+              "title": "RÜZGÂRIN YÖNÜ",
+              "tone": "turquoise",
+              "lines": [
+                "Rüzgâr yüksek basınçtan alçak basınca doğru eser."
+              ]
+            },
+            {
+              "title": "RÜZGÂRIN HIZI",
+              "tone": "lilac",
+              "lines": [
                 "Basınç farkı arttıkça rüzgârın hızı artar."
               ]
             }
-          ],
-          "interactions": []
+          ]
         }
       ]
     },
     {
       "id": "stage_basinc_ruzgar_uygulamasi",
       "label": "Basınç ve Rüzgâr Uygulaması",
-      "order": 12,
+      "order": 11,
       "slides": [
         {
-          "id": "slide_12_basinc_ruzgar_uygulamasi",
+          "id": "slide_11_basinc_ruzgar_uygulamasi",
           "type": "content",
           "layout": "climate_wind_application",
           "tag": "BASINÇ VE RÜZGÂR UYGULAMASI",
@@ -524,7 +496,7 @@
           ],
           "interactions": [
             {
-              "id": "interaction_slide_12_01",
+              "id": "interaction_slide_11_01",
               "type": "reveal_fill",
               "template": "1. {blank1} şehrinde hava sıcaklığı daha fazladır.",
               "blanks": [
@@ -536,7 +508,7 @@
               ]
             },
             {
-              "id": "interaction_slide_12_02",
+              "id": "interaction_slide_11_02",
               "type": "reveal_fill",
               "template": "2. {blank1} şehrinde hava yoğunluğu daha azdır.",
               "blanks": [
@@ -548,7 +520,7 @@
               ]
             },
             {
-              "id": "interaction_slide_12_03",
+              "id": "interaction_slide_11_03",
               "type": "reveal_fill",
               "template": "3. {blank1} şehrinde alçalıcı hava hareketi görülür.",
               "blanks": [
@@ -560,7 +532,7 @@
               ]
             },
             {
-              "id": "interaction_slide_12_04",
+              "id": "interaction_slide_11_04",
               "type": "reveal_fill",
               "template": "4. {blank1} şehrinde nem oranı fazladır.",
               "blanks": [
@@ -572,7 +544,7 @@
               ]
             },
             {
-              "id": "interaction_slide_12_05",
+              "id": "interaction_slide_11_05",
               "type": "reveal_fill",
               "template": "5. {blank1} şehrinde basınç fazladır.",
               "blanks": [
@@ -584,7 +556,7 @@
               ]
             },
             {
-              "id": "interaction_slide_12_06",
+              "id": "interaction_slide_11_06",
               "type": "reveal_fill",
               "template": "6. {blank1} şehrinde yağış ihtimali azdır.",
               "blanks": [
@@ -596,7 +568,7 @@
               ]
             },
             {
-              "id": "interaction_slide_12_07",
+              "id": "interaction_slide_11_07",
               "type": "reveal_fill",
               "template": "7. {blank1} şehrinde yükselici hava hareketi görülür.",
               "blanks": [
@@ -608,7 +580,7 @@
               ]
             },
             {
-              "id": "interaction_slide_12_08",
+              "id": "interaction_slide_11_08",
               "type": "reveal_fill",
               "template": "8. {blank1} şehrinde çevreden merkeze doğru hava hareketi görülür.",
               "blanks": [
@@ -620,7 +592,7 @@
               ]
             },
             {
-              "id": "interaction_slide_12_09",
+              "id": "interaction_slide_11_09",
               "type": "reveal_fill",
               "template": "9. {blank1} şehrinde merkezden çevreye doğru hava hareketi görülür.",
               "blanks": [
@@ -632,7 +604,7 @@
               ]
             },
             {
-              "id": "interaction_slide_12_10",
+              "id": "interaction_slide_11_10",
               "type": "reveal_fill",
               "template": "10. {blank1} şehrinde bitki örtüsü cılızdır.",
               "blanks": [
@@ -650,10 +622,10 @@
     {
       "id": "stage_deniz_kara_meltemi",
       "label": "Deniz ve Kara Meltemi",
-      "order": 13,
+      "order": 12,
       "slides": [
         {
-          "id": "slide_13_deniz_kara_meltemi",
+          "id": "slide_12_deniz_kara_meltemi",
           "type": "content",
           "layout": "climate_breeze_toggle",
           "tag": "DENİZ / KARA MELTEMİ",
@@ -684,7 +656,7 @@
           ],
           "interactions": [
             {
-              "id": "interaction_slide_13_toggle",
+              "id": "interaction_slide_12_toggle",
               "type": "toggle"
             }
           ]
@@ -694,10 +666,10 @@
     {
       "id": "stage_vadi_dag_meltemi",
       "label": "Vadi ve Dağ Meltemi",
-      "order": 14,
+      "order": 13,
       "slides": [
         {
-          "id": "slide_14_vadi_dag_meltemi",
+          "id": "slide_13_vadi_dag_meltemi",
           "type": "content",
           "layout": "climate_breeze_toggle",
           "tag": "VADİ / DAĞ MELTEMİ",
@@ -726,7 +698,7 @@
           ],
           "interactions": [
             {
-              "id": "interaction_slide_14_toggle",
+              "id": "interaction_slide_13_toggle",
               "type": "toggle"
             }
           ]
@@ -736,41 +708,55 @@
     {
       "id": "stage_meltemler_ozeti",
       "label": "Meltemler Özeti",
-      "order": 15,
+      "order": 14,
       "slides": [
         {
-          "id": "slide_15_meltemler_ozeti",
+          "id": "slide_14_meltemler_ozeti",
           "type": "content",
-          "layout": "climate_notebook",
+          "layout": "climate_notebook_cards",
           "tag": "MELTEMLER ÖZETİ",
-          "title": "MELTEMLER ÖZETİ",
-          "sections": [
+          "title": "MELTEMLERİN ÖZETİ",
+          "interactions": [],
+          "cards": [
             {
-              "title": "GÜNDÜZ",
+              "title": "DENİZ MELTEMİ",
+              "tone": "blue",
               "lines": [
-                "Deniz → Kara = Deniz Meltemi",
-                "Vadi → Dağ = Vadi Meltemi"
+                "Yön: Denizden karaya"
               ]
             },
             {
-              "title": "GECE",
+              "title": "KARA MELTEMİ",
+              "tone": "lilac",
               "lines": [
-                "Kara → Deniz = Kara Meltemi",
-                "Dağ → Vadi = Dağ Meltemi"
+                "Yön: Karadan denize"
+              ]
+            },
+            {
+              "title": "VADİ MELTEMİ",
+              "tone": "turquoise",
+              "lines": [
+                "Yön: Vadiden dağa"
+              ]
+            },
+            {
+              "title": "DAĞ MELTEMİ",
+              "tone": "slate",
+              "lines": [
+                "Yön: Dağdan vadiye"
               ]
             }
-          ],
-          "interactions": []
+          ]
         }
       ]
     },
     {
       "id": "stage_yagislari_siniflandir",
       "label": "Yağışları Sınıflandır",
-      "order": 16,
+      "order": 15,
       "slides": [
         {
-          "id": "slide_16_yagislari_siniflandir",
+          "id": "slide_15_yagislari_siniflandir",
           "type": "content",
           "layout": "climate_precipitation_classify",
           "tag": "YAĞIŞLARI SINIFLANDIR",
@@ -813,7 +799,7 @@
           ],
           "interactions": [
             {
-              "id": "interaction_slide_16_classify",
+              "id": "interaction_slide_15_classify",
               "type": "classify"
             }
           ]
@@ -823,10 +809,10 @@
     {
       "id": "stage_yagis_turleri_ozeti",
       "label": "Yağış Türleri",
-      "order": 17,
+      "order": 16,
       "slides": [
         {
-          "id": "slide_17_yagis_turleri_ozeti",
+          "id": "slide_16_yagis_turleri_ozeti",
           "type": "content",
           "layout": "climate_notebook",
           "tag": "YAĞIŞ TÜRLERİ",
@@ -870,104 +856,124 @@
     {
       "id": "stage_iklim_nedir",
       "label": "İklim Nedir?",
-      "order": 18,
+      "order": 17,
       "slides": [
         {
-          "id": "slide_18_iklim_nedir",
+          "id": "slide_17_iklim_nedir",
           "type": "content",
-          "layout": "climate_climate_hero",
-          "tag": "İKLİM NEDİR?",
-          "title": "İKLİM NEDİR?",
-          "definition": "Geniş bir bölgede uzun yıllar boyunca gözlenen hava olaylarının ortalamasına iklim denir.",
-          "concepts": [
-            "Klimatoloji: İklimi inceleyen bilim dalıdır.",
-            "Klimatolog: İklim alanında çalışan bilim insanıdır."
-          ],
-          "image": "./assets/images/iklim-ve-hava-hareketleri/01-kapak-iklim-ve-hava-hareketleri.png",
-          "interactions": []
+          "layout": "climate_climate_types",
+          "tag": "İKLİM TİPLERİ",
+          "title": "İKLİM TİPLERİ",
+          "interactions": [],
+          "climateCards": [
+            {
+              "title": "Kutup iklimi",
+              "tone": "ice",
+              "visual": "Buzul alanları"
+            },
+            {
+              "title": "Çöl iklimi",
+              "tone": "sand",
+              "visual": "Kurak alanlar"
+            },
+            {
+              "title": "Akdeniz iklimi",
+              "tone": "peach",
+              "visual": "Ilık kıyılar"
+            },
+            {
+              "title": "Karadeniz iklimi",
+              "tone": "blue",
+              "visual": "Yağışlı kıyılar"
+            },
+            {
+              "title": "Karasal iklim",
+              "tone": "lilac",
+              "visual": "İç bölgeler"
+            }
+          ]
         }
       ]
     },
     {
       "id": "stage_iklim_ozeti",
       "label": "İklim Özeti",
-      "order": 19,
+      "order": 18,
       "slides": [
         {
-          "id": "slide_19_iklim_ozeti",
+          "id": "slide_18_iklim_ozeti",
           "type": "content",
-          "layout": "climate_notebook",
+          "layout": "climate_notebook_cards",
           "tag": "İKLİM ÖZETİ",
           "title": "İKLİM ÖZETİ",
-          "sections": [
+          "interactions": [],
+          "cards": [
             {
-              "title": "İKLİM",
+              "title": "İKLİMİN TANIMI",
+              "tone": "blue",
               "lines": [
                 "Geniş bir bölgede uzun yıllar boyunca gözlenen hava olaylarının ortalamasıdır."
               ]
             },
             {
-              "title": "BİLİM VE UZMAN",
+              "title": "BİLİM DALI VE UZMANI",
+              "tone": "lilac",
               "lines": [
-                "Klimatoloji: İklimi inceleyen bilim dalıdır.",
-                "Klimatolog: İklim bilimiyle ilgilenen bilim insanıdır."
+                "Klimatoloji iklimi inceler.",
+                "Klimatolog iklim bilimiyle ilgilenir."
               ]
             },
             {
               "title": "İKLİMİ BELİRLEYEN ETMENLER",
+              "tone": "turquoise",
               "lines": [
-                "Enlem • Yükselti • Yer şekilleri • Bitki örtüsü • Denize uzaklık"
+                "Enlem, yükselti, yer şekilleri, bitki örtüsü ve denize uzaklık etkilidir."
               ]
             }
-          ],
-          "interactions": []
+          ]
         }
       ]
     },
     {
       "id": "stage_turkiye_iklim_tipleri",
       "label": "Türkiye'de İklim Tipleri",
-      "order": 20,
+      "order": 19,
       "slides": [
         {
-          "id": "slide_20_turkiye_iklim_tipleri",
+          "id": "slide_19_turkiye_iklim_tipleri",
           "type": "content",
-          "layout": "climate_type_selector",
-          "tag": "TÜRKİYE'DE İKLİM TİPLERİ",
-          "title": "TÜRKİYE'DE İKLİM TİPLERİ",
-          "climateTypes": [
+          "layout": "climate_turkey_map",
+          "tag": "TÜRKİYE'DE İKLİM",
+          "title": "TÜRKİYE'DE İKLİM",
+          "interactions": [],
+          "image": "./assets/images/iklim-ve-hava-hareketleri/20-turkiye-iklim-haritasi.png",
+          "cards": [
             {
-              "title": "AKDENİZ",
+              "title": "Akdeniz iklimi",
               "tone": "peach",
-              "details": [
+              "lines": [
                 "Yazlar sıcak ve kurak",
                 "Kışlar ılık ve yağışlı",
                 "Bitki örtüsü: Maki"
               ]
             },
             {
-              "title": "KARADENİZ",
+              "title": "Karadeniz iklimi",
               "tone": "blue",
-              "details": [
-                "Yazlar serin ve yağışlı",
-                "Kışlar soğuk ve yağışlı",
+              "lines": [
+                "Her mevsim yağışlı",
+                "Yazlar serin",
                 "Bitki örtüsü: Orman"
               ]
             },
             {
-              "title": "KARASAL",
+              "title": "Karasal iklim",
               "tone": "lilac",
-              "details": [
+              "lines": [
                 "Yazlar sıcak ve kurak",
                 "Kışlar soğuk ve kar yağışlı",
                 "Bitki örtüsü: Bozkır"
               ]
-            }
-          ],
-          "interactions": [
-            {
-              "id": "interaction_slide_20_selector",
-              "type": "selector"
             }
           ]
         }
@@ -976,10 +982,10 @@
     {
       "id": "stage_hava_olayi_mi_iklim_mi",
       "label": "Hava Olayı mı, İklim mi?",
-      "order": 21,
+      "order": 20,
       "slides": [
         {
-          "id": "slide_21_hava_olayi_mi_iklim_mi",
+          "id": "slide_20_hava_olayi_mi_iklim_mi",
           "type": "content",
           "layout": "climate_weather_quiz",
           "tag": "HAVA OLAYI MI, İKLİM Mİ?",
@@ -1028,7 +1034,7 @@
           ],
           "interactions": [
             {
-              "id": "interaction_slide_21_binary_classify",
+              "id": "interaction_slide_20_binary_classify",
               "type": "binary_classify"
             }
           ]
@@ -1038,47 +1044,57 @@
     {
       "id": "stage_hava_olaylari_iklim_ozeti",
       "label": "Hava Olayları ve İklim",
-      "order": 22,
+      "order": 21,
       "slides": [
         {
-          "id": "slide_22_hava_olaylari_iklim_ozeti",
+          "id": "slide_21_hava_olaylari_iklim_ozeti",
           "type": "content",
-          "layout": "climate_notebook",
-          "tag": "HAVA OLAYLARI / İKLİM",
-          "title": "HAVA OLAYLARI / İKLİM",
-          "columns": [
+          "layout": "climate_weather_climate_table",
+          "tag": "HAVA OLAYLARI VE İKLİM",
+          "title": "HAVA OLAYLARI VE İKLİM KARŞILAŞTIRMASI",
+          "interactions": [],
+          "headers": [
+            "Özellik",
+            "Hava Olayları",
+            "İklim"
+          ],
+          "rows": [
             {
-              "title": "HAVA OLAYLARI",
-              "lines": [
-                "Dar alan",
-                "Kısa süre",
-                "Değişken",
-                "Meteoroloji",
-                "Meteorolog"
-              ]
+              "feature": "Süre",
+              "weather": "Kısa sürelidir.",
+              "climate": "Uzun yılların ortalamasıdır."
             },
             {
-              "title": "İKLİM",
-              "lines": [
-                "Geniş alan",
-                "Uzun yıllar",
-                "Kolay değişmez",
-                "Klimatoloji",
-                "Klimatolog"
-              ]
+              "feature": "Etki alanı",
+              "weather": "Dar bölgede görülür.",
+              "climate": "Geniş bölgede görülür."
+            },
+            {
+              "feature": "Değişim",
+              "weather": "Gün içinde değişebilir.",
+              "climate": "Kolay değişmez."
+            },
+            {
+              "feature": "İnceleyen bilim dalı",
+              "weather": "Meteoroloji",
+              "climate": "Klimatoloji"
+            },
+            {
+              "feature": "Uzman",
+              "weather": "Meteorolog",
+              "climate": "Klimatolog"
             }
-          ],
-          "interactions": []
+          ]
         }
       ]
     },
     {
       "id": "stage_sera_etkisi",
       "label": "Sera Etkisi",
-      "order": 23,
+      "order": 22,
       "slides": [
         {
-          "id": "slide_23_sera_etkisi",
+          "id": "slide_22_sera_etkisi",
           "type": "content",
           "layout": "climate_greenhouse_reveal",
           "tag": "SERA ETKİSİ",
@@ -1091,7 +1107,7 @@
           ],
           "interactions": [
             {
-              "id": "interaction_slide_23_progressive_reveal",
+              "id": "interaction_slide_22_progressive_reveal",
               "type": "progressive_reveal"
             }
           ]
@@ -1101,10 +1117,10 @@
     {
       "id": "stage_iklim_degisikligi_zinciri",
       "label": "Küresel İklim Değişikliği",
-      "order": 24,
+      "order": 23,
       "slides": [
         {
-          "id": "slide_24_iklim_degisikligi_zinciri",
+          "id": "slide_23_iklim_degisikligi_zinciri",
           "type": "content",
           "layout": "climate_chain_reveal",
           "tag": "KÜRESEL İKLİM DEĞİŞİKLİĞİ",
@@ -1146,7 +1162,7 @@
           ],
           "interactions": [
             {
-              "id": "interaction_slide_24_progressive_reveal",
+              "id": "interaction_slide_23_progressive_reveal",
               "type": "progressive_reveal"
             }
           ]
@@ -1156,32 +1172,36 @@
     {
       "id": "stage_iklim_degisikligi_ozeti",
       "label": "Küresel İklim Değişikliği Özeti",
-      "order": 25,
+      "order": 24,
       "slides": [
         {
-          "id": "slide_25_iklim_degisikligi_ozeti",
+          "id": "slide_24_iklim_degisikligi_ozeti",
           "type": "content",
-          "layout": "climate_notebook",
+          "layout": "climate_global_visual_summary",
           "tag": "KÜRESEL İKLİM DEĞİŞİKLİĞİ ÖZETİ",
           "title": "KÜRESEL İKLİM DEĞİŞİKLİĞİ ÖZETİ",
-          "sections": [
+          "note": "Kyoto Protokolü, gelişmiş ülkelerin sera gazı salımlarını 1990 yılına göre %5,2 azaltmalarını öngören uluslararası bir anlaşmadır.",
+          "interactions": [],
+          "visualCards": [
             {
-              "title": "TEMEL KAVRAMLAR",
-              "lines": [
-                "Küresel iklim değişikliği: İklimlerin yapısında meydana gelen değişimlerdir.",
-                "Sera etkisi: Atmosferdeki gazların ısının bir bölümünü tutmasıdır.",
-                "Küresel ısınma: Sera gazlarının artmasıyla Dünya’nın ısınmasıdır."
-              ]
+              "title": "Kuraklık",
+              "tone": "peach",
+              "label": "Su azalır",
+              "text": "Yağış azalması yaşamı zorlaştırır."
             },
             {
-              "title": "NEDEN → SONUÇ → ÖNLEM",
-              "lines": [
-                "Fosil yakıtlar ve orman tahribi → Kuraklık, buzulların erimesi → Yenilenebilir enerji, ormanları koruma"
-              ]
+              "title": "Çölleşme",
+              "tone": "sand",
+              "label": "Toprak verimi düşer",
+              "text": "Verimli alanlar kuraklaşabilir."
+            },
+            {
+              "title": "İklim etkileri",
+              "tone": "blue",
+              "label": "Denge bozulur",
+              "text": "Sıcaklık, yağış ve canlı yaşamı etkilenir."
             }
-          ],
-          "note": "Kyoto Protokolü, gelişmiş ülkelerin sera gazı salımlarını 1990 yılına göre %5,2 azaltmalarını öngören uluslararası bir anlaşmadır.",
-          "interactions": []
+          ]
         }
       ]
     }

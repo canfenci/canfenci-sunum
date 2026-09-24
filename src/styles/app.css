@@ -2311,20 +2311,26 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 /* 8. Sınıf — İklim ve Hava Hareketleri: Slayt 12-18 */
 .slide-workspace:has(.slide-climate-precipitation-types) .slide-content,
 .slide-workspace:has(.slide-climate-definition-concepts) .slide-content,
+.slide-workspace:has(.slide-climate-types-overview) .slide-content,
 .slide-workspace:has(.slide-climate-factors) .slide-content,
 .slide-workspace:has(.slide-climate-turkey-types) .slide-content,
 .slide-workspace:has(.slide-climate-weather-climate-comparison) .slide-content,
+.slide-workspace:has(.slide-climate-weather-climate-table) .slide-content,
 .slide-workspace:has(.slide-climate-global-change) .slide-content,
+.slide-workspace:has(.slide-climate-global-visual-summary) .slide-content,
 .slide-workspace:has(.slide-climate-global-actions) .slide-content {
   padding: 0;
 }
 
 .slide-climate-definition-concepts,
+.slide-climate-types-overview,
 .slide-climate-precipitation-types,
 .slide-climate-factors,
 .slide-climate-turkey-types,
 .slide-climate-weather-climate-comparison,
+.slide-climate-weather-climate-table,
 .slide-climate-global-change,
+.slide-climate-global-visual-summary,
 .slide-climate-global-actions {
   width: 100%;
   height: 100%;
@@ -2541,6 +2547,62 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   padding: 34px 32px;
 }
 
+.slide-climate-types-overview {
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.climate-types-overview-grid {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.climate-type-overview-card {
+  min-width: 0;
+  min-height: 0;
+  padding: 28px 20px;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: center;
+  text-align: center;
+}
+
+.climate-type-overview-visual {
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  border: 2px solid rgba(15, 23, 42, 0.08);
+  border-radius: 22px;
+  color: #0f172a;
+  font-size: 34px;
+  font-weight: 850;
+  line-height: 1.08;
+}
+
+.climate-type-overview-card h2 {
+  margin: 0;
+  color: #111827;
+  font-size: 40px;
+  font-weight: 850;
+  line-height: 1.08;
+}
+
+.climate-type-overview-ice { background: #eef8ff; }
+.climate-type-overview-ice .climate-type-overview-visual { background: #dff2ff; }
+.climate-type-overview-sand { background: #fff4df; }
+.climate-type-overview-sand .climate-type-overview-visual { background: #ffe8ba; }
+.climate-type-overview-peach { background: #fff0e6; }
+.climate-type-overview-peach .climate-type-overview-visual { background: #ffd9c5; }
+.climate-type-overview-blue { background: #eaf4ff; }
+.climate-type-overview-blue .climate-type-overview-visual { background: #d7ecff; }
+.climate-type-overview-lilac { background: #f1eeff; }
+.climate-type-overview-lilac .climate-type-overview-visual { background: #e4dcff; }
+
 .climate-type-card h2,
 .climate-global-change-card h2 {
   text-align: center;
@@ -2626,6 +2688,72 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
   font-weight: 900;
 }
 
+.slide-climate-weather-climate-table {
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.climate-comparison-table {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: 86px repeat(5, minmax(0, 1fr));
+  border: 2px solid #d8e2ec;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+}
+
+.climate-comparison-table-head,
+.climate-comparison-table-row {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 0.78fr 1.11fr 1.11fr;
+  align-items: center;
+}
+
+.climate-comparison-table-head {
+  background: #eaf4ff;
+}
+
+.climate-comparison-table-head strong {
+  color: #d8362a;
+  font-size: 40px;
+  font-weight: 900;
+  line-height: 1.05;
+  text-align: center;
+}
+
+.climate-comparison-table-row {
+  border-top: 2px solid #d8e2ec;
+}
+
+.climate-comparison-table-row:nth-child(odd) {
+  background: #f8fbff;
+}
+
+.climate-comparison-table-row > * {
+  min-width: 0;
+  height: 100%;
+  margin: 0;
+  padding: 18px 22px;
+  display: grid;
+  place-items: center;
+  border-left: 2px solid #d8e2ec;
+  color: #111827;
+  font-size: 38px;
+  font-weight: 800;
+  line-height: 1.08;
+  text-align: center;
+}
+
+.climate-comparison-table-row > *:first-child {
+  border-left: 0;
+  color: #0f172a;
+  font-size: 40px;
+  font-weight: 900;
+}
+
 .climate-global-change-card {
   justify-items: center;
 }
@@ -2640,6 +2768,84 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 
 .slide-climate-global-actions {
   grid-template-rows: auto minmax(0, 1fr) 134px;
+}
+
+.slide-climate-global-visual-summary {
+  grid-template-rows: auto minmax(0, 1fr) 132px;
+}
+
+.climate-global-visual-grid {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.climate-global-visual-card {
+  min-width: 0;
+  min-height: 0;
+  padding: 26px 28px;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto auto;
+  gap: 18px;
+}
+
+.climate-global-visual-panel {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  place-items: center;
+  border: 2px solid rgba(15, 23, 42, 0.08);
+  border-radius: 22px;
+  color: #0f172a;
+  font-size: 40px;
+  font-weight: 850;
+  line-height: 1.08;
+  text-align: center;
+}
+
+.climate-global-visual-card h2 {
+  margin: 0;
+  color: #d8362a;
+  font-size: 40px;
+  font-weight: 900;
+  line-height: 1.05;
+  text-align: center;
+}
+
+.climate-global-visual-card p {
+  margin: 0;
+  color: #111827;
+  font-size: 34px;
+  font-weight: 750;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.climate-global-visual-peach { background: #fff0e6; }
+.climate-global-visual-peach .climate-global-visual-panel { background: #ffd9c5; }
+.climate-global-visual-sand { background: #fff4df; }
+.climate-global-visual-sand .climate-global-visual-panel { background: #ffe8ba; }
+.climate-global-visual-blue { background: #eaf4ff; }
+.climate-global-visual-blue .climate-global-visual-panel { background: #d7ecff; }
+
+.climate-global-visual-note {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px 36px;
+  background: #f2f6fa;
+}
+
+.climate-global-visual-note p {
+  margin: 0;
+  color: #111827;
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1.08;
+  text-align: center;
 }
 
 .climate-global-action-column {
@@ -2692,6 +2898,7 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 .slide-workspace:has(.slide-climate-precipitation-classify) .slide-content,
 .slide-workspace:has(.slide-climate-hero) .slide-content,
 .slide-workspace:has(.slide-climate-type-selector) .slide-content,
+.slide-workspace:has(.slide-climate-turkey-map) .slide-content,
 .slide-workspace:has(.slide-climate-weather-quiz) .slide-content,
 .slide-workspace:has(.slide-climate-greenhouse) .slide-content,
 .slide-workspace:has(.slide-climate-chain) .slide-content { padding: 0; }
@@ -2707,6 +2914,7 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 .slide-climate-precipitation-classify,
 .slide-climate-hero,
 .slide-climate-type-selector,
+.slide-climate-turkey-map,
 .slide-climate-weather-quiz,
 .slide-climate-greenhouse,
 .slide-climate-chain {
@@ -3038,6 +3246,87 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 .climate-region-stage h2 { margin: 0; color: #d8362a; font-size: 44px; }
 .climate-region-stage article div { display: grid; gap: 20px; }
 .climate-region-stage p { margin: 0; font-size: 38px; font-weight: 800; }
+
+/* Türkiye iklim haritası */
+.slide-climate-turkey-map {
+  grid-template-rows: auto minmax(0, 1fr);
+  background: #ffffff;
+}
+
+.climate-turkey-map-layout {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.8fr);
+  gap: 34px;
+  align-items: stretch;
+}
+
+.climate-turkey-map-figure {
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 24px;
+  display: grid;
+  place-items: center;
+  border: 2px solid #d8e2ec;
+  border-radius: 24px;
+  background: #f8fbff;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+  overflow: hidden;
+}
+
+.climate-turkey-map-figure img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.climate-turkey-map-cards {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.climate-turkey-map-card {
+  min-width: 0;
+  min-height: 0;
+  padding: 24px 28px;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+}
+
+.climate-turkey-map-card h2 {
+  margin: 0;
+  color: #d8362a;
+  font-size: 38px;
+  font-weight: 900;
+  line-height: 1.05;
+}
+
+.climate-turkey-map-card div {
+  min-width: 0;
+  display: grid;
+  align-content: center;
+  gap: 8px;
+}
+
+.climate-turkey-map-card p {
+  margin: 0;
+  color: #111827;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.08;
+}
+
+.climate-turkey-map-peach { background: #fff0e6; }
+.climate-turkey-map-blue { background: #eaf4ff; }
+.climate-turkey-map-lilac { background: #f1eeff; }
 
 /* Hava olayı / iklim mini etkinliği */
 .slide-climate-weather-quiz { grid-template-rows: auto 54px minmax(0, 1fr); }
@@ -6105,6 +6394,118 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 .slide-solar-olusum-sureci .blank-slot-answer {
   font-size: 40px;
 }
+
+/* 6. Sınıf — Güneş ve Ay Tutulmaları */
+.slide-workspace:has(.slide-eclipse-image) .slide-content {
+  padding: 0;
+}
+
+.slide-eclipse-image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.eclipse-slide-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.eclipse-overlay-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.eclipse-reveal-slot {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--w);
+  height: var(--h);
+  display: grid;
+  place-items: center;
+  pointer-events: auto;
+  overflow: hidden;
+}
+
+.eclipse-reveal-slot .interaction-slot {
+  width: 100%;
+  height: 100%;
+}
+
+.eclipse-reveal-slot .reveal-fill-sentence {
+  width: 100%;
+  height: 100%;
+  display: block;
+  font-size: var(--fs);
+  font-weight: var(--fw);
+  line-height: 1;
+}
+
+.eclipse-reveal-slot .reveal-fill-text {
+  display: none;
+}
+
+.eclipse-reveal-slot .reveal-fill-blank,
+.eclipse-reveal-slot .reveal-fill-blank.size-short,
+.eclipse-reveal-slot .reveal-fill-blank.size-medium,
+.eclipse-reveal-slot .reveal-fill-blank.size-long {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #081f52;
+  font: inherit;
+  line-height: 1;
+}
+
+.eclipse-reveal-slot .reveal-fill-blank::after {
+  left: 8%;
+  right: 8%;
+  bottom: 2px;
+  height: 3px;
+  background: #0b4ea2;
+}
+
+.eclipse-reveal-slot .reveal-fill-blank:hover:not(.is-revealed) {
+  background: rgba(11, 78, 162, 0.05);
+}
+
+.eclipse-reveal-slot .blank-slot-answer {
+  padding: 0;
+  color: #081f52;
+  font: inherit;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.eclipse-reveal-slot .reveal-fill-blank.is-revealed {
+  background: transparent;
+}
+
+.eclipse-reveal-slot .reveal-fill-blank.is-revealed .blank-slot-answer {
+  color: #081f52;
+}
+
+.eclipse-mask-blue { background: #dceffc; }
+.eclipse-mask-mint { background: #e6f4f0; }
+.eclipse-mask-cream { background: #fff3dc; }
+.eclipse-mask-pink { background: #fde4ee; }
+.eclipse-mask-lilac { background: #e9e7ff; }
+.eclipse-mask-green { background: #e5f6eb; }
+.eclipse-mask-note { background: #ffffff; }
+.eclipse-mask-note-blue { background: #e7f3ff; }
+.eclipse-mask-order { background: #fff7ea; }
 
 /* ==========================================================================
    7. Sınıf Uzay Araştırmaları — Slayt 1: Uzay Nedir? (Yeni Tipografi Standardı)

@@ -15,6 +15,37 @@ const mountInteraction = (interaction, container, interactions, activeInteractio
 
 export function renderSolarSlide(slide, view, { interactions, activeInteractions }) {
   switch (slide.layout) {
+    case "eclipse_image_slide": {
+      const overlays = slide.overlays ?? [];
+      const interactionById = new Map((slide.interactions ?? []).map((item) => [item.id, item]));
+      const slideArticle = document.createElement("article");
+      slideArticle.className = `board-slide slide-eclipse-image${overlays.length ? " board-slide-interactive" : ""}`;
+      slideArticle.innerHTML = `
+        <img
+          src="${escapeHtml(slide.media?.[0]?.src ?? "")}"
+          alt="${escapeHtml(slide.media?.[0]?.alt ?? slide.title ?? "Güneş ve Ay Tutulmaları")}"
+          class="eclipse-slide-img"
+        />
+        <div class="eclipse-overlay-layer" aria-label="${escapeHtml(slide.title ?? "Etkileşimli tutulma slaytı")}"></div>
+      `;
+      const layer = slideArticle.querySelector(".eclipse-overlay-layer");
+      for (const overlay of overlays) {
+        const slot = document.createElement("div");
+        slot.className = `eclipse-reveal-slot eclipse-mask-${escapeHtml(overlay.tone ?? "blue")}`;
+        slot.style.setProperty("--x", `${overlay.x ?? 0}px`);
+        slot.style.setProperty("--y", `${overlay.y ?? 0}px`);
+        slot.style.setProperty("--w", `${overlay.w ?? 120}px`);
+        slot.style.setProperty("--h", `${overlay.h ?? 40}px`);
+        slot.style.setProperty("--fs", `${overlay.fontSize ?? 34}px`);
+        slot.style.setProperty("--fw", `${overlay.fontWeight ?? 800}`);
+        const interaction = interactionById.get(overlay.interactionId);
+        if (interaction) mountInteraction(interaction, slot, interactions, activeInteractions);
+        layer.appendChild(slot);
+      }
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
     case "solar_kapak": {
       const slideArticle = document.createElement("article");
       slideArticle.className = "board-slide slide-solar-kapak";

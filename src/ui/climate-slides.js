@@ -803,6 +803,27 @@ export function renderClimateSlide(slide, view, { interactions, activeInteractio
       return true;
     }
 
+    case "climate_climate_types": {
+      const cards = slide.climateCards ?? [];
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-climate-types-overview";
+      slideArticle.innerHTML = `
+        <header class="climate-slide-header">
+          <h1 class="climate-slide-title">${escapeHtml(slide.title ?? "İKLİM TİPLERİ")}</h1>
+        </header>
+        <section class="climate-types-overview-grid" aria-label="İklim tipleri">
+          ${cards.map((card) => `
+            <article class="climate-card climate-type-overview-card climate-type-overview-${escapeHtml(card.tone ?? "blue")}">
+              <div class="climate-type-overview-visual" aria-hidden="true">${escapeHtml(card.visual ?? "")}</div>
+              <h2>${escapeHtml(card.title ?? "")}</h2>
+            </article>
+          `).join("")}
+        </section>
+      `;
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
     case "climate_weather_climate_comparison": {
       const columns = slide.columns ?? [];
       const slideArticle = document.createElement("article");
@@ -817,6 +838,30 @@ export function renderClimateSlide(slide, view, { interactions, activeInteractio
               <h2>${escapeHtml(column.title ?? "")}</h2>
               <ul>${(column.items ?? []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
             </article>
+          `).join("")}
+        </section>
+      `;
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
+    case "climate_weather_climate_table": {
+      const headers = slide.headers ?? ["Özellik", "Hava Olayları", "İklim"];
+      const rows = slide.rows ?? [];
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-climate-weather-climate-table";
+      slideArticle.innerHTML = `
+        <header class="climate-slide-header">
+          <h1 class="climate-slide-title">${escapeHtml(slide.title ?? "HAVA OLAYLARI VE İKLİM KARŞILAŞTIRMASI")}</h1>
+        </header>
+        <section class="climate-comparison-table" aria-label="Hava olayları ve iklim karşılaştırması tablosu">
+          <div class="climate-comparison-table-head">${headers.map((header) => `<strong>${escapeHtml(header)}</strong>`).join("")}</div>
+          ${rows.map((row) => `
+            <div class="climate-comparison-table-row">
+              <strong>${escapeHtml(row.feature ?? "")}</strong>
+              <p>${escapeHtml(row.weather ?? "")}</p>
+              <p>${escapeHtml(row.climate ?? "")}</p>
+            </div>
           `).join("")}
         </section>
       `;
@@ -845,6 +890,29 @@ export function renderClimateSlide(slide, view, { interactions, activeInteractio
       return true;
     }
 
+    case "climate_global_visual_summary": {
+      const cards = slide.visualCards ?? [];
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-climate-global-visual-summary";
+      slideArticle.innerHTML = `
+        <header class="climate-slide-header">
+          <h1 class="climate-slide-title">${escapeHtml(slide.title ?? "KÜRESEL İKLİM DEĞİŞİKLİĞİ ÖZETİ")}</h1>
+        </header>
+        <section class="climate-global-visual-grid" aria-label="Küresel iklim değişikliği etkileri">
+          ${cards.map((card) => `
+            <article class="climate-card climate-global-visual-card climate-global-visual-${escapeHtml(card.tone ?? "blue")}">
+              <div class="climate-global-visual-panel" aria-hidden="true">${escapeHtml(card.label ?? "")}</div>
+              <h2>${escapeHtml(card.title ?? "")}</h2>
+              <p>${escapeHtml(card.text ?? "")}</p>
+            </article>
+          `).join("")}
+        </section>
+        <aside class="climate-card climate-global-visual-note"><p>${escapeHtml(slide.note ?? "")}</p></aside>
+      `;
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
     case "climate_global_actions": {
       const columns = slide.columns ?? [];
       const slideArticle = document.createElement("article");
@@ -862,6 +930,32 @@ export function renderClimateSlide(slide, view, { interactions, activeInteractio
           `).join("")}
         </section>
         <aside class="climate-card climate-kyoto-note"><p>${escapeHtml(slide.kyotoNote ?? "")}</p></aside>
+      `;
+      view.slideContent.replaceChildren(slideArticle);
+      return true;
+    }
+
+    case "climate_turkey_map": {
+      const cards = slide.cards ?? [];
+      const slideArticle = document.createElement("article");
+      slideArticle.className = "board-slide slide-climate-turkey-map";
+      slideArticle.innerHTML = `
+        <header class="climate-slide-header">
+          <h1 class="climate-slide-title">${escapeHtml(slide.title ?? "TÜRKİYE'DE İKLİM")}</h1>
+        </header>
+        <section class="climate-turkey-map-layout" aria-label="Türkiye iklim haritası ve iklim tipleri">
+          <figure class="climate-turkey-map-figure">
+            <img src="${escapeHtml(slide.image ?? "")}" alt="Türkiye iklim haritası" />
+          </figure>
+          <div class="climate-turkey-map-cards">
+            ${cards.map((card) => `
+              <article class="climate-card climate-turkey-map-card climate-turkey-map-${escapeHtml(card.tone ?? "blue")}">
+                <h2>${escapeHtml(card.title ?? "")}</h2>
+                <div>${(card.lines ?? []).map((line) => `<p>${escapeHtml(line)}</p>`).join("")}</div>
+              </article>
+            `).join("")}
+          </div>
+        </section>
       `;
       view.slideContent.replaceChildren(slideArticle);
       return true;

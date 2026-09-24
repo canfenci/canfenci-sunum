@@ -1,0 +1,613 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "lesson_gunes_ve_ay_tutulmalari_1",
+  "title": "Güneş ve Ay Tutulmaları",
+  "gradeId": "grade_6",
+  "curriculumProfileId": "maarif_model",
+  "unitId": "solar_system_and_eclipses",
+  "topicId": "solar_and_lunar_eclipses",
+  "modes": [
+    "presentation"
+  ],
+  "curriculumValidation": {
+    "outcomeIds": [
+      "FB.6.1.2.1"
+    ],
+    "authority": "MEB",
+    "sourceDocument": "Türkiye Yüzyılı Maarif Modeli Fen Bilimleri Dersi Öğretim Programı",
+    "sourceVersion": "2024",
+    "lastVerifiedAt": null,
+    "verifiedBy": "CanFenci",
+    "status": "unverified"
+  },
+  "stages": [
+    {
+      "id": "stage_tutulmalar",
+      "label": "Güneş ve Ay Tutulmaları",
+      "order": 1,
+      "slides": [
+        {
+          "id": "slide_1_kapak",
+          "type": "content",
+          "layout": "eclipse_image_slide",
+          "title": "Güneş ve Ay Tutulmaları",
+          "media": [
+            {
+              "id": "media_eclipse_01",
+              "src": "./assets/images/gunes-ve-ay-tutulmalari/01-kapak.png",
+              "alt": "Güneş ve Ay Tutulmaları kapak slaytı"
+            }
+          ],
+          "interactions": []
+        },
+        {
+          "id": "slide_2_tutulma_nedir",
+          "type": "content",
+          "layout": "eclipse_image_slide",
+          "title": "Tutulma Nedir?",
+          "media": [
+            {
+              "id": "media_eclipse_02",
+              "src": "./assets/images/gunes-ve-ay-tutulmalari/02-tutulma-nedir.png",
+              "alt": "Tutulma nedir slaytı"
+            }
+          ],
+          "overlays": [
+            {
+              "id": "overlay_slide_2_aynı_dogrultuda",
+              "interactionId": "interaction_slide_2_aynı_dogrultuda",
+              "x": 220,
+              "y": 301,
+              "w": 274,
+              "h": 44,
+              "tone": "blue",
+              "fontSize": 36,
+              "fontWeight": 800
+            },
+            {
+              "id": "overlay_slide_2_golge_olayidir",
+              "interactionId": "interaction_slide_2_golge_olayidir",
+              "x": 456,
+              "y": 584,
+              "w": 215,
+              "h": 44,
+              "tone": "pink",
+              "fontSize": 36,
+              "fontWeight": 800
+            },
+            {
+              "id": "overlay_slide_2_gunes_tutulmasi",
+              "interactionId": "interaction_slide_2_gunes_tutulmasi",
+              "x": 525,
+              "y": 700,
+              "w": 258,
+              "h": 44,
+              "tone": "lilac",
+              "fontSize": 36,
+              "fontWeight": 800
+            },
+            {
+              "id": "overlay_slide_2_ay_tutulmasi",
+              "interactionId": "interaction_slide_2_ay_tutulmasi",
+              "x": 224,
+              "y": 755,
+              "w": 226,
+              "h": 44,
+              "tone": "lilac",
+              "fontSize": 36,
+              "fontWeight": 800
+            },
+            {
+              "id": "overlay_slide_2_golge",
+              "interactionId": "interaction_slide_2_golge",
+              "x": 770,
+              "y": 907,
+              "w": 94,
+              "h": 36,
+              "tone": "note",
+              "fontSize": 32,
+              "fontWeight": 500
+            }
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_2_aynı_dogrultuda",
+              "type": "reveal_fill",
+              "template": "{blank1}",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "aynı doğrultuda",
+                  "placeholder": "aynı doğrultuda"
+                }
+              ]
+            },
+            {
+              "id": "interaction_slide_2_golge_olayidir",
+              "type": "reveal_fill",
+              "template": "{blank1}",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "gölge olayıdır",
+                  "placeholder": "gölge olayıdır"
+                }
+              ]
+            },
+            {
+              "id": "interaction_slide_2_gunes_tutulmasi",
+              "type": "reveal_fill",
+              "template": "{blank1}",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "Güneş tutulması",
+                  "placeholder": "Güneş tutulması"
+                }
+              ]
+            },
+            {
+              "id": "interaction_slide_2_ay_tutulmasi",
+              "type": "reveal_fill",
+              "template": "{blank1}",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "Ay tutulması",
+                  "placeholder": "Ay tutulması"
+                }
+              ]
+            },
+            {
+              "id": "interaction_slide_2_golge",
+              "type": "reveal_fill",
+              "template": "{blank1}",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "gölge",
+                  "placeholder": "gölge"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "slide_3_gunes_tutulmasi",
+          "type": "content",
+          "layout": "eclipse_image_slide",
+          "title": "Güneş Tutulması",
+          "media": [
+            {
+              "id": "media_eclipse_03",
+              "src": "./assets/images/gunes-ve-ay-tutulmalari/03-gunes-tutulmasi.png",
+              "alt": "Güneş tutulması slaytı"
+            }
+          ],
+          "overlays": [
+            {
+              "id": "overlay_slide_3_girer",
+              "interactionId": "interaction_slide_3_girer",
+              "x": 590,
+              "y": 312,
+              "w": 75,
+              "h": 39,
+              "tone": "blue",
+              "fontSize": 31,
+              "fontWeight": 500
+            },
+            {
+              "id": "overlay_slide_3_gunduz",
+              "interactionId": "interaction_slide_3_gunduz",
+              "x": 205,
+              "y": 396,
+              "w": 148,
+              "h": 44,
+              "tone": "mint",
+              "fontSize": 33,
+              "fontWeight": 800
+            },
+            {
+              "id": "overlay_slide_3_yeni_ay",
+              "interactionId": "interaction_slide_3_yeni_ay",
+              "x": 208,
+              "y": 486,
+              "w": 148,
+              "h": 44,
+              "tone": "cream",
+              "fontSize": 33,
+              "fontWeight": 800
+            },
+            {
+              "id": "overlay_slide_3_yeni_ayda",
+              "interactionId": "interaction_slide_3_yeni_ayda",
+              "x": 253,
+              "y": 575,
+              "w": 170,
+              "h": 44,
+              "tone": "pink",
+              "fontSize": 33,
+              "fontWeight": 800
+            },
+            {
+              "id": "overlay_slide_3_dar",
+              "interactionId": "interaction_slide_3_dar",
+              "x": 316,
+              "y": 665,
+              "w": 62,
+              "h": 44,
+              "tone": "lilac",
+              "fontSize": 33,
+              "fontWeight": 800
+            },
+            {
+              "id": "overlay_slide_3_tehlikelidir",
+              "interactionId": "interaction_slide_3_tehlikelidir",
+              "x": 540,
+              "y": 758,
+              "w": 160,
+              "h": 44,
+              "tone": "green",
+              "fontSize": 33,
+              "fontWeight": 800
+            },
+            {
+              "id": "overlay_slide_3_ay",
+              "interactionId": "interaction_slide_3_ay",
+              "x": 280,
+              "y": 909,
+              "w": 42,
+              "h": 31,
+              "tone": "order",
+              "fontSize": 25,
+              "fontWeight": 800
+            }
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_3_girer",
+              "type": "reveal_fill",
+              "template": "{blank1}",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "girer",
+                  "placeholder": "girer"
+                }
+              ]
+            },
+            {
+              "id": "interaction_slide_3_gunduz",
+              "type": "reveal_fill",
+              "template": "{blank1}",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "Gündüz",
+                  "placeholder": "Gündüz"
+                }
+              ]
+            },
+            {
+              "id": "interaction_slide_3_yeni_ay",
+              "type": "reveal_fill",
+              "template": "{blank1}",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "Yeni ay",
+                  "placeholder": "Yeni ay"
+                }
+              ]
+            },
+            {
+              "id": "interaction_slide_3_yeni_ayda",
+              "type": "reveal_fill",
+              "template": "{blank1}",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "yeni ayda",
+                  "placeholder": "yeni ayda"
+                }
+              ]
+            },
+            {
+              "id": "interaction_slide_3_dar",
+              "type": "reveal_fill",
+              "template": "{blank1}",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "dar",
+                  "placeholder": "dar"
+                }
+              ]
+            },
+            {
+              "id": "interaction_slide_3_tehlikelidir",
+              "type": "reveal_fill",
+              "template": "{blank1}",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "tehlikelidir",
+                  "placeholder": "tehlikelidir"
+                }
+              ]
+            },
+            {
+              "id": "interaction_slide_3_ay",
+              "type": "reveal_fill",
+              "template": "{blank1}",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "Ay",
+                  "placeholder": "Ay"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "slide_4_ay_tutulmasi",
+          "type": "content",
+          "layout": "eclipse_image_slide",
+          "title": "Ay Tutulması",
+          "media": [
+            {
+              "id": "media_eclipse_04",
+              "src": "./assets/images/gunes-ve-ay-tutulmalari/04-ay-tutulmasi.png",
+              "alt": "Ay tutulması slaytı"
+            }
+          ],
+          "overlays": [
+            {
+              "id": "overlay_slide_4_girer",
+              "interactionId": "interaction_slide_4_girer",
+              "x": 511,
+              "y": 312,
+              "w": 75,
+              "h": 39,
+              "tone": "blue",
+              "fontSize": 31,
+              "fontWeight": 500
+            },
+            {
+              "id": "overlay_slide_4_gece",
+              "interactionId": "interaction_slide_4_gece",
+              "x": 210,
+              "y": 405,
+              "w": 94,
+              "h": 44,
+              "tone": "mint",
+              "fontSize": 33,
+              "fontWeight": 800
+            },
+            {
+              "id": "overlay_slide_4_dolunay",
+              "interactionId": "interaction_slide_4_dolunay",
+              "x": 210,
+              "y": 497,
+              "w": 153,
+              "h": 44,
+              "tone": "cream",
+              "fontSize": 33,
+              "fontWeight": 800
+            },
+            {
+              "id": "overlay_slide_4_dolunayda",
+              "interactionId": "interaction_slide_4_dolunayda",
+              "x": 253,
+              "y": 585,
+              "w": 184,
+              "h": 44,
+              "tone": "pink",
+              "fontSize": 33,
+              "fontWeight": 800
+            },
+            {
+              "id": "overlay_slide_4_genis",
+              "interactionId": "interaction_slide_4_genis",
+              "x": 315,
+              "y": 676,
+              "w": 112,
+              "h": 44,
+              "tone": "lilac",
+              "fontSize": 33,
+              "fontWeight": 800
+            },
+            {
+              "id": "overlay_slide_4_uzun",
+              "interactionId": "interaction_slide_4_uzun",
+              "x": 577,
+              "y": 768,
+              "w": 84,
+              "h": 44,
+              "tone": "green",
+              "fontSize": 33,
+              "fontWeight": 800
+            },
+            {
+              "id": "overlay_slide_4_ay",
+              "interactionId": "interaction_slide_4_ay",
+              "x": 407,
+              "y": 944,
+              "w": 42,
+              "h": 31,
+              "tone": "order",
+              "fontSize": 25,
+              "fontWeight": 800
+            },
+            {
+              "id": "overlay_slide_4_dunya",
+              "interactionId": "interaction_slide_4_dunya",
+              "x": 626,
+              "y": 919,
+              "w": 94,
+              "h": 36,
+              "tone": "note-blue",
+              "fontSize": 29,
+              "fontWeight": 800
+            }
+          ],
+          "interactions": [
+            {
+              "id": "interaction_slide_4_girer",
+              "type": "reveal_fill",
+              "template": "{blank1}",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "girer",
+                  "placeholder": "girer"
+                }
+              ]
+            },
+            {
+              "id": "interaction_slide_4_gece",
+              "type": "reveal_fill",
+              "template": "{blank1}",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "Gece",
+                  "placeholder": "Gece"
+                }
+              ]
+            },
+            {
+              "id": "interaction_slide_4_dolunay",
+              "type": "reveal_fill",
+              "template": "{blank1}",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "Dolunay",
+                  "placeholder": "Dolunay"
+                }
+              ]
+            },
+            {
+              "id": "interaction_slide_4_dolunayda",
+              "type": "reveal_fill",
+              "template": "{blank1}",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "dolunayda",
+                  "placeholder": "dolunayda"
+                }
+              ]
+            },
+            {
+              "id": "interaction_slide_4_genis",
+              "type": "reveal_fill",
+              "template": "{blank1}",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "geniş",
+                  "placeholder": "geniş"
+                }
+              ]
+            },
+            {
+              "id": "interaction_slide_4_uzun",
+              "type": "reveal_fill",
+              "template": "{blank1}",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "uzun",
+                  "placeholder": "uzun"
+                }
+              ]
+            },
+            {
+              "id": "interaction_slide_4_ay",
+              "type": "reveal_fill",
+              "template": "{blank1}",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "Ay",
+                  "placeholder": "Ay"
+                }
+              ]
+            },
+            {
+              "id": "interaction_slide_4_dunya",
+              "type": "reveal_fill",
+              "template": "{blank1}",
+              "blanks": [
+                {
+                  "id": "blank1",
+                  "answer": "Dünya",
+                  "placeholder": "Dünya"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "slide_5_benzerlikler",
+          "type": "content",
+          "layout": "eclipse_image_slide",
+          "title": "Benzerlikler",
+          "media": [
+            {
+              "id": "media_eclipse_05",
+              "src": "./assets/images/gunes-ve-ay-tutulmalari/05-benzerlikler.png",
+              "alt": "Güneş ve Ay tutulması benzerlikleri"
+            }
+          ],
+          "interactions": []
+        },
+        {
+          "id": "slide_6_farkliliklar",
+          "type": "content",
+          "layout": "eclipse_image_slide",
+          "title": "Farklılıklar",
+          "media": [
+            {
+              "id": "media_eclipse_06",
+              "src": "./assets/images/gunes-ve-ay-tutulmalari/06-farkliliklar.png",
+              "alt": "Güneş ve Ay tutulması farklılıkları"
+            }
+          ],
+          "interactions": []
+        },
+        {
+          "id": "slide_7_ay_tutulmasi_cesitleri",
+          "type": "content",
+          "layout": "eclipse_image_slide",
+          "title": "Ay Tutulması Çeşitleri",
+          "media": [
+            {
+              "id": "media_eclipse_07",
+              "src": "./assets/images/gunes-ve-ay-tutulmalari/07-ay-tutulmasi-cesitleri.png",
+              "alt": "Ay tutulması çeşitleri"
+            }
+          ],
+          "interactions": []
+        },
+        {
+          "id": "slide_8_bilim_insanlari",
+          "type": "content",
+          "layout": "eclipse_image_slide",
+          "title": "Bilim İnsanları",
+          "media": [
+            {
+              "id": "media_eclipse_08",
+              "src": "./assets/images/gunes-ve-ay-tutulmalari/08-bilim-insanlari.png",
+              "alt": "Tutulmalar ve bilim insanları"
+            }
+          ],
+          "interactions": []
+        }
+      ]
+    }
+  ]
+}

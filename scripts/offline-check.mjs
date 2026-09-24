@@ -30,6 +30,7 @@ const requiredFiles = [
   "data/curricula/legacy_2018_lgs.json",
   "data/curricula/maarif_model.json",
   "data/lessons/gunes-sistemi.json",
+  "data/lessons/gunes-ve-ay-tutulmalari.json",
   "data/lessons/iklim-ve-hava-hareketleri.json",
   "data/lessons/mevsimlerin-olusumu.json",
   "data/lessons/uzay-arastirmalari.json"
@@ -98,6 +99,34 @@ try {
 }
 
 try {
+  const eclipse = JSON.parse(await readFile("data/lessons/gunes-ve-ay-tutulmalari.json", "utf8"));
+  const eclipseSlides = eclipse.stages.flatMap((s) => s.slides ?? []);
+  if (eclipseSlides.length === 8) {
+    pass(`6. Sınıf Güneş ve Ay Tutulmaları slayt sayısı doğru: ${eclipseSlides.length} slayt`);
+  } else {
+    fail(`6. Sınıf Güneş ve Ay Tutulmaları slayt sayısı 8 olmalıydı, bulunan: ${eclipseSlides.length}`);
+  }
+
+  let missingMedia = 0;
+  for (const slide of eclipseSlides) {
+    for (const m of slide.media ?? []) {
+      const p = m.src.replace(/^\.\//, "");
+      try {
+        await access(p);
+      } catch {
+        missingMedia++;
+        fail(`Görsel dosyası eksik: ${p} (${slide.id})`);
+      }
+    }
+  }
+  if (missingMedia === 0) {
+    pass("6. Sınıf Güneş ve Ay Tutulmaları slaytlarındaki tüm yerel görseller eksiksiz mevcut");
+  }
+} catch (err) {
+  fail(`gunes-ve-ay-tutulmalari.json doğrulanamadı: ${err.message}`);
+}
+
+try {
   const mevsimler = JSON.parse(await readFile("data/lessons/mevsimlerin-olusumu.json", "utf8"));
   const mevsimlerSlides = mevsimler.stages.flatMap((s) => s.slides ?? []);
   if (mevsimlerSlides.length === 25) {
@@ -129,10 +158,10 @@ try {
 try {
   const iklim = JSON.parse(await readFile("data/lessons/iklim-ve-hava-hareketleri.json", "utf8"));
   const iklimSlides = iklim.stages.flatMap((s) => s.slides ?? []);
-  if (iklimSlides.length === 25) {
+  if (iklimSlides.length === 24) {
     pass(`8. Sınıf İklim ve Hava Hareketleri slayt sayısı doğru: ${iklimSlides.length} slayt`);
   } else {
-    fail(`8. Sınıf İklim ve Hava Hareketleri slayt sayısı 25 olmalıydı, bulunan: ${iklimSlides.length}`);
+    fail(`8. Sınıf İklim ve Hava Hareketleri slayt sayısı 24 olmalıydı, bulunan: ${iklimSlides.length}`);
   }
 
   let missingMedia = 0;

@@ -55,6 +55,44 @@
               "source": "./data/lessons/gunes-sistemi.json"
             }
           ]
+        },
+        {
+          "id": "solar_and_lunar_eclipses",
+          "label": "Güneş ve Ay Tutulmaları",
+          "metadata": {
+            "coreTopics": [
+              "Güneş tutulması",
+              "Ay tutulması",
+              "Tutulmaların gölge ile ilişkisi"
+            ],
+            "extraTopics": [
+              "Tutulma türleri",
+              "Tutulmaları inceleyen bilim insanları"
+            ],
+            "verified": false,
+            "lastVerifiedAt": null
+          },
+          "workModes": {
+            "presentation": {
+              "status": "available",
+              "source": "./data/lessons/gunes-ve-ay-tutulmalari.json"
+            },
+            "activity": {
+              "status": "planned",
+              "source": null
+            },
+            "test": {
+              "status": "planned",
+              "source": null
+            }
+          },
+          "lessons": [
+            {
+              "id": "lesson_gunes_ve_ay_tutulmalari_1",
+              "label": "Güneş ve Ay Tutulmaları",
+              "source": "./data/lessons/gunes-ve-ay-tutulmalari.json"
+            }
+          ]
         }
       ]
     },
