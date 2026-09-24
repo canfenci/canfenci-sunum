@@ -77,4 +77,7 @@ test("6. Sınıf Güneş ve Ay Tutulmaları Ders Paketi", async () => {
   assert.ok(css.includes(".slide-eclipse-image"));
   assert.ok(css.includes("object-fit: contain"));
   assert.ok(css.includes(".eclipse-reveal-slot .blank-slot-answer"));
+  assert.match(css, /\.eclipse-reveal-slot \.reveal-fill-sentence \{[\s\S]*?display: inline-flex;[\s\S]*?align-items: baseline;/);
+  assert.match(css, /\.eclipse-reveal-slot \.reveal-fill-blank,[\s\S]*?display: inline-flex;[\s\S]*?align-items: baseline;/);
+  assert.match(css, /\.eclipse-reveal-slot \.blank-slot-answer \{[\s\S]*?transform: none;[\s\S]*?vertical-align: baseline;/);
 });
