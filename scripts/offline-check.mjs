@@ -101,10 +101,10 @@ try {
 try {
   const eclipse = JSON.parse(await readFile("data/lessons/gunes-ve-ay-tutulmalari.json", "utf8"));
   const eclipseSlides = eclipse.stages.flatMap((s) => s.slides ?? []);
-  if (eclipseSlides.length === 8) {
+  if (eclipseSlides.length === 9) {
     pass(`6. Sınıf Güneş ve Ay Tutulmaları slayt sayısı doğru: ${eclipseSlides.length} slayt`);
   } else {
-    fail(`6. Sınıf Güneş ve Ay Tutulmaları slayt sayısı 8 olmalıydı, bulunan: ${eclipseSlides.length}`);
+    fail(`6. Sınıf Güneş ve Ay Tutulmaları slayt sayısı 9 olmalıydı, bulunan: ${eclipseSlides.length}`);
   }
 
   let missingMedia = 0;

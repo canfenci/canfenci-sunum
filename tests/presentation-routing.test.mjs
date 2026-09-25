@@ -71,8 +71,10 @@ test("Müfredat ve Rota Bağlantıları Doğrulaması (6. Sınıf ve 8. Sınıf)
   const eclipseEngine = new LessonEngine();
   const eclipseLesson = await eclipseEngine.load("data/lessons/gunes-ve-ay-tutulmalari.json");
   assert.equal(eclipseLesson.id, "lesson_gunes_ve_ay_tutulmalari_1");
-  assert.equal(eclipseEngine.slideCount, 8, "Güneş ve Ay Tutulmaları dersi 8 slayt olmalıdır");
+  assert.equal(eclipseEngine.slideCount, 9, "Güneş ve Ay Tutulmaları dersi 9 slayt olmalıdır");
   assert.equal(eclipseEngine.currentSlide.layout, "eclipse_image_slide");
+  eclipseEngine.next();
+  assert.equal(eclipseEngine.currentSlide.layout, "eclipse_concept_slide");
 
   // 5. LessonEngine ile 8. sınıf ders yüklemesi (regresyon)
   const engine8 = new LessonEngine();

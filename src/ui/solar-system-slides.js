@@ -13,8 +13,238 @@ const mountInteraction = (interaction, container, interactions, activeInteractio
   container.appendChild(slot);
 };
 
+const eclipseNativeContent = {
+  slide_2_tutulma_nedir: {
+    title: "Tutulma Nedir?",
+    groups: [
+      { title: "Konum", rows: [["Tutulma; Güneş, Dünya ve Ay’ın belirli konumlarda ", "interaction_slide_2_aynı_dogrultuda", " bulunmasıyla gerçekleşir."], ["Güneş, Ay ve Dünya uygun konumda ve aynı hizada olmalıdır."]] },
+      { title: "Gölge olayı", rows: [["Tutulmalar bir ", "interaction_slide_2_golge_olayidir", "."]] },
+      { title: "Tutulma çeşitleri", rows: [["Gölge oluştuğunda ", "interaction_slide_2_gunes_tutulmasi", " veya ", "interaction_slide_2_ay_tutulmasi", " meydana gelebilir."]] }
+    ],
+    note: ["Hatırla: ", "Tutulmalar, gök cisimlerinin oluşturduğu ", "interaction_slide_2_golge", " ile açıklanır."]
+  },
+  slide_3_gunes_tutulmasi: {
+    title: "Güneş Tutulması",
+    groups: [
+      { title: "Konum", rows: [["Ay, Güneş ile Dünya arasına ", "interaction_slide_3_girer", "."]] },
+      { title: "Zaman / Evre", rows: [["", "interaction_slide_3_gunduz", " gözlemlenir."], ["", "interaction_slide_3_yeni_ay", " evresinde gerçekleşebilir."], ["Her ", "interaction_slide_3_yeni_ayda", " gerçekleşmez."]] },
+      { title: "Gözlem / Güvenlik", rows: [["Daha ", "interaction_slide_3_dar", " bir alanda gözlemlenir."], ["Çıplak gözle izlenmesi ", "interaction_slide_3_tehlikelidir", "."]] }
+    ],
+    note: ["Konum sırası: Güneş → ", "interaction_slide_3_ay", " → Dünya"],
+    warning: ["Dikkat: Güneş’e çıplak gözle bakmak gözlerimize zarar verebilir."]
+  },
+  slide_4_ay_tutulmasi: {
+    title: "Ay Tutulması",
+    groups: [
+      { title: "Konum", rows: [["Dünya, Güneş ile Ay arasına ", "interaction_slide_4_girer", "."]] },
+      { title: "Zaman / Evre", rows: [["", "interaction_slide_4_gece", " gözlemlenir."], ["", "interaction_slide_4_dolunay", " evresinde gerçekleşebilir."], ["Her ", "interaction_slide_4_dolunayda", " gerçekleşmez."]] },
+      { title: "Gözlem / Süre", rows: [["Daha ", "interaction_slide_4_genis", " bir alanda gözlemlenir."], ["Güneş tutulmasına göre daha ", "interaction_slide_4_uzun", " sürer."]] }
+    ],
+    note: ["Konum sırası: Güneş → Dünya → ", "interaction_slide_4_ay"],
+    warning: ["Unutma: Ay tutulmasında ", "interaction_slide_4_dunya", " ortadadır."]
+  }
+};
+
+const eclipseDiagramSources = {
+  slide_3_gunes_tutulmasi: "./assets/images/gunes-ve-ay-tutulmalari/diagrams/03-sema.png",
+  slide_4_ay_tutulmasi: "./assets/images/gunes-ve-ay-tutulmalari/diagrams/04-sema.png"
+};
+
+const renderEclipseConceptDiagram = () => `
+  <div class="eclipse-concept-diagram" aria-label="Güneş, Ay ve Dünya hizalanma şeması">
+    <div class="eclipse-diagram-stars"></div>
+    <div class="eclipse-ray eclipse-ray-top"></div>
+    <div class="eclipse-ray eclipse-ray-bottom"></div>
+    <div class="eclipse-shadow-cone"></div>
+    <div class="eclipse-orbit eclipse-orbit-sun"></div>
+    <div class="eclipse-orbit eclipse-orbit-moon"></div>
+    <div class="eclipse-body eclipse-sun"><span></span><strong>Güneş</strong></div>
+    <div class="eclipse-body eclipse-moon"><span></span><strong>Ay</strong></div>
+    <div class="eclipse-body eclipse-earth"><span></span><strong>Dünya</strong></div>
+    <div class="eclipse-diagram-caption">Aynı doğrultuda hizalanan gök cisimleri</div>
+  </div>
+`;
+
+const mountInlineReveal = (parts, interactionById, row, interactions, activeInteractions) => {
+  for (const part of parts) {
+    if (part.startsWith("interaction_")) {
+      const slot = document.createElement("span");
+      slot.className = "eclipse-native-reveal";
+      mountInteraction(interactionById.get(part), slot, interactions, activeInteractions);
+      row.appendChild(slot);
+    } else {
+      const text = document.createElement("span");
+      text.textContent = part;
+      row.appendChild(text);
+    }
+  }
+};
+
 export function renderSolarSlide(slide, view, { interactions, activeInteractions }) {
   switch (slide.layout) {
+    case "eclipse_video_slide": {
+      const article = document.createElement("article");
+      article.className = "board-slide eclipse-video-slide";
+      article.innerHTML = `
+        <header class="eclipse-video-header"><h1>${escapeHtml(slide.title ?? "Güneş Tutulması Nasıl Gerçekleşir?")}</h1><span></span></header>
+        <div class="eclipse-video-frame"><video class="eclipse-video" muted preload="metadata" playsinline src="${escapeHtml(slide.media?.[0]?.src ?? "")}"></video></div>
+        <div class="eclipse-video-controls"><button type="button" class="eclipse-video-play">Play</button><button type="button" class="eclipse-video-pause">Pause</button><button type="button" class="eclipse-video-restart">Baştan Oynat</button></div>
+      `;
+      const video = article.querySelector(".eclipse-video");
+      article.querySelector(".eclipse-video-play").addEventListener("click", () => video.play());
+      article.querySelector(".eclipse-video-pause").addEventListener("click", () => video.pause());
+      article.querySelector(".eclipse-video-restart").addEventListener("click", () => { video.currentTime = 0; video.pause(); });
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    case "eclipse_sync_animation": {
+      const article = document.createElement("article");
+      article.className = "board-slide eclipse-sync-slide";
+      article.innerHTML = `
+        <header class="eclipse-sync-header"><h1>Güneş Tutulması Nasıl Gerçekleşir?</h1><span></span></header>
+        <div class="eclipse-sync-panels">
+          <section class="eclipse-sync-panel eclipse-sync-space"><h2>Uzaydan görünüş</h2><div class="sync-space-scene"><i class="sync-sun"></i><i class="sync-moon"></i><i class="sync-earth"></i><b class="sync-label sync-label-sun">Güneş</b><b class="sync-label sync-label-moon">Ay</b><b class="sync-label sync-label-earth">Dünya</b><span class="sync-shadow"></span><span class="sync-light-line sync-line-top"></span><span class="sync-light-line sync-line-bottom"></span></div></section>
+          <section class="eclipse-sync-panel eclipse-sync-view"><h2>Dünya’dan görünüş</h2><div class="sync-view-scene"><i class="sync-view-sun"></i><i class="sync-view-moon"></i><span class="sync-view-corona"></span><span class="sync-view-horizon"></span><b class="sync-view-status">Başlangıç</b></div></section>
+        </div>
+        <div class="eclipse-sync-controls"><button type="button" class="sync-play">Play</button><button type="button" class="sync-pause">Pause</button><button type="button" class="sync-restart">Restart</button><div class="sync-progress"><span></span></div><strong class="sync-time">0.0 s</strong></div>
+      `;
+      const progress = article.querySelector(".sync-progress span");
+      const timeLabel = article.querySelector(".sync-time");
+      const status = article.querySelector(".sync-view-status");
+      let elapsed = 0;
+      let running = false;
+      let last = 0;
+      let raf = 0;
+      const duration = 20000;
+      const draw = (now = performance.now()) => {
+        const p = Math.min(1, elapsed / duration);
+        const cover = p < 0.28 ? 0 : p < 0.58 ? ((p - 0.28) / 0.3) * 100 : p < 0.76 ? 100 : Math.max(0, (1 - p) / 0.24 * 100);
+        const orbit = p < 0.28 ? p / 0.28 : p < 0.58 ? 1 : p < 0.82 ? (p - 0.58) / 0.24 : 1;
+        const spaceMoon = p < 0.28 ? 76 - orbit * 12 : p < 0.58 ? 64 : p < 0.82 ? 64 + orbit * 16 : 80;
+        const spaceMoonY = p < 0.28 ? 46 - orbit * 19 : p < 0.58 ? 27 + ((p - 0.28) / 0.3) * 19 : p < 0.82 ? 46 + orbit * 17 : 63;
+        const viewMoon = p < 0.28 ? -24 + orbit * 24 : p < 0.58 ? 0 + ((p - 0.28) / 0.3) * 26 : p < 0.82 ? 26 + orbit * 46 : 72;
+        article.style.setProperty("--sync-cover", `${Math.max(0, cover)}%`);
+        article.style.setProperty("--sync-darkness", `${Math.max(0, cover / 180)}`);
+        article.style.setProperty("--sync-space-moon-left", `${spaceMoon}%`);
+        article.style.setProperty("--sync-space-moon-top", `${spaceMoonY}%`);
+        article.style.setProperty("--sync-view-moon-left", `${viewMoon}%`);
+        progress.style.width = `${p * 100}%`;
+        timeLabel.textContent = `${(elapsed / 1000).toFixed(1)} s`;
+        status.textContent = p >= 0.58 && p <= 0.82 ? "Maksimum örtülme" : p > 0.22 && p < 0.9 ? "Kısmi tutulma" : "Başlangıç";
+        if (running) {
+          if (last) elapsed += now - last;
+          last = now;
+          if (elapsed >= duration) { elapsed = duration; running = false; }
+          raf = requestAnimationFrame(draw);
+        }
+      };
+      article.querySelector(".sync-play").addEventListener("click", () => { if (elapsed >= duration) elapsed = 0; running = true; last = 0; cancelAnimationFrame(raf); draw(); });
+      article.querySelector(".sync-pause").addEventListener("click", () => { running = false; cancelAnimationFrame(raf); draw(); });
+      article.querySelector(".sync-restart").addEventListener("click", () => { elapsed = 0; running = false; cancelAnimationFrame(raf); draw(); });
+      draw();
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    case "eclipse_types_slide": {
+      const cards = [
+        ["Tam Ay Tutulması", "./assets/images/gunes-ve-ay-tutulmalari/varieties/tam-ay.png", "Ay, tamamen gölge içinde kaldığı için bu tutulma türüne “Tam Ay Tutulması” denir.", "eclipse-type-full"],
+        ["Kanlı Ay Tutulması", "./assets/images/gunes-ve-ay-tutulmalari/varieties/kanli-ay.png", "Ay’ın kırmızı renkte görünmesi, Dünya atmosferinin süzgeç gibi davranarak kırmızı ışığı Ay’a ulaştırmasından kaynaklanır.", "eclipse-type-blood"],
+        ["Süper Kanlı Ay Tutulması", "./assets/images/gunes-ve-ay-tutulmalari/varieties/super-kanli-ay.png", "Ay, Dünya’ya daha yakın olduğu için daha büyük, daha parlak ve kızıl renkte görünür. Bu nedenle “Süper Kanlı Ay Tutulması” olarak adlandırılır.", "eclipse-type-super"]
+      ];
+      const article = document.createElement("article");
+      article.className = "board-slide eclipse-types-slide";
+      article.innerHTML = `<header class="eclipse-types-header"><h1>${escapeHtml(slide.title ?? "Ay Tutulması Çeşitleri")}</h1><span></span></header><div class="eclipse-types-grid"></div>`;
+      const grid = article.querySelector(".eclipse-types-grid");
+      for (const [title, src, summary, tone] of cards) {
+        const card = document.createElement("section");
+        card.className = `eclipse-type-card ${tone}`;
+        card.innerHTML = `<h2>${escapeHtml(title)}</h2><div class="eclipse-type-image"><img src="${src}" alt="${escapeHtml(title)} görseli"></div><p>${escapeHtml(summary)}</p>`;
+        grid.appendChild(card);
+      }
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    case "eclipse_concept_slide": {
+      const interactionById = new Map((slide.interactions ?? []).map((item) => [item.id, item]));
+      const article = document.createElement("article");
+      article.className = "board-slide board-slide-interactive eclipse-concept-slide";
+      article.innerHTML = `
+        <header class="eclipse-concept-header">
+          <span class="eclipse-concept-kicker">GÜNEŞ VE AY TUTULMALARI</span>
+          <h1>Tutulma Nedir?</h1>
+          <span class="eclipse-concept-rule"></span>
+        </header>
+        <div class="eclipse-concept-middle">
+          <section class="eclipse-formation-panel">
+            <div class="eclipse-panel-label">Tutulmanın Oluşması</div>
+            <div class="eclipse-formation-step"></div>
+            <div class="eclipse-formation-step"></div>
+          </section>
+          <div class="eclipse-concept-visual">${renderEclipseConceptDiagram()}</div>
+        </div>
+        <div class="eclipse-concept-bottom">
+          <section class="eclipse-bottom-card eclipse-types-card">
+            <h2>Tutulma Çeşitleri</h2>
+            <div class="eclipse-bottom-sentence"></div>
+          </section>
+          <section class="eclipse-bottom-card eclipse-remember-card">
+            <h2>Hatırla</h2>
+            <div class="eclipse-bottom-sentence"></div>
+          </section>
+        </div>
+      `;
+      const steps = article.querySelectorAll(".eclipse-formation-step");
+      mountInlineReveal(["Güneş, Dünya ve Ay belirli konumlarda ", "interaction_slide_2_aynı_dogrultuda", " bulunur."], interactionById, steps[0], interactions, activeInteractions);
+      mountInlineReveal(["Bu olay bir ", "interaction_slide_2_golge_olayidir", "."], interactionById, steps[1], interactions, activeInteractions);
+      mountInlineReveal(["Gölge oluştuğunda ", "interaction_slide_2_gunes_tutulmasi", " veya ", "interaction_slide_2_ay_tutulmasi", " meydana gelebilir."], interactionById, article.querySelector(".eclipse-types-card .eclipse-bottom-sentence"), interactions, activeInteractions);
+      mountInlineReveal(["Tutulmalar, gök cisimlerinin oluşturduğu ", "interaction_slide_2_golge", " ile açıklanır."], interactionById, article.querySelector(".eclipse-remember-card .eclipse-bottom-sentence"), interactions, activeInteractions);
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    case "eclipse_html_slide": {
+      const content = eclipseNativeContent[slide.id];
+      const interactionById = new Map((slide.interactions ?? []).map((item) => [item.id, item]));
+      const article = document.createElement("article");
+      article.className = `board-slide board-slide-interactive eclipse-native-slide eclipse-native-${slide.id}`;
+      article.innerHTML = `
+        <header class="eclipse-native-header">
+          <div class="eclipse-native-kicker">Güneş ve Ay Tutulmaları</div>
+          <h1>${escapeHtml(content.title)}</h1>
+          <span class="eclipse-native-rule"></span>
+        </header>
+        <div class="eclipse-native-main">
+          <section class="eclipse-native-copy">
+            <div class="eclipse-native-groups"></div>
+            <div class="eclipse-native-note"></div>
+            ${content.warning ? `<div class="eclipse-native-warning"></div>` : ""}
+          </section>
+          <div class="eclipse-native-visual">
+            ${slide.id === "slide_2_tutulma_nedir" ? renderEclipseConceptDiagram() : `<img src="${escapeHtml(eclipseDiagramSources[slide.id] ?? slide.media?.[0]?.src ?? "")}" alt="${escapeHtml(slide.media?.[0]?.alt ?? content.title)}" />`}
+          </div>
+        </div>
+      `;
+      const groups = article.querySelector(".eclipse-native-groups");
+      for (const group of content.groups) {
+        const card = document.createElement("section");
+        card.className = "eclipse-native-group";
+        card.innerHTML = `<h2>${escapeHtml(group.title)}</h2><div class="eclipse-native-group-body"></div>`;
+        const body = card.querySelector(".eclipse-native-group-body");
+        for (const parts of group.rows) {
+          const row = document.createElement("p");
+          mountInlineReveal(parts, interactionById, row, interactions, activeInteractions);
+          body.appendChild(row);
+        }
+        groups.appendChild(card);
+      }
+      const note = article.querySelector(".eclipse-native-note");
+      mountInlineReveal(content.note, interactionById, note, interactions, activeInteractions);
+      if (content.warning) {
+        const warning = article.querySelector(".eclipse-native-warning");
+        mountInlineReveal(content.warning, interactionById, warning, interactions, activeInteractions);
+      }
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
     case "eclipse_image_slide": {
       const overlays = slide.overlays ?? [];
       const interactionById = new Map((slide.interactions ?? []).map((item) => [item.id, item]));

@@ -43,7 +43,7 @@
         {
           "id": "slide_2_tutulma_nedir",
           "type": "content",
-          "layout": "eclipse_image_slide",
+          "layout": "eclipse_concept_slide",
           "title": "Tutulma Nedir?",
           "media": [
             {
@@ -175,7 +175,7 @@
         {
           "id": "slide_3_gunes_tutulmasi",
           "type": "content",
-          "layout": "eclipse_image_slide",
+          "layout": "eclipse_html_slide",
           "title": "Güneş Tutulması",
           "media": [
             {
@@ -353,7 +353,7 @@
         {
           "id": "slide_4_ay_tutulmasi",
           "type": "content",
-          "layout": "eclipse_image_slide",
+          "layout": "eclipse_html_slide",
           "title": "Ay Tutulması",
           "media": [
             {
@@ -582,7 +582,7 @@
         {
           "id": "slide_7_ay_tutulmasi_cesitleri",
           "type": "content",
-          "layout": "eclipse_image_slide",
+          "layout": "eclipse_types_slide",
           "title": "Ay Tutulması Çeşitleri",
           "media": [
             {
@@ -603,6 +603,20 @@
               "id": "media_eclipse_08",
               "src": "./assets/images/gunes-ve-ay-tutulmalari/08-bilim-insanlari.png",
               "alt": "Tutulmalar ve bilim insanları"
+            }
+          ],
+          "interactions": []
+        },
+        {
+          "id": "slide_9_gunes_tutulmasi_animasyonu",
+          "type": "content",
+          "layout": "eclipse_video_slide",
+          "title": "Güneş Tutulması Nasıl Gerçekleşir?",
+          "media": [
+            {
+              "id": "media_eclipse_09_video",
+              "src": "./assets/videos/gunes-ve-ay-tutulmalari/gunes-tutulmasi.mp4",
+              "alt": "Güneş tutulmasının oluşum animasyonu"
             }
           ],
           "interactions": []
