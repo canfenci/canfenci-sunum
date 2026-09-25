@@ -297,7 +297,7 @@ export function renderClimateSlide(slide, view, { interactions, activeInteractio
         ${climateHeader(slide.title ?? "KARŞILAŞTIR")}
         <div class="climate-segmented-control">${modes.map((mode, index) => `<button type="button" data-index="${index}">${escapeHtml(isBreeze ? mode.period : mode.title)}</button>`).join("")}</div>
         <section class="climate-toggle-scene" aria-live="polite">
-          <figure><img alt=""/></figure>
+          <figure><img alt=""/>${isBreeze ? "" : `<div class="pressure-motion-layer" aria-label="Hava moleküllerinin hareketi">${Array.from({ length: 14 }, (_, index) => `<i style="--particle-index:${index}"></i>`).join("")}<b class="pressure-motion-arrow">↓</b></div>`}</figure>
           <div class="climate-toggle-copy"><span></span><h2></h2><strong class="climate-toggle-direction"></strong><div class="climate-toggle-facts"></div></div>
         </section>
       `;
