@@ -15,6 +15,30 @@ const mountInteraction = (interaction, container, interactions, activeInteractio
 
 export function renderSpaceSlide(slide, view, { interactions, activeInteractions }) {
   switch (slide.layout) {
+    case "space_objects_visual": {
+      const article = document.createElement("article");
+      article.className = `board-slide space-objects-slide space-objects-${escapeHtml(slide.variant ?? "default")}`;
+      const matchingItems = [
+        ["star", "Yıldız", "Kendi ısı ve ışığını üreten gök cismi."],
+        ["nebula", "Bulutsu", "Uzaydaki gaz ve toz bulutu."],
+        ["protostar", "Ön yıldız", "Bulutsudaki gaz ve tozun sıkışmış hâli."],
+        ["giant", "Kırmızı dev", "Küçük kütleli yıldızın yaşamındaki aşama."],
+        ["supernova", "Süpernova", "Büyük kütleli yıldızın güçlü patlaması."],
+        ["dwarf", "Beyaz cüce", "Küçük kütleli yıldızın yaşam sonu."],
+        ["galaxy", "Galaksi", "Yıldız, gaz ve tozdan oluşan büyük sistem."],
+        ["light-year", "Işık yılı", "Işığın bir yılda aldığı uzaklık."],
+      ];
+      const matchingHtml = matchingItems.map(([key, label, definition]) => `<button type="button" data-match="${key}">${escapeHtml(label)}</button>`).join("") + matchingItems.map(([key, , definition], index) => `<span data-match="${key}" class="${index === 0 ? "is-active" : ""}">${escapeHtml(definition)}</span>`).join("");
+      article.innerHTML = `<header class="space-objects-header"><h1>${escapeHtml(slide.title)}</h1><span></span></header><div class="space-objects-stage"><section class="space-objects-copy"><p>${escapeHtml(slide.body ?? "")}</p>${slide.labels?.length ? `<div class="space-objects-labels">${slide.labels.map((label) => `<span>${escapeHtml(label)}</span>`).join("")}</div>` : ""}</section><div class="space-objects-art" aria-hidden="true"><i class="space-orb space-orb-a"></i><i class="space-orb space-orb-b"></i><i class="space-orb space-orb-c"></i><span class="space-objects-stars"></span></div></div>${slide.variant === "constellation" ? `<button type="button" class="space-objects-action">Takımyıldız çizgilerini göster</button>` : ""}${slide.variant === "matching" ? `<div class="space-matching-board">${matchingHtml}</div>` : ""}`;
+      const action = article.querySelector(".space-objects-action");
+      action?.addEventListener("click", () => { article.classList.toggle("is-connected"); action.textContent = article.classList.contains("is-connected") ? "Takımyıldız çizgilerini gizle" : "Takımyıldız çizgilerini göster"; });
+      article.querySelectorAll(".space-matching-board button").forEach((button) => button.addEventListener("click", () => {
+        article.querySelectorAll(".space-matching-board button").forEach((item) => item.classList.toggle("is-selected", item === button));
+        article.querySelectorAll(".space-matching-board span").forEach((item) => item.classList.toggle("is-active", item.dataset.match === button.dataset.match));
+      }));
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
     case "space_uzay_nedir": {
       const slideArticle = document.createElement("article");
       slideArticle.className = "board-slide slide-space-uzay-nedir";

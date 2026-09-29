@@ -1,0 +1,152 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "lesson_dna_ve_genetik_kod_1",
+  "title": "1. DNA ve Genetik Kod",
+  "gradeId": "grade_8",
+  "curriculumProfileId": "legacy_2018_lgs",
+  "unitId": "dna_and_genetic_code",
+  "topicId": "dna_and_genetic_code_topic",
+  "modes": ["presentation"],
+  "stages": [{
+    "id": "stage_dna_kapak",
+    "label": "DNA ve Genetik Kod",
+    "order": 1,
+    "slides": [{
+      "id": "dna_slide_1_cover",
+      "type": "cover",
+      "layout": "dna_cover",
+      "media": [{"src": "./assets/images/dna-ve-genetik-kod/01-kapak.png"}],
+      "unit": "2. Ünite: DNA ve Genetik Kod",
+      "title": "1. DNA ve Genetik Kod",
+      "grade": "8. Sınıf Fen Bilimleri",
+      "subtitle": "Hücreden DNA'ya genetik bilginin yolculuğu",
+      "concepts": ["DNA", "Gen", "Kromozom", "Nükleotit"],
+      "goals": ["Hücre → çekirdek → kromozom → DNA", "Genetik bilginin temelini keşfet"]
+    }, {
+      "id": "dna_slide_2_heredity_location",
+      "type": "content",
+      "layout": "dna_cover",
+      "media": [{"src": "./assets/images/dna-ve-genetik-kod/02-kalitsal-bilgi-nerede.png"}]
+    }, {
+      "id": "dna_slide_3_genetic_structure",
+      "type": "content",
+      "layout": "dna_ordering",
+      "media": [{"src": "./assets/images/dna-ve-genetik-kod/03-kalitsal-bilginin-yapitasi.png"}],
+      "options": ["DNA", "Kromozom", "Nükleotit", "Gen"],
+      "answer": ["Nükleotit", "Gen", "DNA", "Kromozom"]
+    }, {
+      "id": "dna_slide_4_image",
+      "type": "content",
+      "layout": "dna_cover",
+      "media": [{"src": "./assets/images/dna-ve-genetik-kod/04-slayt.png"}]
+    }, {
+      "id": "dna_slide_5_image",
+      "type": "content",
+      "layout": "dna_cover",
+      "media": [{"src": "./assets/images/dna-ve-genetik-kod/05-slayt.png"}]
+    }, {
+      "id": "dna_slide_6_image",
+      "type": "content",
+      "layout": "dna_cover",
+      "media": [{"src": "./assets/images/dna-ve-genetik-kod/06-slayt.png"}]
+    }, {
+      "id": "dna_slide_7_image",
+      "type": "content",
+      "layout": "dna_cover",
+      "media": [{"src": "./assets/images/dna-ve-genetik-kod/07-slayt.png"}]
+    }, {
+      "id": "dna_slide_8_image",
+      "type": "content",
+      "layout": "dna_cover",
+      "media": [{"src": "./assets/images/dna-ve-genetik-kod/08-slayt.png"}]
+    }, {
+      "id": "dna_slide_9_image",
+      "type": "content",
+      "layout": "dna_cover",
+      "media": [{"src": "./assets/images/dna-ve-genetik-kod/09-slayt.png"}]
+    }, {
+      "id": "dna_slide_10_base_pairing",
+      "type": "content",
+      "layout": "dna_pairing_custom",
+      "given": ["A", "G", "T", "C", "C", "A"],
+      "choices": ["A", "T", "G", "C"],
+      "answer": ["T", "C", "A", "G", "G", "T"]
+    }, {
+      "id": "dna_slide_11_structure_fill",
+      "type": "content",
+      "layout": "dna_drag_fill",
+      "media": [{"src": "./assets/images/dna-ve-genetik-kod/11-slayt.png"}],
+      "items": [{"key": "P", "label": "P", "shape": "circle"}, {"key": "D", "label": "D", "shape": "pentagon"}, {"key": "A", "label": "A", "shape": "hexagon"}, {"key": "T", "label": "T", "shape": "hexagon"}, {"key": "C", "label": "C", "shape": "hexagon"}, {"key": "G", "label": "G", "shape": "hexagon"}],
+      "zones": [{"left": 70.9, "top": 28.7}, {"left": 31.7, "top": 37.6}, {"left": 38.9, "top": 37.6}, {"left": 60.2, "top": 37.6}, {"left": 47.9, "top": 47.0}, {"left": 71.0, "top": 47.0}, {"left": 79.0, "top": 47.0}, {"left": 60.2, "top": 56.8}, {"left": 31.7, "top": 57.8}, {"left": 38.9, "top": 65.2}, {"left": 47.9, "top": 65.2}, {"left": 71.0, "top": 65.2}],
+      "answer": ["D", "P", "D", "C", "G", "D", "P", "A", "P", "D", "C", "D"]
+    }, {
+      "id": "dna_slide_12_insights",
+      "type": "content",
+      "layout": "dna_insights",
+      "media": [{"src": "./assets/images/dna-ve-genetik-kod/12-slayt.png"}],
+      "insights": {
+        "baseCounts": {"A": "2", "T": "2", "G": "3", "C": "3"},
+        "pairings": ["Adenin sayısı Timin sayısına eşittir.", "Guanin sayısı sitozin sayısına eşittir."],
+        "totals": ["Toplam nükleotit sayısı: 10", "Toplam fosfat sayısı: 10", "Toplam şeker sayısı: 10", "Toplam organik baz sayısı: 10"],
+        "general": "Toplam nükleotit sayısı = toplam fosfat sayısı = toplam şeker sayısı = toplam organik baz sayısı = 10."
+      }
+    }, {
+      "id": "dna_slide_13_image",
+      "type": "content",
+      "layout": "dna_cover",
+      "media": [{"src": "./assets/images/dna-ve-genetik-kod/13-slayt.png"}]
+    }, {
+      "id": "dna_slide_14_image",
+      "type": "content",
+      "layout": "dna_cover",
+      "media": [{"src": "./assets/images/dna-ve-genetik-kod/14-slayt.png"}]
+    }, {
+      "id": "dna_slide_15_image",
+      "type": "content",
+      "layout": "dna_cover",
+      "media": [{"src": "./assets/images/dna-ve-genetik-kod/15-slayt.png"}]
+    }, {
+      "id": "dna_slide_16_image",
+      "type": "content",
+      "layout": "dna_cover",
+      "media": [{"src": "./assets/images/dna-ve-genetik-kod/16-slayt.png"}]
+    }, {
+      "id": "dna_slide_17_image",
+      "type": "content",
+      "layout": "dna_cover",
+      "media": [{"src": "./assets/images/dna-ve-genetik-kod/17-slayt.png"}]
+    }, {
+      "id": "dna_slide_18_image",
+      "type": "content",
+      "layout": "dna_cover",
+      "media": [{"src": "./assets/images/dna-ve-genetik-kod/18-slayt.png"}]
+    }, {
+      "id": "dna_slide_19_sequence_order",
+      "type": "content",
+      "layout": "dna_sequence_order",
+      "media": [{"src": "./assets/images/dna-ve-genetik-kod/19-slayt.png"}],
+      "answer": ["D", "C", "A", "B"]
+    }, {
+      "id": "dna_slide_20_image",
+      "type": "content",
+      "layout": "dna_cover",
+      "media": [{"src": "./assets/images/dna-ve-genetik-kod/20-slayt.png"}]
+    }, {
+      "id": "dna_slide_21_image",
+      "type": "content",
+      "layout": "dna_cover",
+      "media": [{"src": "./assets/images/dna-ve-genetik-kod/21-slayt.png"}]
+    }, {
+      "id": "dna_slide_22_image",
+      "type": "content",
+      "layout": "dna_cover",
+      "media": [{"src": "./assets/images/dna-ve-genetik-kod/22-slayt.png"}]
+    }, {
+      "id": "dna_slide_23_image",
+      "type": "content",
+      "layout": "dna_cover",
+      "media": [{"src": "./assets/images/dna-ve-genetik-kod/23-slayt.png"}]
+
+    }]
+  }]
+}

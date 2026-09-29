@@ -24,6 +24,17 @@ const climateHeader = (title, notebook = false) => `
 
 export function renderClimateSlide(slide, view, { interactions, activeInteractions } = {}) {
   switch (slide.layout) {
+    case "climate_pressure_video": {
+      const article = document.createElement("article");
+      article.className = "board-slide climate-pressure-video-only-slide";
+      article.innerHTML = `
+        <video class="climate-pressure-video-only" muted preload="metadata" playsinline src="${escapeHtml(slide.media?.[0]?.src ?? "")}"></video>
+      `;
+      const video = article.querySelector(".climate-pressure-video-only");
+      video.addEventListener("click", () => video.play());
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
     case "climate_cover": {
       const media = slide.media?.[0];
       const slideArticle = document.createElement("article");

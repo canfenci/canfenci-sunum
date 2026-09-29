@@ -33,7 +33,9 @@ const requiredFiles = [
   "data/lessons/gunes-ve-ay-tutulmalari.json",
   "data/lessons/iklim-ve-hava-hareketleri.json",
   "data/lessons/mevsimlerin-olusumu.json",
-  "data/lessons/uzay-arastirmalari.json"
+  "data/lessons/uzay-arastirmalari.json",
+  "data/lessons/uzayda-neler-var.json",
+  "data/lessons/dna-ve-genetik-kod.json"
 ];
 
 console.log("=== CanFenci Offline Kendini Doğrulama Kontrolü ===");
@@ -234,6 +236,34 @@ try {
   }
 } catch (err) {
   fail(`uzay-arastirmalari.json doğrulanamadı: ${err.message}`);
+}
+
+try {
+  const spaceObjects = JSON.parse(await readFile("data/lessons/uzayda-neler-var.json", "utf8"));
+  const slides = spaceObjects.stages.flatMap((s) => s.slides ?? []);
+  if (slides.length === 16) pass("7. Sınıf Uzayda Neler Var? slayt sayısı doğru: 16 slayt");
+  else fail(`7. Sınıf Uzayda Neler Var? slayt sayısı 16 olmalıydı, bulunan: ${slides.length}`);
+} catch (err) {
+  fail(`uzayda-neler-var.json doğrulanamadı: ${err.message}`);
+}
+
+try {
+  const dna = JSON.parse(await readFile("data/lessons/dna-ve-genetik-kod.json", "utf8"));
+  const slides = dna.stages.flatMap((s) => s.slides ?? []);
+  const missing = [];
+  for (const slide of slides) {
+    for (const media of slide.media ?? []) {
+      const path = media.src?.replace(/^\.\//, "");
+      if (path) {
+        try { await access(path); } catch { missing.push(`${path} (${slide.id})`); }
+      }
+    }
+  }
+  if (slides.length === 23 && missing.length === 0) pass("8. Sınıf DNA ve Genetik Kod: 23 slayt ve tüm PNG görseller mevcut");
+  else if (slides.length !== 23) fail(`DNA ve Genetik Kod slayt sayısı 23 olmalıydı, bulunan: ${slides.length}`);
+  else missing.forEach((item) => fail(`DNA görseli eksik: ${item}`));
+} catch (err) {
+  fail(`dna-ve-genetik-kod.json doğrulanamadı: ${err.message}`);
 }
 
 // 4. VERSION.json kontrolü

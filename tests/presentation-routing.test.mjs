@@ -56,6 +56,12 @@ test("Müfredat ve Rota Bağlantıları Doğrulaması (6. Sınıf ve 8. Sınıf)
   assert.equal(grade8Topic.workModes.presentation.status, "available");
   assert.equal(grade8Topic.workModes.presentation.source, "./data/lessons/mevsimlerin-olusumu.json");
 
+  const grade7Unit = maarifCurriculum.units.find((u) => u.id === "space_age");
+  assert.ok(grade7Unit, "space_age ünitesi bulunamadı");
+  const spaceObjectsTopic = grade7Unit.topics.find((t) => t.id === "space_objects");
+  assert.ok(spaceObjectsTopic, "space_objects konusu bulunmalıdır");
+  assert.equal(spaceObjectsTopic.workModes.presentation.source, "./data/lessons/uzayda-neler-var.json");
+
   const grade8ClimateTopic = grade8Unit.topics.find((t) => t.id === "climate_and_air_movements");
   assert.ok(grade8ClimateTopic, "climate_and_air_movements konusu bulunamadı");
   assert.equal(grade8ClimateTopic.workModes.presentation.status, "available");
@@ -82,6 +88,11 @@ test("Müfredat ve Rota Bağlantıları Doğrulaması (6. Sınıf ve 8. Sınıf)
   assert.equal(lesson8.id, "lesson_mevsimlerin_olusumu_1");
   assert.equal(engine8.slideCount, 25, "8. Sınıf dersi 25 slayt olarak korunmalıdır");
   assert.equal(engine8.stages.length, 7, "8. Sınıf dersi 7 aşama olmalıdır");
+
+  const spaceObjectsEngine = new LessonEngine();
+  const spaceObjectsLesson = await spaceObjectsEngine.load("data/lessons/uzayda-neler-var.json");
+  assert.equal(spaceObjectsLesson.id, "lesson_uzayda_neler_var_1");
+  assert.equal(spaceObjectsEngine.slideCount, 16, "Uzayda Neler Var? dersi 16 slayt olmalıdır");
 
   // 6. Yeni 8. sınıf İklim ve Hava Hareketleri dersi
   const climateEngine = new LessonEngine();

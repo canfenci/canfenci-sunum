@@ -138,6 +138,22 @@
               "source": "./data/lessons/uzay-arastirmalari.json"
             }
           ]
+        },
+        {
+          "id": "space_objects",
+          "label": "Uzayda Neler Var?",
+          "metadata": {
+            "coreTopics": ["Yıldızlar", "Bulutsular", "Galaksiler", "Evren"],
+            "extraTopics": ["Işık yılı", "Takımyıldızlar"],
+            "verified": false,
+            "lastVerifiedAt": null
+          },
+          "workModes": {
+            "presentation": {"status":"available","source":"./data/lessons/uzayda-neler-var.json"},
+            "activity": {"status":"planned","source":null},
+            "test": {"status":"planned","source":null}
+          },
+          "lessons": [{"id":"lesson_uzayda_neler_var_1","label":"Uzayda Neler Var?","source":"./data/lessons/uzayda-neler-var.json"}]
         }
       ]
     }

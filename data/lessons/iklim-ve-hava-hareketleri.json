@@ -371,9 +371,16 @@
         {
           "id": "slide_8_basinc_toggle",
           "type": "content",
-          "layout": "climate_pressure_toggle",
+          "layout": "climate_pressure_video",
           "tag": "ALÇAK / YÜKSEK BASINÇ",
-          "title": "ALÇAK / YÜKSEK BASINÇ",
+          "title": "Alçak ve Yüksek Basınç Alanları",
+          "media": [
+            {
+              "id": "media_pressure_video",
+              "src": "./assets/videos/iklim-ve-hava-hareketleri/alcak-ve-yuksek-basinc.mp4",
+              "alt": "Alçak ve yüksek basınç alanlarında hava hareketi animasyonu"
+            }
+          ],
           "modes": [
             {
               "title": "ALÇAK BASINÇ",

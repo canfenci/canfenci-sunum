@@ -92,6 +92,29 @@
           ]
         }
       ]
+    },
+    {
+      "id": "dna_and_genetic_code",
+      "label": "2. Ünite: DNA ve Genetik Kod",
+      "topics": [
+        {
+          "id": "dna_and_genetic_code_topic",
+          "label": "1. DNA ve Genetik Kod",
+          "metadata": {
+            "coreTopics": ["DNA", "Gen", "Kromozom", "Nükleotit"],
+            "extraTopics": [],
+            "verified": false
+          },
+          "workModes": {
+            "presentation": {"status": "available", "source": "./data/lessons/dna-ve-genetik-kod.json"},
+            "activity": {"status": "planned", "source": null},
+            "test": {"status": "planned", "source": null}
+          },
+          "lessons": [
+            {"id": "lesson_dna_ve_genetik_kod_1", "label": "1. DNA ve Genetik Kod", "source": "./data/lessons/dna-ve-genetik-kod.json"}
+          ]
+        }
+      ]
     }
   ]
 }

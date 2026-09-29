@@ -16,7 +16,7 @@ test("8. Sınıf İklim ve Hava Hareketleri 24 slaytlık öğretim akışı", as
 
   const expectedLayouts = [
     "climate_tool_match", "climate_notebook_cards", "climate_pressure_notebook", "climate_notebook_cards",
-    "climate_pressure_toggle", "climate_wind_predict", "climate_notebook_cards",
+    "climate_pressure_video", "climate_wind_predict", "climate_notebook_cards",
     "climate_wind_application", "climate_breeze_toggle", "climate_breeze_toggle", "climate_notebook_cards",
     "climate_precipitation_classify", "climate_notebook", "climate_climate_types", "climate_notebook_cards",
     "climate_turkey_map", "climate_weather_quiz", "climate_weather_climate_table", "climate_greenhouse_reveal",
