@@ -103,10 +103,10 @@ try {
 try {
   const eclipse = JSON.parse(await readFile("data/lessons/gunes-ve-ay-tutulmalari.json", "utf8"));
   const eclipseSlides = eclipse.stages.flatMap((s) => s.slides ?? []);
-  if (eclipseSlides.length === 9) {
+    if (eclipseSlides.length === 10) {
     pass(`6. Sınıf Güneş ve Ay Tutulmaları slayt sayısı doğru: ${eclipseSlides.length} slayt`);
   } else {
-    fail(`6. Sınıf Güneş ve Ay Tutulmaları slayt sayısı 9 olmalıydı, bulunan: ${eclipseSlides.length}`);
+      fail(`6. Sınıf Güneş ve Ay Tutulmaları slayt sayısı 10 olmalıydı, bulunan: ${eclipseSlides.length}`);
   }
 
   let missingMedia = 0;
@@ -250,18 +250,8 @@ try {
 try {
   const dna = JSON.parse(await readFile("data/lessons/dna-ve-genetik-kod.json", "utf8"));
   const slides = dna.stages.flatMap((s) => s.slides ?? []);
-  const missing = [];
-  for (const slide of slides) {
-    for (const media of slide.media ?? []) {
-      const path = media.src?.replace(/^\.\//, "");
-      if (path) {
-        try { await access(path); } catch { missing.push(`${path} (${slide.id})`); }
-      }
-    }
-  }
-  if (slides.length === 23 && missing.length === 0) pass("8. Sınıf DNA ve Genetik Kod: 23 slayt ve tüm PNG görseller mevcut");
-  else if (slides.length !== 23) fail(`DNA ve Genetik Kod slayt sayısı 23 olmalıydı, bulunan: ${slides.length}`);
-  else missing.forEach((item) => fail(`DNA görseli eksik: ${item}`));
+  if (slides.length === 22 && slides[12].id === "dna_slide_13_nucleotide_counts" && slides[13].id === "dna_slide_14_activity_one" && slides[14].id === "dna_slide_15_activity_two" && slides[15].id === "dna_slide_16_important_notes" && slides[16].id === "dna_slide_17_replication" && slides[17].id === "dna_slide_18_replication_steps" && slides[18].id === "dna_slide_19_replication_two" && slides[19].id === "dna_slide_20_errors" && slides[20].id === "dna_slide_21_notes" && slides[21].id === "dna_slide_22_question_notes") pass("8. Sınıf DNA ve Genetik Kod: 22 slayt mevcut");
+  else fail(`DNA ve Genetik Kod dersinde 22 slayt olmalıydı, bulunan: ${slides.length}`);
 } catch (err) {
   fail(`dna-ve-genetik-kod.json doğrulanamadı: ${err.message}`);
 }

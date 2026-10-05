@@ -12,7 +12,6 @@ import { renderShell } from "./ui/app-shell.js";
 import { renderSolarSlide } from "./ui/solar-system-slides.js";
 import { renderSpaceSlide } from "./ui/space-research-slides.js";
 import { renderClimateSlide } from "./ui/climate-slides.js";
-import { renderDnaSlide } from "./ui/dna-slides.js";
 import { renderControlPanel } from "./ui/control-panel.js";
 import { renderPresentation, renderPlanItemsForState } from "./ui/presentation-view.js";
 import { renderWorkModePlaceholder as renderWorkModePlaceholderView } from "./ui/work-mode-placeholder.js";
@@ -389,6 +388,11 @@ class CanFenciApp {
   }
 
   #renderPresentation() {
+    const previousLessonId = this.presentationZoomLessonId;
+    if (previousLessonId && previousLessonId !== this.lessons.lesson?.id) {
+      this.state.update((draft) => { draft.presentation.userZoom = 1; draft.presentation.panX = 0; draft.presentation.panY = 0; return draft; });
+    }
+    this.presentationZoomLessonId = this.lessons.lesson?.id;
     const view = renderPresentation(this.shell.main, {
       lesson: this.lessons.lesson,
       slide: this.lessons.currentSlide,
@@ -409,9 +413,7 @@ class CanFenciApp {
     if (typeof ResizeObserver !== "undefined") {
       this.presentationResizeObserver = new ResizeObserver(([entry]) => {
         if (entry && entry.contentRect.width > 0 && entry.contentRect.height > 0) {
-          const scale = Math.min(entry.contentRect.width / 1920, entry.contentRect.height / 1080);
-          view.workspace.style.setProperty("--slide-scale", String(scale));
-          view.canvasArea.style.setProperty("--slide-scale", String(scale));
+          this.#updateSlideScale(view);
         } else {
           this.#updateSlideScale(view);
         }
@@ -423,8 +425,15 @@ class CanFenciApp {
     view.tools.addEventListener("click", () => this.toggleTools(true));
     view.previous.addEventListener("click", () => this.#navigateSlides(-1));
     view.next.addEventListener("click", () => this.#navigateSlides(1));
+    view.jumpButton.addEventListener("click", () => this.#jumpToSlide());
+    view.jumpInput.addEventListener("keydown", (event) => { if (event.key === "Enter") { event.preventDefault(); this.#jumpToSlide(); } });
     view.fullscreen.addEventListener("click", () => this.teacherTools.requestFullscreen());
     view.reset.addEventListener("click", () => this.#resetPresentation());
+    view.zoomOut.addEventListener("click", () => this.#changeZoom(-0.1));
+    view.zoomIn.addEventListener("click", () => this.#changeZoom(0.1));
+    view.zoomFit.addEventListener("click", () => this.#fitZoom());
+    view.panToggle.addEventListener("click", () => this.#togglePan());
+    this.#bindPan(view);
     view.help.addEventListener("click", () => this.#toast("Ders paketi eklendiğinde sunum yardımı burada gösterilecek."));
     view.plan.addEventListener("click", () => this.#togglePlan(true));
     view.railPlan.addEventListener("click", () => view.plan.click());
@@ -588,6 +597,19 @@ class CanFenciApp {
     this.#syncPresentationView();
   }
 
+  #jumpToSlide() {
+    const input = this.presentationView?.jumpInput;
+    const count = this.lessons.slideCount;
+    if (!input || !count) return;
+    const value = Number.parseInt(input.value, 10);
+    if (!Number.isInteger(value)) { input.value = String(this.lessons.currentIndex + 1); input.setCustomValidity("Geçerli bir slayt numarası girin."); input.reportValidity?.(); return; }
+    input.setCustomValidity("");
+    const target = Math.max(1, Math.min(count, value));
+    this.lessons.goToSlide(this.lessons.stages.flatMap((stage) => stage.slides ?? [])[target - 1]?.id);
+    this.#syncPresentationView();
+    input.value = String(target);
+  }
+
   #resetPresentation() {
     const firstSlide = this.lessons.stages[0]?.slides?.[0];
     if (firstSlide) this.lessons.goToSlide(firstSlide.id);
@@ -626,6 +648,7 @@ class CanFenciApp {
     view.stageStatus.textContent = `Slayt ${currentNumber} / ${count}`;
     view.counterCurrent.textContent = String(currentNumber);
     view.counterTotal.textContent = String(count);
+    if (view.jumpInput) { view.jumpInput.max = String(Math.max(1, count)); view.jumpInput.value = count ? String(currentNumber) : ""; }
     view.previous.disabled = index <= 0 || !count;
     view.next.disabled = index >= count - 1 || !count;
     view.planStages.innerHTML = renderPlanItemsForState(this.lessons.lesson, slide);
@@ -855,7 +878,209 @@ class CanFenciApp {
         activeInteractions: this.activeInteractions
       });
     }
-    if (slide.layout?.startsWith("dna_")) return renderDnaSlide(slide, view);
+    if (slide.layout === "dna_question_notes") {
+      const article = document.createElement("article");
+      article.className = "board-slide dna-question-notes-slide";
+      article.innerHTML = `<h1>Sorularda Dikkat Edilecek Hususlar</h1><section class="dna-question-notes-card"><ul><li>Eşlenme sırasında DNA çift zinciri açıldığında eski zincirler <strong>kalıp zincir</strong> olarak bilinir.</li><li>Sitoplazmadan gelen yeni zincirler <strong>tamamlayıcı zincir</strong> olarak adlandırılır.</li><li>Yeni oluşan DNA’larda bir tane <strong>eski zincir</strong>, bir tane <strong>yeni zincir</strong> bulunur.</li></ul></section><section class="dna-question-notes-visual"><img src="${escapeHtml(slide.visualAsset ?? "")}" alt="DNA eşlenmesi" /></section>`;
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "dna_notes") {
+      const article = document.createElement("article");
+      article.className = "board-slide dna-notes-slide";
+      article.innerHTML = `<h1>Notlar</h1><section class="dna-notes-card"><p>DNA kendini eşlerken sitoplazmadaki nükleotit, organik baz, şeker ve fosfat sayısı <button data-dna-notes-answer>azalır</button>.</p><p>DNA kendini eşlerken çekirdekteki nükleotit, organik baz, şeker ve fosfat sayısı <button data-dna-notes-answer>artar</button>.</p></section><section class="dna-notes-visual"><img src="${escapeHtml(slide.visualAsset ?? "")}" alt="DNA eşlenmesi grafiği 1" /><img src="${escapeHtml(slide.secondaryVisualAsset ?? "")}" alt="DNA eşlenmesi grafiği 2" /></section>`;
+      article.querySelectorAll("[data-dna-notes-answer]").forEach((button) => button.addEventListener("click", (event) => event.currentTarget.classList.add("is-revealed")));
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "dna_errors") {
+      const article = document.createElement("article");
+      article.className = "board-slide dna-errors-slide";
+      article.innerHTML = `<h1>DNA Hataları</h1><section class="dna-errors-visual"><img src="${escapeHtml(slide.visualAsset ?? "")}" alt="DNA hataları" /></section>`;
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "dna_replication_two") {
+      const article = document.createElement("article");
+      article.className = "board-slide dna-replication-two-slide";
+      article.innerHTML = `<h1>DNA Eşlenme Aşamaları</h1><section class="dna-replication-two-visual"><img src="${escapeHtml(slide.visualAsset ?? "")}" alt="DNA eşlenme aşamaları" /></section>`;
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "dna_replication_steps") {
+      const article = document.createElement("article");
+      article.className = "board-slide dna-replication-steps-slide";
+      article.innerHTML = `<h1>Eşlenme Basamakları</h1><section class="dna-replication-steps-list"><article><b>1</b><p>DNA çift zincirlidir ve bu zincirler birbirine <button data-dna-replication-step-answer>Hidrojen</button> bağları ile bağlıdır.</p></article><article><b>2</b><p>İki zincir arasındaki hidrojen bağları kopmaya başlar.</p></article><article><b>3</b><p>DNA’nın iki zinciri <button data-dna-replication-step-answer>fermuar</button> gibi açılır ve zincirler birbirinden ayrılır.</p></article><article><b>4</b><p>Sitoplazmada üretilen serbest <button data-dna-replication-step-answer>nükleotitler</button> çekirdek içine girer.</p></article><article><b>5</b><p>Ayrılan zincirlerin karşısına sitoplazmadan gelen <button data-dna-replication-step-answer>serbest</button> nükleotitler uygun olanlarla eşleşir.</p></article><article><b>6</b><p>Zincirler arası bağlar <button data-dna-replication-step-answer>yeniden</button> oluşur.</p></article><article><b>7</b><p>Eşlenme tamamlanınca başlangıçtaki DNA’nın tıpatıp aynısı iki DNA molekülü oluşur.</p></article></section>`;
+      article.querySelectorAll("[data-dna-replication-step-answer]").forEach((button) => button.addEventListener("click", (event) => event.currentTarget.classList.add("is-revealed")));
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "dna_replication") {
+      const article = document.createElement("article");
+      article.className = "board-slide dna-replication-slide";
+      article.innerHTML = `<h1>DNA Eşlenmesi</h1><section class="dna-replication-visual"><img src="${escapeHtml(slide.visualAsset ?? "")}" alt="DNA eşlenmesi" /></section><section class="dna-replication-reading"><p>DNA molekülü hücre bölünmesinden önce kendini eşleyerek miktarını <button data-dna-replication-answer>2</button> katına çıkartır.</p><p>DNA’nın kendini eşlemesinin nedeni, hücrenin sahip olduğu kalıtsal bilgilerin bölünme sonucu oluşacak hücrelere aktarılmasıdır.</p></section>`;
+      article.querySelector("[data-dna-replication-answer]").addEventListener("click", (event) => event.currentTarget.classList.add("is-revealed"));
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "dna_important_notes") {
+      const article = document.createElement("article");
+      article.className = "board-slide dna-important-notes-slide";
+      article.innerHTML = `<h1>Önemli Notlar</h1><section class="dna-important-notes-list"><article><span class="dna-important-note-number">1</span><p>DNA’nın tek zincirinde Adenin nükleotit sayısı Timin nükleotit sayısına, Guanin nükleotit sayısı ise Sitozin nükleotit sayısına eşit olmak zorunda değildir.</p><p>Ancak DNA’nın çift zincirinin tamamı düşünüldüğünde: <strong>Adenin = Timin</strong> &nbsp; <strong>Guanin = Sitozin</strong> olmak zorundadır.</p></article><article><span class="dna-important-note-number">2</span><p>Tüm canlılarda <button data-dna-important-answer>4</button> çeşit nükleotit vardır. Bu, canlılar için ortak bir özelliktir.</p></article><article><span class="dna-important-note-number">3</span><p>Canlıların birbirine benzememesinin nedeni nükleotitlerin sayı ve dizilişlerinin <button data-dna-important-answer>farklı</button> olmasıdır.</p></article><article><span class="dna-important-note-number">4</span><p>Yalnızca tek yumurta ikizlerinin DNA dizilimleri birbirinin aynısıdır.</p></article></section><section class="dna-important-warning" aria-label="Önemli uyarı"><svg viewBox="0 0 300 270" role="img" aria-label="Önemli"><path d="M150 12 288 250H12Z"></path><text x="150" y="205" text-anchor="middle">!</text></svg></section>`;
+      article.querySelectorAll("[data-dna-important-answer]").forEach((button) => button.addEventListener("click", (event) => event.currentTarget.classList.add("is-revealed")));
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "dna_activity_two") {
+      const article = document.createElement("article");
+      article.className = "board-slide dna-activity-two-slide";
+      const given = ["A", "T", "T", "G", "C", "C", "G", "T"];
+      article.innerHTML = `<h1>Etkinlik-2</h1><p class="dna-activity-two-prompt">Verilen DNA zincirinin karşısına gelecek nükleotitleri tamamlayınız.</p><section class="dna-activity-two-panel"><div class="dna-activity-two-column"><h2>1. zincir</h2>${given.map((letter) => `<span class="dna-activity-two-letter">${letter}</span>`).join("")}</div><div class="dna-activity-two-column dna-activity-two-answer-column"><h2>2. zincir</h2>${given.map((_, index) => `<button type="button" data-dna-target="${index}" aria-label="Karşı zincir ${index + 1}. nükleotit"></button>`).join("")}</div><aside class="dna-activity-two-control-column"><div class="dna-activity-two-sources" aria-label="Nükleotit seçenekleri"><p>Nükleotit seç</p>${["A", "T", "G", "C"].map((letter) => `<button type="button" data-dna-source="${letter}">${letter}</button>`).join("")}</div><div class="dna-activity-two-actions"><button type="button" data-dna-check>Kontrol Et</button><button type="button" data-dna-reset>Sıfırla</button><strong data-dna-feedback aria-live="polite"></strong></div></aside></section>`;
+      const answer = ["T", "A", "A", "C", "G", "G", "C", "A"];
+      let selected = "";
+      const sources = article.querySelectorAll("[data-dna-source]");
+      const targets = article.querySelectorAll("[data-dna-target]");
+      sources.forEach((source) => source.addEventListener("click", () => {
+        selected = source.dataset.dnaSource;
+        sources.forEach((item) => item.classList.toggle("is-selected", item === source));
+      }));
+      targets.forEach((target) => target.addEventListener("click", () => {
+        if (!selected) return;
+        target.textContent = selected;
+        target.dataset.value = selected;
+        target.classList.remove("is-correct", "is-wrong");
+      }));
+      article.querySelector("[data-dna-check]").addEventListener("click", () => {
+        let complete = true;
+        targets.forEach((target, index) => {
+          const value = target.dataset.value ?? "";
+          target.classList.toggle("is-correct", value === answer[index]);
+          target.classList.toggle("is-wrong", Boolean(value) && value !== answer[index]);
+          if (!value) complete = false;
+        });
+        article.querySelector("[data-dna-feedback]").textContent = complete && [...targets].every((target, index) => target.dataset.value === answer[index]) ? "Doğru!" : "Cevaplarını kontrol et.";
+      });
+      article.querySelector("[data-dna-reset]").addEventListener("click", () => {
+        targets.forEach((target) => { target.textContent = ""; delete target.dataset.value; target.classList.remove("is-correct", "is-wrong"); });
+        article.querySelector("[data-dna-feedback]").textContent = "";
+      });
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "dna_activity_one") {
+      const article = document.createElement("article");
+      article.className = "board-slide dna-activity-one-slide";
+      article.innerHTML = `<h1>Etkinlik-1</h1><section class="dna-activity-one-card"><p class="dna-activity-one-lead">3 numara Adenin bazı ise;</p><p>a. 1-2-3: <button data-dna-activity-answer>Adenin Nükleotit</button></p><p>b. 7-8-9: <button data-dna-activity-answer>Timin Nükleotit</button></p><p class="dna-activity-one-lead">10 numara Sitozin bazı ise;</p><p>c. 6 numara: <button data-dna-activity-answer>Guanin Bazı</button></p><p>d. 10-11-12: <button data-dna-activity-answer>Sitozin Nükleotit</button></p></section><section class="dna-activity-one-visual"><img src="${escapeHtml(slide.visualAsset ?? "")}" alt="Nükleotit etkinliği" /></section>`;
+      article.querySelectorAll("[data-dna-activity-answer]").forEach((button) => button.addEventListener("click", (event) => event.currentTarget.classList.add("is-revealed")));
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "dna_nucleotide_counts") {
+      const article = document.createElement("article");
+      article.className = "board-slide dna-counts-slide";
+      article.innerHTML = `<h1>Nükleotit Sayıları</h1><section class="dna-counts-number-card"><h2>Görsele Göre Sayıları Bul</h2>${[["Adenin",3],["Timin",3],["Guanin",2],["Sitozin",2],["Fosfat",10],["Şeker",10],["Organik baz",10],["Nükleotit",10]].map(([label, answer]) => `<p><span>${label} sayısı:</span><button data-dna-count-answer>${answer}</button></p>`).join("")}</section><section class="dna-counts-visual"><img src="${escapeHtml(slide.visualAsset ?? "")}" alt="Nükleotit sayıları" /></section><section class="dna-counts-inferences"><h2>Çıkarımlar</h2><p>DNA molekülünde Adenin sayısı <button data-dna-count-answer>Timin</button> sayısına eşittir.</p><p>Sitozin sayısı <button data-dna-count-answer>Guanin</button> sayısına eşittir.</p><p>Fosfat sayısı, şeker sayısı ve organik baz sayısı toplam <button data-dna-count-answer>Nükleotit</button> sayısına eşittir.</p></section>`;
+      article.querySelectorAll("[data-dna-count-answer]").forEach((button) => button.addEventListener("click", (event) => event.currentTarget.classList.add("is-revealed")));
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "dna_hydrogen_bonds") {
+      const article = document.createElement("article");
+      article.className = "board-slide dna-hydrogen-slide";
+      article.innerHTML = `<h1>Hidrojen Bağları</h1><section class="dna-hydrogen-card"><p>DNA zincirleri birbirine özel bağlarla bağlanır.</p><p>Bu bağlara zayıf <button data-dna-hydrogen-answer>Hidrojen</button> bağları denir.</p><p>Adenin ile Timin nükleotitleri arasında ikili hidrojen bağı, Guanin ile Sitozin arasında ise üçlü hidrojen bağı bulunur.</p></section><section class="dna-hydrogen-visual"><img src="${escapeHtml(slide.visualAsset ?? "")}" alt="Hidrojen bağları" /></section>`;
+      article.querySelector("[data-dna-hydrogen-answer]").addEventListener("click", (event) => event.currentTarget.classList.add("is-revealed"));
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "dna_structure") {
+      const article = document.createElement("article");
+      article.className = "board-slide dna-structure-slide";
+      article.innerHTML = `<h1>DNA’nın Yapısı</h1><section class="dna-structure-card"><p>DNA molekülündeki nükleotitler karşılıklı zincirlere belirli bir kurala göre dizilir.</p><p>Adenin nükleotitinin karşısına <button data-dna-structure-answer>Timin</button> nükleotiti, Guanin nükleotitinin karşısına ise <button data-dna-structure-answer>Sitozin</button> nükleotiti gelir.</p><p>Bu nedenle DNA’nın bir zincirindeki nükleotit sırası biliniyorsa, diğer zincirin nükleotit sırası da bulunabilir.</p></section><section class="dna-structure-visual"><img src="${escapeHtml(slide.visualAsset ?? "")}" alt="DNA’nın yapısı" /></section>`;
+      article.querySelectorAll("[data-dna-structure-answer]").forEach((button) => button.addEventListener("click", (event) => event.currentTarget.classList.add("is-revealed")));
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "dna_recap_two") {
+      const article = document.createElement("article");
+      article.className = "board-slide dna-recap-two-slide";
+      article.innerHTML = `<h1>Aklımızda Kalsın-2</h1><section class="dna-recap-two-visual"><img src="${escapeHtml(slide.visualAsset ?? "")}" alt="" /></section>`;
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "dna_recap") {
+      const article = document.createElement("article");
+      article.className = "board-slide dna-recap-slide";
+      article.innerHTML = `<h1>Akılda Kalsın</h1><section class="dna-recap-info"><ul><li><strong>Gelişmiş hücre</strong> yapısına sahip canlılarda (insan, hayvan, bitki, amip vb.) DNA <strong>çekirdek</strong> içerisinde bulunur.</li><li><strong>İlkel hücre</strong> yapısına sahip canlılarda (bakteri vb.) DNA <strong>sitoplazma</strong> içerisine dağılmıştır.</li></ul></section><section class="dna-recap-visual"><img src="${escapeHtml(slide.visualAsset ?? "")}" alt="Gelişmiş hücrede DNA" /><img src="${escapeHtml(slide.secondaryVisualAsset ?? "")}" alt="Bakteride DNA" /></section>`;
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "dna_definition") {
+      const article = document.createElement("article");
+      article.className = "board-slide dna-definition-slide";
+      article.innerHTML = `<h1>DNA (Deoksiribo Nükleik Asit)</h1><section class="dna-definition-card"><p>Hücrenin <button data-dna-definition-answer>yönetici</button> molekülüdür.</p><p>Hücre içerisinde gerçekleşen solunum, sindirim, boşaltım gibi yaşamsal faaliyetleri kontrol eder.</p><p>Çift <button data-dna-definition-answer>zincirli</button> ve sarmal şeklindedir.</p></section><section class="dna-definition-visual"><img src="${escapeHtml(slide.visualAsset ?? "")}" alt="DNA" /></section>`;
+      article.querySelectorAll("[data-dna-definition-answer]").forEach((button) => button.addEventListener("click", (event) => event.currentTarget.classList.add("is-revealed")));
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "dna_nucleotide_names") {
+      const article = document.createElement("article");
+      article.className = "board-slide dna-name-slide";
+      article.innerHTML = `<h1>Nükleotitlerin İsimlendirilmesi</h1><section class="dna-name-cards"><article><p>Nükleotitlerin isimlendirilmesi organik baza göre yapılır.</p></article><article><p>Bir nükleotitte fosfat ve şeker sabittir.</p><p>Değişen yapı azotlu organik bazdır.</p></article><article class="is-note"><span>NOT</span><p>Organik baz, nükleotitlere ismini verir.</p><p>Şeker ise DNA'ya ismini verir.</p></article></section><section class="dna-name-visual dna-name-image-stack"><img src="${escapeHtml(slide.visualAsset ?? "")}" alt="Adenin ve timin" /><img src="${escapeHtml(slide.secondaryVisualAsset ?? "")}" alt="Guanin ve sitozin" /><img src="${escapeHtml(slide.tertiaryVisualAsset ?? "")}" alt="Nükleotitlerin isimlendirilmesi" /></section>`;
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "dna_nucleotide") {
+      const article = document.createElement("article");
+      article.className = "board-slide dna-nucleotide-slide";
+      article.innerHTML = `<h1>Nükleotit</h1><section class="dna-nucleotide-info"><ul><li>DNA'nın temel yapı birimlerine nükleotit denir.</li><li>Bir nükleotidin yapısında <button data-nucleotide-answer>fosfat</button>, şeker ve <button data-nucleotide-answer>organik baz</button> bulunur.</li><li>Organik bazlar dört çeşittir:<ul><li>Adenin</li><li>Timin</li><li>Guanin</li><li>Sitozin</li></ul></li></ul></section><section class="dna-nucleotide-visual dna-nucleotide-image-stack" aria-label="Nükleotit ve organik bazlar görselleri"><img src="${escapeHtml(slide.visualAsset ?? "")}" alt="Nükleotit yapısı" /><img src="${escapeHtml(slide.secondaryVisualAsset ?? "")}" alt="Organik bazlar" /></section>`;
+      article.querySelectorAll("[data-nucleotide-answer]").forEach((button) => button.addEventListener("click", (event) => event.currentTarget.classList.add("is-revealed")));
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "dna_gene") {
+      const article = document.createElement("article");
+      article.className = "board-slide dna-gene-slide";
+      article.innerHTML = `<h1>Gen Nedir?</h1><section class="dna-gene-reading"><ul><li><strong>Anlamlı DNA parçalarına</strong> <button data-answer="gen" aria-label="Cevabı göster">gen</button> denir.</li><li><strong>Genler, DNA'nın</strong> <button data-answer="görev" aria-label="Cevabı göster">görev</button> birimleridir.</li><li>Genler; saç rengi, kan grubu ve cinsiyet gibi özelliklerin oluşmasında görev alır.</li><li>Genler <button data-answer="nükleotitlerden" aria-label="Cevabı göster">nükleotitlerden</button> oluşur.</li></ul></section><section class="dna-gene-visual" aria-label="DNA üzerinde gen bölgesi"><img src="${escapeHtml(slide.visualAsset ?? "")}" alt="" onerror="this.hidden=true" /></section>`;
+      article.querySelectorAll("[data-answer]").forEach((button) => button.addEventListener("click", (event) => event.currentTarget.classList.add("is-revealed")));
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "dna_chromosome_count") {
+      const article = document.createElement("article");
+      article.className = "board-slide dna-count-slide";
+      article.innerHTML = `<h1>Kromozom Sayısı</h1><section class="dna-count-table">${slide.organisms.map(([name, count]) => `<div class="dna-count-row"><strong>${escapeHtml(name)}</strong><b>${escapeHtml(count)}</b></div>`).join("")}</section><section class="dna-count-quiz"><p>İnsanda 46 kromozom bulunur. Üreme hücrelerinde ise <button data-answer="23">____</button> kromozom bulunur.</p><p>Kromozom sayısı canlı gelişmişliği hakkında bilgi vermez.</p><p>Farklı canlıların kromozom sayısı <button data-answer="aynı">____</button> ya da <button data-answer="farklı">____</button> olabilir.</p><p>Kromozom sayısı aynı olan canlılar arasında akrabalık ilişkisi <button data-answer="yoktur">____</button>.</p><div class="dna-count-options">${slide.answers.map((answer) => `<button type="button" data-choice="${escapeHtml(answer)}">${escapeHtml(answer)}</button>`).join("")}</div><div class="dna-count-actions"><button type="button" data-check>Kontrol Et</button><button type="button" data-reset>Sıfırla</button><strong data-feedback aria-live="polite"></strong></div></section>`;
+      let selected = null;
+      const blanks = [...article.querySelectorAll(".dna-count-quiz p button")];
+      const choices = [...article.querySelectorAll("[data-choice]")];
+      choices.forEach((choice) => choice.addEventListener("click", () => { selected = choice.dataset.choice; choices.forEach((item) => item.classList.toggle("is-selected", item === choice)); const emptyBlank = blanks.find((blank) => !blank.dataset.value); if (emptyBlank) { emptyBlank.textContent = selected; emptyBlank.dataset.value = selected; emptyBlank.classList.add("is-filled"); selected = null; choices.forEach((item) => item.classList.remove("is-selected")); } }));
+      blanks.forEach((blank) => blank.addEventListener("click", () => { if (!selected) return; blank.textContent = selected; blank.dataset.value = selected; blank.classList.add("is-filled"); selected = null; choices.forEach((item) => item.classList.remove("is-selected")); }));
+      article.querySelector("[data-check]").addEventListener("click", () => { let correct = 0; blanks.forEach((blank) => { const ok = blank.dataset.value === blank.dataset.answer; blank.classList.toggle("is-correct", ok); blank.classList.toggle("is-wrong", !ok); if (ok) correct += 1; }); article.querySelector("[data-feedback]").textContent = `${correct}/${blanks.length} doğru`; });
+      article.querySelector("[data-reset]").addEventListener("click", () => { blanks.forEach((blank) => { blank.textContent = "____"; blank.className = ""; blank.dataset.value = ""; }); article.querySelector("[data-feedback]").textContent = ""; selected = null; choices.forEach((item) => item.classList.remove("is-selected")); });
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "dna_chromosome") {
+      const article = document.createElement("article");
+      article.className = "board-slide dna-chromosome-slide";
+      article.innerHTML = `<h1>Kromozom Nedir?</h1><section class="dna-chromosome-reading"><p>DNA oldukça uzun bir moleküldür. Hücre bölünmeye hazırlanırken bu uzun molekül, özel proteinlerin etrafında düzenli biçimde sarılır ve katlanarak daha kısa, kalın ve yoğun bir yapı hâline gelir. Böylece genetik materyal hücre bölünmesi sırasında daha düzenli taşınabilir.</p></section><section class="dna-chromosome-relation" aria-label="DNA ve protein kılıfın kromozom oluşturması"><div class="dna-relation-card"><span class="dna-relation-dna-art" aria-hidden="true"></span><strong>DNA</strong></div><b class="dna-relation-symbol">+</b><div class="dna-relation-card"><span class="dna-relation-protein-art" aria-hidden="true"></span><strong>Protein Kılıf</strong></div><b class="dna-relation-symbol">=</b><div class="dna-relation-card dna-relation-result"><span class="dna-relation-chromosome-art" aria-hidden="true"></span><strong>Kromozom</strong></div></section><section class="dna-chromosome-note"><p>DNA’nın proteinlerle birlikte düzenlenmiş ve paketlenmiş yapısına <button type="button" aria-label="Boşluğu doldur" data-dna-answer>Kromozom</button> denir.</p></section>`;
+      article.querySelector("[data-dna-answer]").addEventListener("click", (event) => event.currentTarget.classList.add("is-revealed"));
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "dna_heredity") {
+      const article = document.createElement("article");
+      article.className = "board-slide dna-heredity-slide";
+      article.innerHTML = `<h1>Kalıtsal Bilgi Nerede Bulunur?</h1><section class="dna-heredity-note"><p>Canlıların kalıtsal özelliklerini belirleyen bilgiler, gelişmiş hücrelerde büyük ölçüde çekirdekte bulunur. Çekirdekteki kromozomların yapısında, iki zincirin birbirine dolanmasıyla oluşmuş uzun ve sarmal bir molekül yer alır. Bu molekül, canlıya ait kalıtsal bilgilerin taşınmasını ve nesilden nesile aktarılmasını sağlar.</p></section><section class="dna-heredity-visual dna-heredity-visual-empty" aria-label="Kromozom içinden açılan sarmal molekül görsel alanı"><img src="${escapeHtml(slide.visualAsset ?? "")}" alt="" onerror="this.hidden=true" /></section><section class="dna-lgs-card dna-lgs-summary"><p>Kromozomların yapısında yer alan çift zincirli sarmal molekül olan <button type="button" aria-label="Boşluğu doldur" data-dna-answer>DNA</button>, kalıtsal bilginin temel taşıyıcısıdır.</p></section>`;
+      article.querySelector("[data-dna-answer]").addEventListener("click", (event) => event.currentTarget.classList.add("is-revealed"));
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "dna_cover") {
+      const article = document.createElement("article");
+      article.className = "board-slide dna-png-cover-slide";
+      article.innerHTML = `<img src="${escapeHtml(slide.media?.[0]?.src ?? "")}" alt="" />`;
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
     switch (slide.layout) {
       case "canva_merak_et":
       case "question_interaction": {
@@ -2208,10 +2433,102 @@ class CanFenciApp {
       }
     }
 
-    const scale = Math.min(availableWidth / 1920, availableHeight / 1080);
-    view.workspace.style.setProperty("--slide-scale", String(scale));
-    view.canvasArea.style.setProperty("--slide-scale", String(scale));
-    return scale;
+    const fitScale = Math.min(availableWidth / 1920, availableHeight / 1080);
+    const userZoom = this.state.get().presentation.userZoom ?? 1;
+    const finalScale = fitScale * userZoom;
+    const { panX, panY } = this.#clampPan(view, finalScale);
+    this.state.update((draft) => { draft.presentation.fitScale = fitScale; draft.presentation.panX = panX; draft.presentation.panY = panY; return draft; });
+    view.workspace.style.setProperty("--slide-scale", String(finalScale));
+    view.workspace.style.setProperty("--pan-x", `${panX}px`);
+    view.workspace.style.setProperty("--pan-y", `${panY}px`);
+    view.workspace.style.left = `calc(50% + ${panX}px)`;
+    view.workspace.style.top = `calc(50% + ${panY}px)`;
+    view.canvasArea.style.setProperty("--slide-scale", String(finalScale));
+    if (view.zoomLevel) view.zoomLevel.textContent = `%${Math.round(userZoom * 100)}`;
+    return finalScale;
+  }
+
+  #changeZoom(delta) {
+    const current = this.state.get().presentation.userZoom ?? 1;
+    const next = Math.min(2, Math.max(.5, Math.round((current + delta) * 10) / 10));
+    this.state.update((draft) => { draft.presentation.userZoom = next; return draft; });
+    this.#updateSlideScale();
+    this.annotationEngine?.resize();
+  }
+
+  #fitZoom() {
+    this.state.update((draft) => { draft.presentation.userZoom = 1; draft.presentation.panX = 0; draft.presentation.panY = 0; return draft; });
+    this.#updateSlideScale();
+    this.annotationEngine?.resize();
+  }
+
+  #clampPan(view = this.presentationView, scale = null, x = null, y = null) {
+    const state = this.state.get().presentation;
+    const finalScale = scale ?? (state.fitScale * state.userZoom);
+    if (!view?.canvasArea) return { panX: x ?? state.panX ?? 0, panY: y ?? state.panY ?? 0 };
+    const rect = view.canvasArea.getBoundingClientRect();
+    const style = getComputedStyle(view.canvasArea);
+    const availableWidth = rect.width - (parseFloat(style.paddingLeft) || 0) - (parseFloat(style.paddingRight) || 0);
+    const availableHeight = rect.height - (parseFloat(style.paddingTop) || 0) - (parseFloat(style.paddingBottom) || 0);
+    const limitX = Math.max(0, (1920 * finalScale - availableWidth) / 2);
+    const limitY = Math.max(0, (1080 * finalScale - availableHeight) / 2);
+    return {
+      panX: Math.max(-limitX, Math.min(limitX, x ?? state.panX ?? 0)),
+      panY: Math.max(-limitY, Math.min(limitY, y ?? state.panY ?? 0))
+    };
+  }
+
+  #applyPan(x, y) {
+    if (!this.presentationView) return;
+    const state = this.state.get().presentation;
+    const clamped = this.#clampPan(this.presentationView, state.fitScale * state.userZoom, x, y);
+    this.state.update((draft) => { draft.presentation.panX = clamped.panX; draft.presentation.panY = clamped.panY; return draft; });
+    this.presentationView.workspace.style.setProperty("--pan-x", `${clamped.panX}px`);
+    this.presentationView.workspace.style.setProperty("--pan-y", `${clamped.panY}px`);
+    this.presentationView.workspace.style.left = `calc(50% + ${clamped.panX}px)`;
+    this.presentationView.workspace.style.top = `calc(50% + ${clamped.panY}px)`;
+  }
+
+  #togglePan() {
+    const active = !this.state.get().presentation.panActive;
+    this.state.update((draft) => { draft.presentation.panActive = active; return draft; });
+    this.presentationView?.viewContainer.classList.toggle("is-pan-active", active);
+    this.presentationView?.panToggle.classList.toggle("is-active", active);
+    this.presentationView?.panToggle.setAttribute("aria-pressed", String(active));
+  }
+
+  #bindPan(view) {
+    let pointerId = null;
+    let startX = 0;
+    let startY = 0;
+    let originX = 0;
+    let originY = 0;
+    view.workspace.addEventListener("pointerdown", (event) => {
+      const presentation = this.state.get().presentation;
+      if (!presentation.panActive || this.state.get().ui.annotationEnabled) return;
+      pointerId = event.pointerId;
+      startX = event.clientX;
+      startY = event.clientY;
+      originX = presentation.panX;
+      originY = presentation.panY;
+      view.workspace.classList.add("is-panning");
+      view.workspace.setPointerCapture?.(pointerId);
+      event.preventDefault();
+    });
+    view.workspace.addEventListener("pointermove", (event) => {
+      if (pointerId !== event.pointerId) return;
+      this.#applyPan(originX + event.clientX - startX, originY + event.clientY - startY);
+      event.preventDefault();
+    });
+    const endPan = (event) => {
+      if (pointerId !== event.pointerId) return;
+      view.workspace.releasePointerCapture?.(pointerId);
+      pointerId = null;
+      view.workspace.classList.remove("is-panning");
+      event.preventDefault();
+    };
+    view.workspace.addEventListener("pointerup", endPan);
+    view.workspace.addEventListener("pointercancel", endPan);
   }
 
   #toggleViewModeSheet(open) {
@@ -2283,6 +2600,9 @@ class CanFenciApp {
     else if (key === "r") this.#resetPresentation();
     else if (key === "p") this.#togglePlan(this.presentationView?.planSheet.hidden ?? true);
     else if (key === "v") this.#cycleViewMode();
+    else if (event.key === "/") this.#changeZoom(0.1);
+    else if (event.key === "*") this.#changeZoom(-0.1);
+    else if (event.key === "0") this.#fitZoom();
     else if (key === "1") this.#setViewMode("smartboard");
     else if (key === "2") this.#setViewMode("online");
     else if (key === "3") this.#setViewMode("recording");

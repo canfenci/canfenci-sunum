@@ -13,7 +13,12 @@ const initialState = Object.freeze({
     stageId: null,
     slideId: null,
     slideIndex: 0,
-    viewMode: "smartboard"
+    viewMode: "smartboard",
+    fitScale: 1,
+    userZoom: 1,
+    panX: 0,
+    panY: 0,
+    panActive: false
   },
   classContext: {
     classId: null,

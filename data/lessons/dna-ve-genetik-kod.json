@@ -15,138 +15,137 @@
       "id": "dna_slide_1_cover",
       "type": "cover",
       "layout": "dna_cover",
-      "media": [{"src": "./assets/images/dna-ve-genetik-kod/01-kapak.png"}],
+      "media": [{"src": "./assets/images/dna-genetik-kod/01-kapak.png"}],
       "unit": "2. Ünite: DNA ve Genetik Kod",
-      "title": "1. DNA ve Genetik Kod",
-      "grade": "8. Sınıf Fen Bilimleri",
-      "subtitle": "Hücreden DNA'ya genetik bilginin yolculuğu",
-      "concepts": ["DNA", "Gen", "Kromozom", "Nükleotit"],
-      "goals": ["Hücre → çekirdek → kromozom → DNA", "Genetik bilginin temelini keşfet"]
+      "title": "DNA ve Genetik Kod"
     }, {
       "id": "dna_slide_2_heredity_location",
       "type": "content",
-      "layout": "dna_cover",
-      "media": [{"src": "./assets/images/dna-ve-genetik-kod/02-kalitsal-bilgi-nerede.png"}]
+      "layout": "dna_heredity",
+      "title": "Kalıtsal Bilgi Nerede Bulunur?",
+      "visualAsset": "./assets/images/dna-genetik-kod/02-dna"
     }, {
-      "id": "dna_slide_3_genetic_structure",
+      "id": "dna_slide_3_chromosome",
       "type": "content",
-      "layout": "dna_ordering",
-      "media": [{"src": "./assets/images/dna-ve-genetik-kod/03-kalitsal-bilginin-yapitasi.png"}],
-      "options": ["DNA", "Kromozom", "Nükleotit", "Gen"],
-      "answer": ["Nükleotit", "Gen", "DNA", "Kromozom"]
+      "layout": "dna_chromosome",
+      "title": "Kromozom Nedir?"
     }, {
-      "id": "dna_slide_4_image",
+      "id": "dna_slide_4_chromosome_count",
       "type": "content",
-      "layout": "dna_cover",
-      "media": [{"src": "./assets/images/dna-ve-genetik-kod/04-slayt.png"}]
+      "layout": "dna_chromosome_count",
+      "title": "Kromozom Sayısı",
+      "organisms": [["İnsan", "46"], ["Moli balığı", "46"], ["Soğan", "16"], ["Güvercin", "16"], ["Kedi", "38"], ["Köpek", "78"], ["Eğrelti otu", "500"]],
+      "answers": ["23", "aynı", "farklı", "yoktur"]
     }, {
-      "id": "dna_slide_5_image",
+      "id": "dna_slide_5_gene",
       "type": "content",
-      "layout": "dna_cover",
-      "media": [{"src": "./assets/images/dna-ve-genetik-kod/05-slayt.png"}]
+      "layout": "dna_gene",
+      "title": "Gen Nedir?",
+      "visualAsset": "./assets/images/dna-genetik-kod/03-gen.png"
     }, {
-      "id": "dna_slide_6_image",
+      "id": "dna_slide_6_nucleotide",
       "type": "content",
-      "layout": "dna_cover",
-      "media": [{"src": "./assets/images/dna-ve-genetik-kod/06-slayt.png"}]
+      "layout": "dna_nucleotide",
+      "title": "Nükleotit",
+      "visualAsset": "./assets/images/dna-genetik-kod/04-nukleotit.png",
+      "secondaryVisualAsset": "./assets/images/dna-genetik-kod/05-organik-bazlar.png"
     }, {
-      "id": "dna_slide_7_image",
+      "id": "dna_slide_7_nucleotide_names",
       "type": "content",
-      "layout": "dna_cover",
-      "media": [{"src": "./assets/images/dna-ve-genetik-kod/07-slayt.png"}]
+      "layout": "dna_nucleotide_names",
+      "title": "Nükleotitlerin İsimlendirilmesi",
+      "visualAsset": "./assets/images/dna-genetik-kod/06-adenin-timin.png",
+      "secondaryVisualAsset": "./assets/images/dna-genetik-kod/07-guanin-sitozin.png",
+      "tertiaryVisualAsset": "./assets/images/dna-genetik-kod/08-nukleotit-isimleri.png"
     }, {
-      "id": "dna_slide_8_image",
+      "id": "dna_slide_8_definition",
       "type": "content",
-      "layout": "dna_cover",
-      "media": [{"src": "./assets/images/dna-ve-genetik-kod/08-slayt.png"}]
+      "layout": "dna_definition",
+      "title": "DNA (Deoksiribo Nükleik Asit)",
+      "visualAsset": "./assets/images/dna-genetik-kod/09-dna.png"
     }, {
-      "id": "dna_slide_9_image",
+      "id": "dna_slide_9_recap",
       "type": "content",
-      "layout": "dna_cover",
-      "media": [{"src": "./assets/images/dna-ve-genetik-kod/09-slayt.png"}]
+      "layout": "dna_recap",
+      "title": "Akılda Kalsın",
+      "visualAsset": "./assets/images/dna-genetik-kod/10-cekirdekte.png",
+      "secondaryVisualAsset": "./assets/images/dna-genetik-kod/11-bakteride.png"
     }, {
-      "id": "dna_slide_10_base_pairing",
+      "id": "dna_slide_10_recap_two",
       "type": "content",
-      "layout": "dna_pairing_custom",
-      "given": ["A", "G", "T", "C", "C", "A"],
-      "choices": ["A", "T", "G", "C"],
-      "answer": ["T", "C", "A", "G", "G", "T"]
+      "layout": "dna_recap_two",
+      "title": "Aklımızda Kalsın-2",
+      "visualAsset": "./assets/images/dna-genetik-kod/12-aklimizda.png"
     }, {
-      "id": "dna_slide_11_structure_fill",
+      "id": "dna_slide_11_structure",
       "type": "content",
-      "layout": "dna_drag_fill",
-      "media": [{"src": "./assets/images/dna-ve-genetik-kod/11-slayt.png"}],
-      "items": [{"key": "P", "label": "P", "shape": "circle"}, {"key": "D", "label": "D", "shape": "pentagon"}, {"key": "A", "label": "A", "shape": "hexagon"}, {"key": "T", "label": "T", "shape": "hexagon"}, {"key": "C", "label": "C", "shape": "hexagon"}, {"key": "G", "label": "G", "shape": "hexagon"}],
-      "zones": [{"left": 70.9, "top": 28.7}, {"left": 31.7, "top": 37.6}, {"left": 38.9, "top": 37.6}, {"left": 60.2, "top": 37.6}, {"left": 47.9, "top": 47.0}, {"left": 71.0, "top": 47.0}, {"left": 79.0, "top": 47.0}, {"left": 60.2, "top": 56.8}, {"left": 31.7, "top": 57.8}, {"left": 38.9, "top": 65.2}, {"left": 47.9, "top": 65.2}, {"left": 71.0, "top": 65.2}],
-      "answer": ["D", "P", "D", "C", "G", "D", "P", "A", "P", "D", "C", "D"]
+      "layout": "dna_structure",
+      "title": "DNA’nın Yapısı",
+      "visualAsset": "./assets/images/dna-genetik-kod/13-dnanin-yapisi.png"
     }, {
-      "id": "dna_slide_12_insights",
+      "id": "dna_slide_12_hydrogen_bonds",
       "type": "content",
-      "layout": "dna_insights",
-      "media": [{"src": "./assets/images/dna-ve-genetik-kod/12-slayt.png"}],
-      "insights": {
-        "baseCounts": {"A": "2", "T": "2", "G": "3", "C": "3"},
-        "pairings": ["Adenin sayısı Timin sayısına eşittir.", "Guanin sayısı sitozin sayısına eşittir."],
-        "totals": ["Toplam nükleotit sayısı: 10", "Toplam fosfat sayısı: 10", "Toplam şeker sayısı: 10", "Toplam organik baz sayısı: 10"],
-        "general": "Toplam nükleotit sayısı = toplam fosfat sayısı = toplam şeker sayısı = toplam organik baz sayısı = 10."
-      }
+      "layout": "dna_hydrogen_bonds",
+      "title": "Hidrojen Bağları",
+      "visualAsset": "./assets/images/dna-genetik-kod/14-hidrojen-baglari.png"
     }, {
-      "id": "dna_slide_13_image",
+      "id": "dna_slide_13_nucleotide_counts",
       "type": "content",
-      "layout": "dna_cover",
-      "media": [{"src": "./assets/images/dna-ve-genetik-kod/13-slayt.png"}]
+      "layout": "dna_nucleotide_counts",
+      "title": "Nükleotit Sayıları",
+      "visualAsset": "./assets/images/dna-genetik-kod/15-nukleotit-sayilari.png"
     }, {
-      "id": "dna_slide_14_image",
-      "type": "content",
-      "layout": "dna_cover",
-      "media": [{"src": "./assets/images/dna-ve-genetik-kod/14-slayt.png"}]
+      "id": "dna_slide_14_activity_one",
+      "type": "activity",
+      "layout": "dna_activity_one",
+      "title": "Etkinlik-1",
+      "visualAsset": "./assets/images/dna-genetik-kod/16-etkinlik-1.png"
     }, {
-      "id": "dna_slide_15_image",
-      "type": "content",
-      "layout": "dna_cover",
-      "media": [{"src": "./assets/images/dna-ve-genetik-kod/15-slayt.png"}]
+      "id": "dna_slide_15_activity_two",
+      "type": "activity",
+      "layout": "dna_activity_two",
+      "title": "Etkinlik-2"
     }, {
-      "id": "dna_slide_16_image",
+      "id": "dna_slide_16_important_notes",
       "type": "content",
-      "layout": "dna_cover",
-      "media": [{"src": "./assets/images/dna-ve-genetik-kod/16-slayt.png"}]
+      "layout": "dna_important_notes",
+      "title": "Önemli Notlar"
     }, {
-      "id": "dna_slide_17_image",
+      "id": "dna_slide_17_replication",
       "type": "content",
-      "layout": "dna_cover",
-      "media": [{"src": "./assets/images/dna-ve-genetik-kod/17-slayt.png"}]
+      "layout": "dna_replication",
+      "title": "DNA Eşlenmesi",
+      "visualAsset": "./assets/images/dna-genetik-kod/17-dna-eslenmesi.png"
     }, {
-      "id": "dna_slide_18_image",
-      "type": "content",
-      "layout": "dna_cover",
-      "media": [{"src": "./assets/images/dna-ve-genetik-kod/18-slayt.png"}]
+      "id": "dna_slide_18_replication_steps",
+      "type": "activity",
+      "layout": "dna_replication_steps",
+      "title": "Eşlenme Basamakları"
     }, {
-      "id": "dna_slide_19_sequence_order",
+      "id": "dna_slide_19_replication_two",
       "type": "content",
-      "layout": "dna_sequence_order",
-      "media": [{"src": "./assets/images/dna-ve-genetik-kod/19-slayt.png"}],
-      "answer": ["D", "C", "A", "B"]
+      "layout": "dna_replication_two",
+      "title": "DNA Eşlenme Aşamaları",
+      "visualAsset": "./assets/images/dna-genetik-kod/18-dna-eslenmesi-2.png"
     }, {
-      "id": "dna_slide_20_image",
+      "id": "dna_slide_20_errors",
       "type": "content",
-      "layout": "dna_cover",
-      "media": [{"src": "./assets/images/dna-ve-genetik-kod/20-slayt.png"}]
+      "layout": "dna_errors",
+      "title": "DNA Hataları",
+      "visualAsset": "./assets/images/dna-genetik-kod/19-dna-hatalari.png"
     }, {
-      "id": "dna_slide_21_image",
+      "id": "dna_slide_21_notes",
       "type": "content",
-      "layout": "dna_cover",
-      "media": [{"src": "./assets/images/dna-ve-genetik-kod/21-slayt.png"}]
+      "layout": "dna_notes",
+      "title": "Notlar",
+      "visualAsset": "./assets/images/dna-genetik-kod/20-grafik-1.png",
+      "secondaryVisualAsset": "./assets/images/dna-genetik-kod/21-grafik-2.png"
     }, {
-      "id": "dna_slide_22_image",
+      "id": "dna_slide_22_question_notes",
       "type": "content",
-      "layout": "dna_cover",
-      "media": [{"src": "./assets/images/dna-ve-genetik-kod/22-slayt.png"}]
-    }, {
-      "id": "dna_slide_23_image",
-      "type": "content",
-      "layout": "dna_cover",
-      "media": [{"src": "./assets/images/dna-ve-genetik-kod/23-slayt.png"}]
-
+      "layout": "dna_question_notes",
+      "title": "Sorularda Dikkat Edilecek Hususlar",
+      "visualAsset": "./assets/images/dna-genetik-kod/22-dna-eslenmesi-3.png"
     }]
   }]
 }

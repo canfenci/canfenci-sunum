@@ -59,10 +59,18 @@ export function renderPresentation(container, { lesson, slide, slideIndex = 0, s
           <button id="show-plan" type="button">${icon("list")}<small>Plan</small></button>
           <button id="previous-slide" type="button" ${slideIndex <= 0 ? "disabled" : ""}>${icon("chevron-left")}<small>Geri</small></button>
           <div class="slide-counter" aria-label="Slayt sayacı"><strong id="slide-counter-current">${slideCount ? slideIndex + 1 : 0}</strong><span>/</span><small id="slide-counter-total">${slideCount}</small></div>
+          <div class="presentation-jump" aria-label="Sayfaya git"><label for="slide-jump-input">Sayfaya Git</label><input id="slide-jump-input" type="number" min="1" max="${slideCount || 1}" inputmode="numeric" aria-label="Slayt numarası" /><button id="slide-jump-button" type="button" aria-label="Girilen slayta git">Git</button></div>
           <button id="next-slide" type="button" ${slideIndex >= slideCount - 1 || !slideCount ? "disabled" : ""}>${icon("chevron-right")}<small>İleri</small></button>
           <button id="presentation-viewmode" type="button">${icon("maximize")}<small>Mod</small></button>
           <button id="presentation-fullscreen" type="button">${icon("maximize")}<small>Tam Ekran</small></button>
           <button id="presentation-reset" type="button">${icon("rotate-ccw")}<small>Sıfırla</small></button>
+          <div class="presentation-zoom" aria-label="Slayt yakınlaştırma">
+            <button id="zoom-out" type="button" aria-label="Uzaklaştır">−</button>
+            <output id="zoom-level" aria-live="polite">%100</output>
+            <button id="zoom-in" type="button" aria-label="Yakınlaştır">+</button>
+            <button id="zoom-fit" type="button">Sığdır</button>
+            <button id="pan-toggle" type="button" aria-label="El ile kaydırma" aria-pressed="false">✋</button>
+          </div>
           <button id="presentation-help" type="button">${icon("help-circle")}<small>Yardım</small></button>
         </footer>
       </div>
@@ -153,10 +161,13 @@ export function renderPresentation(container, { lesson, slide, slideIndex = 0, s
     topicLabel: container.querySelector("#stage-topic-label"),
     progressBar: container.querySelector("#stage-progress-bar"), stageStatus: container.querySelector("#stage-slide-status"),
     counterCurrent: container.querySelector("#slide-counter-current"), counterTotal: container.querySelector("#slide-counter-total"),
+    jumpInput: container.querySelector("#slide-jump-input"), jumpButton: container.querySelector("#slide-jump-button"),
     previous: container.querySelector("#previous-slide"), next: container.querySelector("#next-slide"),
     back: container.querySelector("#back-to-panel"), tools: container.querySelector("#rail-tools"),
     fullscreen: container.querySelector("#presentation-fullscreen"), reset: container.querySelector("#presentation-reset"),
     help: container.querySelector("#presentation-help"), plan: container.querySelector("#show-plan"),
+    zoomOut: container.querySelector("#zoom-out"), zoomIn: container.querySelector("#zoom-in"), zoomFit: container.querySelector("#zoom-fit"), zoomLevel: container.querySelector("#zoom-level"),
+    panToggle: container.querySelector("#pan-toggle"),
     railPlan: container.querySelector("#rail-plan"), railHelp: container.querySelector("#rail-help"),
     railViewMode: container.querySelector("#rail-viewmode"),
     presentationViewMode: container.querySelector("#presentation-viewmode"),

@@ -15,7 +15,7 @@ test("6. Sınıf Güneş ve Ay Tutulmaları Ders Paketi", async () => {
   assert.equal(lesson.gradeId, "grade_6");
   assert.equal(lesson.unitId, "solar_system_and_eclipses");
   assert.equal(lesson.topicId, "solar_and_lunar_eclipses");
-  assert.equal(slides.length, 9);
+  assert.equal(slides.length, 10);
   assert.equal(slides[0].layout, "eclipse_image_slide");
   assert.deepEqual(slides.slice(1, 4).map((slide) => slide.layout), [
     "eclipse_concept_slide",
@@ -48,9 +48,12 @@ test("6. Sınıf Güneş ve Ay Tutulmaları Ders Paketi", async () => {
     await access(`assets/images/gunes-ve-ay-tutulmalari/diagrams/${diagram}`);
   }
 
-  assert.deepEqual(slides.map((slide) => slide.interactions?.length ?? 0), [0, 5, 7, 8, 0, 0, 0, 0, 0]);
+  assert.deepEqual(slides.map((slide) => slide.interactions?.length ?? 0), [0, 5, 7, 8, 0, 0, 0, 0, 0, 0]);
   assert.equal(slides[8].layout, "eclipse_video_slide");
   assert.equal(slides[8].media[0].src, "./assets/videos/gunes-ve-ay-tutulmalari/gunes-tutulmasi.mp4");
+  assert.equal(slides[9].layout, "eclipse_video_slide");
+  assert.equal(slides[9].media[0].src, "./assets/videos/gunes-ve-ay-tutulmalari/tutulmalar.mp4");
+  await access("assets/videos/gunes-ve-ay-tutulmalari/tutulmalar.mp4");
   for (const slide of slides.slice(1, 4)) {
     assert.ok(slide.interactions.every((interaction) => interaction.type === "reveal_fill"));
     assert.equal(slide.overlays.length, slide.interactions.length);

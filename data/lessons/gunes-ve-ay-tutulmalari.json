@@ -620,6 +620,20 @@
             }
           ],
           "interactions": []
+        },
+        {
+          "id": "slide_10_tutulmalar_video",
+          "type": "content",
+          "layout": "eclipse_video_slide",
+          "title": "Güneş ve Ay Tutulmaları",
+          "media": [
+            {
+              "id": "media_eclipse_10_video",
+              "src": "./assets/videos/gunes-ve-ay-tutulmalari/tutulmalar.mp4",
+              "alt": "Güneş ve Ay tutulmaları videosu"
+            }
+          ],
+          "interactions": []
         }
       ]
     }
