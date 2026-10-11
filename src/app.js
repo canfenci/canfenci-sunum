@@ -860,6 +860,378 @@ class CanFenciApp {
   }
 
   #renderCanvaSlide(slide, view) {
+    if (slide.layout === "heredity_character_interactive") {
+      const article = document.createElement("article");
+      article.className = "board-slide heredity-character-interactive-slide";
+      const frame = document.createElement("div");
+      frame.className = "heredity-character-frame";
+      const image = document.createElement("img");
+      image.className = "heredity-character-image";
+      image.src = slide.media?.[0]?.src ?? "";
+      image.alt = slide.media?.[0]?.alt ?? "Kalıtım karakter etkinliği";
+      frame.appendChild(image);
+      const answers = ["Göz rengi", "Saç rengi", "Kulak memesi şekli", "Çil", "Spor yapmak", "Yara izi", "Kaslı olmak", "Dövme"];
+      const positions = [
+        [22.8, 69.0, 12.8, 9.4], [36.3, 69.0, 12.8, 9.4], [22.8, 79.8, 12.8, 9.4], [36.3, 79.8, 12.8, 9.4],
+        [50.8, 69.0, 12.8, 9.4], [64.3, 69.0, 12.8, 9.4], [50.8, 79.8, 12.8, 9.4], [64.3, 79.8, 12.8, 9.4]
+      ];
+      positions.forEach(([left, top, width, height], index) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = `heredity-character-hotspot ${index < 4 ? "is-hereditary" : "is-not-hereditary"}`;
+        button.style.left = `${left}%`;
+        button.style.top = `${top}%`;
+        button.style.width = `${width}%`;
+        button.style.height = `${height}%`;
+        button.setAttribute("aria-label", `${answers[index]} cevabını göster`);
+        button.innerHTML = `<span>${answers[index]}</span>`;
+        button.addEventListener("click", () => button.classList.toggle("is-revealed"));
+        frame.appendChild(button);
+      });
+      article.appendChild(frame);
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "heredity_activity_one_interactive") {
+      const article = document.createElement("article");
+      article.className = "board-slide heredity-activity-one-slide";
+      const frame = document.createElement("div");
+      frame.className = "heredity-activity-one-frame";
+      const image = document.createElement("img");
+      image.className = "heredity-activity-one-image";
+      image.src = slide.media?.[0]?.src ?? "";
+      image.alt = slide.media?.[0]?.alt ?? "Kalıtım etkinlik 1";
+      frame.appendChild(image);
+      const hotspots = [
+        { left: 8.77, top: 51.39, width: 18.39, height: 7.91, answer: "MM", label: "Üst satır genotip cevabı" },
+        { left: 72.06, top: 51.39, width: 18.27, height: 7.91, answer: "Mor çiçek", label: "Üst satır fenotip söylemi cevabı" },
+        { left: 30.53, top: 64.42, width: 18.15, height: 7.91, answer: "Melez döl", label: "Orta satır genotipin okunuşu cevabı" },
+        { left: 72.06, top: 64.42, width: 18.27, height: 7.91, answer: "Mor çiçek", label: "Orta satır fenotip söylemi cevabı" },
+        { left: 8.83, top: 77.46, width: 18.27, height: 7.91, answer: "mm", label: "Alt satır genotip cevabı" },
+        { left: 30.59, top: 77.46, width: 18.15, height: 7.91, answer: "Saf döl çekinik", label: "Alt satır genotipin okunuşu cevabı" },
+        { left: 72.06, top: 77.46, width: 18.27, height: 7.91, answer: "Beyaz çiçek", label: "Alt satır fenotip söylemi cevabı" }
+      ];
+      hotspots.forEach(({ left, top, width, height, answer, label }) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "heredity-activity-one-hotspot";
+        button.style.left = `${left}%`;
+        button.style.top = `${top}%`;
+        button.style.width = `${width}%`;
+        button.style.height = `${height}%`;
+        button.setAttribute("aria-label", `${label}: ${answer}`);
+        button.innerHTML = `<span>${answer}</span>`;
+        button.addEventListener("click", () => button.classList.toggle("is-revealed"));
+        frame.appendChild(button);
+      });
+      article.appendChild(frame);
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "heredity_activity_two_interactive") {
+      const article = document.createElement("article");
+      article.className = "board-slide heredity-activity-two-slide";
+      const frame = document.createElement("div");
+      frame.className = "heredity-activity-two-frame";
+      const image = document.createElement("img");
+      image.className = "heredity-activity-two-image";
+      image.src = slide.media?.[0]?.src ?? "";
+      image.alt = slide.media?.[0]?.alt ?? "Kalıtım etkinlik 2";
+      frame.appendChild(image);
+      const hotspots = [
+        { centerX: 54.6, centerY: 60.7, answer: "Yy", label: "Melez yuvarlak tohumlu cevabı" },
+        { centerX: 54.6, centerY: 66.3, answer: "SS", label: "Homozigot sarı tohumlu cevabı" },
+        { centerX: 54.6, centerY: 72.0, answer: "mm", label: "Beyaz çiçekli cevabı" },
+        { centerX: 54.6, centerY: 77.9, answer: "şş", label: "Homozigot boğumlu tohum cevabı" },
+        { centerX: 54.6, centerY: 83.8, answer: "Mm", label: "Heterozigot mor çiçekli cevabı" },
+        { centerX: 54.6, centerY: 89.8, answer: "ŞŞ", label: "Saf şişkin tohumlu cevabı" }
+      ];
+      const hotspotWidth = 19.5;
+      const hotspotHeight = 4.8;
+      hotspots.forEach(({ centerX, centerY, answer, label }) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "heredity-activity-two-hotspot";
+        button.style.left = `${centerX - hotspotWidth / 2}%`;
+        button.style.top = `${centerY - hotspotHeight / 2}%`;
+        button.style.width = `${hotspotWidth}%`;
+        button.style.height = `${hotspotHeight}%`;
+        button.setAttribute("aria-label", `${label}: ${answer}`);
+        button.innerHTML = `<span>${answer}</span>`;
+        button.addEventListener("click", () => button.classList.toggle("is-revealed"));
+        frame.appendChild(button);
+      });
+      article.appendChild(frame);
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "resultant_force_examples_image") {
+      const article = document.createElement("article");
+      article.className = "board-slide resultant-force-examples-image-slide";
+      const frame = document.createElement("div");
+      frame.className = "resultant-force-examples-image-frame";
+      const image = document.createElement("img");
+      image.className = "resultant-force-examples-image";
+      image.src = slide.media?.[0]?.src ?? "";
+      image.alt = slide.media?.[0]?.alt ?? "Bileşke Kuvvet örnekleri";
+      frame.appendChild(image);
+      const compass = document.createElement("div");
+      compass.className = "resultant-force-direction-hint";
+      compass.setAttribute("aria-label", "Yönler: Kuzey, Güney, Doğu, Batı");
+      compass.innerHTML = '<span class="compass-north">Kuzey</span><span class="compass-east">Doğu</span><span class="compass-south">Güney</span><span class="compass-west">Batı</span><i aria-hidden="true">✦</i>';
+      frame.appendChild(compass);
+      const answers = [
+        ["30 N", "Doğu"], ["15 N", "Doğu"], ["0 N", "Yok"], ["30 N", "Kuzey"],
+        ["0 N", "Yok"], ["30 N", "Doğu"], ["20 N", "Kuzey"], ["14 N", "Batı"]
+      ];
+      const columns = [1.55, 26.15, 50.3, 75.15];
+      const rows = [47.4, 90.0];
+      for (let row = 0; row < 2; row += 1) {
+        for (let column = 0; column < 4; column += 1) {
+          const index = row * 4 + column;
+          const resultButton = document.createElement("button");
+          resultButton.type = "button";
+          resultButton.className = "resultant-force-answer-hotspot resultant-force-answer-value";
+          resultButton.style.left = `${columns[column]}%`;
+          resultButton.style.top = `${rows[row]}%`;
+          resultButton.innerHTML = `<span>${answers[index][0]}</span>`;
+          resultButton.setAttribute("aria-label", `Örnek ${index + 1} bileşke kuvvet cevabını göster`);
+          const directionButton = document.createElement("button");
+          directionButton.type = "button";
+          directionButton.className = "resultant-force-answer-hotspot resultant-force-answer-direction";
+          directionButton.style.left = `${columns[column] + 12.55}%`;
+          directionButton.style.top = `${rows[row]}%`;
+          directionButton.innerHTML = `<span>${answers[index][1]}</span>`;
+          directionButton.setAttribute("aria-label", `Örnek ${index + 1} yön cevabını göster`);
+          [resultButton, directionButton].forEach((button) => button.addEventListener("click", () => button.classList.toggle("is-revealed")));
+          frame.append(resultButton, directionButton);
+        }
+      }
+      article.appendChild(frame);
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "unbalanced_forces_image_fullscreen") {
+      const article = document.createElement("article");
+      article.className = "board-slide unbalanced-forces-image-fullscreen-slide";
+      const image = document.createElement("img");
+      image.className = "unbalanced-forces-image-fullscreen";
+      image.src = slide.media?.[0]?.src ?? "";
+      image.alt = slide.media?.[0]?.alt ?? "Dengelenmemiş Kuvvetler görseli";
+      article.appendChild(image);
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "balanced_forces_image_fullscreen") {
+      const article = document.createElement("article");
+      article.className = "board-slide balanced-forces-image-fullscreen-slide";
+      const image = document.createElement("img");
+      image.className = "balanced-forces-image-fullscreen";
+      image.src = slide.media?.[0]?.src ?? "";
+      image.alt = slide.media?.[0]?.alt ?? "Dengelenmiş Kuvvetler görseli";
+      article.appendChild(image);
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "resultant_force_image_fullscreen") {
+      const article = document.createElement("article");
+      article.className = "board-slide resultant-force-image-fullscreen-slide";
+      const image = document.createElement("img");
+      image.className = "resultant-force-image-fullscreen";
+      image.src = slide.media?.[0]?.src ?? "";
+      image.alt = slide.media?.[0]?.alt ?? "Bileşke Kuvvet görseli";
+      article.appendChild(image);
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "resultant_force_definition_examples") {
+      const article = document.createElement("article");
+      article.className = "board-slide resultant-force-definition-slide";
+      article.innerHTML = `
+        <header class="resultant-force-definition-heading"><span>BİLEŞKE KUVVET</span><h1>Bileşke Kuvvet</h1></header>
+        <div class="resultant-force-definition-grid">
+          <section class="resultant-force-definition-card" aria-labelledby="resultant-force-definition-title">
+            <span class="resultant-force-card-kicker">TANIM</span>
+            <h2 id="resultant-force-definition-title">Bir cisme etki eden <strong>birden fazla kuvvetin</strong> yaptığı etkiyi <strong>tek kuvvet</strong> olarak yapan kuvvete <strong>bileşke kuvvet</strong> denir.</h2>
+            <p class="resultant-force-definition-emphasis">Bileşke kuvvet <strong>R</strong> harfi ile gösterilir.</p>
+          </section>
+          <section class="resultant-force-example-card same-direction-example" aria-labelledby="same-direction-title">
+            <div class="resultant-force-example-heading"><span>AYNI YÖNLÜ KUVVETLER</span><h2 id="same-direction-title">Kuvvetler toplanır</h2></div>
+            <div class="resultant-force-diagram">
+              <div class="resultant-force-vector east"><span>3 N</span></div><div class="resultant-force-example-box">KUTU</div><div class="resultant-force-vector east large"><span>5 N</span></div>
+            </div>
+            <div class="resultant-force-equation"><strong>R = 8 N</strong><span class="equation-arrow east"></span></div>
+            <p>Aynı yöndeki kuvvetler toplanır.</p>
+          </section>
+          <section class="resultant-force-example-card opposite-direction-example" aria-labelledby="opposite-direction-title">
+            <div class="resultant-force-example-heading"><span>ZIT YÖNLÜ KUVVETLER</span><h2 id="opposite-direction-title">Kuvvetler çıkarılır</h2></div>
+            <div class="resultant-force-diagram opposite">
+              <div class="resultant-force-vector west small"><span>3 N</span></div><div class="resultant-force-example-box">KUTU</div><div class="resultant-force-vector east large"><span>5 N</span></div>
+            </div>
+            <div class="resultant-force-equation"><strong>R = 2 N</strong><span class="equation-arrow east"></span></div>
+            <p>Zıt yöndeki kuvvetler çıkarılır.<br />Bileşke kuvvet büyük kuvvetin yönündedir.</p>
+          </section>
+        </div>`;
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "resultant_force_activity") {
+      const article = document.createElement("article");
+      article.className = "board-slide resultant-force-activity-slide force-lab";
+      article.innerHTML = `
+        <div class="resultant-force-axis-picker" role="group" aria-label="Kuvvet doğrultusu">
+          <button type="button" data-axis="horizontal" class="is-selected">Doğu–Batı</button>
+          <button type="button" data-axis="vertical">Kuzey–Güney</button>
+        </div>
+        <div class="resultant-force-stage force-stage" aria-label="Bileşke kuvvet sahnes">
+          <div class="resultant-force-drop-zone drop-zone west" data-drop-direction="west">Batı</div>
+          <div class="resultant-force-drop-zone drop-zone east" data-drop-direction="east">Doğu</div>
+          <div class="resultant-force-drop-zone drop-zone north" data-drop-direction="north">Kuzey</div>
+          <div class="resultant-force-drop-zone drop-zone south" data-drop-direction="south">Güney</div>
+          <div class="resultant-force-arrow-layer placed-forces" aria-live="polite"></div>
+          <div class="resultant-force-box force-box" aria-label="Hareket eden kutu"><span aria-hidden="true">📦</span></div>
+        </div>
+        <div class="resultant-force-panel">
+          <div class="resultant-force-palette" role="group" aria-label="Kuvvet büyüklüğü">
+            <span class="resultant-force-panel-label">Sürükle</span>
+            ${[3, 4, 5, 8].map((magnitude) => `<button type="button" class="resultant-force-palette-arrow force-source" data-force="${magnitude}" data-magnitude="${magnitude}" aria-label="${magnitude} Newton oku"><span>${magnitude} N</span></button>`).join("")}
+          </div>
+          <div class="resultant-force-actions"><button type="button" data-action="apply">Tamam</button><button type="button" data-action="reset">Sıfırla</button></div>
+          <output class="resultant-force-result" aria-live="polite"></output>
+        </div>`;
+      view.slideContent.replaceChildren(article);
+
+      const state = { selectedAxis: "horizontal", placedForces: [], offsetX: 0, offsetY: 0 };
+      const axisButtons = [...article.querySelectorAll("[data-axis]")];
+      const paletteArrows = [...article.querySelectorAll(".force-source")];
+      const dropZones = [...article.querySelectorAll("[data-drop-direction]")];
+      const stage = article.querySelector(".resultant-force-stage");
+      const box = article.querySelector(".resultant-force-box");
+      const arrowLayer = article.querySelector(".resultant-force-arrow-layer");
+      const result = article.querySelector(".resultant-force-result");
+      const directionByAxis = { horizontal: ["east", "west"], vertical: ["north", "south"] };
+      const signByDirection = { east: 1, west: -1, north: 1, south: -1 };
+
+      const renderArrows = () => {
+        arrowLayer.replaceChildren();
+        state.placedForces.forEach((force, index) => {
+          const arrow = document.createElement("div");
+          arrow.className = `resultant-force-arrow placed ${force.direction}`;
+          arrow.style.setProperty("--arrow-size", `${Math.max(64, force.magnitude * 20)}px`);
+          arrow.style.setProperty("--stack-offset", `${index * 28}px`);
+          arrow.dataset.forceId = force.id;
+          arrow.innerHTML = `<span>${force.magnitude} N</span>`;
+          arrowLayer.appendChild(arrow);
+        });
+      };
+      const resetBox = () => { state.offsetX = 0; state.offsetY = 0; box.style.transform = "translate(-50%, -50%)"; };
+      const clearForces = (clearResult = true) => { state.placedForces = []; renderArrows(); resetBox(); if (clearResult) result.textContent = ""; };
+      const setAxis = (axis) => {
+        state.selectedAxis = axis;
+        axisButtons.forEach((button) => button.classList.toggle("is-selected", button.dataset.axis === axis));
+        dropZones.forEach((zone) => zone.classList.toggle("is-active", directionByAxis[axis].includes(zone.dataset.dropDirection)));
+        clearForces();
+      };
+      const calculate = () => state.placedForces.reduce((sum, force) => sum + signByDirection[force.direction] * force.magnitude, 0);
+      const applyResult = () => {
+        const net = calculate();
+        const magnitude = Math.abs(net);
+        if (!net) { result.textContent = "Bileşke Kuvvet: 0 N — Dengelenmiş kuvvetler"; return; }
+        const direction = state.selectedAxis === "horizontal" ? (net > 0 ? "Doğu" : "Batı") : (net > 0 ? "Kuzey" : "Güney");
+        const distance = magnitude * 20;
+        const maxX = Math.max(0, (stage.clientWidth - box.offsetWidth) / 2 - 12);
+        const maxY = Math.max(0, (stage.clientHeight - box.offsetHeight) / 2 - 12);
+        if (state.selectedAxis === "horizontal") state.offsetX = Math.max(-maxX, Math.min(maxX, net > 0 ? distance : -distance));
+        else state.offsetY = Math.max(-maxY, Math.min(maxY, net > 0 ? -distance : distance));
+        box.style.transform = `translate(calc(-50% + ${state.offsetX}px), calc(-50% + ${state.offsetY}px))`;
+        result.textContent = `Bileşke Kuvvet: ${magnitude} N ${direction}`;
+      };
+
+      axisButtons.forEach((button) => button.addEventListener("click", () => setAxis(button.dataset.axis)));
+      const addForce = (magnitude, direction) => {
+        if (!Number.isFinite(magnitude)) return;
+        if (!directionByAxis[state.selectedAxis].includes(direction)) return;
+        state.placedForces.push({
+          id: `force-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+          magnitude,
+          direction,
+          axis: state.selectedAxis
+        });
+        renderArrows();
+      };
+      paletteArrows.forEach((source) => {
+        source.addEventListener("pointerdown", (event) => {
+          event.preventDefault();
+          const clone = source.cloneNode(true);
+          clone.className = `${source.className} force-drag-clone`;
+          clone.removeAttribute("aria-label");
+          clone.style.width = `${source.getBoundingClientRect().width}px`;
+          clone.style.height = `${source.getBoundingClientRect().height}px`;
+          document.body.appendChild(clone);
+          const moveClone = (moveEvent) => {
+            moveEvent.preventDefault();
+            clone.style.left = `${moveEvent.clientX}px`;
+            clone.style.top = `${moveEvent.clientY}px`;
+          };
+          const findDropZoneAt = (clientX, clientY) => dropZones.find((zone) => {
+            if (!zone.classList.contains("is-active")) return false;
+            const rect = zone.getBoundingClientRect();
+            return clientX >= rect.left && clientX <= rect.right && clientY >= rect.top && clientY <= rect.bottom;
+          });
+          const finishDrag = (endEvent) => {
+            endEvent.preventDefault();
+            const target = findDropZoneAt(endEvent.clientX, endEvent.clientY);
+            if (target) addForce(Number(source.dataset.force), target.dataset.dropDirection);
+            clone.remove();
+            source.releasePointerCapture?.(event.pointerId);
+            source.removeEventListener("pointermove", moveClone);
+            source.removeEventListener("pointerup", finishDrag);
+            source.removeEventListener("pointercancel", cancelDrag);
+          };
+          const cancelDrag = (cancelEvent) => {
+            cancelEvent.preventDefault();
+            clone.remove();
+            source.releasePointerCapture?.(event.pointerId);
+            source.removeEventListener("pointermove", moveClone);
+            source.removeEventListener("pointerup", finishDrag);
+            source.removeEventListener("pointercancel", cancelDrag);
+          };
+          source.setPointerCapture(event.pointerId);
+          clone.style.left = `${event.clientX}px`;
+          clone.style.top = `${event.clientY}px`;
+          source.addEventListener("pointermove", moveClone);
+          source.addEventListener("pointerup", finishDrag, { once: true });
+          source.addEventListener("pointercancel", cancelDrag, { once: true });
+        });
+      });
+      dropZones.forEach((zone) => {
+        zone.addEventListener("dragover", (event) => { if (directionByAxis[state.selectedAxis].includes(zone.dataset.dropDirection)) { event.preventDefault(); zone.classList.add("is-over"); } });
+        zone.addEventListener("dragleave", () => zone.classList.remove("is-over"));
+        zone.addEventListener("drop", (event) => { event.preventDefault(); zone.classList.remove("is-over"); addForce(Number(event.dataTransfer?.getData("text/plain")), zone.dataset.dropDirection); });
+      });
+      article.querySelector('[data-action="apply"]').addEventListener("click", applyResult);
+      article.querySelector('[data-action="reset"]').addEventListener("click", () => clearForces());
+      setAxis("horizontal");
+      return true;
+    }
+    if (slide.layout === "force_video_fullscreen") {
+      const article = document.createElement("article");
+      article.className = "board-slide force-video-fullscreen-slide";
+      const video = document.createElement("video");
+      video.className = "force-video-fullscreen";
+      video.src = slide.media?.[0]?.src ?? "";
+      video.preload = "metadata";
+      video.playsInline = true;
+      video.controls = false;
+      video.setAttribute("aria-label", slide.media?.[0]?.alt ?? "Bileşke Kuvvet videosu");
+      video.addEventListener("click", () => {
+        if (video.paused) video.play().catch(() => {});
+        else video.pause();
+      });
+      article.appendChild(video);
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
     if (slide.layout?.startsWith("solar_") || slide.layout?.startsWith("eclipse_")) {
       return renderSolarSlide(slide, view, {
         interactions: this.interactions,
@@ -1079,6 +1451,72 @@ class CanFenciApp {
       article.className = "board-slide dna-png-cover-slide";
       article.innerHTML = `<img src="${escapeHtml(slide.media?.[0]?.src ?? "")}" alt="" />`;
       view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "force_recall") {
+      const article = document.createElement("article");
+      article.className = "board-slide force-recall-slide";
+      const image = document.createElement("img");
+      image.src = slide.media?.[0]?.src ?? "";
+      image.alt = slide.media?.[0]?.alt ?? "";
+      article.appendChild(image);
+      const interactionMap = new Map((slide.interactions ?? []).map((item) => [item.id, item]));
+      const buttons = [];
+      for (const overlay of slide.overlays ?? []) {
+        const definition = interactionMap.get(overlay.interactionId);
+        if (!definition) continue;
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = `force-recall-answer force-recall-${overlay.tone ?? "blue"}`;
+        button.style.left = `${overlay.x}px`;
+        button.style.top = `${overlay.y}px`;
+        button.style.width = `${overlay.w}px`;
+        button.style.height = `${overlay.h}px`;
+        button.setAttribute("aria-label", "Cevabı göster");
+        button.setAttribute("aria-expanded", "false");
+        button.textContent = definition.answer ?? "";
+        button.addEventListener("click", () => {
+          button.classList.add("is-revealed");
+          button.setAttribute("aria-expanded", "true");
+        });
+        article.appendChild(button);
+        buttons.push(button);
+      }
+      view.slideContent.replaceChildren(article);
+      this.activeInteractions.push({ reset: () => buttons.forEach((button) => button.classList.remove("is-revealed")), destroy: () => {} });
+      return true;
+    }
+    if (slide.layout === "force_direction") {
+      const article = document.createElement("article");
+      article.className = "board-slide force-direction-slide";
+      const image = document.createElement("img");
+      image.src = slide.media?.[0]?.src ?? "";
+      image.alt = slide.media?.[0]?.alt ?? "";
+      article.appendChild(image);
+      const interactionMap = new Map((slide.interactions ?? []).map((item) => [item.id, item]));
+      const buttons = [];
+      for (const overlay of slide.overlays ?? []) {
+        const definition = interactionMap.get(overlay.interactionId);
+        if (!definition) continue;
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "force-direction-answer";
+        button.style.left = `${overlay.x}px`;
+        button.style.top = `${overlay.y}px`;
+        button.style.width = `${overlay.w}px`;
+        button.style.height = `${overlay.h}px`;
+        button.setAttribute("aria-label", "Cevabı göster");
+        button.setAttribute("aria-expanded", "false");
+        button.textContent = definition.answer ?? "";
+        button.addEventListener("click", () => {
+          button.classList.add("is-revealed");
+          button.setAttribute("aria-expanded", "true");
+        });
+        article.appendChild(button);
+        buttons.push(button);
+      }
+      view.slideContent.replaceChildren(article);
+      this.activeInteractions.push({ reset: () => buttons.forEach((button) => button.classList.remove("is-revealed")), destroy: () => {} });
       return true;
     }
     switch (slide.layout) {

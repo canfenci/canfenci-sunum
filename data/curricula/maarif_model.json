@@ -97,6 +97,38 @@
       ]
     },
     {
+      "id": "force_effect_motion",
+      "label": "2. Ünite — Kuvvetin Etkisinde Hareket",
+      "gradeId": "grade_6",
+      "topics": [
+        {
+          "id": "resultant_force",
+          "label": "Bileşke Kuvvet",
+          "metadata": {
+            "coreTopics": ["Bileşke kuvvet"],
+            "extraTopics": [],
+            "verified": false,
+            "lastVerifiedAt": null
+          },
+          "workModes": {
+            "presentation": {
+              "status": "available",
+              "source": "./data/lessons/bileske-kuvvet.json"
+            },
+            "activity": {"status": "planned", "source": null},
+            "test": {"status": "planned", "source": null}
+          },
+          "lessons": [
+            {
+              "id": "lesson_bileske_kuvvet_1",
+              "label": "Bileşke Kuvvet",
+              "source": "./data/lessons/bileske-kuvvet.json"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "space_age",
       "label": "1. Ünite — Uzay Çağı",
       "gradeId": "grade_7",

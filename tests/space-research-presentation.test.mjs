@@ -269,10 +269,11 @@ test("7. Sınıf Müfredat ve Rota Doğrulaması (Çift Ünite Olmaması Kontrol
   assert.equal(grade7Units[0].id, "space_age");
   assert.equal(grade7Units[0].label, "1. Ünite — Uzay Çağı");
 
-  // 6. Sınıf seçildiğinde sadece solar_system_and_eclipses filtrelenmeli
+  // 6. Sınıf seçildiğinde yalnızca mevcut 1. ve yeni 2. üniteler filtrelenmeli
   const grade6Units = maarif.units.filter((u) => !u.gradeId || u.gradeId === "grade_6");
-  assert.equal(grade6Units.length, 1, "6. Sınıf için sadece kendi ünitesi listelenmelidir");
+  assert.equal(grade6Units.length, 2, "6. Sınıf için iki ünite listelenmelidir");
   assert.equal(grade6Units[0].id, "solar_system_and_eclipses");
+  assert.equal(grade6Units[1].id, "force_effect_motion");
 
   const spaceTopic = grade7Units[0].topics.find((t) => t.id === "space_research");
   assert.ok(spaceTopic, "space_research konusu bulunmalıdır");

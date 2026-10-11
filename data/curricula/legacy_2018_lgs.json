@@ -113,6 +113,23 @@
           "lessons": [
             {"id": "lesson_dna_ve_genetik_kod_1", "label": "1. DNA ve Genetik Kod", "source": "./data/lessons/dna-ve-genetik-kod.json"}
           ]
+        },
+        {
+          "id": "heredity_topic",
+          "label": "2. Kalıtım",
+          "metadata": {
+            "coreTopics": ["Kalıtım"],
+            "extraTopics": [],
+            "verified": false
+          },
+          "workModes": {
+            "presentation": {"status": "available", "source": "./data/lessons/kalitim.json"},
+            "activity": {"status": "planned", "source": null},
+            "test": {"status": "planned", "source": null}
+          },
+          "lessons": [
+            {"id": "lesson_kalitim_1", "label": "2. Kalıtım", "source": "./data/lessons/kalitim.json"}
+          ]
         }
       ]
     }

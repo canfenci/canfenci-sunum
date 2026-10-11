@@ -12,7 +12,7 @@ export function renderShell(root) {
         <button class="mobile-menu-button" id="mobile-menu-button" type="button" aria-label="Ders seçimini aç" aria-expanded="false">${icon("list")}</button>
         <a class="brand" href="https://canfenci.com" aria-label="CanFenci ana sayfa">
           <span class="brand-mark" aria-hidden="true"><img src="./assets/images/canfenci-logo.png" alt=""></span>
-          <span><strong>CanFenci</strong><small>Akıllı Tahta Ders Sistemi</small></span>
+          <span><strong>CanFenci</strong><small>canfenci.com</small></span>
         </a>
         <div class="lesson-path" id="lesson-path" aria-label="Aktif ders yolu">
           <span>8. Sınıf</span><i>${icon("chevron-right", 14)}</i><span>Ünite seçilmedi</span><i>${icon("chevron-right", 14)}</i><strong>Konu seçilmedi</strong>

@@ -1,0 +1,193 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "lesson_bileske_kuvvet_1",
+  "title": "Bileşke Kuvvet",
+  "gradeId": "grade_6",
+  "curriculumProfileId": "maarif_model",
+  "unitId": "force_effect_motion",
+  "topicId": "resultant_force",
+  "modes": ["presentation"],
+  "curriculumValidation": {
+    "outcomeIds": [],
+    "authority": "MEB",
+    "sourceDocument": "Türkiye Yüzyılı Maarif Modeli Fen Bilimleri Dersi Öğretim Programı",
+    "sourceVersion": "2024",
+    "lastVerifiedAt": null,
+    "verifiedBy": "CanFenci",
+    "status": "unverified"
+  },
+  "stages": [
+    {
+      "id": "stage_bileske_kuvvet",
+      "label": "Bileşke Kuvvet",
+      "order": 1,
+      "slides": [
+        {
+          "id": "slide_1_kapak",
+          "type": "content",
+          "layout": "dna_cover",
+          "title": "Bileşke Kuvvet",
+          "media": [
+            {
+              "id": "media_bileske_kuvvet_01",
+              "src": "./assets/images/bileske-kuvvet/01-kapak.png",
+              "alt": "Bileşke Kuvvet kapak görseli"
+            }
+          ],
+          "interactions": []
+        },
+        {
+          "id": "slide_2_kuvveti_hatirlayalim",
+          "type": "content",
+          "layout": "force_recall",
+          "title": "Kuvveti Hatırlayalım",
+          "media": [
+            {
+              "id": "media_bileske_kuvvet_02",
+              "src": "./assets/images/bileske-kuvvet/02-kuvveti-hatirlayalim.png",
+              "alt": "Kuvveti Hatırlayalım çalışma slaytı"
+            }
+          ],
+          "overlays": [
+            {"id": "overlay_force_answer_1", "interactionId": "interaction_force_answer_1", "x": 288, "y": 450, "w": 320, "h": 62, "tone": "blue"},
+            {"id": "overlay_force_answer_2", "interactionId": "interaction_force_answer_2", "x": 440, "y": 568, "w": 273, "h": 67, "tone": "green"},
+            {"id": "overlay_force_answer_3", "interactionId": "interaction_force_answer_3", "x": 288, "y": 644, "w": 338, "h": 67, "tone": "yellow"},
+            {"id": "overlay_force_answer_4", "interactionId": "interaction_force_answer_4", "x": 589, "y": 773, "w": 296, "h": 65, "tone": "pink"}
+          ],
+          "interactions": [
+            {"id": "interaction_force_answer_1", "type": "reveal_fill", "answer": "Kuvvet"},
+            {"id": "interaction_force_answer_2", "type": "reveal_fill", "answer": "F"},
+            {"id": "interaction_force_answer_3", "type": "reveal_fill", "answer": "Dinamometre"},
+            {"id": "interaction_force_answer_4", "type": "reveal_fill", "answer": "Newton"}
+          ]
+        },
+        {
+          "id": "slide_3_yon_dogrultu_buyukluk",
+          "type": "content",
+          "layout": "force_direction",
+          "title": "Kuvvetin Yönü, Doğrultusu ve Büyüklüğü",
+          "media": [
+            {
+              "id": "media_bileske_kuvvet_03",
+              "src": "./assets/images/bileske-kuvvet/03-yon-dogrultu-buyukluk.png",
+              "alt": "Kuvvetin yönü, doğrultusu ve büyüklüğü tablosu"
+            }
+          ],
+          "overlays": [
+            {"id": "overlay_force_direction_1", "interactionId": "interaction_force_direction_1", "x": 639, "y": 518, "w": 382, "h": 119, "tone": "yellow"},
+            {"id": "overlay_force_direction_2", "interactionId": "interaction_force_direction_2", "x": 1057, "y": 518, "w": 401, "h": 119, "tone": "green"},
+            {"id": "overlay_force_direction_3", "interactionId": "interaction_force_direction_3", "x": 639, "y": 677, "w": 382, "h": 119, "tone": "yellow"},
+            {"id": "overlay_force_direction_4", "interactionId": "interaction_force_direction_4", "x": 1057, "y": 677, "w": 401, "h": 119, "tone": "green"},
+            {"id": "overlay_force_direction_5", "interactionId": "interaction_force_direction_5", "x": 639, "y": 856, "w": 382, "h": 146, "tone": "yellow"},
+            {"id": "overlay_force_direction_6", "interactionId": "interaction_force_direction_6", "x": 1057, "y": 856, "w": 401, "h": 146, "tone": "green"},
+            {"id": "overlay_force_magnitude_1", "interactionId": "interaction_force_magnitude_1", "x": 1470, "y": 518, "w": 382, "h": 119, "tone": "purple"},
+            {"id": "overlay_force_magnitude_2", "interactionId": "interaction_force_magnitude_2", "x": 1470, "y": 677, "w": 382, "h": 119, "tone": "purple"},
+            {"id": "overlay_force_magnitude_3", "interactionId": "interaction_force_magnitude_3", "x": 1470, "y": 856, "w": 382, "h": 146, "tone": "purple"}
+          ],
+          "interactions": [
+            {"id": "interaction_force_direction_1", "type": "reveal_fill", "answer": "Batı"},
+            {"id": "interaction_force_direction_2", "type": "reveal_fill", "answer": "Doğu-Batı"},
+            {"id": "interaction_force_direction_3", "type": "reveal_fill", "answer": "Kuzey"},
+            {"id": "interaction_force_direction_4", "type": "reveal_fill", "answer": "Kuzey-Güney"},
+            {"id": "interaction_force_direction_5", "type": "reveal_fill", "answer": "Güney"},
+            {"id": "interaction_force_direction_6", "type": "reveal_fill", "answer": "Kuzey-Güney"},
+            {"id": "interaction_force_magnitude_1", "type": "reveal_fill", "answer": "5 N"},
+            {"id": "interaction_force_magnitude_2", "type": "reveal_fill", "answer": "4 N"},
+            {"id": "interaction_force_magnitude_3", "type": "reveal_fill", "answer": "6 N"}
+          ]
+        },
+        {
+          "id": "slide_4_kuvveti_gosteren_ok",
+          "type": "content",
+          "layout": "dna_cover",
+          "title": "Kuvveti Gösteren Ok",
+          "media": [
+            {
+              "id": "media_bileske_kuvvet_04",
+              "src": "./assets/images/bileske-kuvvet/04-uygulama-noktasi.png",
+              "alt": "Kuvveti Gösteren Ok görseli"
+            }
+          ],
+          "interactions": []
+        },
+        {
+          "id": "slide_5_bileske_kuvvet_video",
+          "type": "media",
+          "layout": "force_video_fullscreen",
+          "title": "",
+          "media": [
+            {
+              "id": "media_bileske_kuvvet_05",
+              "src": "./assets/images/bileske-kuvvet/05-video.mp4",
+              "alt": "Bileşke Kuvvet videosu"
+            }
+          ],
+          "interactions": []
+        },
+        {
+          "id": "slide_6_bileske_kuvvet_etkinlik",
+          "type": "interactive",
+          "layout": "resultant_force_activity",
+          "title": "",
+          "interactions": []
+        },
+        {
+          "id": "slide_7_bileske_kuvvet_tanim_ornekler",
+          "type": "content",
+          "layout": "resultant_force_image_fullscreen",
+          "title": "Bileşke Kuvvet",
+          "media": [
+            {
+              "id": "media_bileske_kuvvet_06",
+              "src": "./assets/images/bileske-kuvvet/06-bileske-kuvvet.png",
+              "alt": "Bileşke Kuvvet görseli"
+            }
+          ],
+          "interactions": []
+        },
+        {
+          "id": "slide_8_bileske_kuvvet_ornekleri",
+          "type": "interactive",
+          "layout": "resultant_force_examples_image",
+          "title": "Bileşke Kuvvet Örnekleri",
+          "media": [
+            {
+              "id": "media_bileske_kuvvet_09",
+              "src": "./assets/images/bileske-kuvvet/09-bileske-kuvvet-ornekleri.png",
+              "alt": "Bileşke Kuvvet örnekleri"
+            }
+          ],
+          "interactions": []
+        },
+        {
+          "id": "slide_8_dengelenmis_kuvvetler",
+          "type": "content",
+          "layout": "balanced_forces_image_fullscreen",
+          "title": "Dengelenmiş Kuvvetler",
+          "media": [
+            {
+              "id": "media_bileske_kuvvet_07",
+              "src": "./assets/images/bileske-kuvvet/07-dengelenmis-kuvvetler.png",
+              "alt": "Dengelenmiş Kuvvetler görseli"
+            }
+          ],
+          "interactions": []
+        },
+        {
+          "id": "slide_9_dengelenmemis_kuvvetler",
+          "type": "content",
+          "layout": "unbalanced_forces_image_fullscreen",
+          "title": "Dengelenmemiş Kuvvetler",
+          "media": [
+            {
+              "id": "media_bileske_kuvvet_08",
+              "src": "./assets/images/bileske-kuvvet/08-dengelenmemis-kuvvetler.png",
+              "alt": "Dengelenmemiş Kuvvetler görseli"
+            }
+          ],
+          "interactions": []
+        }
+      ]
+    }
+  ]
+}

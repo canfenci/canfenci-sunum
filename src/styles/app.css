@@ -16,6 +16,171 @@
 }
 
 * { box-sizing: border-box; }
+
+/* Bileşke Kuvvet Slayt 5: yalnızca video, 1920×1080 tuval içinde oranı koruyarak. */
+.slide-workspace:has(.force-video-fullscreen-slide) .slide-content { padding: 0; }
+.force-video-fullscreen-slide { display: grid; place-items: center; width: 100%; height: 100%; overflow: hidden; background: #000; }
+.force-video-fullscreen { display: block; width: 100%; height: 100%; object-fit: contain; cursor: pointer; background: #000; }
+
+/* Bileşke Kuvvet Slayt 6: tüm kurallar slayt kökü altında scope edilir. */
+.slide-workspace:has(.resultant-force-activity-slide) .slide-content { padding: 0; }
+.resultant-force-activity-slide { position: relative; display: grid !important; grid-template-rows: auto minmax(420px, 1fr) auto; gap: 18px; width: 100%; height: 100%; min-height: 0; padding: 28px 42px 34px; overflow: hidden; background: linear-gradient(145deg, #f7fbff, #e7f3fb); }
+.resultant-force-axis-picker, .resultant-force-palette, .resultant-force-directions, .resultant-force-actions { display: flex; align-items: center; justify-content: center; gap: 12px; }
+.resultant-force-axis-picker button, .resultant-force-palette button, .resultant-force-directions button, .resultant-force-actions button { min-height: 52px; padding: 0 22px; border: 2px solid #b7d2e5; border-radius: 14px; color: #16486f; background: #fff; font-size: 25px; font-weight: 850; cursor: pointer; box-shadow: 0 5px 12px rgba(21,73,108,.08); }
+.resultant-force-axis-picker button.is-selected, .resultant-force-magnitude.is-selected { color: #fff; border-color: #0b4ea2; background: #0b4ea2; }
+.resultant-force-stage { position: relative; min-height: 420px; overflow: visible; isolation: isolate; border: 3px solid #b7d2e5; border-radius: 24px; background: radial-gradient(circle, #fff 0 20%, #edf7fc 72%); }
+.resultant-force-stage::before, .resultant-force-stage::after { content: ""; position: absolute; background: #c1d8e6; }
+.resultant-force-stage::before { left: 6%; right: 6%; top: 50%; height: 3px; }
+.resultant-force-stage::after { top: 6%; bottom: 6%; left: 50%; width: 3px; }
+.resultant-force-box { position: absolute; left: 50%; top: 50%; z-index: 30; display: grid !important; place-items: center; visibility: visible !important; width: 280px; height: 220px; transform: translate(-50%, -50%); border: 7px solid #7a431a; border-radius: 22px; background: linear-gradient(#d99445, #b97029); color: #4a250d; font-size: 100px; opacity: 1 !important; box-shadow: 0 16px 28px rgba(109,64,24,.35), inset 0 0 0 8px rgba(255,210,135,.3); transition: transform .45s ease; pointer-events: none; }
+.resultant-force-arrow-layer { position: absolute; inset: 0; z-index: 2; }
+.resultant-force-arrow { position: absolute; display: flex; align-items: center; justify-content: center; width: var(--arrow-size); height: 10px; border-radius: 9px; color: #fff; background: #0b4ea2; font-size: 18px; font-weight: 900; }
+.resultant-force-arrow span { position: absolute; white-space: nowrap; padding: 5px 9px; border-radius: 8px; background: #0b4ea2; }
+.resultant-force-arrow::after { content: ""; position: absolute; right: -13px; border-top: 16px solid transparent; border-bottom: 16px solid transparent; border-left: 18px solid #0b4ea2; }
+.resultant-force-arrow.east { left: calc(50% + 150px); top: calc(50% - 5px + var(--stack-offset, 0px)); }
+.resultant-force-arrow.west { right: calc(50% + 150px); top: calc(50% - 5px + var(--stack-offset, 0px)); transform: scaleX(-1); background: #e87924; }
+.resultant-force-arrow.west span { transform: scaleX(-1); background: #e87924; }
+.resultant-force-arrow.west::after { border-left-color: #e87924; }
+.resultant-force-arrow.north { left: calc(50% - (var(--arrow-size) / 2) + var(--stack-offset, 0px)); bottom: calc(50% + 110px); width: var(--arrow-size); height: 10px; transform: rotate(-90deg); }
+.resultant-force-arrow.north span { transform: rotate(90deg); }
+.resultant-force-arrow.south { left: calc(50% - (var(--arrow-size) / 2) + var(--stack-offset, 0px)); top: calc(50% + 110px); width: var(--arrow-size); height: 10px; transform: rotate(90deg); background: #e87924; }
+.resultant-force-arrow.south span { transform: rotate(-90deg); background: #e87924; }
+.resultant-force-arrow.south span { background: #e87924; }
+.resultant-force-arrow.south::after { border-left-color: #e87924; }
+.resultant-force-panel { display: grid; grid-template-columns: 1.2fr 1.5fr auto; align-items: center; gap: 18px; }
+.resultant-force-panel-label { margin-right: 2px; color: #315a75; font-size: 21px; font-weight: 900; }
+.resultant-force-directions button:disabled { opacity: .34; cursor: not-allowed; }
+.resultant-force-actions button:first-child { color: #fff; border-color: #18a058; background: #18a058; }
+.resultant-force-actions button:last-child { color: #8e4a0d; border-color: #f0be79; background: #fff4df; }
+.resultant-force-result { grid-column: 1 / -1; min-height: 30px; color: #06366f; text-align: center; font-size: 24px; font-weight: 900; }
+.resultant-force-drop-zone { position: absolute; z-index: 4; display: grid; place-items: center; min-width: 112px; min-height: 58px; padding: 8px 14px; border: 3px dashed #9dbdce; border-radius: 15px; color: #5a788b; background: rgba(255,255,255,.82); font-size: 21px; font-weight: 900; opacity: .22; pointer-events: none; transition: opacity .15s, border-color .15s, background .15s; }
+.resultant-force-drop-zone.is-active { opacity: 1; pointer-events: auto; color: #16486f; border-color: #0b4ea2; background: #eaf5ff; }
+.resultant-force-drop-zone.is-over { color: #fff; border-color: #18a058; background: #18a058; }
+.resultant-force-drop-zone.west { left: 6%; top: 50%; transform: translateY(-50%); }
+.resultant-force-drop-zone.east { right: 6%; top: 50%; transform: translateY(-50%); }
+.resultant-force-drop-zone.north { left: 50%; top: 6%; transform: translateX(-50%); }
+.resultant-force-drop-zone.south { left: 50%; bottom: 6%; transform: translateX(-50%); }
+.resultant-force-palette-arrow { position: relative; display: inline-flex; align-items: center; justify-content: flex-start; width: 150px; height: 52px; min-height: 52px !important; padding: 0 12px 0 20px !important; touch-action: none; cursor: grab !important; }
+.resultant-force-palette-arrow:active, .resultant-force-palette-arrow.is-dragging { cursor: grabbing !important; opacity: .72; }
+.force-source { position: relative; z-index: 20; pointer-events: auto !important; }
+.force-drag-clone { position: fixed !important; z-index: 10000 !important; left: 0; top: 0; transform: translate(-50%, -50%) !important; pointer-events: none !important; opacity: .9; box-shadow: 0 12px 24px rgba(0,0,0,.24); }
+
+/* Bileşke Kuvvet Slayt 7: tanım ve tek doğrultulu örnekler. */
+.slide-workspace:has(.resultant-force-definition-slide) .slide-content { padding: 0; }
+.resultant-force-definition-slide { display: grid !important; grid-template-rows: auto minmax(0, 1fr); gap: 24px; width: 100%; height: 100%; padding: 34px 48px 42px; overflow: hidden; background: #f7fbfe; }
+.resultant-force-definition-heading { position: relative; padding-left: 22px; border-left: 10px solid #ff9f1c; }
+.resultant-force-definition-heading::after { content: ""; position: absolute; left: 22px; right: 0; bottom: -14px; height: 5px; border-radius: 4px; background: #ffcf75; }
+.resultant-force-definition-heading span, .resultant-force-card-kicker, .resultant-force-example-heading span { color: #0b4ea2; font-size: 18px; font-weight: 900; letter-spacing: .13em; }
+.resultant-force-definition-heading h1 { margin: 5px 0 0; color: #102f4b; font-size: 56px; line-height: 1; letter-spacing: -.045em; }
+.resultant-force-definition-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 22px 28px; min-height: 0; }
+.resultant-force-definition-card { grid-row: 1 / -1; display: flex; flex-direction: column; justify-content: center; padding: 44px; border: 2px solid #cfe2ef; border-radius: 25px; background: #fff; box-shadow: 0 12px 26px rgba(21,73,108,.1); }
+.resultant-force-definition-card h2 { margin: 18px 0 26px; color: #111827; font-size: 44px; line-height: 1.2; letter-spacing: -.035em; }
+.resultant-force-definition-card h2 strong { color: #06366f; font-weight: 900; }
+.resultant-force-definition-emphasis { margin: 0; padding: 18px 22px; border-left: 7px solid #ff9f1c; border-radius: 0 12px 12px 0; color: #163b59; background: #fff5df; font-size: 32px; line-height: 1.2; }
+.resultant-force-example-card { display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto 1fr auto; column-gap: 18px; align-items: center; min-height: 0; padding: 20px 28px; border: 2px solid #cfe2ef; border-radius: 22px; background: #fff; box-shadow: 0 9px 20px rgba(21,73,108,.08); }
+.resultant-force-example-heading { grid-column: 1 / -1; display: flex; align-items: baseline; gap: 16px; }
+.resultant-force-example-heading h2 { margin: 0; color: #163b59; font-size: 28px; }
+.resultant-force-diagram { display: flex; align-items: center; justify-content: center; gap: 14px; min-width: 0; }
+.resultant-force-diagram.opposite { gap: 12px; }
+.resultant-force-example-box { display: grid; place-items: center; width: 118px; height: 72px; border: 4px solid #7a431a; border-radius: 12px; color: #4a250d; background: linear-gradient(#d99445, #b97029); font-size: 20px; font-weight: 900; box-shadow: inset 0 0 0 5px rgba(255,210,135,.3); }
+.resultant-force-vector { position: relative; width: 80px; height: 9px; border-radius: 8px; background: #0b4ea2; }
+.resultant-force-vector.large { width: 135px; background: #18a058; }
+.resultant-force-vector.small { width: 80px; background: #e87924; }
+.resultant-force-vector::after { content: ""; position: absolute; right: -15px; top: -9px; border-top: 13px solid transparent; border-bottom: 13px solid transparent; border-left: 19px solid currentColor; color: #0b4ea2; }
+.resultant-force-vector.large::after { color: #18a058; }
+.resultant-force-vector.small::after { left: -15px; right: auto; border-left: 0; border-right: 19px solid #e87924; }
+.resultant-force-vector.west { transform: scaleX(-1); }
+.resultant-force-vector span { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); color: #163b59; font-size: 24px; font-weight: 900; white-space: nowrap; }
+.resultant-force-vector.west span { transform: translateX(-50%) scaleX(-1); }
+.resultant-force-equation { display: flex; align-items: center; gap: 12px; color: #06366f; font-size: 32px; white-space: nowrap; }
+.equation-arrow { position: relative; display: inline-block; width: 66px; height: 8px; border-radius: 8px; background: #0b4ea2; }
+.equation-arrow::after { content: ""; position: absolute; right: -12px; top: -8px; border-top: 12px solid transparent; border-bottom: 12px solid transparent; border-left: 17px solid #0b4ea2; }
+.resultant-force-example-card p { grid-column: 1 / -1; margin: 8px 0 0; color: #315a75; font-size: 22px; line-height: 1.2; }
+
+/* Bileşke Kuvvet Slayt 7 görseli: tek içerik, canvas içinde oranı korunarak. */
+.slide-workspace:has(.resultant-force-image-fullscreen-slide) .slide-content { padding: 0; }
+.resultant-force-image-fullscreen-slide { display: grid !important; place-items: center; width: 100%; height: 100%; padding: 0; overflow: hidden; background: #fff; }
+.resultant-force-image-fullscreen { display: block; width: 100%; height: 100%; margin: 0; object-fit: contain; object-position: center; }
+
+/* Bileşke Kuvvet Slayt 8 görseli: yalnızca yerel PNG, scoped yerleşim. */
+.slide-workspace:has(.balanced-forces-image-fullscreen-slide) .slide-content { padding: 0; }
+.balanced-forces-image-fullscreen-slide { display: grid !important; place-items: center; width: 100%; height: 100%; padding: 0; overflow: hidden; background: #fff; }
+.balanced-forces-image-fullscreen { display: block; width: 100%; height: 100%; margin: 0; object-fit: contain; object-position: center; }
+
+/* Bileşke Kuvvet Slayt 9 görseli: yalnızca yerel PNG, scoped yerleşim. */
+.slide-workspace:has(.unbalanced-forces-image-fullscreen-slide) .slide-content { padding: 0; }
+.unbalanced-forces-image-fullscreen-slide { display: grid !important; place-items: center; width: 100%; height: 100%; padding: 0; overflow: hidden; background: #fff; }
+.unbalanced-forces-image-fullscreen { display: block; width: 100%; height: 100%; margin: 0; object-fit: contain; object-position: center; }
+
+/* Bileşke Kuvvet örnekleri: PNG üzerinde 16 scoped cevap hotspot'u. */
+.slide-workspace:has(.resultant-force-examples-image-slide) .slide-content { padding: 0; }
+.resultant-force-examples-image-slide { display: grid !important; place-items: center; width: 100%; height: 100%; padding: 0; overflow: hidden; background: #fff; }
+.resultant-force-examples-image-frame { position: relative; width: 100%; height: 100%; overflow: hidden; }
+.resultant-force-examples-image { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; }
+.resultant-force-answer-hotspot { position: absolute; z-index: 2; width: 11.85%; height: 4.5%; padding: 0; border: 2px solid transparent; border-radius: 14px; color: #0b3eae; background: transparent; cursor: pointer; font: inherit; transform: translateY(0); }
+.resultant-force-answer-value { left: 1.55%; }
+.resultant-force-answer-direction { width: 9.75%; }
+.resultant-force-answer-hotspot:hover, .resultant-force-answer-hotspot:focus-visible { border-color: rgba(49, 143, 255, .65); background: rgba(255,255,255,.38); outline: none; }
+.resultant-force-answer-hotspot span { display: none; align-items: center; justify-content: center; width: 100%; height: 100%; color: #0b3eae; font-size: clamp(16px, 1.55vw, 31px); font-weight: 900; line-height: 1; }
+.resultant-force-answer-hotspot.is-revealed span { display: flex; animation: resultant-force-answer-reveal .16s ease-out; }
+@keyframes resultant-force-answer-reveal { from { opacity: 0; transform: scale(.86); } to { opacity: 1; transform: scale(1); } }
+.resultant-force-direction-hint { position: absolute; top: 2.2%; right: 1.5%; z-index: 3; display: grid; place-items: center; width: 100px; height: 100px; border: 2px solid rgba(11,78,162,.5); border-radius: 50%; color: #0b4ea2; background: rgba(255,255,255,.88); box-shadow: 0 5px 14px rgba(11,78,162,.15); font-size: 12px; font-weight: 850; pointer-events: none; }
+.resultant-force-direction-hint::before, .resultant-force-direction-hint::after { content: ""; position: absolute; background: rgba(11,78,162,.32); }
+.resultant-force-direction-hint::before { width: 1px; height: 72px; }
+.resultant-force-direction-hint::after { width: 72px; height: 1px; }
+.resultant-force-direction-hint span { position: absolute; z-index: 1; padding: 1px 3px; border-radius: 3px; background: rgba(255,255,255,.92); white-space: nowrap; }
+.resultant-force-direction-hint .compass-north { top: 5px; }
+.resultant-force-direction-hint .compass-south { bottom: 5px; }
+.resultant-force-direction-hint .compass-east { right: 3px; }
+.resultant-force-direction-hint .compass-west { left: 3px; }
+.resultant-force-direction-hint i { position: relative; z-index: 1; color: #ff9f1c; font-size: 22px; font-style: normal; }
+
+/* Kalıtım Slayt 2: 8 bağımsız, görsel üstü cevap hotspot'u. */
+.slide-workspace:has(.heredity-character-interactive-slide) .slide-content { padding: 0; }
+.heredity-character-interactive-slide { display: grid !important; place-items: center; width: 100%; height: 100%; padding: 0; overflow: hidden; background: #fff; }
+.heredity-character-frame { position: relative; width: 100%; height: 100%; overflow: hidden; }
+.heredity-character-image { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; }
+.heredity-character-hotspot { position: absolute; z-index: 2; display: grid; place-items: center; padding: 4px 8px; border: 2px solid transparent; border-radius: 13px; color: #163b59; background: transparent; cursor: pointer; font: inherit; }
+.heredity-character-hotspot:hover, .heredity-character-hotspot:focus-visible { border-color: rgba(11,78,162,.6); background: rgba(255,255,255,.34); outline: none; }
+.heredity-character-hotspot span { display: none; max-width: 100%; color: #0b4ea2; font-size: clamp(13px, 1.4vw, 28px); font-weight: 900; line-height: 1.05; text-align: center; }
+.heredity-character-hotspot.is-revealed span { display: block; animation: heredity-character-answer .16s ease-out; }
+.heredity-character-hotspot.is-revealed { border-color: transparent; }
+.heredity-character-hotspot.is-hereditary.is-revealed { background: rgba(239, 255, 235, .96); }
+.heredity-character-hotspot.is-not-hereditary.is-revealed { background: rgba(255, 239, 243, .96); }
+.heredity-character-hotspot.is-hereditary.is-revealed span { color: #159447; }
+.heredity-character-hotspot.is-not-hereditary.is-revealed span { color: #e64f63; }
+@keyframes heredity-character-answer { from { opacity: 0; transform: scale(.86); } to { opacity: 1; transform: scale(1); } }
+
+/* Kalıtım Slayt 8: Görselin kendi oranına bağlı 7 cevap hotspot'u. */
+.slide-workspace:has(.heredity-activity-one-slide) .slide-content { padding: 0; }
+.heredity-activity-one-slide { display: grid !important; place-items: center; width: 100%; height: 100%; padding: 0; overflow: hidden; background: #fff; }
+.heredity-activity-one-frame { position: relative; width: 100%; max-width: calc(100vh * 1672 / 941); max-height: 100%; aspect-ratio: 1672 / 941; overflow: hidden; }
+.heredity-activity-one-image { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; }
+.heredity-activity-one-hotspot { position: absolute; z-index: 2; display: flex; align-items: center; justify-content: center; box-sizing: border-box; padding: 4px 10px; border: 2px solid transparent; border-radius: 13px; color: #12305f; background: transparent; cursor: pointer; font: inherit; text-align: center; touch-action: manipulation; }
+.heredity-activity-one-hotspot:hover, .heredity-activity-one-hotspot:focus-visible { border-color: rgba(11,78,162,.55); background: rgba(255,255,255,.24); outline: none; }
+.heredity-activity-one-hotspot span { display: none; max-width: 100%; color: #12305f; font-size: clamp(18px, 2vw, 38px); font-weight: 850; line-height: 1.05; text-align: center; white-space: nowrap; }
+.heredity-activity-one-hotspot.is-revealed span { display: block; animation: heredity-character-answer .16s ease-out; }
+.heredity-activity-one-hotspot.is-revealed { border-color: transparent; background: transparent; }
+.heredity-activity-one-hotspot:nth-of-type(6) span { font-size: clamp(16px, 1.74vw, 33px); }
+
+/* Kalıtım Slayt 9: Görselin kendi oranına bağlı 6 cevap hotspot'u. */
+.slide-workspace:has(.heredity-activity-two-slide) .slide-content { padding: 0; }
+.heredity-activity-two-slide { display: grid !important; place-items: center; width: 100%; height: 100%; padding: 0; overflow: hidden; background: #fff; }
+.heredity-activity-two-frame { position: relative; width: 100%; max-width: calc(100vh * 1672 / 941); max-height: 100%; aspect-ratio: 1672 / 941; overflow: hidden; }
+.heredity-activity-two-image { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; }
+.heredity-activity-two-hotspot { position: absolute; z-index: 2; display: flex; align-items: center; justify-content: center; box-sizing: border-box; padding: 2px 10px; border: 2px solid transparent; border-radius: 12px; color: #12305f; background: transparent; cursor: pointer; font: inherit; text-align: center; touch-action: manipulation; }
+.heredity-activity-two-hotspot:hover, .heredity-activity-two-hotspot:focus-visible { border-color: rgba(11,78,162,.55); background: rgba(255,255,255,.24); outline: none; }
+.heredity-activity-two-hotspot span { display: none; max-width: 100%; color: #12305f; font-size: clamp(20px, 2.25vw, 43px); font-weight: 850; line-height: 1; text-align: center; white-space: nowrap; }
+.heredity-activity-two-hotspot.is-revealed span { display: block; animation: heredity-character-answer .16s ease-out; }
+.heredity-activity-two-hotspot.is-revealed { border-color: transparent; background: transparent; }
+.resultant-force-palette-arrow::before { content: ""; display: block; width: calc(var(--palette-arrow-size, 50px)); height: 8px; margin-right: 14px; border-radius: 8px; background: #0b4ea2; }
+.resultant-force-palette-arrow::after { content: ""; position: absolute; left: calc(20px + var(--palette-arrow-size, 50px)); border-top: 13px solid transparent; border-bottom: 13px solid transparent; border-left: 16px solid #0b4ea2; }
+.resultant-force-palette-arrow[data-magnitude="3"] { --palette-arrow-size: 36px; }
+.resultant-force-palette-arrow[data-magnitude="4"] { --palette-arrow-size: 50px; }
+.resultant-force-palette-arrow[data-magnitude="5"] { --palette-arrow-size: 64px; }
+.resultant-force-palette-arrow[data-magnitude="8"] { --palette-arrow-size: 92px; }
+.resultant-force-palette-arrow span { position: absolute; right: 10px; color: #16486f; font-size: 18px; font-weight: 900; }
+.resultant-force-arrow.placed { z-index: 5; }
 [hidden] { display: none !important; }
 html { min-width: 320px; background: var(--background); }
 body { margin: 0; color: var(--ink); background: var(--background); }
@@ -10526,6 +10691,19 @@ body[data-view-mode="clean"] .app-header { display: none !important; }
 .dna-zoom-phosphate { position: absolute; top: 37px; width: 88px; height: 88px; border: 12px solid #e16b63; border-radius: 50%; background: #ffb1a8; }.dna-zoom-sugar { position: absolute; top: 116px; width: 105px; height: 105px; border: 12px solid #d99b36; background: #ffe19b; transform: rotate(45deg); }.dna-zoom-base { position: absolute; bottom: 42px; width: 120px; height: 74px; border: 10px solid #3a9a8b; border-radius: 18px 18px 45px 45px; background: #9ce0cf; transform: rotate(-12deg); }.dna-zoom-nucleotide strong { position: absolute; bottom: -42px; color: #21657c; font-size: 22px; font-weight: 800; white-space: nowrap; }
 .dna-png-cover-slide { padding: 0; display: block; background: #fff; }
 .dna-png-cover-slide > img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.force-recall-slide { position: relative; padding: 0; display: block; background: #fff; }
+.force-recall-slide > img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.force-recall-answer { position: absolute; z-index: 2; display: flex; align-items: center; justify-content: center; box-sizing: border-box; padding: 0 12px; border: 0; border-radius: 12px; color: transparent; background: transparent; font-size: 42px; line-height: 1; font-weight: 850; cursor: pointer; overflow: hidden; }
+.force-recall-answer.is-revealed { color: #102f63; }
+.force-recall-answer:focus-visible { outline: 4px solid #174ea6; outline-offset: 3px; }
+.force-direction-slide { position: relative; padding: 0; display: block; background: #fff; }
+.force-direction-slide > img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.force-direction-answer { position: absolute; z-index: 3; display: flex; align-items: center; justify-content: center; box-sizing: border-box; padding: 0 14px 40px; border: 0; border-radius: 18px; color: transparent; background: transparent; font-size: 42px; line-height: 1; font-weight: 850; white-space: nowrap; cursor: pointer; overflow: hidden; pointer-events: auto; }
+.force-direction-answer.is-revealed { color: #102f63; }
+.force-direction-answer:focus-visible { outline: 4px solid #174ea6; outline-offset: 3px; }
+.force-direction-fixed-label { position: absolute; z-index: 4; display: flex; align-items: center; justify-content: center; box-sizing: border-box; padding: 0 14px 40px; border: 0; border-radius: 18px; color: transparent; background: transparent; font-size: 42px; line-height: 1; font-weight: 850; white-space: nowrap; cursor: pointer; overflow: hidden; pointer-events: auto; }
+.force-direction-fixed-label.is-revealed { color: #102f63; }
+.force-direction-fixed-label:focus-visible { outline: 4px solid #174ea6; outline-offset: 3px; }
 .dna-heredity-slide { position: relative; display: grid; grid-template-columns: 1.08fr .92fr; grid-template-rows: 110px 1fr 190px; gap: 24px 42px; box-sizing: border-box; padding: 42px 64px 34px; color: #12305f; background: #fbfdff; }
 .dna-heredity-slide h1 { grid-column: 1 / -1; margin: 0; align-self: center; color: #0d3b80; font-size: 50px; line-height: 1.1; font-weight: 850; }
 .dna-heredity-note { min-width: 0; padding: 30px 36px 28px 44px; border: 1px solid #c9dff0; border-radius: 16px; background: repeating-linear-gradient(to bottom, #fff 0 57px, #dcecf7 58px, #fff 59px); box-shadow: 0 12px 28px rgba(20, 73, 120, .1); }

@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "lesson_kalitim_1",
+  "title": "2. Kalıtım",
+  "gradeId": "grade_8",
+  "curriculumProfileId": "legacy_2018_lgs",
+  "unitId": "dna_and_genetic_code",
+  "topicId": "heredity_topic",
+  "modes": ["presentation"],
+  "curriculumValidation": {
+    "outcomeIds": [],
+    "authority": null,
+    "sourceDocument": null,
+    "sourceVersion": null,
+    "lastVerifiedAt": null,
+    "verifiedBy": "CanFenci",
+    "status": "unverified"
+  },
+  "stages": [{
+    "id": "stage_kalitim_cover",
+    "label": "Kalıtım",
+    "order": 1,
+    "slides": [{
+      "id": "kalitim_slide_1_cover",
+      "type": "cover",
+      "layout": "dna_cover",
+      "media": [{"src": "./assets/images/kalitim/01-kapak.png", "alt": "Kalıtım kapak görseli"}],
+      "unit": "2. Ünite: DNA ve Genetik Kod",
+      "title": "Kalıtım"
+    }, {
+      "id": "kalitim_slide_2_character",
+      "type": "interactive",
+      "layout": "heredity_character_interactive",
+      "title": "Karakter Nedir?",
+      "media": [{"src": "./assets/images/kalitim/02-karakter.png", "alt": "Kalıtsal ve kalıtsal olmayan özellikler etkinliği"}],
+      "interactions": []
+    }, {
+      "id": "kalitim_slide_3_mendel",
+      "type": "content",
+      "layout": "dna_cover",
+      "title": "Mendel / Kalıtım",
+      "media": [{"src": "./assets/images/kalitim/03-kalitim-mendel.png", "alt": "Mendel ve kalıtım görseli"}]
+    }, {
+      "id": "kalitim_slide_4_basic_concepts",
+      "type": "content",
+      "layout": "dna_cover",
+      "title": "Temel Kavramlar",
+      "media": [{"src": "./assets/images/kalitim/04-temel-kavramlar.png", "alt": "Kalıtım temel kavramlar görseli"}]
+    }, {
+      "id": "kalitim_slide_5_dominant_recessive_gene",
+      "type": "content",
+      "layout": "dna_cover",
+      "title": "Baskın Gen ve Çekinik Gen",
+      "media": [{"src": "./assets/images/kalitim/05-baskin-cekinik-gen.png", "alt": "Baskın gen ve çekinik gen görseli"}]
+    }, {
+      "id": "kalitim_slide_6_pure_hybrid",
+      "type": "content",
+      "layout": "dna_cover",
+      "title": "Saf Döl ve Melez Döl",
+      "media": [{"src": "./assets/images/kalitim/06-saf-ve-melez.png", "alt": "Saf döl ve melez döl görseli"}]
+    }, {
+      "id": "kalitim_slide_7_phenotype_genotype",
+      "type": "content",
+      "layout": "dna_cover",
+      "title": "Fenotip ve Genotip",
+      "media": [{"src": "./assets/images/kalitim/07-fenotip-genotip.png", "alt": "Fenotip ve genotip görseli"}]
+    }, {
+      "id": "kalitim_slide_8_activity_one",
+      "type": "interactive",
+      "layout": "heredity_activity_one_interactive",
+      "title": "Etkinlik-1",
+      "media": [{"src": "./assets/images/kalitim/08-etkinlik-1.png", "alt": "Kalıtım etkinlik 1 görseli"}],
+      "interactions": []
+    }, {
+      "id": "kalitim_slide_9_activity_two",
+      "type": "interactive",
+      "layout": "heredity_activity_two_interactive",
+      "title": "Etkinlik-2",
+      "media": [{"src": "./assets/images/kalitim/09-etkinlik-2.png", "alt": "Kalıtım etkinlik 2 görseli"}],
+      "interactions": []
+    }]
+  }]
+}

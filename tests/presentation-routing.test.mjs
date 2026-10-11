@@ -47,6 +47,15 @@ test("Müfredat ve Rota Bağlantıları Doğrulaması (6. Sınıf ve 8. Sınıf)
   assert.equal(grade6EclipseTopic.workModes.presentation.status, "available");
   assert.equal(grade6EclipseTopic.workModes.presentation.source, "./data/lessons/gunes-ve-ay-tutulmalari.json");
 
+  // 2. Ünite Bileşke Kuvvet rotası
+  const forceUnitIndex = maarifCurriculum.units.findIndex((u) => u.id === "force_effect_motion");
+  assert.equal(forceUnitIndex, 1, "Bileşke Kuvvet ünitesi 6. sınıfta 2. ünite olmalıdır");
+  const forceUnit = maarifCurriculum.units[forceUnitIndex];
+  assert.equal(forceUnit.gradeId, "grade_6");
+  const resultantTopic = forceUnit.topics.find((t) => t.id === "resultant_force");
+  assert.ok(resultantTopic, "Bileşke Kuvvet konusu bulunamadı");
+  assert.equal(resultantTopic.workModes.presentation.source, "./data/lessons/bileske-kuvvet.json");
+
   // 3. 8. Sınıf Mevsimlerin Oluşumu rotası
   const grade8Unit = legacyCurriculum.units.find((u) => u.id === "seasons_and_climate");
   assert.ok(grade8Unit, "seasons_and_climate ünitesi bulunamadı");
@@ -55,6 +64,42 @@ test("Müfredat ve Rota Bağlantıları Doğrulaması (6. Sınıf ve 8. Sınıf)
   assert.ok(grade8Topic, "formation_of_seasons konusu bulunamadı");
   assert.equal(grade8Topic.workModes.presentation.status, "available");
   assert.equal(grade8Topic.workModes.presentation.source, "./data/lessons/mevsimlerin-olusumu.json");
+
+  const dnaUnit = legacyCurriculum.units.find((u) => u.id === "dna_and_genetic_code");
+  assert.deepEqual(dnaUnit.topics.map((topic) => topic.label), ["1. DNA ve Genetik Kod", "2. Kalıtım"]);
+  const heredityTopic = dnaUnit.topics.find((topic) => topic.id === "heredity_topic");
+  assert.equal(heredityTopic.workModes.presentation.source, "./data/lessons/kalitim.json");
+
+  const heredityEngine = new LessonEngine();
+  const heredityLesson = await heredityEngine.load("data/lessons/kalitim.json");
+  assert.equal(heredityLesson.id, "lesson_kalitim_1");
+  assert.equal(heredityEngine.slideCount, 9);
+  assert.equal(heredityEngine.currentSlide.layout, "dna_cover");
+  assert.equal(heredityEngine.currentSlide.media[0].src, "./assets/images/kalitim/01-kapak.png");
+  heredityEngine.next();
+  assert.equal(heredityEngine.currentSlide.layout, "heredity_character_interactive");
+  assert.equal(heredityEngine.currentSlide.media[0].src, "./assets/images/kalitim/02-karakter.png");
+  heredityEngine.next();
+  assert.equal(heredityEngine.currentSlide.layout, "dna_cover");
+  assert.equal(heredityEngine.currentSlide.media[0].src, "./assets/images/kalitim/03-kalitim-mendel.png");
+  heredityEngine.next();
+  assert.equal(heredityEngine.currentSlide.layout, "dna_cover");
+  assert.equal(heredityEngine.currentSlide.media[0].src, "./assets/images/kalitim/04-temel-kavramlar.png");
+  heredityEngine.next();
+  assert.equal(heredityEngine.currentSlide.layout, "dna_cover");
+  assert.equal(heredityEngine.currentSlide.media[0].src, "./assets/images/kalitim/05-baskin-cekinik-gen.png");
+  heredityEngine.next();
+  assert.equal(heredityEngine.currentSlide.layout, "dna_cover");
+  assert.equal(heredityEngine.currentSlide.media[0].src, "./assets/images/kalitim/06-saf-ve-melez.png");
+  heredityEngine.next();
+  assert.equal(heredityEngine.currentSlide.layout, "dna_cover");
+  assert.equal(heredityEngine.currentSlide.media[0].src, "./assets/images/kalitim/07-fenotip-genotip.png");
+  heredityEngine.next();
+  assert.equal(heredityEngine.currentSlide.layout, "heredity_activity_one_interactive");
+  assert.equal(heredityEngine.currentSlide.media[0].src, "./assets/images/kalitim/08-etkinlik-1.png");
+  heredityEngine.next();
+  assert.equal(heredityEngine.currentSlide.layout, "heredity_activity_two_interactive");
+  assert.equal(heredityEngine.currentSlide.media[0].src, "./assets/images/kalitim/09-etkinlik-2.png");
 
   const grade7Unit = maarifCurriculum.units.find((u) => u.id === "space_age");
   assert.ok(grade7Unit, "space_age ünitesi bulunamadı");
@@ -81,6 +126,43 @@ test("Müfredat ve Rota Bağlantıları Doğrulaması (6. Sınıf ve 8. Sınıf)
   assert.equal(eclipseEngine.currentSlide.layout, "eclipse_image_slide");
   eclipseEngine.next();
   assert.equal(eclipseEngine.currentSlide.layout, "eclipse_concept_slide");
+
+  const forceEngine = new LessonEngine();
+  const forceLesson = await forceEngine.load("data/lessons/bileske-kuvvet.json");
+  assert.equal(forceLesson.id, "lesson_bileske_kuvvet_1");
+  assert.equal(forceEngine.slideCount, 10);
+  assert.equal(forceEngine.currentSlide.layout, "dna_cover");
+  assert.equal(forceEngine.currentSlide.media[0].src, "./assets/images/bileske-kuvvet/01-kapak.png");
+  forceEngine.next();
+  assert.equal(forceEngine.currentSlide.layout, "force_recall");
+  assert.deepEqual(forceEngine.currentSlide.interactions.map((item) => item.answer), ["Kuvvet", "F", "Dinamometre", "Newton"]);
+  assert.equal(forceEngine.currentSlide.media[0].src, "./assets/images/bileske-kuvvet/02-kuvveti-hatirlayalim.png");
+  forceEngine.next();
+  assert.equal(forceEngine.currentSlide.layout, "force_direction");
+  assert.deepEqual(forceEngine.currentSlide.interactions.slice(0, 6).map((item) => item.answer), ["Batı", "Doğu-Batı", "Kuzey", "Kuzey-Güney", "Güney", "Kuzey-Güney"]);
+  assert.deepEqual(forceEngine.currentSlide.interactions.slice(-3).map((item) => item.answer), ["5 N", "4 N", "6 N"]);
+  assert.equal(forceEngine.currentSlide.media[0].src, "./assets/images/bileske-kuvvet/03-yon-dogrultu-buyukluk.png");
+  forceEngine.next();
+  assert.equal(forceEngine.currentSlide.layout, "dna_cover");
+  assert.equal(forceEngine.currentSlide.title, "Kuvveti Gösteren Ok");
+  assert.equal(forceEngine.currentSlide.media[0].src, "./assets/images/bileske-kuvvet/04-uygulama-noktasi.png");
+  forceEngine.next();
+  assert.equal(forceEngine.currentSlide.layout, "force_video_fullscreen");
+  assert.equal(forceEngine.currentSlide.media[0].src, "./assets/images/bileske-kuvvet/05-video.mp4");
+  forceEngine.next();
+  assert.equal(forceEngine.currentSlide.layout, "resultant_force_activity");
+  forceEngine.next();
+  assert.equal(forceEngine.currentSlide.layout, "resultant_force_image_fullscreen");
+  assert.equal(forceEngine.currentSlide.media[0].src, "./assets/images/bileske-kuvvet/06-bileske-kuvvet.png");
+  forceEngine.next();
+  assert.equal(forceEngine.currentSlide.layout, "resultant_force_examples_image");
+  assert.equal(forceEngine.currentSlide.media[0].src, "./assets/images/bileske-kuvvet/09-bileske-kuvvet-ornekleri.png");
+  forceEngine.next();
+  assert.equal(forceEngine.currentSlide.layout, "balanced_forces_image_fullscreen");
+  assert.equal(forceEngine.currentSlide.media[0].src, "./assets/images/bileske-kuvvet/07-dengelenmis-kuvvetler.png");
+  forceEngine.next();
+  assert.equal(forceEngine.currentSlide.layout, "unbalanced_forces_image_fullscreen");
+  assert.equal(forceEngine.currentSlide.media[0].src, "./assets/images/bileske-kuvvet/08-dengelenmemis-kuvvetler.png");
 
   // 5. LessonEngine ile 8. sınıf ders yüklemesi (regresyon)
   const engine8 = new LessonEngine();
