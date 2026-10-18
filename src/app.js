@@ -965,6 +965,583 @@ class CanFenciApp {
       view.slideContent.replaceChildren(article);
       return true;
     }
+    if (slide.layout === "heredity_crossing_example") {
+      const article = document.createElement("article");
+      article.className = "board-slide heredity-crossing-example-slide";
+      article.setAttribute("aria-label", "Aşamalı çaprazlama örneği");
+      article.innerHTML = `
+        <header class="crossing-example-heading">
+          <h1>Örnek Soru</h1>
+          <p>Homozigot mor çiçekli bir bezelye ile homozigot beyaz çiçekli bir bezelyenin çaprazlamasını yapalım.</p>
+        </header>
+        <div class="crossing-example-flow" aria-label="Çaprazlama aşamaları">
+          <article class="crossing-example-step crossing-example-character" data-step="1">
+            <div class="crossing-step-title"><span class="crossing-step-number">1</span><strong>İncelenen karakter</strong></div>
+            <p class="crossing-main-label">Çiçek rengi</p>
+            <div class="allele-key"><span class="dominant-allele">Mor baskın alel <b>M</b></span><span class="recessive-allele">Beyaz çekinik alel <b>m</b></span></div>
+          </article>
+          <article class="crossing-example-step crossing-example-parents" data-step="2">
+            <div class="crossing-step-title"><span class="crossing-step-number">2</span><strong>Ana ve baba genotipleri</strong></div>
+            <div class="parent-genotypes"><span>Homozigot mor <b>MM</b></span><i>×</i><span>Homozigot beyaz <b>mm</b></span></div>
+            <p class="crossing-expression">MM <i>×</i> mm</p>
+          </article>
+          <article class="crossing-example-step crossing-example-gametes" data-step="3">
+            <div class="crossing-step-title"><span class="crossing-step-number">3</span><strong>Gametler</strong><small>Homozigot bireyler tek çeşit gamet oluşturur.</small></div>
+            <div class="gamete-groups">
+              <div><b class="parent-symbol">MM</b><span>→</span><i class="gamete dominant">M</i><i class="gamete dominant">M</i></div>
+              <div><b class="parent-symbol">mm</b><span>→</span><i class="gamete recessive">m</i><i class="gamete recessive">m</i></div>
+            </div>
+          </article>
+          <article class="crossing-example-step crossing-example-punnett" data-step="4">
+            <div class="crossing-step-title"><span class="crossing-step-number">4</span><strong>Punnett karesi</strong><small>Gametler birleştirilir.</small></div>
+            <table aria-label="MM ve mm çaprazlama Punnett karesi"><thead><tr><th></th><th>M</th><th>M</th></tr></thead><tbody><tr><th>m</th><td>Mm</td><td>Mm</td></tr><tr><th>m</th><td>Mm</td><td>Mm</td></tr></tbody></table>
+          </article>
+          <article class="crossing-example-step crossing-example-offspring" data-step="5">
+            <div class="crossing-step-title"><span class="crossing-step-number">5</span><strong>Yavru genotipleri</strong></div>
+            <div class="offspring-genotypes" aria-label="Dört yavrunun genotipi"><b>Mm</b><b>Mm</b><b>Mm</b><b>Mm</b></div>
+            <small>Tüm yavrular aynı genotipe sahiptir.</small>
+          </article>
+          <article class="crossing-example-step crossing-example-summary" data-step="6">
+            <div class="crossing-step-title"><span class="crossing-step-number">6</span><strong>Sonuç</strong></div>
+            <div class="crossing-summary-results"><section><small>Genotip sonucu</small><b>%100 Mm</b><b>%100 melez</b></section><section><small>Fenotip sonucu</small><b>%100 mor çiçekli</b></section></div>
+          </article>
+        </div>
+      `;
+
+      let activePointerId = null;
+      let pointerStart = null;
+      let revealStep = 0;
+      const revealNextStep = () => {
+        if (revealStep >= 6) return;
+        revealStep += 1;
+        article.querySelector(`[data-step="${revealStep}"]`)?.classList.add("is-visible");
+      };
+      const interactionBlocked = () => this.state.get().presentation?.panActive || this.state.get().ui?.annotationEnabled;
+      article.addEventListener("pointerdown", (event) => {
+        if (interactionBlocked() || !event.isPrimary || (event.pointerType === "mouse" && event.button !== 0)) return;
+        activePointerId = event.pointerId;
+        pointerStart = { x: event.clientX, y: event.clientY };
+        article.setPointerCapture?.(event.pointerId);
+      });
+      article.addEventListener("pointerup", (event) => {
+        if (event.pointerId !== activePointerId) return;
+        article.releasePointerCapture?.(event.pointerId);
+        const moved = !pointerStart || Math.hypot(event.clientX - pointerStart.x, event.clientY - pointerStart.y) > 12;
+        activePointerId = null;
+        pointerStart = null;
+        if (!moved && !interactionBlocked()) revealNextStep();
+      });
+      article.addEventListener("pointercancel", () => {
+        activePointerId = null;
+        pointerStart = null;
+      });
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "heredity_crossing_example_one_auto") {
+      const article = document.createElement("article");
+      article.className = "board-slide heredity-crossing-example-one-auto-slide heredity-crossing-example-four-slide is-awaiting-start";
+      article.dataset.solutionPhase = "0";
+      article.setAttribute("aria-label", "Saf sarı ve saf yeşil tohumlu bezelyelerin çaprazlaması");
+      article.innerHTML = `
+        <header class="crossing-four-heading"><h1>Örnek Soru-1</h1><p>Saf sarı tohumlu bezelye ile saf yeşil tohumlu bezelyenin çaprazlamasını yapalım.</p></header>
+        <aside class="crossing-four-ai-analysis" aria-live="polite" aria-label="Çözüm analizi"><strong>Çözüm analiz ediliyor</strong><span>Karakter: Tohum rengi</span><span>Baskın alel: S</span><span>Çekinik alel: s</span><span>1. bezelye: saf sarı → SS</span><span>2. bezelye: saf yeşil → ss</span></aside>
+        <section class="crossing-four-parents" aria-label="Çaprazlanacak ebeveynler"><article class="crossing-four-parent"><div><span>1. Bezelye</span><strong>Saf sarı tohumlu</strong><b>SS</b></div><i class="pea-seed pea-seed-yellow pea-seed-large" aria-label="Sarı tohum"></i></article><div class="crossing-four-expression" aria-label="SS çarpı ss">SS <i>×</i> ss</div><article class="crossing-four-parent crossing-one-green-parent"><i class="pea-seed pea-seed-green pea-seed-large" aria-label="Yeşil tohum"></i><div><span>2. Bezelye</span><strong>Saf yeşil tohumlu</strong><b>ss</b></div></article></section>
+        <div class="crossing-four-start-hint" aria-hidden="true"><span>✦</span> Dokununca çözüm başlar</div>
+        <section class="crossing-four-workspace"><article class="crossing-four-gametes"><h2>Gametler</h2><div class="crossing-four-gamete-row"><b>Saf sarı: SS</b><span>→</span><i class="gamete dominant">S</i><i class="gamete dominant">S</i></div><div class="crossing-four-gamete-row"><b>Saf yeşil: ss</b><span>→</span><i class="gamete recessive">s</i><i class="gamete recessive">s</i></div><p>Saf döl sarı bezelye yalnız S aleli taşır. Saf döl yeşil bezelye yalnız s aleli taşır.</p></article><article class="crossing-four-punnett"><h2>Punnett karesi</h2><table aria-label="SS ve ss çaprazlama Punnett karesi"><thead><tr><th></th><th>S</th><th>S</th></tr></thead><tbody><tr><th>s</th><td><b>Ss</b><i class="pea-seed pea-seed-yellow" aria-hidden="true"></i></td><td><b>Ss</b><i class="pea-seed pea-seed-yellow" aria-hidden="true"></i></td></tr><tr><th>s</th><td><b>Ss</b><i class="pea-seed pea-seed-yellow" aria-hidden="true"></i></td><td><b>Ss</b><i class="pea-seed pea-seed-yellow" aria-hidden="true"></i></td></tr></tbody></table></article></section>
+        <section class="crossing-four-results" aria-label="Çaprazlama sonuçları"><article class="crossing-four-result-card crossing-four-genotype-result"><h2>Genotip Sonucu</h2><div><b>4 adet Ss</b></div><p>Genotip oranı: <strong>%100 Ss</strong></p><small>%100 melez döl</small></article><article class="crossing-four-result-card crossing-four-phenotype-result"><h2>Fenotip Sonucu</h2><strong>%100 sarı tohumlu</strong><div class="crossing-four-seed-row"><i class="pea-seed pea-seed-yellow" aria-hidden="true"></i><i class="pea-seed pea-seed-yellow" aria-hidden="true"></i><i class="pea-seed pea-seed-yellow" aria-hidden="true"></i><i class="pea-seed pea-seed-yellow" aria-hidden="true"></i></div><p>Bu çaprazlamada oluşan yavruların tamamı sarı tohumlu olur.</p></article></section>
+      `;
+      let activePointerId = null;
+      let pointerStart = null;
+      let started = false;
+      const timers = [];
+      const interactionBlocked = () => this.state.get().presentation?.panActive || this.state.get().ui?.annotationEnabled;
+      const setPhase = (phase) => { article.dataset.solutionPhase = String(phase); };
+      const schedule = (delay, phase) => timers.push(setTimeout(() => setPhase(phase), delay));
+      const startSolution = () => {
+        if (started) return;
+        started = true;
+        article.classList.remove("is-awaiting-start");
+        article.classList.add("is-solving");
+        schedule(1000, 1);
+        schedule(5500, 2);
+        schedule(7800, 3);
+        schedule(10100, 4);
+        schedule(14100, 5);
+        schedule(16400, 6);
+      };
+      article.addEventListener("pointerdown", (event) => {
+        if (started || interactionBlocked() || !event.isPrimary || (event.pointerType === "mouse" && event.button !== 0)) return;
+        activePointerId = event.pointerId;
+        pointerStart = { x: event.clientX, y: event.clientY };
+        article.setPointerCapture?.(event.pointerId);
+      });
+      article.addEventListener("pointerup", (event) => {
+        if (event.pointerId !== activePointerId) return;
+        article.releasePointerCapture?.(event.pointerId);
+        const moved = !pointerStart || Math.hypot(event.clientX - pointerStart.x, event.clientY - pointerStart.y) > 12;
+        activePointerId = null;
+        pointerStart = null;
+        if (!moved && !interactionBlocked()) startSolution();
+      });
+      article.addEventListener("pointercancel", () => { activePointerId = null; pointerStart = null; });
+      this.activeInteractions.push({ destroy: () => timers.forEach((timer) => clearTimeout(timer)) });
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "heredity_crossing_example_two") {
+      const article = document.createElement("article");
+      article.className = "board-slide heredity-crossing-example-two-slide is-awaiting-start";
+      article.dataset.solutionPhase = "0";
+      article.setAttribute("aria-label", "Melez sarı ve saf yeşil tohumlu bezelyelerin çaprazlaması");
+      article.innerHTML = `
+        <header class="crossing-two-heading">
+          <h1>Örnek Soru-2</h1>
+          <p>Melez döl sarı tohumlu bezelye ile, saf döl yeşil tohumlu bezelyeleri çaprazlayalım.</p>
+        </header>
+        <aside class="crossing-two-ai-analysis" aria-live="polite" aria-label="Çözüm analizi">
+          <strong>Çözüm analiz ediliyor</strong>
+          <span>Karakter belirleniyor: Tohum rengi</span>
+          <span>Baskın alel: S</span>
+          <span>Çekinik alel: s</span>
+          <span>1. bezelye: melez döl sarı tohumlu → Ss</span>
+          <span>2. bezelye: saf döl yeşil tohumlu → ss</span>
+        </aside>
+        <section class="crossing-two-parents" aria-label="Çaprazlanacak ebeveynler">
+          <article class="crossing-two-parent crossing-two-yellow-parent">
+            <div><span>1. Bezelye</span><strong>Melez döl sarı tohumlu</strong><b>Ss</b></div>
+            <i class="pea-seed pea-seed-yellow pea-seed-large" aria-label="Sarı tohum"></i>
+          </article>
+          <div class="crossing-two-expression" aria-label="Ss çarpı ss">Ss <i>×</i> ss</div>
+          <article class="crossing-two-parent crossing-two-green-parent">
+            <i class="pea-seed pea-seed-green pea-seed-large" aria-label="Yeşil tohum"></i>
+            <div><span>2. Bezelye</span><strong>Saf döl yeşil tohumlu</strong><b>ss</b></div>
+          </article>
+        </section>
+        <div class="crossing-two-start-hint" aria-hidden="true"><span>✦</span> Dokununca çözüm başlar</div>
+        <section class="crossing-two-workspace">
+          <article class="crossing-two-gametes">
+            <h2>Gametler</h2>
+            <div class="crossing-two-gamete-row"><b>Ss</b><span>→</span><i class="gamete dominant">S</i><i class="gamete recessive">s</i></div>
+            <div class="crossing-two-gamete-row"><b>ss</b><span>→</span><i class="gamete recessive">s</i><i class="gamete recessive">s</i></div>
+          </article>
+          <article class="crossing-two-punnett">
+            <h2>Punnett karesi</h2>
+            <table aria-label="Ss ve ss çaprazlama Punnett karesi"><thead><tr><th></th><th>S</th><th>s</th></tr></thead><tbody><tr><th>s</th><td><b>Ss</b><i class="pea-seed pea-seed-yellow" aria-hidden="true"></i></td><td><b>ss</b><i class="pea-seed pea-seed-green" aria-hidden="true"></i></td></tr><tr><th>s</th><td><b>Ss</b><i class="pea-seed pea-seed-yellow" aria-hidden="true"></i></td><td><b>ss</b><i class="pea-seed pea-seed-green" aria-hidden="true"></i></td></tr></tbody></table>
+          </article>
+        </section>
+        <section class="crossing-two-results" aria-label="Çaprazlama sonuçları">
+          <article class="crossing-two-result-card crossing-two-genotype-result"><h2>Genotip Sonucu</h2><div><b>2 adet Ss</b><b>2 adet ss</b></div><p>Genotip oranı: <strong>%50 Ss, %50 ss</strong></p></article>
+          <article class="crossing-two-result-card crossing-two-phenotype-result"><h2>Fenotip Sonucu</h2><div class="phenotype-seed-row"><b>%50 sarı tohumlu</b><i class="pea-seed pea-seed-yellow" aria-hidden="true"></i><i class="pea-seed pea-seed-yellow" aria-hidden="true"></i></div><div class="phenotype-seed-row"><b>%50 yeşil tohumlu</b><i class="pea-seed pea-seed-green" aria-hidden="true"></i><i class="pea-seed pea-seed-green" aria-hidden="true"></i></div></article>
+        </section>
+      `;
+      let activePointerId = null;
+      let pointerStart = null;
+      let started = false;
+      const timers = [];
+      const interactionBlocked = () => this.state.get().presentation?.panActive || this.state.get().ui?.annotationEnabled;
+      const setPhase = (phase) => { article.dataset.solutionPhase = String(phase); };
+      const schedule = (delay, phase) => timers.push(setTimeout(() => setPhase(phase), delay));
+      const startSolution = () => {
+        if (started) return;
+        started = true;
+        article.classList.remove("is-awaiting-start");
+        article.classList.add("is-solving");
+        setPhase(1);
+        schedule(2200, 2);
+        schedule(3500, 3);
+        schedule(4850, 4);
+        schedule(6250, 5);
+        schedule(7650, 6);
+      };
+      article.addEventListener("pointerdown", (event) => {
+        if (started || interactionBlocked() || !event.isPrimary || (event.pointerType === "mouse" && event.button !== 0)) return;
+        activePointerId = event.pointerId;
+        pointerStart = { x: event.clientX, y: event.clientY };
+        article.setPointerCapture?.(event.pointerId);
+      });
+      article.addEventListener("pointerup", (event) => {
+        if (event.pointerId !== activePointerId) return;
+        article.releasePointerCapture?.(event.pointerId);
+        const moved = !pointerStart || Math.hypot(event.clientX - pointerStart.x, event.clientY - pointerStart.y) > 12;
+        activePointerId = null;
+        pointerStart = null;
+        if (!moved && !interactionBlocked()) startSolution();
+      });
+      article.addEventListener("pointercancel", () => {
+        activePointerId = null;
+        pointerStart = null;
+      });
+      this.activeInteractions.push({
+        destroy: () => timers.forEach((timer) => clearTimeout(timer))
+      });
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "heredity_crossing_example_three") {
+      const article = document.createElement("article");
+      article.className = "board-slide heredity-crossing-example-three-slide is-awaiting-start";
+      article.dataset.solutionPhase = "0";
+      article.setAttribute("aria-label", "İki melez sarı tohumlu bezelyenin çaprazlaması");
+      article.innerHTML = `
+        <header class="crossing-three-heading">
+          <h1>Örnek Soru-3</h1>
+          <p>Melez döl sarı tohumlu bezelye ile melez döl sarı tohumlu bezelyeyi çaprazlayalım.</p>
+        </header>
+        <aside class="crossing-three-ai-analysis" aria-live="polite" aria-label="Çözüm analizi">
+          <strong>Çözüm analiz ediliyor</strong>
+          <span>Karakter: tohum rengi</span>
+          <span>Baskın alel: S</span>
+          <span>Çekinik alel: s</span>
+          <span>1. bezelye: Ss</span>
+          <span>2. bezelye: Ss</span>
+        </aside>
+        <section class="crossing-three-parents" aria-label="Çaprazlanacak ebeveynler">
+          <article class="crossing-three-parent crossing-three-yellow-parent">
+            <div><span>1. Bezelye</span><strong>Melez döl sarı tohumlu</strong><b>Ss</b></div>
+            <i class="pea-seed pea-seed-yellow pea-seed-large" aria-label="Sarı tohum"></i>
+          </article>
+          <div class="crossing-three-expression" aria-label="Ss çarpı Ss">Ss <i>×</i> Ss</div>
+          <article class="crossing-three-parent crossing-three-yellow-parent">
+            <i class="pea-seed pea-seed-yellow pea-seed-large" aria-label="Sarı tohum"></i>
+            <div><span>2. Bezelye</span><strong>Melez döl sarı tohumlu</strong><b>Ss</b></div>
+          </article>
+        </section>
+        <div class="crossing-three-start-hint" aria-hidden="true"><span>✦</span> Dokununca çözüm başlar</div>
+        <section class="crossing-three-workspace">
+          <article class="crossing-three-gametes">
+            <h2>Gametler</h2>
+            <div class="crossing-three-gamete-row"><b>1. ebeveyn: Ss</b><span>→</span><i class="gamete dominant">S</i><i class="gamete recessive">s</i></div>
+            <div class="crossing-three-gamete-row"><b>2. ebeveyn: Ss</b><span>→</span><i class="gamete dominant">S</i><i class="gamete recessive">s</i></div>
+          </article>
+          <article class="crossing-three-punnett">
+            <h2>Punnett karesi</h2>
+            <table aria-label="Ss ve Ss çaprazlama Punnett karesi"><thead><tr><th></th><th>S</th><th>s</th></tr></thead><tbody><tr><th>S</th><td><b>SS</b><i class="pea-seed pea-seed-yellow" aria-hidden="true"></i></td><td><b>Ss</b><i class="pea-seed pea-seed-yellow" aria-hidden="true"></i></td></tr><tr><th>s</th><td><b>Ss</b><i class="pea-seed pea-seed-yellow" aria-hidden="true"></i></td><td><b>ss</b><i class="pea-seed pea-seed-green" aria-hidden="true"></i></td></tr></tbody></table>
+          </article>
+        </section>
+        <section class="crossing-three-results" aria-label="Çaprazlama sonuçları">
+          <article class="crossing-three-result-card crossing-three-genotype-result"><h2>Genotip Sonucu</h2><div><b>1 adet SS</b><b>2 adet Ss</b><b>1 adet ss</b></div><p>Genotip oranı: <strong>1 SS : 2 Ss : 1 ss</strong></p></article>
+          <article class="crossing-three-result-card crossing-three-phenotype-result"><h2>Fenotip Sonucu</h2><div class="crossing-three-seed-row"><b>3 adet sarı tohumlu</b><i class="pea-seed pea-seed-yellow" aria-hidden="true"></i><i class="pea-seed pea-seed-yellow" aria-hidden="true"></i><i class="pea-seed pea-seed-yellow" aria-hidden="true"></i></div><div class="crossing-three-seed-row"><b>1 adet yeşil tohumlu</b><i class="pea-seed pea-seed-green" aria-hidden="true"></i></div><p>Fenotip oranı: <strong>3 sarı : 1 yeşil</strong></p></article>
+          <article class="crossing-three-result-card crossing-three-summary"><h2>Özet</h2><p>Baskın özellik sarı tohum rengidir.</p><p>Çekinik özellik yeşil tohum rengidir.</p><strong>Yavruların %75’i sarı, %25’i yeşil olur.</strong></article>
+        </section>
+      `;
+      let activePointerId = null;
+      let pointerStart = null;
+      let started = false;
+      const timers = [];
+      const interactionBlocked = () => this.state.get().presentation?.panActive || this.state.get().ui?.annotationEnabled;
+      const setPhase = (phase) => { article.dataset.solutionPhase = String(phase); };
+      const schedule = (delay, phase) => timers.push(setTimeout(() => setPhase(phase), delay));
+      const startSolution = () => {
+        if (started) return;
+        started = true;
+        article.classList.remove("is-awaiting-start");
+        article.classList.add("is-solving");
+        setPhase(1);
+        schedule(2400, 2);
+        schedule(4300, 3);
+        schedule(6200, 4);
+        schedule(9100, 5);
+        schedule(11000, 6);
+        schedule(12900, 7);
+      };
+      article.addEventListener("pointerdown", (event) => {
+        if (started || interactionBlocked() || !event.isPrimary || (event.pointerType === "mouse" && event.button !== 0)) return;
+        activePointerId = event.pointerId;
+        pointerStart = { x: event.clientX, y: event.clientY };
+        article.setPointerCapture?.(event.pointerId);
+      });
+      article.addEventListener("pointerup", (event) => {
+        if (event.pointerId !== activePointerId) return;
+        article.releasePointerCapture?.(event.pointerId);
+        const moved = !pointerStart || Math.hypot(event.clientX - pointerStart.x, event.clientY - pointerStart.y) > 12;
+        activePointerId = null;
+        pointerStart = null;
+        if (!moved && !interactionBlocked()) startSolution();
+      });
+      article.addEventListener("pointercancel", () => {
+        activePointerId = null;
+        pointerStart = null;
+      });
+      this.activeInteractions.push({ destroy: () => timers.forEach((timer) => clearTimeout(timer)) });
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "heredity_crossing_example_four") {
+      const article = document.createElement("article");
+      article.className = "board-slide heredity-crossing-example-four-slide is-awaiting-start";
+      article.dataset.solutionPhase = "0";
+      article.setAttribute("aria-label", "Saf sarı ve melez sarı tohumlu bezelyelerin çaprazlaması");
+      article.innerHTML = `
+        <header class="crossing-four-heading">
+          <h1>Örnek Soru-4</h1>
+          <p>Saf döl sarı tohumlu bezelye ile melez döl sarı tohumlu bezelyeyi çaprazlayalım.</p>
+        </header>
+        <aside class="crossing-four-ai-analysis" aria-live="polite" aria-label="Çözüm analizi">
+          <strong>Çözüm analiz ediliyor</strong>
+          <span>Karakter: Tohum rengi</span>
+          <span>Baskın alel: S</span>
+          <span>Çekinik alel: s</span>
+          <span>Saf döl sarı tohumlu → SS</span>
+          <span>Melez döl sarı tohumlu → Ss</span>
+        </aside>
+        <section class="crossing-four-parents" aria-label="Çaprazlanacak ebeveynler">
+          <article class="crossing-four-parent"><div><span>1. Bezelye</span><strong>Saf döl sarı tohumlu</strong><b>SS</b></div><i class="pea-seed pea-seed-yellow pea-seed-large" aria-label="Sarı tohum"></i></article>
+          <div class="crossing-four-expression" aria-label="SS çarpı Ss">SS <i>×</i> Ss</div>
+          <article class="crossing-four-parent"><i class="pea-seed pea-seed-yellow pea-seed-large" aria-label="Sarı tohum"></i><div><span>2. Bezelye</span><strong>Melez döl sarı tohumlu</strong><b>Ss</b></div></article>
+        </section>
+        <div class="crossing-four-start-hint" aria-hidden="true"><span>✦</span> Dokununca çözüm başlar</div>
+        <section class="crossing-four-workspace">
+          <article class="crossing-four-gametes"><h2>Gametler</h2><div class="crossing-four-gamete-row"><b>Saf döl: SS</b><span>→</span><i class="gamete dominant">S</i><i class="gamete dominant">S</i></div><div class="crossing-four-gamete-row"><b>Melez döl: Ss</b><span>→</span><i class="gamete dominant">S</i><i class="gamete recessive">s</i></div><p>Saf döl birey tek çeşit, melez birey iki çeşit gamet oluşturur.</p></article>
+          <article class="crossing-four-punnett"><h2>Punnett karesi</h2><table aria-label="SS ve Ss çaprazlama Punnett karesi"><thead><tr><th></th><th>S</th><th>S</th></tr></thead><tbody><tr><th>S</th><td><b>SS</b><i class="pea-seed pea-seed-yellow" aria-hidden="true"></i></td><td><b>SS</b><i class="pea-seed pea-seed-yellow" aria-hidden="true"></i></td></tr><tr><th>s</th><td><b>Ss</b><i class="pea-seed pea-seed-yellow" aria-hidden="true"></i></td><td><b>Ss</b><i class="pea-seed pea-seed-yellow" aria-hidden="true"></i></td></tr></tbody></table></article>
+        </section>
+        <section class="crossing-four-results" aria-label="Çaprazlama sonuçları">
+          <article class="crossing-four-result-card crossing-four-genotype-result"><h2>Genotip Sonucu</h2><div><b>2 adet SS</b><b>2 adet Ss</b></div><p>Genotip oranı: <strong>%50 SS, %50 Ss</strong></p><small>%50 saf döl baskın · %50 melez döl</small></article>
+          <article class="crossing-four-result-card crossing-four-phenotype-result"><h2>Fenotip Sonucu</h2><strong>%100 sarı tohumlu</strong><div class="crossing-four-seed-row"><i class="pea-seed pea-seed-yellow" aria-hidden="true"></i><i class="pea-seed pea-seed-yellow" aria-hidden="true"></i><i class="pea-seed pea-seed-yellow" aria-hidden="true"></i><i class="pea-seed pea-seed-yellow" aria-hidden="true"></i></div><p>Bu çaprazlamada yeşil tohumlu yavru oluşmaz.</p></article>
+        </section>
+      `;
+      let activePointerId = null;
+      let pointerStart = null;
+      let started = false;
+      const timers = [];
+      const interactionBlocked = () => this.state.get().presentation?.panActive || this.state.get().ui?.annotationEnabled;
+      const setPhase = (phase) => { article.dataset.solutionPhase = String(phase); };
+      const schedule = (delay, phase) => timers.push(setTimeout(() => setPhase(phase), delay));
+      const startSolution = () => {
+        if (started) return;
+        started = true;
+        article.classList.remove("is-awaiting-start");
+        article.classList.add("is-solving");
+        schedule(1000, 1);
+        schedule(5500, 2);
+        schedule(7800, 3);
+        schedule(10100, 4);
+        schedule(14100, 5);
+        schedule(16400, 6);
+      };
+      article.addEventListener("pointerdown", (event) => {
+        if (started || interactionBlocked() || !event.isPrimary || (event.pointerType === "mouse" && event.button !== 0)) return;
+        activePointerId = event.pointerId;
+        pointerStart = { x: event.clientX, y: event.clientY };
+        article.setPointerCapture?.(event.pointerId);
+      });
+      article.addEventListener("pointerup", (event) => {
+        if (event.pointerId !== activePointerId) return;
+        article.releasePointerCapture?.(event.pointerId);
+        const moved = !pointerStart || Math.hypot(event.clientX - pointerStart.x, event.clientY - pointerStart.y) > 12;
+        activePointerId = null;
+        pointerStart = null;
+        if (!moved && !interactionBlocked()) startSolution();
+      });
+      article.addEventListener("pointercancel", () => { activePointerId = null; pointerStart = null; });
+      this.activeInteractions.push({ destroy: () => timers.forEach((timer) => clearTimeout(timer)) });
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "heredity_crossing_example_five") {
+      const article = document.createElement("article");
+      article.className = "board-slide heredity-crossing-example-five-slide is-awaiting-start";
+      article.dataset.solutionPhase = "0";
+      article.setAttribute("aria-label", "İki yeşil tohumlu bezelyenin çaprazlaması");
+      article.innerHTML = `
+        <header class="crossing-five-heading"><h1>Örnek Soru-5</h1><p>Yeşil tohumlu bezelye ile yeşil tohumlu bezelyenin çaprazlamasını yapalım.</p></header>
+        <aside class="crossing-five-ai-analysis" aria-live="polite" aria-label="Çözüm analizi"><strong>Çözüm analiz ediliyor</strong><span>Karakter: Tohum rengi</span><span>Baskın alel: S</span><span>Çekinik alel: s</span><span>1. bezelye: yeşil tohumlu → ss</span><span>2. bezelye: yeşil tohumlu → ss</span></aside>
+        <section class="crossing-five-parents" aria-label="Çaprazlanacak ebeveynler"><article class="crossing-five-parent"><div><span>1. Bezelye</span><strong>Yeşil tohumlu</strong><b>ss</b></div><i class="pea-seed pea-seed-green pea-seed-large" aria-label="Yeşil tohum"></i></article><div class="crossing-five-expression" aria-label="ss çarpı ss">ss <i>×</i> ss</div><article class="crossing-five-parent"><i class="pea-seed pea-seed-green pea-seed-large" aria-label="Yeşil tohum"></i><div><span>2. Bezelye</span><strong>Yeşil tohumlu</strong><b>ss</b></div></article></section>
+        <div class="crossing-five-start-hint" aria-hidden="true"><span>✦</span> Dokununca çözüm başlar</div>
+        <section class="crossing-five-workspace"><article class="crossing-five-gametes"><h2>Gametler</h2><div class="crossing-five-gamete-row"><b>1. ebeveyn: ss</b><span>→</span><i class="gamete recessive">s</i><i class="gamete recessive">s</i></div><div class="crossing-five-gamete-row"><b>2. ebeveyn: ss</b><span>→</span><i class="gamete recessive">s</i><i class="gamete recessive">s</i></div><p>Her iki birey de saf döl çekinik olduğu için yalnızca s aleli taşıyan gametler oluşturur.</p></article><article class="crossing-five-punnett"><h2>Punnett karesi</h2><table aria-label="ss ve ss çaprazlama Punnett karesi"><thead><tr><th></th><th>s</th><th>s</th></tr></thead><tbody><tr><th>s</th><td><b>ss</b><i class="pea-seed pea-seed-green" aria-hidden="true"></i></td><td><b>ss</b><i class="pea-seed pea-seed-green" aria-hidden="true"></i></td></tr><tr><th>s</th><td><b>ss</b><i class="pea-seed pea-seed-green" aria-hidden="true"></i></td><td><b>ss</b><i class="pea-seed pea-seed-green" aria-hidden="true"></i></td></tr></tbody></table></article></section>
+        <section class="crossing-five-results" aria-label="Çaprazlama sonuçları"><article class="crossing-five-result-card crossing-five-genotype-result"><h2>Genotip Sonucu</h2><div><b>4 adet ss</b></div><p>Genotip oranı: <strong>%100 ss</strong></p><small>%100 saf döl çekinik</small></article><article class="crossing-five-result-card crossing-five-phenotype-result"><h2>Fenotip Sonucu</h2><strong>%100 yeşil tohumlu</strong><div class="crossing-five-seed-row"><i class="pea-seed pea-seed-green" aria-hidden="true"></i><i class="pea-seed pea-seed-green" aria-hidden="true"></i><i class="pea-seed pea-seed-green" aria-hidden="true"></i><i class="pea-seed pea-seed-green" aria-hidden="true"></i></div><p>Bu çaprazlamada yavruların tamamı yeşil tohumlu olur.</p></article></section>
+      `;
+      let activePointerId = null;
+      let pointerStart = null;
+      let started = false;
+      const timers = [];
+      const interactionBlocked = () => this.state.get().presentation?.panActive || this.state.get().ui?.annotationEnabled;
+      const setPhase = (phase) => { article.dataset.solutionPhase = String(phase); };
+      const schedule = (delay, phase) => timers.push(setTimeout(() => setPhase(phase), delay));
+      const startSolution = () => {
+        if (started) return;
+        started = true;
+        article.classList.remove("is-awaiting-start");
+        article.classList.add("is-solving");
+        schedule(1000, 1);
+        schedule(5500, 2);
+        schedule(7800, 3);
+        schedule(10100, 4);
+        schedule(14100, 5);
+        schedule(16400, 6);
+      };
+      article.addEventListener("pointerdown", (event) => {
+        if (started || interactionBlocked() || !event.isPrimary || (event.pointerType === "mouse" && event.button !== 0)) return;
+        activePointerId = event.pointerId;
+        pointerStart = { x: event.clientX, y: event.clientY };
+        article.setPointerCapture?.(event.pointerId);
+      });
+      article.addEventListener("pointerup", (event) => {
+        if (event.pointerId !== activePointerId) return;
+        article.releasePointerCapture?.(event.pointerId);
+        const moved = !pointerStart || Math.hypot(event.clientX - pointerStart.x, event.clientY - pointerStart.y) > 12;
+        activePointerId = null;
+        pointerStart = null;
+        if (!moved && !interactionBlocked()) startSolution();
+      });
+      article.addEventListener("pointercancel", () => { activePointerId = null; pointerStart = null; });
+      this.activeInteractions.push({ destroy: () => timers.forEach((timer) => clearTimeout(timer)) });
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "mendel_single_trait_experiment") {
+      const article = document.createElement("article");
+      article.className = "board-slide mendel-single-trait-slide";
+      article.setAttribute("aria-label", "Mendel’in tek karakter çaprazlama deneyi");
+      article.innerHTML = `
+        <header class="mendel-heading"><h1>Mendel’in Tek Karakter Çaprazlama Deneyi</h1><p>Saf döl mor çiçekli ve saf döl beyaz çiçekli bezelyelerin çaprazlanması</p></header>
+        <section class="mendel-diagram" aria-label="P kuşağından ikinci kuşağa çaprazlama şeması">
+          <article class="mendel-diagram-stage mendel-diagram-parent"><div class="mendel-diagram-label">P KUŞAĞI</div><div class="mendel-diagram-parent-row"><div class="mendel-diagram-individual purple"><i class="mendel-flower purple" aria-hidden="true"></i><strong>Saf mor çiçekli</strong><b>MM</b></div><span class="mendel-diagram-cross">×</span><div class="mendel-diagram-individual white"><i class="mendel-flower white" aria-hidden="true"></i><strong>Saf beyaz çiçekli</strong><b>mm</b></div></div><p class="mendel-diagram-expression">MM × mm</p><div class="mendel-diagram-connector parent-to-first" aria-hidden="true"><i></i><i></i><b>↓</b></div></article>
+          <article class="mendel-diagram-stage mendel-diagram-first"><div class="mendel-diagram-label">1. KUŞAK</div><div class="mendel-diagram-offspring-row" aria-label="Dört mor çiçekli Mm yavru"><div><i class="mendel-flower purple" aria-hidden="true"></i><b>Mm</b></div><div><i class="mendel-flower purple" aria-hidden="true"></i><b>Mm</b></div><div><i class="mendel-flower purple" aria-hidden="true"></i><b>Mm</b></div><div><i class="mendel-flower purple" aria-hidden="true"></i><b>Mm</b></div></div><div class="mendel-diagram-first-summary"><span>Tüm yavrular melez döl (Mm)</span><span>Tüm yavrular mor çiçeklidir</span><b>%100 Mm · %100 melez · %100 mor çiçekli</b></div><div class="mendel-diagram-selected-pair"><div><i class="mendel-flower purple" aria-hidden="true"></i><b>Mm</b></div><span>×</span><div><i class="mendel-flower purple" aria-hidden="true"></i><b>Mm</b></div></div><p class="mendel-diagram-expression mendel-second-cross">Mm × Mm</p><div class="mendel-diagram-connector first-to-second" aria-hidden="true"><i></i><i></i><b>↓</b></div></article>
+          <article class="mendel-diagram-stage mendel-diagram-second"><div class="mendel-diagram-label">2. KUŞAK</div><div class="mendel-diagram-offspring-row" aria-label="İkinci kuşak yavrular"><div><i class="mendel-flower purple" aria-hidden="true"></i><b>MM</b></div><div><i class="mendel-flower purple" aria-hidden="true"></i><b>Mm</b></div><div><i class="mendel-flower purple" aria-hidden="true"></i><b>Mm</b></div><div><i class="mendel-flower white" aria-hidden="true"></i><b>mm</b></div></div><div class="mendel-diagram-ratios"><section><small>GENOTİP ORANI</small><b>1 MM : 2 Mm : 1 mm</b></section><section><small>FENOTİP ORANI</small><b>3 mor : 1 beyaz</b><span>%75 mor · %25 beyaz</span></section></div></article>
+        </section>
+      `;
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "mendel_experiment_results") {
+      const article = document.createElement("article");
+      article.className = "board-slide mendel-results-slide";
+      article.setAttribute("aria-label", "Mendel deneyinin sonuçları");
+      article.innerHTML = `
+        <header class="mendel-heading"><h1>Mendel Deneyinin Sonuçları</h1><p>Tek karakter çaprazlamasından çıkarılan temel sonuçlar</p></header>
+        <section class="mendel-result-list" aria-label="Mendel deneyinin üç sonucu">
+          <article class="mendel-result-card"><span>1</span><i class="mendel-flower purple" aria-hidden="true"></i><p><b>Kalıtsal özellikleri belirleyen aleller</b> nesilden nesile aktarılır.</p></article>
+          <article class="mendel-result-card"><span>2</span><i class="mendel-flower purple" aria-hidden="true"></i><p>Saf döl farklı özellikte iki bezelye çaprazlandığında <b>1. kuşaktaki yavrular melez olur ve baskın özellik görülür.</b></p></article>
+          <article class="mendel-result-card"><span>3</span><i class="mendel-flower white" aria-hidden="true"></i><p><b>Çekinik özellik</b> 1. kuşakta görünmese bile sonraki kuşakta yeniden ortaya çıkabilir.</p></article>
+        </section>
+        <aside class="mendel-dominance-callout"><i class="mendel-flower purple" aria-hidden="true"></i><strong>Mor çiçek aleli, beyaz çiçek aleline baskındır.</strong></aside>
+        <footer class="mendel-generation-summary"><section><small>1. kuşak</small><b>%100 mor</b><div><i class="mendel-flower purple" aria-hidden="true"></i><i class="mendel-flower purple" aria-hidden="true"></i></div></section><span aria-hidden="true">→</span><section><small>2. kuşak</small><b>3 mor : 1 beyaz</b><div><i class="mendel-flower purple" aria-hidden="true"></i><i class="mendel-flower purple" aria-hidden="true"></i><i class="mendel-flower purple" aria-hidden="true"></i><i class="mendel-flower white" aria-hidden="true"></i></div></section></footer>
+      `;
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "sex_determination") {
+      const article = document.createElement("article");
+      article.className = "board-slide sex-determination-slide";
+      article.setAttribute("aria-label", "İnsanda cinsiyetin X ve Y kromozomlarıyla belirlenmesi");
+      article.innerHTML = `
+        <header class="genetics-heading"><h1>Cinsiyetin Belirlenmesi</h1><p>İnsanda cinsiyet, X ve Y kromozomlarının birleşmesiyle belirlenir.</p></header>
+        <section class="sex-determination-layout"><article class="sex-parent-card mother"><i class="sex-person female" aria-hidden="true"></i><small>ANNE</small><strong>XX</strong><span>Yalnızca <b>X</b> taşıyan yumurta hücreleri oluşturur.</span><div class="sex-gametes"><b>X</b><b>X</b></div></article><article class="sex-punnett-area"><div class="sex-cross-expression">XX <i>×</i> XY</div><div class="sex-gamete-labels"><span>Anne gametleri: <b>X, X</b></span><span>Baba gametleri: <b>X, Y</b></span></div><table aria-label="XX ve XY cinsiyet kromozomları Punnett karesi"><thead><tr><th></th><th>X</th><th>X</th></tr></thead><tbody><tr><th>X</th><td>XX</td><td>XX</td></tr><tr><th>Y</th><td>XY</td><td>XY</td></tr></tbody></table></article><article class="sex-parent-card father"><i class="sex-person male" aria-hidden="true"></i><small>BABA</small><strong>XY</strong><span><b>X</b> veya <b>Y</b> taşıyan sperm hücreleri oluşturabilir.</span><div class="sex-gametes"><b>X</b><b>Y</b></div></article></section>
+        <section class="sex-results"><article><b class="sex-xx">%50 XX</b><span>Kız</span></article><article><b class="sex-xy">%50 XY</b><span>Erkek</span></article><p>Bebeğin cinsiyetini belirleyen kromozom babadan gelir.</p></section>
+      `;
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "consanguineous_marriage") {
+      const article = document.createElement("article");
+      article.className = "board-slide consanguineous-marriage-slide";
+      article.setAttribute("aria-label", "Akraba evlilikleri ve çekinik kalıtsal hastalık riski");
+      article.innerHTML = `
+        <header class="genetics-heading"><h1>Akraba Evlilikleri ve Sakıncaları</h1><p>Risk, aynı çekinik hastalık alelinin iki ebeveynde de bulunma olasılığının artmasıyla ilişkilidir.</p></header>
+        <section class="consanguineous-layout"><article class="consanguineous-explanation"><p>Aralarında kan bağı bulunan bireylerin evliliğine <b>akraba evliliği</b> denir.</p><div class="consanguineous-key"><i>1</i><span>Yakın akrabalar bazı çekinik hastalık alellerini ortak atalarından almış olabilir.</span></div><div class="consanguineous-key"><i>2</i><span>İki taşıyıcı bireyde aynı çekinik alelin buluşma olasılığı artabilir.</span></div><aside>Akraba evliliği doğrudan hastalık oluşturmaz; <b>çekinik hastalığın görülme olasılığı artabilir.</b></aside></article><article class="consanguineous-cross"><div class="carrier-pair"><span>Taşıyıcı</span><b>Aa</b><i>×</i><b>Aa</b><span>Taşıyıcı</span></div><table aria-label="Aa ve Aa çaprazlama Punnett karesi"><thead><tr><th></th><th>A</th><th>a</th></tr></thead><tbody><tr><th>A</th><td>AA</td><td>Aa</td></tr><tr><th>a</th><td>Aa</td><td class="recessive-outcome">aa</td></tr></tbody></table><div class="consanguineous-outcomes"><b>%25 AA</b><b>%50 Aa</b><b>%25 aa</b></div></article></section>
+      `;
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "pedigree_chart") {
+      const article = document.createElement("article");
+      article.className = "board-slide pedigree-chart-slide";
+      article.setAttribute("aria-label", "Soyağacı sembolleri ve örnek şema");
+      article.innerHTML = `
+        <header class="genetics-heading"><h1>Soyağacı</h1><p>Kalıtsal özelliklerin aile bireyleri arasında aktarımını incelemek için kullanılır.</p></header>
+        <section class="pedigree-layout"><aside class="pedigree-legend"><h2>Temel semboller</h2><div><i class="pedigree-symbol square"></i><span>Kare → Erkek</span></div><div><i class="pedigree-symbol circle"></i><span>Daire → Kadın</span></div><div><i class="pedigree-symbol square filled"></i><span>Boyalı → Özelliği gösteren birey</span></div><div><i class="pedigree-line horizontal"></i><span>Yatay çizgi → Eşler</span></div><div><i class="pedigree-line vertical"></i><span>Aşağı bağlantı → Çocuklar</span></div></aside><article class="pedigree-example"><h2>Örnek soyağacı</h2><div class="pedigree-tree" aria-label="Birinci kuşakta erkek ve kadın, ikinci kuşakta üç çocuk"><div class="pedigree-generation parents"><i class="pedigree-symbol square"></i><span class="pedigree-partner-line"></span><i class="pedigree-symbol circle"></i></div><span class="pedigree-descent-line"></span><span class="pedigree-sibling-line"></span><div class="pedigree-generation children"><i class="pedigree-symbol square filled"></i><i class="pedigree-symbol circle"></i><i class="pedigree-symbol square"></i></div></div><p><b>1. kuşak</b> → eşler &nbsp;&nbsp; <b>2. kuşak</b> → çocuklar</p></article></section>
+      `;
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
+    if (slide.layout === "heredity_drag_drop_crossing") {
+      const article = document.createElement("article");
+      article.className = "board-slide heredity-drag-drop-crossing-slide";
+      article.setAttribute("aria-label", "Uzun ve kısa gövdeli bezelyelerin sürükle bırak çaprazlama etkinliği");
+      article.innerHTML = `
+        <header class="heredity-dnd-heading"><h1>Örnek Etkileşimli</h1><p>Melez uzun gövdeli bir bezelye ile kısa gövdeli bezelyeyi çaprazlayalım.<br>Fenotip ve genotip oranlarını yazınız.</p></header>
+        <section class="heredity-dnd-workspace">
+          <article class="heredity-dnd-parents"><h2>1. Ana-baba genotipleri</h2><div class="heredity-dnd-parent-grid"><section><i class="heredity-stem tall" aria-hidden="true"></i><strong>Melez uzun gövdeli bezelye</strong><div class="heredity-dnd-slot" data-slot="parent-long" data-answer="Uu" aria-label="Melez uzun gövdeli genotip bırakma alanı"></div></section><section><i class="heredity-stem short" aria-hidden="true"></i><strong>Kısa gövdeli bezelye</strong><div class="heredity-dnd-slot" data-slot="parent-short" data-answer="uu" aria-label="Kısa gövdeli genotip bırakma alanı"></div></section></div></article>
+          <article class="heredity-dnd-gametes"><h2>2. Gametler</h2><div class="heredity-dnd-gamete-grid"><section><strong>1. ebeveyn</strong><div><span class="heredity-dnd-slot small" data-slot="gamete-1a" data-answer="U"></span><span class="heredity-dnd-slot small" data-slot="gamete-1b" data-answer="u"></span></div></section><section><strong>2. ebeveyn</strong><div><span class="heredity-dnd-slot small" data-slot="gamete-2a" data-answer="u"></span><span class="heredity-dnd-slot small" data-slot="gamete-2b" data-answer="u"></span></div></section></div></article>
+          <article class="heredity-dnd-punnett"><h2>3. Punnett karesi</h2><table aria-label="Uu ve uu çaprazlama tablosu"><thead><tr><th></th><th>U</th><th>u</th></tr></thead><tbody><tr><th>u</th><td><span class="heredity-dnd-slot cell" data-slot="punnett-1" data-answer="Uu"></span></td><td><span class="heredity-dnd-slot cell" data-slot="punnett-2" data-answer="uu"></span></td></tr><tr><th>u</th><td><span class="heredity-dnd-slot cell" data-slot="punnett-3" data-answer="Uu"></span></td><td><span class="heredity-dnd-slot cell" data-slot="punnett-4" data-answer="uu"></span></td></tr></tbody></table></article>
+          <article class="heredity-dnd-ratios"><section><h2>4. Genotip oranı</h2><p><span class="heredity-dnd-slot ratio" data-slot="genotype-1" data-answer="2 Uu"></span><b>:</b><span class="heredity-dnd-slot ratio" data-slot="genotype-2" data-answer="2 uu"></span></p><small class="heredity-dnd-simplified">Sadeleştirilmiş oran: <b>1 Uu : 1 uu</b><br>%50 Uu · %50 uu</small></section><section><h2>5. Fenotip oranı</h2><p><span class="heredity-dnd-slot ratio" data-slot="phenotype-1" data-answer="2 Uzun"></span><b>:</b><span class="heredity-dnd-slot ratio" data-slot="phenotype-2" data-answer="2 Kısa"></span></p><small class="heredity-dnd-simplified">Sadeleştirilmiş oran: <b>1 Uzun : 1 Kısa</b><br>%50 Uzun · %50 Kısa</small></section></article>
+        </section>
+        <footer class="heredity-dnd-footer"><section class="heredity-dnd-palette" aria-label="Sürüklenebilir cevap kartları"><div><small>Genotip kartları</small><button type="button" data-answer="Uu">Uu</button><button type="button" data-answer="uu">uu</button><button type="button" data-answer="UU">UU</button></div><div><small>Gamet kartları</small><button type="button" data-answer="U">U</button><button type="button" data-answer="u">u</button></div><div><small>Sonuç kartları</small><button type="button" data-answer="2 Uu">2 Uu</button><button type="button" data-answer="2 uu">2 uu</button><button type="button" data-answer="2 Uzun">2 Uzun</button><button type="button" data-answer="2 Kısa">2 Kısa</button><button type="button" data-answer="3 Uzun">3 Uzun</button><button type="button" data-answer="1 Kısa">1 Kısa</button></div></section><section class="heredity-dnd-actions"><output aria-live="polite"></output><button type="button" data-action="hint">İpucu</button><button type="button" data-action="check">Kontrol Et</button><button type="button" data-action="reset">Sıfırla</button></section></footer>
+      `;
+      const answers = new Map();
+      const slots = [...article.querySelectorAll(".heredity-dnd-slot")];
+      const sources = [...article.querySelectorAll(".heredity-dnd-palette button[data-answer]")];
+      const output = article.querySelector("output");
+      let drag = null;
+      const interactionBlocked = () => this.state.get().presentation?.panActive || this.state.get().ui?.annotationEnabled;
+      const renderSlot = (slot) => {
+        const answer = answers.get(slot.dataset.slot);
+        slot.replaceChildren();
+        slot.classList.remove("is-correct", "is-wrong", "is-missing");
+        if (answer) { const card = document.createElement("span"); card.textContent = answer; slot.appendChild(card); slot.classList.add("is-filled"); }
+        else slot.classList.remove("is-filled");
+      };
+      const renderAll = () => slots.forEach(renderSlot);
+      const slotAt = (clientX, clientY) => slots.find((slot) => {
+        const rect = slot.getBoundingClientRect();
+        return clientX >= rect.left && clientX <= rect.right && clientY >= rect.top && clientY <= rect.bottom;
+      });
+      const finishDrag = (event) => {
+        if (!drag || event.pointerId !== drag.pointerId) return;
+        const target = slotAt(event.clientX, event.clientY);
+        if (target) { answers.set(target.dataset.slot, drag.answer); renderSlot(target); article.classList.remove("is-verified"); output.textContent = ""; }
+        drag.clone.remove();
+        drag.source.releasePointerCapture?.(event.pointerId);
+        drag = null;
+      };
+      const cancelDrag = (event) => {
+        if (!drag || event.pointerId !== drag.pointerId) return;
+        drag.clone.remove();
+        drag.source.releasePointerCapture?.(event.pointerId);
+        drag = null;
+      };
+      sources.forEach((source) => source.addEventListener("pointerdown", (event) => {
+        if (interactionBlocked() || !event.isPrimary || (event.pointerType === "mouse" && event.button !== 0)) return;
+        event.preventDefault();
+        const clone = source.cloneNode(true);
+        clone.className = "heredity-dnd-drag-clone";
+        clone.removeAttribute("aria-label");
+        clone.style.width = `${source.getBoundingClientRect().width}px`;
+        document.body.appendChild(clone);
+        drag = { source, answer: source.dataset.answer, pointerId: event.pointerId, clone };
+        clone.style.left = `${event.clientX}px`;
+        clone.style.top = `${event.clientY}px`;
+        source.setPointerCapture?.(event.pointerId);
+      }));
+      article.addEventListener("pointermove", (event) => {
+        if (!drag || event.pointerId !== drag.pointerId) return;
+        event.preventDefault();
+        drag.clone.style.left = `${event.clientX}px`;
+        drag.clone.style.top = `${event.clientY}px`;
+      });
+      article.addEventListener("pointerup", finishDrag);
+      article.addEventListener("pointercancel", cancelDrag);
+      article.querySelector('[data-action="check"]').addEventListener("click", () => {
+        let correct = 0;
+        slots.forEach((slot) => {
+          const answer = answers.get(slot.dataset.slot);
+          slot.classList.remove("is-correct", "is-wrong", "is-missing");
+          if (!answer) slot.classList.add("is-missing");
+          else if (answer === slot.dataset.answer) { slot.classList.add("is-correct"); correct += 1; }
+          else slot.classList.add("is-wrong");
+        });
+        const completed = correct === slots.length;
+        output.textContent = completed ? "Tebrikler! Çaprazlamayı doğru tamamladın." : "Bazı alanları tekrar gözden geçir.";
+        output.classList.toggle("is-success", completed);
+        article.classList.toggle("is-verified", completed);
+      });
+      article.querySelector('[data-action="reset"]').addEventListener("click", () => { answers.clear(); renderAll(); article.classList.remove("is-verified"); output.textContent = ""; output.classList.remove("is-success"); });
+      article.querySelector('[data-action="hint"]').addEventListener("click", () => { article.classList.remove("is-verified"); output.textContent = "İpucu: Melez uzun gövdeli = Uu, kısa gövdeli = uu"; output.classList.remove("is-success"); });
+      this.activeInteractions.push({ destroy: () => { if (drag?.clone) drag.clone.remove(); drag = null; } });
+      view.slideContent.replaceChildren(article);
+      return true;
+    }
     if (slide.layout === "resultant_force_examples_image") {
       const article = document.createElement("article");
       article.className = "board-slide resultant-force-examples-image-slide";

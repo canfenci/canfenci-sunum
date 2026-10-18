@@ -78,6 +78,72 @@
       "title": "Etkinlik-2",
       "media": [{"src": "./assets/images/kalitim/09-etkinlik-2.png", "alt": "Kalıtım etkinlik 2 görseli"}],
       "interactions": []
+    }, {
+      "id": "kalitim_slide_10_crossing",
+      "type": "content",
+      "layout": "dna_cover",
+      "title": "Çaprazlama",
+      "media": [{"src": "./assets/images/kalitim/10-caprazlama.png", "alt": "Çaprazlama görseli"}]
+    }, {
+      "id": "kalitim_slide_11_crossing_example",
+      "type": "interactive",
+      "layout": "heredity_crossing_example_one_auto",
+      "title": "Örnek Soru-1",
+      "interactions": []
+    }, {
+      "id": "kalitim_slide_12_crossing_example_two",
+      "type": "content",
+      "layout": "heredity_crossing_example_two",
+      "title": "Örnek Soru-2"
+    }, {
+      "id": "kalitim_slide_13_crossing_example_three",
+      "type": "interactive",
+      "layout": "heredity_crossing_example_three",
+      "title": "Örnek Soru-3",
+      "interactions": []
+    }, {
+      "id": "kalitim_slide_14_crossing_example_four",
+      "type": "interactive",
+      "layout": "heredity_crossing_example_four",
+      "title": "Örnek Soru-4",
+      "interactions": []
+    }, {
+      "id": "kalitim_slide_15_crossing_example_five",
+      "type": "interactive",
+      "layout": "heredity_crossing_example_five",
+      "title": "Örnek Soru-5",
+      "interactions": []
+    }, {
+      "id": "kalitim_slide_16_mendel_single_trait",
+      "type": "content",
+      "layout": "mendel_single_trait_experiment",
+      "title": "Mendel’in Tek Karakter Çaprazlama Deneyi"
+    }, {
+      "id": "kalitim_slide_17_mendel_results",
+      "type": "content",
+      "layout": "mendel_experiment_results",
+      "title": "Mendel Deneyinin Sonuçları"
+    }, {
+      "id": "kalitim_slide_18_sex_determination",
+      "type": "content",
+      "layout": "sex_determination",
+      "title": "Cinsiyetin Belirlenmesi"
+    }, {
+      "id": "kalitim_slide_19_consanguineous_marriage",
+      "type": "content",
+      "layout": "consanguineous_marriage",
+      "title": "Akraba Evlilikleri ve Sakıncaları"
+    }, {
+      "id": "kalitim_slide_20_pedigree",
+      "type": "content",
+      "layout": "pedigree_chart",
+      "title": "Soyağacı"
+    }, {
+      "id": "kalitim_slide_21_drag_drop_crossing",
+      "type": "interactive",
+      "layout": "heredity_drag_drop_crossing",
+      "title": "Örnek Etkileşimli",
+      "interactions": []
     }]
   }]
 }
